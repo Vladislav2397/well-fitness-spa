@@ -1,0 +1,65 @@
+.icon {
+    position: relative;
+    width: toRem(20);
+    height: toRem(20);
+    display: inline-block;
+
+    &::before {
+        font-family: 'icon', sans-serif;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &--size {
+        &-s {
+            width: toRem(16);
+            height: toRem(16);
+
+            &::before {
+                font-size: toRem(16);
+                line-height: toRem(16);
+            }
+        }
+
+        &-m {
+            width: toRem(24);
+            height: toRem(24);
+
+            &::before {
+                font-size: toRem(24);
+                line-height: toRem(24);
+            }
+        }
+
+        &-l {
+            width: toRem(30);
+            height: toRem(30);
+
+            &::before {
+                font-size: toRem(30);
+                line-height: toRem(30);
+            }
+        }
+
+        &-xl {
+            width: toRem(36);
+            height: toRem(36);
+
+            &::before {
+                font-size: toRem(36);
+                line-height: toRem(36);
+            }
+        }
+    }
+
+    &--burger::before {
+        content: '\ea01';
+    }
+
+    &--collapse::before {
+        content: '\ea02';
+        transform: translate(-50%, -56%);
+    }
+}

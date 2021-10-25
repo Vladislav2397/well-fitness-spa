@@ -1,0 +1,174 @@
+.header {
+    width: 100%;
+
+    &__container {
+        display: table;
+        width: 100%;
+        white-space: nowrap;
+        max-width: 1410px;
+    }
+
+    &__top {
+        padding-top: toRem(20);
+        padding-bottom: toRem(20);
+        background-color: $darken;
+        border-bottom: 1px solid rgba(#858FA4, 0.15); // FIXME: Common color
+    }
+
+    &__logo,
+    &__user-actions {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    &__burger {
+        color: #fff;
+    }
+
+    &__image,
+    &__select--city {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__image {
+        width: toRem(170);
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &__select--city {
+        margin-left: toRem(50);
+        color: $secondary;
+    }
+
+    &__dillers {
+        color: $secondary;
+
+        button {
+            margin-left: toRem(30);
+        }
+    }
+
+    &__phone,
+    &__login {
+        padding-left: toRem(30);
+        margin-left: toRem(30);
+        border-left: 1px solid #858fa426;
+        min-height: toRem(30);
+        line-height: toRem(30);
+        vertical-align: middle;
+        color: $white;
+    }
+
+    &__phone {
+        a {
+            margin-left: toRem(26);
+            color: $primary;
+        }
+
+        span + span {
+            color: $secondary;
+            margin-left: toRem(4);
+        }
+    }
+
+    &__user-actions {
+        text-align: right;
+    }
+
+    &__dillers,
+    &__phone,
+    &__login {
+        display: inline-block;
+    }
+
+    &__login span,
+    &__avatar {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__avatar {
+        margin-left: toRem(14);
+    }
+
+    &__search,
+    &__cart,
+    &__burger {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__navigation,
+    &__icons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__middle {
+        background-color: $darken;
+        padding-top: toRem(16);
+        padding-bottom: toRem(16);
+    }
+
+    &__catalog,
+    &__search,
+    &__navbar {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__nav-link {
+        padding: toRem(12) toRem(14) toRem(13);
+
+        & + & {
+            margin-left: toRem(8);
+        }
+    }
+
+    &__bottom {
+        background-color: $dark;
+        color: $white;
+        font-weight: 600;
+
+        span {
+            line-height: toRem(44);
+
+            & + span {
+                position: relative;
+                padding-left: toRem(20);
+                margin-left: toRem(20);
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 1px;
+                    height: toRem(30);
+                    background-color: rgba(#fff, 0.15);
+                }
+            }
+        }
+    }
+
+    &__link {
+        display: inline-block;
+    }
+
+    @media (min-width: 768px) {
+        &__image {
+            width: toRem(200);
+        }
+    }
+
+    @media (min-width: 1410px) {
+        &__image {
+            width: toRem(280);
+        }
+    }
+}

@@ -4,6 +4,12 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+import './global'
+
+import PortalVue from 'portal-vue'
+
+Vue.use(PortalVue)
+
 Vue.config.productionTip = false
 
 new Vue({
