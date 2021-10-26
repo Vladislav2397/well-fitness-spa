@@ -11,8 +11,8 @@
         "webp": "node src/utils/webp.mjs",
         "icons": "ts-node src/utils/makeIconFont.ts",
         "bem": "node src/utils/bem.js",
-        "storybook": "start-storybook -s ./ -p 6006",
-        "build-storybook": "build-storybook -s public"
+        "storybook": "start-storybook -s ./public/ -p 6006",
+        "build-storybook": "build-storybook -s public/"
     },
     "dependencies": {
         "chokidar": "^3.5.2",

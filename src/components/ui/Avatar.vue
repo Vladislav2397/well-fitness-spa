@@ -11,7 +11,7 @@ export default class Avatar extends Vue {
     render (h: CreateElement): VNode {
         const children = h('img', {
             attrs: {
-                src: this.src || '/public/images/common/image-placeholder.svg',
+                src: this.src || '/images/common/image-placeholder.svg',
                 alt: this.alt,
             },
         })

@@ -4,6 +4,11 @@
     font-weight: 600;
     border-radius: toRem(4);
     border: 1px solid transparent;
+    vertical-align: middle;
+
+    i {
+        vertical-align: middle;
+    }
 
     &--size {
         &-s {

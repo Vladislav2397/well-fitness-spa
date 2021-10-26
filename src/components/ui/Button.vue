@@ -14,6 +14,8 @@ export default class Button extends Vue {
 
     @Prop() readonly icon!: string
 
+    @Prop({ default: 'm' }) readonly iconSize!: 's' | 'm' | 'l'
+
     @Prop() readonly href!: string
 
     @Prop() readonly iconLeft!: boolean
@@ -36,6 +38,24 @@ export default class Button extends Vue {
     }
 
     render (h: CreateElement): VNode {
+        const children = []
+
+        const icon = h('i', {
+            class: `icon icon--size-${this.iconSize} icon--${this.icon}`
+        })
+
+        if (this.icon) {
+            if (this.iconLeft) {
+                children.push(icon)
+            }
+            children.push(this.$slots.default)
+            if (!this.iconLeft) {
+                children.push(icon)
+            }
+        } else {
+            children.push(this.$slots.default)
+        }
+
         return h('button', {
             class: this.classes,
             ...this.tag === 'a' && {
@@ -50,7 +70,7 @@ export default class Button extends Vue {
                     to: this.href
                 }
             }
-        }, this.$slots.default)
+        }, children)
     }
 }
 </script>

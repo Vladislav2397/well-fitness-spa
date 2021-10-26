@@ -3,6 +3,9 @@ import '../src/assets/scss/main.scss'
 
 import Vue from 'vue'
 
+import PortalVue from "portal-vue"
+Vue.use(PortalVue)
+
 import RouterLink from './RouterLink.vue'
 
 // import Divider from '../src/components/ui/Divider.vue'

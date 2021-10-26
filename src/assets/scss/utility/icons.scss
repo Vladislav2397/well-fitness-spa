@@ -62,4 +62,28 @@
         content: '\ea02';
         transform: translate(-50%, -56%);
     }
+
+    &--bento::before {
+        content: '\ea03';
+    }
+
+    &--cart::before {
+        content: '\ea04';
+    }
+
+    &--heart::before {
+        content: '\ea05';
+    }
+
+    &--right-arrow::before {
+        content: '\ea06';
+    }
+
+    &--stats::before {
+        content: '\ea07';
+    }
+
+    &--search::before {
+        content: '\ea08';
+    }
 }

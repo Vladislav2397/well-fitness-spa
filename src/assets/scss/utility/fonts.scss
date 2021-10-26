@@ -1,7 +1,7 @@
 @mixin newFont($family,$pathName,$weight, $style: normal) {
     @font-face {
         font-family: '#{$family}';
-        src: url('/public/fonts/#{$pathName}.woff2') format('woff2'), url('/public/fonts/#{$pathName}.woff') format('woff');
+        src: url('/fonts/#{$pathName}.woff2') format('woff2'), url('/public/fonts/#{$pathName}.woff') format('woff');
         font-weight: #{$weight};
         font-style: $style;
         font-display: swap;
@@ -12,4 +12,4 @@
 //@include newFont($mainFontFamily, 'roboto-italic', 400, italic);
 //@include newFont($mainFontFamily, 'roboto-500', 500);
 
-@include newFont($icon, 'icons/iconfont', 400);
+@include newFont(icon, 'icons/iconfont', 400);

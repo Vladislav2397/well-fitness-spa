@@ -14,45 +14,48 @@ include ../../tools/pug/mixins
                     icon="collapse"
                     iconSize="s"
                 ) Москва
-            +e.user-actions()
-                portal(
-                    to="phone-line"
-                )
-                    +e.dillers
-                        span Для дилеров
-                        button-component(
-                            size="s"
-                            theme="secondary"
-                        ) Become a Partner
-                    +e.phone
-                        span +7 (800) 800-80-80
-                        link-component(
-                            tag="span"
-                            icon="collapse"
-                            iconSize="s"
-                        ) МСК
-                        link-component(
-                            tag="a"
-                            iconSize="s"
-                        ) Заказать звонок
-                    +e.login
-                        span Войти
-                        +e.AVATAR-COMPONENT.avatar
             +e.user-actions
-                +e.search
-                +e.cart
-                +e.I.burger.icon--size-l.--burger
-    +e.middle(
-        v-if="device.size.desktop"
-    )
+                +e.dillers
+                    span Для дилеров
+                    button-component(
+                        size="s"
+                        theme="secondary"
+                    ) Become a Partner
+                +e.phone
+                    span +7 (800) 800-80-80
+                    link-component(
+                        tag="span"
+                        icon="collapse"
+                        iconSize="s"
+                    ) МСК
+                    link-component(
+                        tag="a"
+                        iconSize="s"
+                    ) Заказать звонок
+                +e.login
+                    span Войти
+                    +e.AVATAR-COMPONENT.avatar
+            //+e.user-actions(
+            //    v-else
+            //)
+            //    template(
+            //        v-if="device.size.tablet || device.size.tabletLate"
+            //    )
+            //        +e.I.action.icon--size-m.--stats
+            //        +e.I.action.icon--size-m.--heart
+            //    +e.I.action.icon--size-m.--cart
+            //    +e.I.action.icon--size-l.--burger
+    +e.middle
         +e.container.container
             +e.navigation
                 +e.BUTTON-COMPONENT.catalog(
                     :iconLeft="true"
+                    icon="bento"
                     size="m"
                     theme="brand"
                 ) Каталог
                 +e.search
+                    i.icon.icon--size-m.icon--search
                 +e.navbar
                     +e.LINK-COMPONENT.nav-link(
                         v-for="(link, index) in navigationItems"
@@ -62,9 +65,9 @@ include ../../tools/pug/mixins
                         theme="secondary"
                     ) {{ link.text }}
             +e.icons
-                +e.stats
-                +e.likes
-                +e.cart
+                +e.I.action.icon--size-m.--stats
+                +e.I.action.icon--size-m.--heart
+                +e.I.action.icon--size-m.--cart
     +e.bottom
         +e.container.container
             link-component(

@@ -15,6 +15,7 @@
 
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
+
 import Device from '@/mixins/device'
 
 @Component
