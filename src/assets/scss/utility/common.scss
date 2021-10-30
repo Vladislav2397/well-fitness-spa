@@ -194,6 +194,16 @@ textarea {
     font-display: swap;
 }
 
+.modal-section {
+    padding-top: toRem(20);
+    padding-bottom: toRem(20);
+    border-top: 1px solid rgba(#858FA4, 0.15);
+
+    &--margin-top {
+        margin-top: toRem(20);
+    }
+}
+
 .vb > .vb-dragger {
     z-index: 5;
     width: 5px;

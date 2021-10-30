@@ -1,19 +1,28 @@
 const fs = require('fs')
 const params = process.argv[2].split('=')
 const type = params[0]
-const namePath = params[1].split('/')
+const namePath = getNamePath(params[1])
 const name = namePath[namePath.length - 1]
 const folders = namePath.filter(folder => folder !== name).reduce((t, f) => (t += `/${f}`), '')
-
-const validTypes = ['ui', 'blanks', 'popups', 'sections']
+const validTypes = ['ui', 'blanks', 'popups', 'modals', 'sections']
 
 const cssDirectory = './src/assets/scss'
 const vueDirectory = './src/components'
 
 const isValidType = validTypes.includes(type)
 
+function getNamePath(string) {
+    const split = string.split('/')
+
+    if (split.length > 1) {
+        split[0] = camelToKebab(split[0])
+    }
+
+    return split
+}
+
 if (isValidType) {
-    //
+    create()
 } else {
     let equal = validTypes.find(t => type.indexOf(t) !== -1)
 
@@ -24,13 +33,20 @@ if (isValidType) {
     }
 }
 
-create()
+function camelToKebab(str) {
+    return str
+        .split('')
+        .map((letter, idx) => {
+            return letter.toUpperCase() === letter ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}` : letter
+        })
+        .join('')
+}
 
 function create() {
     const cssTypeFolder = `${cssDirectory}/${type}`
     const newCssFolder = `${cssTypeFolder}${folders}`
-    const newCssFolderFiles = `${newCssFolder}/${name}`
-    const cssFileImport = `@import '${folders.replace('/', '')}/${name}/${name}`
+    const newCssFolderFiles = `${newCssFolder}/${camelToKebab(name)}`
+    const cssFileImport = `@import '${folders.replace('/', '')}/${camelToKebab(name)}/${camelToKebab(name)}`
 
     const vueTypeFolder = `${vueDirectory}/${type}`
     const newVueFolder = `${vueTypeFolder}${folders}`
@@ -54,14 +70,14 @@ function create() {
         fs.mkdirSync(newCssFolderFiles)
         console.log(`Создана директория ${newCssFolderFiles}`)
 
-        fs.writeFile(`${newCssFolderFiles}/${name}--critical.scss`, '', err => {
+        fs.writeFile(`${newCssFolderFiles}/${camelToKebab(name)}--critical.scss`, '', err => {
             if (err) throw err
-            console.log(`Создан файл ${newCssFolderFiles}/${name}--critical.scss`)
+            console.log(`Создан файл ${newCssFolderFiles}/${camelToKebab(name)}--critical.scss`)
         })
 
-        fs.writeFile(`${newCssFolderFiles}/${name}--main.scss`, '', err => {
+        fs.writeFile(`${newCssFolderFiles}/${camelToKebab(name)}--main.scss`, '', err => {
             if (err) throw err
-            console.log(`Создан файл ${newCssFolderFiles}/${name}--main.scss`)
+            console.log(`Создан файл ${newCssFolderFiles}/${camelToKebab(name)}--main.scss`)
         })
 
         fs.appendFile(`${cssTypeFolder}/${type}--critical.scss`, `${cssFileImport}--critical';\n`, function (err) {
@@ -113,8 +129,9 @@ function ucFirst(str) {
 function vueFileTemplate(cssName, vueName, nesting) {
     return `<template lang="pug">
     include ../${'../'.repeat(nesting)}tools/pug/mixins
-    +b.${cssName}
 
+    +b.${camelToKebab(cssName)}
+    
 </template>
 
 <script lang="ts">

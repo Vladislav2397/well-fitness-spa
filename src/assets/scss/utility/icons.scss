@@ -86,4 +86,8 @@
     &--search::before {
         content: '\ea08';
     }
+
+    &--close::before {
+        content: '\ea09';
+    }
 }

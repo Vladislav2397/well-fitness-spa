@@ -1,25 +1,39 @@
 <template lang="pug">
 #app
+    header-component(
+        @clickBurger="isModal = true"
+    )
     router-view
 
-    .modal-window(
-        v-if="!device.size.desktop"
+    transition(
+        name="translate-bottom"
     )
-        portal-target(
-            name="header-modal-window"
+        modal-component(
+            v-if="isModal && !device.size.desktop"
+            @clickClose="isModal = false"
         )
-        portal-target(
-            name="phone-line"
-        )
+            header-modal-component
 </template>
 
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
 
-import Device from '@/mixins/device'
+import TheHeader from '@/components/blanks/TheHeader.vue'
+import Modal from '@/components/modals/Modal.vue'
 
-@Component
-export default class App extends Mixins(Device) {}
+import Device from '@/mixins/device'
+import HeaderModal from '@/components/modals/HeaderModal.vue'
+
+@Component({
+    components: {
+        'header-modal-component': HeaderModal,
+        'header-component': TheHeader,
+        'modal-component': Modal
+    }
+})
+export default class App extends Mixins(Device) {
+    isModal = false
+}
 </script>
 
 <style lang="scss">

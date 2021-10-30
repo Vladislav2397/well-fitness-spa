@@ -35,6 +35,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.15.8",
+        "@linusborg/vue-simple-portal": "^0.1.5",
         "@storybook/addon-actions": "^6.3.12",
         "@storybook/addon-essentials": "^6.3.12",
         "@storybook/addon-links": "^6.3.12",

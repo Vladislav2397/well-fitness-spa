@@ -1,0 +1,12 @@
+.login-button {
+    color: #fff;
+    span,
+    &__avatar {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__avatar {
+        margin-left: toRem(14);
+    }
+}

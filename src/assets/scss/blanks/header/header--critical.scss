@@ -1,16 +1,13 @@
 .header {
     width: 100%;
 
-    .portal,
-    .vue-portal-target {
-        display: inline-block;
-    }
-
     &__container {
         display: table;
         width: 100%;
         white-space: nowrap;
         max-width: 1410px;
+        padding-left: toRem(10);
+        padding-right: toRem(10);
     }
 
     &__top {
@@ -31,7 +28,7 @@
     }
 
     &__image,
-    &__select--city {
+    &__city {
         display: inline-block;
         vertical-align: middle;
     }
@@ -44,7 +41,7 @@
         }
     }
 
-    &__select--city {
+    &__city {
         margin-left: toRem(50);
         color: $secondary;
     }
@@ -60,26 +57,41 @@
     &__action {
         display: inline-block;
         vertical-align: middle;
-        color: #ffffff;
+        color: rgba(#fff, 0.7);
+        
+        &.icon--search {
+            color: rgba(#858FA4, 0.7);
+            margin-right: toRem(25);
+            position: relative;
 
-        & + & {
-            margin-left: toRem(20);
+            &::after {
+                content: '';
+                position: absolute;
+                right: toRem(-10);
+                top: 50%;
+                transform: translateY(-50%);
+                width: 1px;
+                height: toRem(40);
+                background-color: rgba(#858FA4, 0.15);
+            }
         }
 
         &.icon--burger {
-            margin-left: toRem(30);
+            color: #fff;
+            margin-left: toRem(10);
         }
     }
 
-    &__phone,
-    &__login {
-        padding-left: toRem(30);
-        margin-left: toRem(30);
-        border-left: 1px solid #858fa426;
-        min-height: toRem(30);
-        line-height: toRem(30);
+    &__info {
+        display: inline-block;
         vertical-align: middle;
-        color: $white;
+        line-height: toRem(30);
+
+        & + & {
+            margin-left: toRem(30);
+            padding-left: toRem(30);
+            border-left: 1px solid #858fa426;
+        }
     }
 
     &__phone {
@@ -146,6 +158,16 @@
         padding-bottom: toRem(16);
     }
 
+    &__navigations,
+    &__icons {
+        display: table-cell;
+    }
+
+    &__icons {
+        white-space: nowrap;
+        text-align: right;
+    }
+
     &__catalog,
     &__search,
     &__navbar {
@@ -199,6 +221,28 @@
     @media (min-width: 650px) {
         &__search {
             padding-right: toRem(30);
+        }
+
+        &__action {
+            & + & {
+                margin-left: toRem(20);
+            }
+
+            &.icon--search {
+                margin-right: toRem(60);
+
+                &::after {
+                    right: toRem(-30);
+                }
+            }
+
+            &.icon--stats {
+                margin-left: 0;
+            }
+
+            &.icon--burger {
+                margin-left: toRem(30);
+            }
         }
     }
 

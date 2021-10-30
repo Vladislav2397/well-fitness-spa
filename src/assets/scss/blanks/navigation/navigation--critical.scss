@@ -1,0 +1,27 @@
+.navigation {
+    $b: &;
+
+    &--align {
+        &-vertical {
+            a {
+                display: block;
+            }
+        }
+
+        &-horizontal {
+            a {
+                display: inline-block;
+            }
+        }
+    }
+
+    a {
+        // FIXME: change font on vars
+        font-size: toRem(14);
+        line-height: toRem(20);
+
+        & + a {
+            margin-top: toRem(10);
+        }
+    }
+}

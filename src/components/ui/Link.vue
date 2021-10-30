@@ -12,6 +12,8 @@ export default class Link extends Vue {
         default: 'secondary'
     }) readonly theme!:'primary' | 'secondary' | 'white'
 
+    @Prop() readonly href!: string
+
     @Prop() readonly icon!: string
 
     @Prop() readonly iconLeft!: string
@@ -42,7 +44,12 @@ export default class Link extends Vue {
 
     render (h: CreateElement): VNode {
         const settings = {
-            class: this.classes
+            class: this.classes,
+            props: {
+                ...this.tag === 'router-link' && {
+                    to: this.href
+                }
+            }
         }
 
         const children = []

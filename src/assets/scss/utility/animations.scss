@@ -1,0 +1,14 @@
+.translate-bottom {
+    &-leave-to,
+    &-enter {
+        transform: translateY(-100%);
+    }
+
+    &-enter-active {
+        transition: transform 0.2s ease;
+    }
+
+    &-leave-active {
+        transition: transform 0.1s ease;
+    }
+}

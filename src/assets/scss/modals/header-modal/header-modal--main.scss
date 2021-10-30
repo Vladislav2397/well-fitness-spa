@@ -1,0 +1,57 @@
+.header-modal {
+    &__city,
+    &__login {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__login {
+        margin-left: toRem(26);
+    }
+
+    &__input {
+        margin-top: toRem(19);
+        margin-bottom: toRem(39);
+    }
+
+    &__prefix {
+        padding-right: toRem(15);
+        position: relative;
+        color: rgba(#858FA4, 0.7);
+        padding-top: toRem(8);
+        padding-bottom: toRem(8);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: toRem(8);
+            bottom: 0;
+            width: 1px;
+            background-color: rgba(#858FA4, 0.15);
+        }
+    }
+
+    &__accessory {
+        vertical-align: middle;
+        padding: toRem(16) toRem(68) toRem(16) toRem(10);
+        position: relative;
+        background-color: #38425580;
+        font-weight: 600;
+        margin-top: toRem(8);
+
+        i {
+            position: absolute;
+            right: toRem(10 + 17);
+            top: 50%;
+            transform: translateY(-50%);
+            //background: #000;
+            color: $primary;
+        }
+    }
+
+    &__link {
+        font-size: toRem(14);
+        line-height: toRem(18);
+    }
+}

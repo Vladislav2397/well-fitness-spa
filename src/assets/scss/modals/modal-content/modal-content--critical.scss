@@ -1,0 +1,15 @@
+.modal-content {
+    &__title {
+        // FIXME: Change font size on vars
+        font-size: toRem(24);
+        line-height: toRem(36);
+        font-weight: 600;
+        color: $white;
+    }
+
+    &__section {
+        margin-top: toRem(20);
+        border-top: 1px solid rgba(#858FA4, 0.15);
+        padding-top: toRem(20);
+    }
+}
