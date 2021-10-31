@@ -1,16 +1,29 @@
 .navigation {
     $b: &;
 
+
     &--align {
         &-vertical {
             a {
                 display: block;
+
+                & + a {
+                    margin-top: toRem(10);
+                }
             }
         }
 
         &-horizontal {
+            display: inline-block;
+
             a {
                 display: inline-block;
+                vertical-align: middle;
+                padding: toRem(12) toRem(14);
+
+                & + a {
+                    margin-left: toRem(8);
+                }
             }
         }
     }
@@ -19,9 +32,5 @@
         // FIXME: change font on vars
         font-size: toRem(14);
         line-height: toRem(20);
-
-        & + a {
-            margin-top: toRem(10);
-        }
     }
 }

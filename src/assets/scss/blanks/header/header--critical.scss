@@ -175,12 +175,12 @@
         vertical-align: middle;
     }
 
-    &__navbar {
+    &__navigation {
         margin-left: toRem(34);
     }
 
     &__nav-link {
-        padding: toRem(12) toRem(14) toRem(13);
+        padding: toRem(12) toRem(14);
 
         & + & {
             margin-left: toRem(8);

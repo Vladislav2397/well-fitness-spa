@@ -37,7 +37,7 @@ include ../../tools/pug/mixins
         v-if="device.size.desktop || device.size.desktopLate"
     )
         +e.container.container
-            +e.navigation.navbar
+            +e.navbar
                 +e.BUTTON-COMPONENT.catalog(
                     :iconLeft="true"
                     icon="bento"
@@ -46,7 +46,9 @@ include ../../tools/pug/mixins
                 ) Каталог
                 +e.search
                     i.icon.icon--size-m.icon--search
-                navigation-component
+                +e.NAVIGATION-COMPONENT.navigation(
+                    align="horizontal"
+                )
             +e.icons
                 +e.I.action.icon--size-m.icon--stats
                 +e.I.action.icon--size-m.icon--heart

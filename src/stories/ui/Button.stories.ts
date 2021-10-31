@@ -1,8 +1,22 @@
 import Button from '../../components/ui/Button.vue'
+import { booleanControl, selectControl, textControl } from '@/tools/stories'
 
 export default {
     title: 'Ui/Button',
     component: Button,
+    argTypes: {
+        tag: selectControl([
+            'button', 'a', 'div', 'router-link'
+        ]),
+        size: selectControl(['m', 's']),
+        theme: selectControl([
+            'brand', 'ghost-brand', 'ghost', 'secondary'
+        ]),
+        icon: textControl(),
+        iconSize: selectControl(['s', 'm', 'l']),
+        href: textControl(),
+        iconLeft: booleanControl(),
+    }
 }
 
 const Template = (args: any, { argTypes }: any) => ({
@@ -12,7 +26,6 @@ const Template = (args: any, { argTypes }: any) => ({
 })
 
 export const Default = Template.bind({})
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 Default.args = {}
 
