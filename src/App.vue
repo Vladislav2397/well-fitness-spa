@@ -5,6 +5,8 @@
     )
     router-view
 
+    .footer
+
     transition(
         name="translate-bottom"
     )
@@ -13,6 +15,12 @@
             @clickClose="isModal = false"
         )
             header-modal-component
+        modal-component(
+            v-if="isModal && !device.size.desktop"
+            @clickClose="isModal = false"
+        )
+            //-
+
 </template>
 
 <script lang="ts">
