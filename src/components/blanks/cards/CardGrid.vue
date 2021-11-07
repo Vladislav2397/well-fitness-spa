@@ -2,15 +2,17 @@
 include ../../../tools/pug/mixins
 
 +b.card-grid(
-    :classes="classes"
+    :class="classes"
 )
-    +e.title {{ title }}
+    +e.title(
+        v-html="title"
+    )
     +e.image
         img(
             :src="imageSrc"
             :alt="imageAlt"
         )
-    
+
 </template>
 
 <script lang="ts">
@@ -20,7 +22,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class CardGrid extends Vue {
     @Prop({
         default: 'none'
-    }) readonly stretch!: 'vertical' | 'horizontal' | 'none'
+    }) readonly stretch!: 'vertical' | 'horizontal' | 'default' | 'none'
 
     @Prop({
         default: 'light',

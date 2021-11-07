@@ -31,7 +31,7 @@ export default class Device extends Vue {
         },
         breakpoints: {
             tablet: 650,
-            tabletLate: 960,
+            tabletLate: 768,
             desktop: 1200,
             desktopLate: 1410
         },

@@ -16,7 +16,7 @@ img {
 
 .container {
     box-sizing: border-box;
-    padding: 0 toRem(16);
+    padding: 0 toRem(10);
     margin: 0 auto;
 
     &--wide {
@@ -25,11 +25,12 @@ img {
     }
 
     @media (min-width: $tablet) {
-        padding: 0 toRem(20);
+        padding: 0 toRem(16);
     }
 
     @media (min-width: $desktop) {
-        padding: 0;
+        padding: 0 toRem(20);
+        max-width: 1410px;
     }
 }
 
