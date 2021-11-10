@@ -2,8 +2,8 @@
 .home
     carousel-component
     home-equipment-component
-    .grid-gym
-    .stock
+    gym-equipment-component
+    stock-component
     .ideas
     .brands
     .information
@@ -17,11 +17,15 @@ import { Vue, Component } from 'vue-property-decorator'
 
 import Carousel from '@/components/sections/Carousel.vue'
 import HomeEquipment from '@/components/sections/HomeEquipment.vue'
+import GymEquipment from '@/components/sections/GymEquipment.vue'
+import Stock from '@/components/sections/Stock.vue'
 
 @Component({
     components: {
+        'carousel-component': Carousel,
         'home-equipment-component': HomeEquipment,
-        'carousel-component': Carousel
+        'gym-equipment-component': GymEquipment,
+        'stock-component': Stock,
     }
 })
 export default class IndexPage extends Vue {}

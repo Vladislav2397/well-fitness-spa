@@ -8,10 +8,13 @@ $widthDesktop: ((1410 - (30 * 3)) / 4) / 1410 * 100%;
 
 .card-grid {
     border-radius: toRem(4); // FIXME: to var
-    padding: toRem(10) toRem(20);
     box-sizing: border-box;
     vertical-align: middle;
     min-height: toRem(140);
+    padding-top: toRem(20);
+    padding-left: toRem(16);
+
+    $b: &;
 
     &__title {
         font-size: toRem(14);
@@ -40,6 +43,10 @@ $widthDesktop: ((1410 - (30 * 3)) / 4) / 1410 * 100%;
                     rgba(72, 77, 92, 0) 25.95%,
                     rgba(112, 121, 148, 0.2) 80.01%
                 ), #1A1A25;
+
+            #{$b}__title {
+                color: $white;
+            }
         }
 
         &-light {
@@ -79,6 +86,21 @@ $widthDesktop: ((1410 - (30 * 3)) / 4) / 1410 * 100%;
         &__title {
             font-size: toRem(18);
             line-height: toRem(22);
+        }
+
+        &--stretch {
+            &-horizontal,
+            &-default {
+                min-height: toRem(280);
+            }
+
+            &-none {
+                min-height: toRem(200);
+            }
+
+            &-vertical {
+                min-height: toRem(430);
+            }
         }
     }
 }

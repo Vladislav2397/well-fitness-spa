@@ -3,23 +3,13 @@ include ../../tools/pug/mixins
 
 +b.home-equipment
     +e.container.container
-        +e.title Тренажеры для дома
-        +e.VUE-GRID-COMPONENT.grid(
+        +e.GRID-SECTION-COMPONENT.grid(
+            title="Тренажеры для дома"
+            button="Все категории"
             :layout="layout"
+            :cardList="cardList"
         )
-            +e.CARD-GRID-COMPONENT.card(
-                v-for="(card, index) in cards"
-                :key="index"
-                :title="card.title"
-                :imageSrc="card.image.src"
-                :imageAlt="card.image.alt"
-                theme="secondary"
-                :stretch="currentStretch[index]"
-            )
-        +e.BUTTON-COMPONENT.button(
-            theme="ghost-brand"
-        ) Все категории
-    
+
 </template>
 
 <script lang="ts">
@@ -29,17 +19,9 @@ import GridLayout from '@/components/blanks/GridLayout.vue'
 import CardGrid from '@/components/blanks/cards/CardGrid.vue'
 import VueGrid from '@/components/blanks/VueGrid.vue'
 
-import Device from '@/mixins/device'
+import GridSection, { cardType } from '@/components/blanks/GridSection.vue'
 
-type cardType = {
-    title: string
-    href: string
-    image: {
-        src: string
-        alt: string
-    }
-    stretch: 'horizontal' | 'vertical' | 'none' | 'default'
-}
+import Device from '@/mixins/device'
 
 type Point = [x: number, y: number, sizeX: number, sizeY: number]
 
@@ -47,11 +29,12 @@ type Point = [x: number, y: number, sizeX: number, sizeY: number]
     components: {
         'vue-grid-component': VueGrid,
         'card-grid-component': CardGrid,
-        'grid-layout-component': GridLayout
+        'grid-layout-component': GridLayout,
+        'grid-section-component': GridSection,
     }
 })
 export default class HomeEquipmentPage extends Mixins(Device) {
-    rowsMobile: Point[] = [
+    layoutMobile: Point[] = [
         [0, 0, 2, 1],
         [0, 1, 2, 1],
         [0, 2, 1, 1],
@@ -64,7 +47,7 @@ export default class HomeEquipmentPage extends Mixins(Device) {
         [1, 5, 1, 1],
     ]
 
-    rowsTablet: Point[] = [
+    layoutTablet: Point[] = [
         [0, 0, 1, 2],
         [1, 0, 1, 2],
         [2, 0, 1, 1],
@@ -77,7 +60,7 @@ export default class HomeEquipmentPage extends Mixins(Device) {
         [2, 3, 1, 1],
     ]
 
-    rowsDesktop: Point[] = [
+    layoutDesktop: Point[] = [
         [0, 0, 1, 2],
         [1, 0, 1, 2],
         [2, 0, 1, 1],
@@ -91,132 +74,115 @@ export default class HomeEquipmentPage extends Mixins(Device) {
     ]
 
     get layout (): Point[] {
-        if (this.device.size.tabletLate) return this.rowsDesktop
-        if (this.device.size.tablet) return this.rowsTablet
-        if (this.device.size.mobile) return this.rowsMobile
-        return this.rowsDesktop
+        if (this.device.size.tabletLate) return this.layoutDesktop
+        if (this.device.size.tablet) return this.layoutTablet
+        if (this.device.size.mobile) return this.layoutMobile
+        return this.layoutDesktop
     }
 
-    get currentStretch (): cardType['stretch'][] {
+    get cardList (): cardType[] {
         return [
-            this.device.size.mobile ? 'horizontal' : 'vertical',
-            this.device.size.mobile ? 'horizontal' : 'vertical',
-            this.device.size.mobile ? 'default' : 'none',
-            this.device.size.mobile ? 'default' : 'none',
-            this.device.size.mobile ? 'default' : 'none',
-            this.device.size.mobile ? 'default' : 'none',
-            'default',
-            'default',
-            'default',
-            'default',
+            {
+                title: 'Беговые<br />дорожки',
+                href: '#',
+                image: {
+                    src: '',
+                    alt: '',
+                },
+                theme: 'dark',
+                stretch: this.device.size.mobile ? 'horizontal' : 'vertical',
+            },
+            {
+                title: 'Эллиптические<br />тренажеры',
+                href: '#',
+                image: {
+                    src: '',
+                    alt: '',
+                },
+                theme: 'secondary',
+                stretch: this.device.size.mobile ? 'horizontal' : 'vertical',
+            },
+            {
+                title: 'Велотренажеры',
+                href: '#',
+                image: {
+                    src: '',
+                    alt: '',
+                },
+                theme: 'light',
+                stretch: this.device.size.tablet || this.device.size.desktop ? 'none' : 'default',
+            },
+            {
+                title: 'Горнолыжные<br />тренажеры',
+                href: '#',
+                image: {
+                    src: '',
+                    alt: '',
+                },
+                theme: 'light',
+                stretch: this.device.size.tablet || this.device.size.desktop ? 'none' : 'default',
+            },
+            {
+                title: 'Силовые<br />тренажеры',
+                href: '#',
+                image: {
+                    src: '',
+                    alt: '',
+                },
+                theme: 'light',
+                stretch: 'none',
+            },
+            {
+                title: 'Гребные<br />тренажеры',
+                href: '#',
+                image: {
+                    src: '',
+                    alt: '',
+                },
+                theme: 'light',
+                stretch: 'none',
+            },
+            {
+                title: 'Батуты',
+                href: '#',
+                image: {
+                    src: '',
+                    alt: '',
+                },
+                theme: 'light',
+                stretch: 'default',
+            },
+            {
+                title: 'Игровые<br />столы',
+                href: '#',
+                image: {
+                    src: '',
+                    alt: '',
+                },
+                theme: 'light',
+                stretch: 'default',
+            },
+            {
+                title: 'Массажные<br />кресла',
+                href: '#',
+                image: {
+                    src: '',
+                    alt: '',
+                },
+                theme: 'light',
+                stretch: 'default',
+            },
+            {
+                title: 'Фитнес<br />аксессуары',
+                href: '#',
+                image: {
+                    src: '',
+                    alt: '',
+                },
+                theme: 'light',
+                stretch: 'default',
+            },
         ]
-    }
-
-    cards: cardType[] = [
-        {
-            title: 'Беговые<br />дорожки',
-            href: '#',
-            image: {
-                src: '',
-                alt: '',
-            },
-            stretch: 'vertical',
-        },
-        {
-            title: 'Эллиптические<br />тренажеры',
-            href: '#',
-            image: {
-                src: '',
-                alt: '',
-            },
-            stretch: 'vertical',
-        },
-        {
-            title: 'Велотренажеры',
-            href: '#',
-            image: {
-                src: '',
-                alt: '',
-            },
-            stretch: 'none',
-        },
-        {
-            title: 'Горнолыжные<br />тренажеры',
-            href: '#',
-            image: {
-                src: '',
-                alt: '',
-            },
-            stretch: 'none',
-        },
-        {
-            title: 'Силовые<br />тренажеры',
-            href: '#',
-            image: {
-                src: '',
-                alt: '',
-            },
-            stretch: 'none',
-        },
-        {
-            title: 'Гребные<br />тренажеры',
-            href: '#',
-            image: {
-                src: '',
-                alt: '',
-            },
-            stretch: 'none',
-        },
-        {
-            title: 'Батуты',
-            href: '#',
-            image: {
-                src: '',
-                alt: '',
-            },
-            stretch: 'default',
-        },
-        {
-            title: 'Игровые<br />столы',
-            href: '#',
-            image: {
-                src: '',
-                alt: '',
-            },
-            stretch: 'default',
-        },
-        {
-            title: 'Массажные<br />кресла',
-            href: '#',
-            image: {
-                src: '',
-                alt: '',
-            },
-            stretch: 'default',
-        },
-        {
-            title: 'Фитнес<br />аксессуары',
-            href: '#',
-            image: {
-                src: '',
-                alt: '',
-            },
-            stretch: 'default',
-        },
-    ]
-
-    correctStretch (stretch: cardType['stretch']): cardType['stretch'] {
-        if (stretch === 'vertical') {
-            if (this.device.size.mobile) {
-                return 'horizontal'
-            }
-        }
-
-        return stretch
-    }
-
-    currentQuarter (index: number): string {
-        return `quarter${index + 1}`
     }
 }
 

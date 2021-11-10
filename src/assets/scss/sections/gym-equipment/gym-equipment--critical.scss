@@ -1,5 +1,8 @@
-.home-equipment {
+.gym-equipment {
     padding-top: toRem(64);
+    padding-bottom: toRem(20);
+    border-bottom: 1px solid #858FA433;
+
 
     &__container {
         overflow: hidden;
@@ -12,5 +15,6 @@
 
     @media (min-width: $desktop) {
         padding-top: toRem(104);
+        padding-bottom: toRem(30);
     }
 }

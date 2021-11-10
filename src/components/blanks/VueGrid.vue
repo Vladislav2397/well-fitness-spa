@@ -2,7 +2,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { CreateElement, VNode } from 'vue'
 
-type Point = [x: number, y: number, sizeX: number, sizeY: number]
+export type Point = [x: number, y: number, sizeX: number, sizeY: number]
 
 @Component
 export default class VueGrid extends Vue {
@@ -10,6 +10,10 @@ export default class VueGrid extends Vue {
 
     get rows (): Set<number> {
         return new Set(this.layout.map(item => item[1]))
+    }
+
+    get cols (): Set<number> {
+        return new Set(this.layout.map(item => item[0]))
     }
 
     get correctList (): VNode[] {
@@ -30,14 +34,25 @@ export default class VueGrid extends Vue {
         for (const row of this.rows) {
             const rowChildren = []
 
-            for (const col of this.layout.filter(item => item[1] === +(row))) {
+            const currentRows = this.layout.filter(item => item[1] === +(row))
+
+            for (const col of currentRows) {
                 const slotChildren =
                     this.$slots.default && this.$slots.default[i]
 
+                const isFirst = col[0] === 0
+                const isLast = col[0] === Math.max(...this.cols)
+                const isSingle = isFirst && currentRows.length === 1
+
                 rowChildren.push(
                     h('td', {
-                        ...col[0] !== 0 && {
-                            class: 'not-first'
+                        class: isSingle ? 'single' : [
+                            isFirst && 'first',
+                            !isFirst && !isLast && 'middle',
+                            isLast && 'last'
+                        ],
+                        style: {
+                            width: `${100 / this.cols.size}%`
                         },
                         attrs: {
                             colspan: col[2],
@@ -47,7 +62,6 @@ export default class VueGrid extends Vue {
                         slotChildren
                     ])
                 )
-                console.log('elm', slotChildren?.elm)
                 i++
             }
             tbody.children?.push(h('tr', {}, rowChildren))

@@ -1,12 +1,60 @@
-.vue-grid {
-    table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 10px;
+$spacingMobile: 5;
+$spacingTablet: 10;
+$spacingDesktop: 15;
 
-        div {
-            min-height: 100px;
-            background: #000;
+.vue-grid {
+    .middle,
+    .first {
+        padding-right: toRem($spacingMobile);
+    }
+
+    .middle,
+    .last {
+        padding-left: toRem($spacingMobile);
+
+    }
+
+    tr + tr {
+        td {
+            padding-top: toRem($spacingMobile * 2);
+        }
+    }
+
+    @media (min-width: 650px) {
+        .middle,
+        .first {
+            padding-right: toRem($spacingTablet);
+        }
+
+        .middle,
+        .last {
+            padding-left: toRem($spacingTablet);
+
+        }
+
+        tr + tr {
+            td {
+                padding-top: toRem($spacingTablet * 2);
+            }
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .middle,
+        .first {
+            padding-right: toRem($spacingDesktop);
+        }
+
+        .middle,
+        .last {
+            padding-left: toRem($spacingDesktop);
+
+        }
+
+        tr + tr {
+            td {
+                padding-top: toRem($spacingDesktop * 2);
+            }
         }
     }
 }

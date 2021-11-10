@@ -1,8 +1,8 @@
 <script lang="ts">
 import { CreateElement, VNode } from 'vue'
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 
-type buttonThemeType = 'brand' | 'ghost-brand' | 'ghost' | 'secondary'
+export type buttonThemeType = 'brand' | 'ghost-brand' | 'ghost' | 'secondary'
 
 @Component
 export default class Button extends Vue {
@@ -19,6 +19,8 @@ export default class Button extends Vue {
     @Prop() readonly href!: string
 
     @Prop() readonly iconLeft!: boolean
+
+    @Emit('click') clickEmit (): void {/**/}
 
     get classes (): string[] {
         const classes = ['button']
@@ -69,6 +71,9 @@ export default class Button extends Vue {
                 attrs: {
                     to: this.href
                 }
+            },
+            on: {
+                click: this.clickEmit
             }
         }, children)
     }
