@@ -1,0 +1,13 @@
+.card-product {
+    width: toRem(270);
+
+    &__image {
+        width: toRem(270);
+        height: toRem(270);
+        background-color: #c2c4ce;
+    }
+
+    &__content {
+        padding: toRem(20);
+    }
+}

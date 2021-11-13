@@ -1,0 +1,60 @@
+.stock {
+    padding-top: toRem(80);
+    padding-bottom: toRem(60);
+
+    --spacing: #{toRem(10)};
+    --n-spacing: #{toRem(-10)};
+    --i-spacing: #{toRem(20)};
+
+    &__container {
+        overflow: hidden;
+    }
+
+    &__cards,
+    &__tabs {
+        white-space: nowrap;
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
+    &__tabs {
+        margin-bottom: toRem(30);
+    }
+
+    &__cards {
+        padding: 0 var(--spacing);
+        transform: translateX(var(--n-spacing));
+        width: 100%;
+    }
+
+    &__card {
+        display: inline-block;
+        white-space: normal;
+        vertical-align: top;
+
+        &:last-child {
+            margin-right: var(--spacing);
+        }
+
+        & + & {
+            margin-left: var(--i-spacing);
+        }
+    }
+
+    @media (min-width: 650px) {
+        padding-top: toRem(104);
+        padding-bottom: toRem(80);
+
+        --spacing: #{toRem(16)};
+        --n-spacing: #{toRem(-16)};
+        --i-spacing: #{toRem(30)};
+    }
+
+    @media (min-width: 1200px) {
+        padding-top: toRem(120);
+        padding-bottom: toRem(100);
+
+        --spacing: #{toRem(20)};
+        --n-spacing: #{toRem(-20)};
+    }
+}

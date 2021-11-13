@@ -1,0 +1,44 @@
+.card-product-stats {
+    &__quantity {
+        display: inline-block;
+        margin-bottom: toRem(8);
+        vertical-align: middle;
+    }
+
+    &__link {
+        margin-left: toRem(12);
+        margin-bottom: toRem(8);
+        vertical-align: middle;
+    }
+
+    &__title {
+        margin-bottom: toRem(8);
+    }
+
+    &__rating {
+        margin-bottom: toRem(12);
+    }
+
+    &__bottom {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__price {
+        span, del {
+            display: inline-block;
+        }
+
+        span {
+            color: $dark;
+            font-size: toRem(16);
+            line-height: toRem(24);
+            font-weight: 600;
+            margin-right: toRem(12);
+        }
+
+        del {
+            color: $secondary;
+        }
+    }
+}
