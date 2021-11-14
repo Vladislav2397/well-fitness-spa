@@ -25,8 +25,12 @@
     }
 
     &__price {
-        span, del {
+        &--row {
             display: inline-block;
+        }
+
+        span, del {
+            display: inherit;
         }
 
         span {

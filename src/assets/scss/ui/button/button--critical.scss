@@ -42,5 +42,10 @@
             border-color: #909cb5;
             color: #909cb5;
         }
+
+        &-ghost-light {
+            border-color: $white;
+            color: $white;
+        }
     }
 }

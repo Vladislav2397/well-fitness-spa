@@ -1,9 +1,20 @@
 .section-wrapper {
+    &--theme {
+        &-light {
+            --color: #{$dark};
+        }
+
+        &-dark {
+            --color: #{$white};
+        }
+    }
+
     &__title {
         font-size: toRem(22);
         line-height: toRem(26);
         font-weight: 900;
         margin-bottom: toRem(20);
+        color: var(--color);
     }
 
     &__button {

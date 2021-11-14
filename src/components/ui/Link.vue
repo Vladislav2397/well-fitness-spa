@@ -2,15 +2,18 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { CreateElement, VNode } from 'vue'
 
+type linkThemeType = 'primary'
+    | 'secondary'
+    | 'white'
+    | 'dark'
+
 @Component
 export default class Link extends Vue {
     @Prop({ default: 'a' }) readonly tag!: 'a' | 'router-link' | 'span'
 
     @Prop({ default: 'm' }) readonly iconSize!: 's' | 'm' | 'l'
 
-    @Prop({
-        default: 'secondary'
-    }) readonly theme!:'primary' | 'secondary' | 'white'
+    @Prop({ default: 'secondary' }) readonly theme!: linkThemeType
 
     @Prop() readonly href!: string
 

@@ -2,7 +2,11 @@
 import { CreateElement, VNode } from 'vue'
 import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
 
-export type buttonThemeType = 'brand' | 'ghost-brand' | 'ghost' | 'secondary'
+export type buttonThemeType = 'brand'
+    | 'ghost-brand'
+    | 'ghost-light'
+    | 'ghost'
+    | 'secondary'
 
 @Component
 export default class Button extends Vue {

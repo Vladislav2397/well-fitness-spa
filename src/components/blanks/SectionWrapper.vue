@@ -1,7 +1,9 @@
 <template lang="pug">
     include ../../tools/pug/mixins
 
-    +b.section-wrapper
+    +b.section-wrapper(
+        :class="`section-wrapper--theme-${theme}`"
+    )
         +e.title(
             v-if="title"
         ) {{ title }}
@@ -26,9 +28,13 @@ import { buttonThemeType } from '@/components/ui/Button.vue'
 export default class SectionWrapper extends Vue {
     @Prop() readonly title!: string
 
+    @Prop({ default: 'light' }) readonly theme!: 'dark' | 'light'
+
     @Prop() readonly buttonText!: string
 
-    @Prop({ default: 'ghost-brand' }) readonly buttonTheme!: buttonThemeType
+    @Prop({
+        default: 'ghost-brand'
+    }) readonly buttonTheme!: buttonThemeType
 
     @Emit('click') clickEmit (): void {/**/}
 }

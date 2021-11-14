@@ -21,7 +21,9 @@ include ../../../tools/pug/mixins
         :hasLabel="isRatingLabel"
     )
     +e.bottom
-        +e.price
+        +e.price(
+            :class="{ 'card-product-stats__price--row' : isPriceRow }"
+        )
             span {{ price[0].toLocaleString() }}
             del {{ price[1].toLocaleString() }}
         +e.action(
@@ -57,6 +59,7 @@ export default class CardProductStats extends Vue {
 
     @Prop({ default: false }) readonly isTitleBold!: boolean
     @Prop({ default: true }) readonly isRatingLabel!: boolean
+    @Prop({ default: false }) readonly isPriceRow!: boolean
 }
 
 </script>

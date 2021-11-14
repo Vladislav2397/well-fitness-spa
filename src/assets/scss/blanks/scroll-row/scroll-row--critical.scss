@@ -1,0 +1,19 @@
+.scroll-row {
+    --spacing: #{toRem(10)};
+    --n-spacing: #{toRem(-10)};
+
+    white-space: nowrap;
+    overflow: auto;
+    transform: translateX(var(--n-spacing));
+    width: 100%;
+    padding-left: var(--spacing);
+    padding-right: var(--spacing);
+
+    & > div,
+    & > a,
+    & > span {
+        &:last-child {
+            margin-right: var(--spacing);
+        }
+    }
+}

@@ -29,7 +29,8 @@ include ../../tools/pug/mixins
                             #action
                         )
                             button-component(
-
+                                :iconLeft="true"
+                                icon="cart"
                             ) Добавить
 
 </template>

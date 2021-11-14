@@ -23,6 +23,8 @@
         "imagemin-pngquant": "^9.0.2",
         "ncp": "^2.0.0",
         "portal-vue": "^2.1.7",
+        "pug-bem": "^1.2.2",
+        "pug-bem-plain-loader": "^1.1.5",
         "register-service-worker": "^1.7.1",
         "sharp": "^0.29.2",
         "swiper": "^7.2.0",
