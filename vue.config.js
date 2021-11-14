@@ -4,27 +4,28 @@
 module.exports = {
     chainWebpack: config => {
         config.module
-            // .rule('vue')
-            //     .use('vue-loader')
-            //     .options({
-            //         loaders: {
-            //             'pug': [
-            //                 'pug-bem-plain-loader'
-            //             ]
-            //         }
-            //     })
-            //     .end()
-            .rule('vue')
-                .use('vue-loader')
-                .options({
-                    loaders: {
-                        'pug': {
-                            loader: 'pug-bem-plain-loader',
-                            options: {
-                                b: true
-                            }
-                        }
-                    }
-                })
+            .rule('pug')
+                .oneOf('vue-loader')
+                    .use('pug-plain')
+                    .loader('pug-plain-loader')
+            .end()
+        config.module
+            .rule('pug')
+                .oneOf('vue-loader')
+                    .use('pug-bem')
+                    .loader('pug-bem-plain-loader')
+            .end()
+        config.module
+            .rule('pug')
+                .oneOf('raw-pug-files')
+                    .use('pug-plain')
+                    .loader('pug-plain-loader')
+            .end()
+        config.module
+            .rule('pug')
+                .oneOf('raw-pug-files')
+                    .use('pug-bem')
+                    .loader('pug-bem-plain-loader')
+            .end()
     }
 }

@@ -1,10 +1,8 @@
 <template lang="pug">
-include ../../tools/pug/mixins
-
-+b.addition
-    +e.container.container
-        +e.cards
-            +e.CARD-ADDITION-COMPONENT.card(
+section.addition
+    ._container.container
+        ._cards
+            card-addition-component._card(
                 v-for="(card, index) in cards"
                 :key="index"
                 :imageSrc="card.image.src"

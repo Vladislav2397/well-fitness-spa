@@ -5,7 +5,7 @@
     )
     router-view
 
-    .footer
+    the-footer-component
 
     transition(
         name="translate-bottom"
@@ -28,14 +28,16 @@ import { Component, Mixins } from 'vue-property-decorator'
 
 import TheHeader from '@/components/blanks/TheHeader.vue'
 import Modal from '@/components/modals/Modal.vue'
+import HeaderModal from '@/components/modals/HeaderModal.vue'
+import TheFooter from '@/components/sections/TheFooter.vue'
 
 import Device from '@/mixins/device'
-import HeaderModal from '@/components/modals/HeaderModal.vue'
 
 @Component({
     components: {
         'header-modal-component': HeaderModal,
         'header-component': TheHeader,
+        'the-footer-component': TheFooter,
         'modal-component': Modal
     }
 })

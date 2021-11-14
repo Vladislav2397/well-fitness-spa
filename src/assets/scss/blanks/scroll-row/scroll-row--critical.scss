@@ -16,4 +16,14 @@
             margin-right: var(--spacing);
         }
     }
+
+    @media (min-width: 650px) {
+        --spacing: #{toRem(16)};
+        --n-spacing: #{toRem(-16)};
+    }
+
+    @media (min-width: 1200px) {
+        --spacing: #{toRem(20)};
+        --n-spacing: #{toRem(-20)};
+    }
 }

@@ -7,10 +7,9 @@
     idea-component
     brand-component
     addition-component
-    .b-about
-        ._item
-    .become-partner
-    .blog-news
+    about-component
+    become-partner-component
+    blog-component
 </template>
 
 <script lang="ts">
@@ -23,16 +22,22 @@ import Stock from '@/components/sections/Stock.vue'
 import Idea from '@/components/sections/Idea.vue'
 import Brand from '@/components/sections/Brand.vue'
 import Addition from '@/components/sections/Addition.vue'
+import About from '@/components/sections/About.vue'
+import BecomePartner from '@/components/sections/BecomePartner.vue'
+import Blog from '@/components/sections/Blog.vue'
 
 @Component({
     components: {
-        'addition-component': Addition,
         'carousel-component': Carousel,
         'home-equipment-component': HomeEquipment,
         'gym-equipment-component': GymEquipment,
         'stock-component': Stock,
         'idea-component': Idea,
         'brand-component': Brand,
+        'addition-component': Addition,
+        'about-component': About,
+        'become-partner-component': BecomePartner,
+        'blog-component': Blog,
     }
 })
 export default class IndexPage extends Vue {}

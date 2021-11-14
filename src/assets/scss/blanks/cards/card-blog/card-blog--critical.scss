@@ -1,0 +1,35 @@
+.card-blog {
+    min-width: toRem(250);
+
+    &__image {
+        width: toRem(250);
+        height: toRem(260);
+        background-color: #ccc;
+        border-radius: toRem(6);
+        overflow: hidden;
+    }
+
+    &__content {
+        padding-top: toRem(20);
+        padding-bottom: toRem(20);
+    }
+
+    &__title {
+        font-size: toRem(16);
+        line-height: toRem(22);
+        font-weight: bold;
+        margin-bottom: toRem(10);
+    }
+
+    &__description {
+        font-size: toRem(14);
+        line-height: toRem(20);
+        margin-bottom: toRem(10);
+    }
+
+    &__date {
+        font-size: toRem(16);
+        line-height: toRem(24);
+        opacity: 0.5;
+    }
+}

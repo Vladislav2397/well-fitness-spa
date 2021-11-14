@@ -8,8 +8,8 @@
             v-if="title"
         ) {{ title }}
         slot(
-            v-else
             name="title"
+            v-else
         )
         slot
         +e.BUTTON-COMPONENT.button(
