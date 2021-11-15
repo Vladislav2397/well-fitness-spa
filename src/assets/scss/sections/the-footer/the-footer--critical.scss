@@ -3,19 +3,38 @@
     padding-bottom: toRem(20);
     background-color: $darken;
 
+    &__container {
+        overflow: hidden;
+    }
+
     &__top {
-        margin-bottom: toRem(-30);
         margin-right: toRem(-20);
         box-sizing: border-box;
+        padding-bottom: toRem(30);
+        border-bottom: 1px solid rgba(#858FA4, 0.15);
+        margin-bottom: toRem(30);
     }
 
     &__column {
         vertical-align: top;
         display: inline-block;
-        width: 140 / 320 * 100%;
+        box-sizing: border-box;
+        width: 50%;
         color: #858fa4;
-        margin-bottom: toRem(30);
-        margin-right: toRem(20);
+        padding-right: toRem(20);
+
+        &:not(&--bottom) {
+            @media (max-width: 649px) {
+                margin-bottom: toRem(30);
+            }
+        }
+
+        &--mobile-row {
+            display: block;
+            width: auto;
+            padding-right: 0;
+            margin-bottom: toRem(30);
+        }
 
         h4 {
             font-size: toRem(16);
@@ -37,27 +56,32 @@
         }
     }
 
-    @media (min-width: 650px) {
-        &__top {
-            margin-bottom: toRem(-30);
-            margin-right: toRem(-30);
+    &__middle {
+        //
+    }
+
+    &__phone {
+        & + a,
+        & + & {
+            margin-top: toRem(12);
         }
+    }
 
+    @media (min-width: 650px) {
         &__column {
-            vertical-align: top;
-            display: inline-block;
-            width: 210 / 970 * 100%;
-            color: #858fa4;
-            margin-bottom: toRem(30);
-            margin-right: toRem(30);
+            width: 25%;
+            padding-right: toRem(20);
+            margin-right: 0;
+        }
+    }
 
-            h4 {
-                font-size: toRem(16);
-                line-height: toRem(22);
-                font-weight: 500;
-                margin-bottom: toRem(16);
-                color: #fff;
-            }
+    @media (min-width: 768px) {
+        &__top {
+            margin-right: toRem(-30);
+            margin-bottom: toRem(30);
+        }
+        &__column {
+            padding-right: toRem(30);
         }
     }
 }

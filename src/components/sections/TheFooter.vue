@@ -5,6 +5,7 @@
             ._column(
                 v-for="({ title, list }, index) in links"
                 :key="`column${index}`"
+                :class="{ 'footer__column--bottom' : index > 1 }"
             )
                 h4 {{ title }}
                 link-component._link(
@@ -12,7 +13,7 @@
                     :key="`link${index}`"
                     :href="href"
                 ) {{ text }}
-        ._middle
+        footer-middle-component._middle
         ._bottom
     
 </template>
@@ -20,7 +21,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-@Component
+import FooterMiddle from '@/components/blanks/FooterMiddle.vue'
+
+@Component({
+    components: {
+        'footer-middle-component': FooterMiddle,
+    }
+})
 export default class TheFooter extends Vue {
     links = [
         {
