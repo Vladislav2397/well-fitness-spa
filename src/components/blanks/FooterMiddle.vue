@@ -3,7 +3,7 @@
     :class="{ 'footer-middle--row' : isRow }"
 )
     ._section
-        link-component._link(
+        link-component._text.-link.-block(
             v-for="{ text, href } in dealers"
             :href="href"
         ) {{ text }}
@@ -28,26 +28,27 @@
             theme="white"
         ) Написать
     ._section
-        link-component._text.-link(
+        link-component._text.-link.-block(
             theme="primary"
         ) Публичная оферта
-        link-component._text.-link(
+        link-component._text.-link.-block(
             theme="primary"
         ) Политика конфиденциальности
 
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Mixins, Prop } from 'vue-property-decorator'
 
 import Input from '@/components/ui/Input.vue'
+import Device from '@/mixins/device'
 
 @Component({
     components: {
         'input-component': Input,
     },
 })
-export default class FooterMiddle extends Vue {
+export default class FooterMiddle extends Mixins(Device) {
     @Prop({ default: false }) readonly isRow!: boolean
 
     dealers = [

@@ -1,7 +1,9 @@
 <template lang="pug">
 .footer
-    ._container.container
-        ._top
+    footer-layout-component._container.container
+        template(
+            #top
+        )
             ._column(
                 v-for="({ title, list }, index) in links"
                 :key="`column${index}`"
@@ -13,18 +15,43 @@
                     :key="`link${index}`"
                     :href="href"
                 ) {{ text }}
-        footer-middle-component._middle
-        ._bottom
-    
+        template(
+            #middle
+        )
+            footer-middle-component
+        template(
+            #bottom
+        )
+            ._section
+                i.icon.-size-m.-instagram
+                i.icon.-size-m.-facebook
+                i.icon.-size-m.-youtube
+            ._section
+                logo-component
+                span © WellFitness. 2007 Все права защищены
+            ._section
+                ._paycard(
+                    v-for="i in 4"
+                    :key="i"
+                )
+                    img(
+                        src=""
+                        alt=""
+                    )
+
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
 import FooterMiddle from '@/components/blanks/FooterMiddle.vue'
+import FooterLayout from '@/components/blanks/FooterLayout.vue'
+import Logo from '@/components/ui/Logo.vue'
 
 @Component({
     components: {
+        'logo-component': Logo,
+        'footer-layout-component': FooterLayout,
         'footer-middle-component': FooterMiddle,
     }
 })

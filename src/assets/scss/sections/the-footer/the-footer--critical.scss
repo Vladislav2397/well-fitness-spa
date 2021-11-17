@@ -56,14 +56,45 @@
         }
     }
 
-    &__middle {
-        //
-    }
-
     &__phone {
         & + a,
         & + & {
             margin-top: toRem(12);
+        }
+    }
+
+    &__section {
+        i {
+            background-color: #ccc;
+        }
+
+        i + i {
+            margin-left: toRem(30);
+        }
+
+        & + & {
+            margin-top: toRem(90);
+            color: #fff;
+        }
+
+        & + & + & {
+            margin-top: toRem(10);
+        }
+    }
+
+    &__paycard {
+        width: toRem(40);
+        height: toRem(40);
+        display: inline-block;
+        vertical-align: middle;
+        background-color: #ccc;
+
+        & + & {
+            margin-left: toRem(30);
+        }
+
+        img {
+            width: 100%;
         }
     }
 
@@ -72,6 +103,12 @@
             width: 25%;
             padding-right: toRem(20);
             margin-right: 0;
+        }
+
+        &__section {
+            display: inline-block;
+            width: 25%;
+            vertical-align: middle;
         }
     }
 
