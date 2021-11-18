@@ -2,7 +2,9 @@
 .footer-middle(
     :class="{ 'footer-middle--row' : isRow }"
 )
-    ._section
+    ._section(
+        v-if="!device.size.desktop"
+    )
         link-component._text.-link.-block(
             v-for="{ text, href } in dealers"
             :href="href"
@@ -16,9 +18,25 @@
                 #postfix
             )
                 i.icon.-size-m.-search
+        portal-target._privacy(
+            name="privacy"
+        )
     ._section
-        ._text +7 (000) 000-00-00 для Москвы
-        ._text 8 (800) 000-00-00 для России
+        ._text
+            template(
+                v-if="device.size.tablet"
+            ) +7 (000) 000-00-00 #[br] для Москвы
+            template(
+                v-else
+            ) +7 (000) 000-00-00 для Москвы
+
+        ._text
+            template(
+                v-if="device.size.tablet"
+            )  8 (800) 000-00-00 #[br] для России
+            template(
+                v-else
+            ) 8 (800) 000-00-00 для России
         link-component._text.-link(
             theme="white"
         ) Заказать звонок
@@ -27,7 +45,10 @@
         link-component._text.-link(
             theme="white"
         ) Написать
-    ._section
+    portal._section(
+        :disabled="!device.size.tablet"
+        to="privacy"
+    )
         link-component._text.-link.-block(
             theme="primary"
         ) Публичная оферта

@@ -22,15 +22,15 @@
         template(
             #bottom
         )
-            ._section
+            ._social
                 i.icon.-size-m.-instagram
                 i.icon.-size-m.-facebook
                 i.icon.-size-m.-youtube
-            ._section
+            ._logo
                 logo-component
                 span © WellFitness. 2007 Все права защищены
-            ._section
-                ._paycard(
+            ._paycards
+                ._item(
                     v-for="i in 4"
                     :key="i"
                 )

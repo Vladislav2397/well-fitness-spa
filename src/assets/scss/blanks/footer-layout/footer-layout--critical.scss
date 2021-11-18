@@ -4,6 +4,10 @@
         margin-bottom: toRem(30);
     }
 
+    &__bottom {
+        position: relative;
+    }
+
     @media (min-width: 1200px) {
 
         &__top,
@@ -20,6 +24,11 @@
 
         &__middle {
             width: 330 / 1410 * 100%;
+        }
+
+        &__bottom {
+            border-top: 1px solid #ccc;
+            padding-top: toRem(50);
         }
     }
 }
