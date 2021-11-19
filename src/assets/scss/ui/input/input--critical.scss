@@ -1,24 +1,78 @@
 .input {
-    padding: toRem(5) toRem(12);
-    background-color: rgba(#f6f6f6, 0.2);
-    overflow: hidden;
-    border-radius: toRem(6);
-    display: table;
-    box-sizing: border-box;
-    width: 100%;
+    &--theme {
+        &-light {
+            --backgroud-color: #f6f6f6;
+            --border-color: #{rgba(#909cb5, 0.7)};
+            --input-color: $darken;
+            --placeholder-color: #909cb5;
+            --prefix-color: #{rgba(#858FA4, 0.7)};
+            --prefix-border-color: #{rgba(#858FA4, 0.15)};
+        }
+
+        &-dark {
+            --backgroud-color: #{rgba(#f6f6f6, 0.2)};
+            --border-color: transparent;
+            --input-color: #fff;
+            --placeholder-color: #{rgba(#f6f6f6, 0.2)};
+            --prefix-color: #{rgba(#858FA4, 0.7)};
+            --prefix-border-color: #{rgba(#858FA4, 0.15)};
+        }
+    }
 
     &__field {
+        position: relative;
+        width: 100%;
+        height: toRem(40);
+
+        display: table;
+        padding: toRem(4) toRem(12);
+        box-sizing: border-box;
+
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        border-radius: toRem(6);
+        background-color: var(--backgroud-color);
+        font-size: toRem(16);
+        line-height: toRem(40);
+    }
+
+    &__value {
+        position: relative;
+        width: 100%;
+
         input {
-            font-size: toRem(16);
-            color: #fff;
-            line-height: toRem(24);
-            height: toRem(24);
+            height: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            color: var(--input-color);
             background-color: transparent;
         }
     }
 
+    &__placeholder {
+        position: absolute;
+        top: 50%;
+        left: toRem(4 + 8);
+        transform: translateY(-50%);
+        color: var(--placeholder-color);
+    }
+
+    &__prefix {
+        padding-right: toRem(8);
+        border-right: 1px solid var(--prefix-border-color);
+        color: var(--prefix-color);
+    }
+
+    &__postfix {
+        color: var(--prefix-color);
+    }
+
+    &__value {
+        padding-left: toRem(8);
+    }
+
     &__prefix,
-    &__field,
+    &__value,
     &__postfix {
         display: table-cell;
         vertical-align: middle;

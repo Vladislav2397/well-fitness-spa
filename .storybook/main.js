@@ -23,7 +23,8 @@ module.exports = {
         config.module.rules.push({
             test: /\.pug$/,
             use: [
-                'pug-plain-loader'
+                'pug-plain-loader',
+                'pug-bem-plain-loader'
             ]
         })
         config.module.rules.push({

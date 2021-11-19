@@ -1,7 +1,5 @@
 .icon {
     position: relative;
-    width: toRem(20);
-    height: toRem(20);
     display: inline-block;
 
     &::before {
@@ -16,6 +14,8 @@
         &-s {
             width: toRem(16);
             height: toRem(16);
+            min-width: toRem(16);
+            min-height: toRem(16);
 
             &::before {
                 font-size: toRem(16);
@@ -26,6 +26,8 @@
         &-m {
             width: toRem(24);
             height: toRem(24);
+            min-width: toRem(24);
+            min-height: toRem(24);
 
             &::before {
                 font-size: toRem(24);
@@ -36,6 +38,8 @@
         &-l {
             width: toRem(30);
             height: toRem(30);
+            min-width: toRem(30);
+            min-height: toRem(30);
 
             &::before {
                 font-size: toRem(30);
@@ -46,6 +50,8 @@
         &-xl {
             width: toRem(36);
             height: toRem(36);
+            min-width: toRem(36);
+            min-height: toRem(36);
 
             &::before {
                 font-size: toRem(36);

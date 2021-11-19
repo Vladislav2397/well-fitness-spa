@@ -1,5 +1,4 @@
 .footer-middle {
-
     @media (max-width: 449px) {
         &__section {
             & + & {
@@ -12,10 +11,10 @@
         label + a {
             margin-top: toRem(30);
         }
-    }
 
-    & input {
-        font-size: toRem(12);
+        i.icon {
+            display: table-cell;
+        }
     }
 
     &__text {

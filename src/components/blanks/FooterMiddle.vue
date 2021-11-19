@@ -12,6 +12,7 @@
     ._section
         input-component(
             v-model="input.value"
+            theme="dark"
             placeholder="Подписаться на рассылку"
         )
             template(
