@@ -1,4 +1,5 @@
 <template lang="pug">
+
 .footer
     footer-layout-component._container.container
         template(

@@ -3,9 +3,15 @@
     header-component(
         @clickBurger="isModal = true"
     )
+    pagination(
+        v-model="paginationValue"
+        quantity="16"
+        :next-visible-pages="1"
+        :prev-visible-pages="2"
+    )
     router-view
 
-    the-footer-component
+    footer-component
 
     transition(
         name="translate-bottom"
@@ -32,17 +38,21 @@ import HeaderModal from '@/components/modals/HeaderModal.vue'
 import TheFooter from '@/components/sections/TheFooter.vue'
 
 import Device from '@/mixins/device'
+import Pagination from '@/components/blanks/Pagination.vue'
 
 @Component({
     components: {
+        Pagination,
         'header-modal-component': HeaderModal,
         'header-component': TheHeader,
-        'the-footer-component': TheFooter,
+        'footer-component': TheFooter,
         'modal-component': Modal
     }
 })
 export default class App extends Mixins(Device) {
     isModal = false
+
+    paginationValue = 1
 }
 </script>
 

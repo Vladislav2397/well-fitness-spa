@@ -22,10 +22,6 @@ export default class VueGrid extends Vue {
         ) ?? []
     }
 
-    mounted (): void {
-        console.log(this.$slots)
-    }
-
     render (h: CreateElement): VNode {
         const tbody = h('tbody', {}, [])
 
