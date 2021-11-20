@@ -1,13 +1,8 @@
 <template lang="pug">
+
 #app
     header-component(
         @clickBurger="isModal = true"
-    )
-    pagination(
-        v-model="paginationValue"
-        quantity="16"
-        :next-visible-pages="1"
-        :prev-visible-pages="2"
     )
     router-view
 
@@ -51,8 +46,6 @@ import Pagination from '@/components/blanks/Pagination.vue'
 })
 export default class App extends Mixins(Device) {
     isModal = false
-
-    paginationValue = 1
 }
 </script>
 

@@ -18,16 +18,17 @@
         }
 
         &__top {
-            width: 930 / 1410 * 100%;
-            margin-right: (1410 - 930 - 330) / 1410 * 100%;
+            width: d-columns(8);
+            //margin-right: -(d_columns(0));
         }
 
         &__middle {
-            width: 330 / 1410 * 100%;
+            width: d_columns(3);
+            margin-left: d_columns(1, true, true);
         }
 
         &__bottom {
-            border-top: 1px solid #ccc;
+            border-top: 1px solid rgba(#858fa4, 0.15);
             padding-top: toRem(50);
         }
     }

@@ -52,7 +52,7 @@
     &__placeholder {
         position: absolute;
         top: 50%;
-        left: toRem(4 + 8);
+        left: toRem(4);
         transform: translateY(-50%);
         color: var(--placeholder-color);
     }
@@ -67,8 +67,12 @@
         color: var(--prefix-color);
     }
 
-    &__value {
+    &__prefix + &__value {
         padding-left: toRem(8);
+    }
+
+    &__prefix + &__value &__placeholder {
+        left: toRem(4 + 8);
     }
 
     &__prefix,

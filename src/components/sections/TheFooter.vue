@@ -8,7 +8,7 @@
             ._column(
                 v-for="({ title, list }, index) in links"
                 :key="`column${index}`"
-                :class="{ 'footer__column--bottom' : index > 1 }"
+                :class="{ 'footer__column--bottom' : device.size.mobile && index > 1 }"
             )
                 h4 {{ title }}
                 link-component._link(
@@ -23,13 +23,31 @@
         template(
             #bottom
         )
+            portal._logo(
+                :disabled="!device.size.mobile"
+                to="logo"
+            )
+                logo-component
+                span © WellFitness. 2007 Все права защищены
             ._social
                 i.icon.-size-m.-instagram
                 i.icon.-size-m.-facebook
                 i.icon.-size-m.-youtube
-            ._logo
-                logo-component
-                span © WellFitness. 2007 Все права защищены
+            portal-target(
+                v-if="device.size.mobile"
+                name="logo"
+            )
+            ._dealers(
+                v-if="device.size.desktop"
+            )
+                button-component(
+                    theme="secondary"
+                    size="s"
+                ) Become a Partner
+                button-component(
+                    theme="ghost"
+                    size="s"
+                ) Для дилеров
             ._paycards
                 ._item(
                     v-for="i in 4"
@@ -43,11 +61,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+// FIXME: Refactor component: Soo much portals and components
+import { Component, Mixins } from 'vue-property-decorator'
 
 import FooterMiddle from '@/components/blanks/FooterMiddle.vue'
 import FooterLayout from '@/components/blanks/FooterLayout.vue'
 import Logo from '@/components/ui/Logo.vue'
+
+import Device from '@/mixins/device'
 
 @Component({
     components: {
@@ -56,7 +77,7 @@ import Logo from '@/components/ui/Logo.vue'
         'footer-middle-component': FooterMiddle,
     }
 })
-export default class TheFooter extends Vue {
+export default class TheFooter extends Mixins(Device) {
     links = [
         {
             title: 'Каталог',

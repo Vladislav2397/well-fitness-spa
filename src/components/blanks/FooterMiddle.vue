@@ -1,15 +1,20 @@
 <template lang="pug">
+
 .footer-middle(
     :class="{ 'footer-middle--row' : isRow }"
 )
-    ._section(
+    portal-target._section(
+        v-if="device.size.tablet"
+        name="phone"
+    )
+    ._section.-dealers(
         v-if="!device.size.desktop"
     )
         link-component._text.-link.-block(
             v-for="{ text, href } in dealers"
             :href="href"
         ) {{ text }}
-    ._section
+    ._section.-mailsend
         input-component(
             v-model="input.value"
             theme="dark"
@@ -22,7 +27,10 @@
         portal-target._privacy(
             name="privacy"
         )
-    ._section
+    portal._section.-phone(
+        :disabled="!device.size.tablet"
+        to="phone"
+    )
         ._text
             template(
                 v-if="device.size.tablet"
@@ -41,12 +49,18 @@
         link-component._text.-link(
             theme="white"
         ) Заказать звонок
-    ._section
+        portal-target._inner(
+            name="email"
+        )
+
+    portal._section.-email(
+        to="email"
+    )
         ._text wellfitness@wellfit.ru
         link-component._text.-link(
             theme="white"
         ) Написать
-    portal._section(
+    portal._section.-privacy(
         :disabled="!device.size.tablet"
         to="privacy"
     )

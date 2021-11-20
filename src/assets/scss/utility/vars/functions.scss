@@ -10,6 +10,99 @@
     @return #{$newSize};
 }
 
+@function percent-width(
+    $count,
+    $container,
+    $gap,
+    $column-count,
+    $gap-direction
+) {
+    $column-width: ($container - $gap * ($column-count - 1)) / $column-count;
+
+    $column-width-percent: $column-width / $container * 100%;
+    $gap-width-percent: $gap / $container * 100%;
+
+    @if $count == 0 {
+        @return $gap-width-percent;
+    }
+
+    $result: $column-width-percent * $count + (
+        $gap-width-percent * ($count - 1)
+    );
+
+    @if $gap-direction == 1 {
+        $result: $result + $gap-width-percent;
+    } @else if $gap-direction == 2 {
+        $result: $result + ($gap-width-percent * 2)
+    }
+
+    @return $result;
+}
+
+@function d-columns($count, $gap-direction-count: 0) {
+    @return percent-width($count, 1410, 30, 12, $gap-direction-count);
+}
+
+@function t-columns($count, $gap-direction-count: 0) {
+    @return percent-width($count, 940, 20, 12, $gap-direction-count);
+}
+
+@function m-columns($count, $gap-direction-count: 0) {
+    @return percent-width($count, 300, 20, 4, $gap-direction-count);
+}
+
+@function d_columns($count, $is-left-wide: false, $is-right-wide: false) {
+    $container: 1410;
+    $gap: 30;
+    $column-count: 12;
+
+    $column-width: ($container - $gap * ($column-count - 1)) / $column-count;
+
+    $column-width-percent: $column-width / $container * 100%;
+    $gap-width-percent: $gap / $container * 100%;
+
+    @if $count == 0 {
+        @return $gap-width-percent;
+    }
+
+    $result: $column-width-percent * $count + ($gap-width-percent * ($count - 1));
+
+    @if $is-left-wide {
+        $result: $result + $gap-width-percent;
+    }
+    @if $is-right-wide {
+        $result: $result + $gap-width-percent;
+    }
+
+    @return $result;
+}
+
+@function t_columns($count, $is-left-wide: false, $is-right-wide: false) {
+    $container: 960;
+    $gap: 30;
+    $column-count: 12;
+
+    $column-width: ($container - $gap * ($column-count - 1)) / $column-count;
+
+    $column-width-percent: $column-width / $container * 100%;
+    $gap-width-percent: $gap / $container * 100%;
+
+    @if $count == 0 {
+        @return $gap-width-percent;
+    }
+
+    $result: $column-width-percent * $count + ($gap-width-percent * ($count - 1));
+
+    @if $is-left-wide {
+        $result: $result + $gap-width-percent;
+    }
+    @if $is-right-wide {
+        $result: $result + $gap-width-percent;
+    }
+
+    @return $result;
+}
+
 @mixin marginLevel($direction, $color, $sign: plus) {
     @each $spaceLevel, $pixels in $spaces {
         @if $spaceLevel == $color {

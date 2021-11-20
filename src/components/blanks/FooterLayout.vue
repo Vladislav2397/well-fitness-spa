@@ -1,4 +1,5 @@
 <template lang="pug">
+
 .footer-layout
     ._top
         slot(
@@ -16,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class FooterLayout extends Vue {

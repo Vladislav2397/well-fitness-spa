@@ -7,33 +7,21 @@
         overflow: hidden;
     }
 
-    &__top {
-        margin-right: toRem(-20);
-        box-sizing: border-box;
-        padding-bottom: toRem(30);
-        border-bottom: 1px solid rgba(#858FA4, 0.15);
-        margin-bottom: toRem(30);
-    }
-
     &__column {
         vertical-align: top;
         display: inline-block;
         box-sizing: border-box;
-        width: 50%;
+        width: m-columns(2);
         color: #858fa4;
-        padding-right: toRem(20);
+
+        &:nth-child(even) {
+            margin-left: m-columns(0);
+        }
 
         &:not(&--bottom) {
             @media (max-width: 649px) {
                 margin-bottom: toRem(30);
             }
-        }
-
-        &--mobile-row {
-            display: block;
-            width: auto;
-            padding-right: 0;
-            margin-bottom: toRem(30);
         }
 
         h4 {
@@ -56,16 +44,11 @@
         }
     }
 
-    &__phone {
-        & + a,
-        & + & {
-            margin-top: toRem(12);
-        }
-    }
-
     &__social {
         i {
             background-color: #ccc;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         i + i {
@@ -113,16 +96,24 @@
         padding-bottom: toRem(80);
 
         &__column {
-            width: 25%;
-            padding-right: toRem(20);
-            margin-right: 0;
+            width: t-columns(3);
+
+            & + & {
+                margin-left: t-columns(0);
+            }
         }
 
         &__social {
-            position: absolute;
-            top: toRem(-60);
-            left: 50%;
-            transform: translateX(-50%);
+            @media (max-width: 1199px) {
+                position: absolute;
+                top: 0;
+                left: 45%;
+                transform: translateX(-50%);
+            }
+
+            i + i {
+                margin-left: toRem(12);
+            }
         }
 
         &__logo,
@@ -137,24 +128,46 @@
         }
     }
 
-    @media (min-width: 768px) {
-        &__top {
-            margin-right: toRem(-30);
-            margin-bottom: toRem(30);
-        }
-
-        &__column {
-            padding-right: toRem(30);
-        }
-
-        &__social {
-            top: toRem(8);
-        }
-    }
-
     @media (min-width: 1200px) {
+        &__column {
+            width: 210 / 930 * 100%;
+
+            & + & {
+                margin-left: 30 / 930 * 100%;
+            }
+        }
+
+        &__logo,
+        &__paycards {
+            display: inline-block;
+            vertical-align: top;
+            width: d-columns(3);
+        }
+
+        &__logo {
+            width: d-columns(4);
+        }
+
+        &__paycards {
+            text-align: left;
+            margin-left: d-columns(0);
+        }
+
+        &__dealers,
         &__social {
-            top: toRem(58);
+            display: inline-block;
+            vertical-align: top;
+            margin-left: d-columns(0);
+            width: d-columns(2);
+        }
+
+        &__dealers {
+            width: d-columns(3);
+            margin-left: d-columns(0);
+
+            button + button {
+                margin-left: toRem(24);
+            }
         }
     }
 }
