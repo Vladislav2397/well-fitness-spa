@@ -10,6 +10,7 @@ interface IDevice {
         desktopLate: boolean
     },
     breakpoints: {
+        mobileLate: number
         tablet: number,
         tabletLate: number,
         desktop: number
@@ -30,6 +31,7 @@ export default class Device extends Vue {
             desktopLate: false
         },
         breakpoints: {
+            mobileLate: 450,
             tablet: 650,
             tabletLate: 768,
             desktop: 1200,
@@ -54,7 +56,8 @@ export default class Device extends Vue {
             window.innerWidth < this.device.breakpoints.tablet
 
         this.device.size.mobileLate =
-            window.innerWidth < this.device.breakpoints.tabletLate
+            window.innerWidth >= this.device.breakpoints.mobileLate &&
+            window.innerWidth < this.device.breakpoints.tablet
 
         this.device.size.tablet =
             window.innerWidth >= this.device.breakpoints.tablet &&

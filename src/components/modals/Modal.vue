@@ -1,15 +1,14 @@
 <template lang="pug">
-    include ../../tools/pug/mixins
 
-    +b.modal(
-        :class="classes"
+.modal(
+    :class="classes"
+)
+    ._close(
+
+        v-on:click="clickCloseEmit"
     )
-        +e.close(
-
-            v-on:click="clickCloseEmit"
-        )
-            i.icon.icon--size-s.icon--close
-        slot
+        i.icon.icon--size-s.icon--close
+    slot
 
 </template>
 

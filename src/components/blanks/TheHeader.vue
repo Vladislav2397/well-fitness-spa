@@ -13,6 +13,8 @@ include ../../tools/pug/mixins
                     v-if="!device.size.mobile"
                     icon="collapse"
                     iconSize="s"
+
+                    @click="clickCityEmit"
                 ) Москва
             +e.user-actions(
                 v-if="device.size.desktop"
@@ -87,6 +89,7 @@ import Device from '@/mixins/device'
 export default class TheHeader extends Mixins(Device) {
     @Emit('clickBurger') clickBurgerEmit (): void {/**/}
 
+    @Emit('clickCity') clickCityEmit (): void {/**/}
 
     additionItems = [
         'Для дома',

@@ -3,6 +3,7 @@
 #app
     header-component(
         @clickBurger="currentModalName = 'header'"
+        @clickCity="currentModalName = 'city'"
     )
 
     router-view
@@ -10,7 +11,15 @@
     footer-component
 
     transition(
-        name="translate-bottom"
+        name="fade"
+    )
+        .overlay(
+            v-if="currentModalName"
+            @click="currentModalName = ''"
+        )
+
+    transition(
+        :name=" device.size.mobile && !device.size.mobileLate ? 'translate-bottom' : 'translate-right'"
     )
         modal-component(
             v-if="currentModalName === 'header' && !device.size.desktop"
@@ -29,6 +38,13 @@
 
                 @clickBreadcrumb="currentModalName = 'header'"
             )
+        modal-component(
+            v-else-if="currentModalName === 'city'"
+            theme="light"
+            @clickClose="currentModalName = ''"
+        )
+            city-modal-component
+
 
 </template>
 
@@ -44,6 +60,7 @@ import TheFooter from '@/components/sections/TheFooter.vue'
 import Device from '@/mixins/device'
 
 import { equipmentModalLinkType } from '@/components/modals/EquipmentModal.vue'
+import CityModal from '@/components/modals/CityModal.vue'
 
 type equipmentModalContentType = {
     title: string,
@@ -52,6 +69,7 @@ type equipmentModalContentType = {
 
 @Component({
     components: {
+        'city-modal-component': CityModal,
         'equipment-modal-component': EquipmentModal,
         'header-modal-component': HeaderModal,
         'header-component': TheHeader,

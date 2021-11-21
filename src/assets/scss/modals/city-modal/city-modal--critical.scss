@@ -1,0 +1,24 @@
+.city-modal {
+    padding-top: toRem(30);
+
+    h3 {
+        @include fontSize(h2);
+
+        font-weight: 700;
+        margin-bottom: toRem(24);
+    }
+
+    &__input {
+        margin-bottom: toRem(16);
+    }
+
+    &__link {
+        & + & {
+            margin-left: toRem(4);
+        }
+    }
+
+    span {
+
+    }
+}
