@@ -8,8 +8,14 @@
     }
 
     &__section {
-        margin-top: toRem(20);
         border-top: 1px solid rgba(#858FA4, 0.15);
-        padding-top: toRem(20);
+
+        &:not(&--no-padding) {
+            padding-top: toRem(20);
+        }
+
+        &:not(&--no-margin) {
+            margin-top: toRem(20);
+        }
     }
 }

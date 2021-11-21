@@ -3,7 +3,9 @@
 .input(
     :class="classes"
 )
-    ._label
+    ._label(
+        v-if="label"
+    )
     label._field
         ._prefix(
             v-if="$slots.prefix"
@@ -42,6 +44,8 @@ export default class Input extends Vue {
     @Prop() readonly placeholder!: string
 
     @Prop() readonly name!: string
+
+    @Prop() readonly label!: string
 
     @Prop() readonly disabled!: boolean
 

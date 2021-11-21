@@ -1,8 +1,9 @@
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
 import { CreateElement, VNode } from 'vue'
 
-type linkThemeType = 'primary'
+type linkThemeType =
+    | 'primary'
     | 'secondary'
     | 'white'
     | 'dark'
@@ -20,6 +21,8 @@ export default class Link extends Vue {
     @Prop() readonly icon!: string
 
     @Prop() readonly iconLeft!: string
+
+    @Emit('click') clickEmit() {/**/}
 
     get classes (): string[] {
         const classes = ['link']
@@ -48,6 +51,9 @@ export default class Link extends Vue {
     render (h: CreateElement): VNode {
         const settings = {
             class: this.classes,
+            on: {
+                click: this.clickEmit
+            },
             props: {
                 ...this.tag === 'router-link' && {
                     to: this.href

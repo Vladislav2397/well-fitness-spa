@@ -20,9 +20,10 @@
     }
 
     &__field {
+        @include fontSize(p3);
+
         position: relative;
         width: 100%;
-        height: toRem(40);
 
         display: table;
         padding: toRem(4) toRem(12);
@@ -32,13 +33,16 @@
         border: 1px solid var(--border-color);
         border-radius: toRem(6);
         background-color: var(--backgroud-color);
-        font-size: toRem(16);
-        line-height: toRem(40);
     }
 
     &__value {
+        @include fontSize(p3);
+
         position: relative;
         width: 100%;
+        // border top + border bottom = 2
+        line-height: toRem(40 - 2);
+        height: toRem(40 - 2);
 
         input {
             height: inherit;

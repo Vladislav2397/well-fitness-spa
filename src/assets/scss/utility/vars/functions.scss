@@ -77,32 +77,6 @@
     @return $result;
 }
 
-@function t_columns($count, $is-left-wide: false, $is-right-wide: false) {
-    $container: 960;
-    $gap: 30;
-    $column-count: 12;
-
-    $column-width: ($container - $gap * ($column-count - 1)) / $column-count;
-
-    $column-width-percent: $column-width / $container * 100%;
-    $gap-width-percent: $gap / $container * 100%;
-
-    @if $count == 0 {
-        @return $gap-width-percent;
-    }
-
-    $result: $column-width-percent * $count + ($gap-width-percent * ($count - 1));
-
-    @if $is-left-wide {
-        $result: $result + $gap-width-percent;
-    }
-    @if $is-right-wide {
-        $result: $result + $gap-width-percent;
-    }
-
-    @return $result;
-}
-
 @mixin marginLevel($direction, $color, $sign: plus) {
     @each $spaceLevel, $pixels in $spaces {
         @if $spaceLevel == $color {
@@ -227,45 +201,64 @@
     }
 }
 
-@mixin _getStyle($style) {
-    @if $style == medium {
-        font-weight: 500;
+@mixin _header-font($font-size, $line-height) {
+    $quantity: length($font-size);
+
+    @media (max-width: 649px) {
+        font-size: nth($font-size, 1);
+        line-height: nth($line-height, 1);
     }
 
-    @if $style == italic {
-        font-style: italic;
+    @media (min-width: 650px) and (max-width: 1199px) {
+        font-size: nth($font-size, 2);
+        line-height: nth($line-height, 2);
     }
 
-    @if $style == underline {
-        text-decoration: underline;
-    }
-
-    @if $style == mono {
-        font-feature-settings: 'tnum' on, 'lnum' on;
+    @media (min-width: 1200px) {
+        font-size: nth($font-size, 3);
+        line-height: nth($line-height, 3);
     }
 }
 
-@mixin fontSize($name, $style: regular) {
+@mixin _text-font($font-size, $line-height) {
+    font-size: $font-size;
+    line-height: $line-height;
+}
+
+@mixin _getWeight($weight) {
+    @if $weight == regular {
+        font-weight: 400;
+    }
+
+    @if $weight == medium {
+        font-weight: 500;
+    }
+
+    @if $weight == bold {
+        font-weight: 700;
+    }
+
+    @if $weight == extra {
+        font-weight: 800;
+    }
+}
+
+@mixin fontSize($name, $weight: none) {
     @each $tagName, $tagValue in $tags {
         @if $tagName == $name {
 
             $selectedTag: map-get($tags, $tagName);
-            $fontSize: nth($selectedTag, 1);
-            $lineHeight: nth($selectedTag, 2);
+            $font-size: nth($selectedTag, 1);
+            $line-height: nth($selectedTag, 2);
 
-            font-size: $fontSize;
-            line-height: $lineHeight;
+            @if type-of($font-size) == 'list' {
+                @include _header-font($font-size, $line-height);
+            } @else {
+                @include _text-font($font-size, $line-height);
+            }
 
-            @if $style != regular {
-                @if type-of($style) == 'string' {
-                    @include _getStyle($style);
-                }
-
-                @if type-of($style) == 'list' {
-                    @each $s in $style {
-                        @include _getStyle($s);
-                    }
-                }
+            @if $weight != none {
+                @include _getWeight($weight)
             }
         }
     }

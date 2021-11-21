@@ -17,7 +17,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Vue } from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
+
 import Device from '@/mixins/device'
 
 @Component

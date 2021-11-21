@@ -12,23 +12,9 @@
     &__input {
         margin-top: toRem(19);
         margin-bottom: toRem(39);
-    }
 
-    &__prefix {
-        padding-right: toRem(15);
-        position: relative;
-        color: rgba(#858FA4, 0.7);
-        padding-top: toRem(8);
-        padding-bottom: toRem(8);
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: toRem(8);
-            bottom: 0;
-            width: 1px;
-            background-color: rgba(#858FA4, 0.15);
+        i.icon {
+            display: table-cell;
         }
     }
 

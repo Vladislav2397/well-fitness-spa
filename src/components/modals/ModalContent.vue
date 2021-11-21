@@ -8,9 +8,13 @@
         slot(
             name="head"
         )
-        +e.section
+        +e.section(
+            :class="{ 'modal-content__section--no-padding' : !isSpacing }"
+        )
             slot
-        +e.section
+        +e.section(
+            :class="{ 'modal-content__section--no-margin' : !isSpacing }"
+        )
             request-call-component
         +e.section
             dealers-component(
@@ -23,6 +27,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import RequestCall from '@/components/blanks/RequestCall.vue'
 import Dealers from '@/components/blanks/Dealers.vue'
+
 @Component({
     components: {
         'dealers-component': Dealers,
@@ -31,6 +36,8 @@ import Dealers from '@/components/blanks/Dealers.vue'
 })
 export default class ModalContent extends Vue {
     @Prop() readonly title!: string
+
+    @Prop({ default: true }) readonly isSpacing!: boolean
 }
 
 </script>

@@ -1,44 +1,46 @@
 <template lang="pug">
-    include ../../tools/pug/mixins
 
-    +b.header-modal
-        +e.LINK-COMPONENT.city(
-            icon="collapse"
-            iconSize="s"
-        ) Москва
-        +e.LOGIN-BUTTON-COMPONENT.login
-        +e.INPUT-COMPONENT.input(
-            placeholder="Поиск"
+.header-modal
+    link-component._city(
+        icon="collapse"
+        iconSize="s"
+    ) Москва
+    login-button-component._login
+    input-component._input(
+        v-model="searchField"
+        placeholder="Поиск"
+        theme="dark"
+    )
+        template(
+            #prefix
         )
-            template(
-                v-slot:prefix
-            )
-                +e.prefix
-                    i.icon.icon--size-m.icon--search
-        +e.MODAL-CONTENT-COMPONENT.content(
-            title="Каталог"
+            i.icon.icon--size-m.icon--search
+    modal-content-component._content(
+        title="Каталог"
+    )
+        template(
+            #head
         )
-            template(
-                v-slot:head
-            )
-                +e.accessory
-                    +e.LINK-COMPONENT.link(
-                        theme="white"
-                    ) Для дома
-                    i.icon.icon--size-s.icon--right-arrow
-                +e.accessory
-                    +e.LINK-COMPONENT.link(
-                        theme="white"
-                    ) Для фитнес клубов
-                    i.icon.icon--size-s.icon--right-arrow
-            navigation-component(
-                align="vertical"
-            )
+            ._accessory
+                link-component._link(
+                    theme="white"
+                    @click="clickEquipmentEmit('home')"
+                ) Для дома
+                i.icon.icon--size-s.icon--right-arrow
+            ._accessory
+                link-component._link(
+                    theme="white"
+                    @click="clickEquipmentEmit('home')"
+                ) Для фитнес клубов
+                i.icon.icon--size-s.icon--right-arrow
+        navigation-component(
+            align="vertical"
+        )
 
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+import { Component, Emit, Vue } from 'vue-property-decorator'
 
 import Input from '@/components/ui/Input.vue'
 
@@ -59,7 +61,9 @@ import Navigation from '@/components/blanks/Navigation.vue'
     }
 })
 export default class HeaderModal extends Vue {
+    @Emit('clickEquipment') clickEquipmentEmit(name: string) {/**/}
 
+    searchField = ''
 }
 
 </script>

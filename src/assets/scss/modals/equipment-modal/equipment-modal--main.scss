@@ -1,0 +1,14 @@
+.equipment-modal {
+    &__breadcrumb {
+        margin-bottom: toRem(28);
+    }
+
+    &__link {
+        display: block;
+        padding: toRem(12);
+
+        & + & {
+            border-top: 1px solid rgba(#858fa4, 0.15);
+        }
+    }
+}
