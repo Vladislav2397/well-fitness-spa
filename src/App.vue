@@ -3,6 +3,7 @@
 #app
     header-component(
         @clickBurger="currentModalName = 'header'"
+        @clickSearch="currentModalName = 'search'"
         @clickCity="currentModalName = 'city'"
     )
 
@@ -20,16 +21,20 @@
 
     transition(
         :name=" device.size.mobile && !device.size.mobileLate ? 'translate-bottom' : 'translate-right'"
+        mode="in-out"
     )
         modal-component(
             v-if="currentModalName === 'header' && !device.size.desktop"
+            key="header"
             @clickClose="currentModalName = ''"
         )
             header-modal-component(
                 @clickEquipment="currentModalName = 'equipment'"
+                @clickCity="currentModalName = 'city'"
             )
         modal-component(
-            v-else-if="currentModalName === 'equipment' && !device.size.desktop"
+            v-if="currentModalName === 'equipment' && !device.size.desktop"
+            key="equipment"
             @clickClose="currentModalName = ''"
         )
             equipment-modal-component(
@@ -39,12 +44,19 @@
                 @clickBreadcrumb="currentModalName = 'header'"
             )
         modal-component(
-            v-else-if="currentModalName === 'city'"
+            v-if="currentModalName === 'city'"
+            key="city"
             theme="light"
             @clickClose="currentModalName = ''"
         )
             city-modal-component
-
+        modal-component(
+            v-if="currentModalName === 'search'"
+            key="city"
+            theme="light"
+            @clickClose="currentModalName = ''"
+        )
+            search-content-component
 
 </template>
 
@@ -61,6 +73,7 @@ import Device from '@/mixins/device'
 
 import { equipmentModalLinkType } from '@/components/modals/EquipmentModal.vue'
 import CityModal from '@/components/modals/CityModal.vue'
+import SearchContent from '@/components/sections/SearchContent.vue'
 
 type equipmentModalContentType = {
     title: string,
@@ -69,6 +82,7 @@ type equipmentModalContentType = {
 
 @Component({
     components: {
+        'search-content-component': SearchContent,
         'city-modal-component': CityModal,
         'equipment-modal-component': EquipmentModal,
         'header-modal-component': HeaderModal,

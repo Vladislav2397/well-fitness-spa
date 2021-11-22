@@ -30,6 +30,7 @@
         right: toRem(16 - 14);
         padding: toRem(14);
         color: #858FA4; //FIXME: change color on vars
+        z-index: 1;
     }
 
     @media (min-width: 450px) {

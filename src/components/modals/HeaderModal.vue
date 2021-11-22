@@ -4,6 +4,7 @@
     link-component._city(
         icon="collapse"
         iconSize="s"
+        v-on:click="clickCityEmit"
     ) Москва
     login-button-component._login
     input-component._input(
@@ -62,6 +63,8 @@ import Navigation from '@/components/blanks/Navigation.vue'
 })
 export default class HeaderModal extends Vue {
     @Emit('clickEquipment') clickEquipmentEmit(name: string) {/**/}
+
+    @Emit('clickCity') clickCityEmit() {/**/}
 
     searchField = ''
 }

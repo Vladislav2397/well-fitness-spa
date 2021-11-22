@@ -1,0 +1,24 @@
+.searched-items {
+    span {
+        display: inline-block;
+        margin-bottom: toRem(12);
+    }
+
+    &__button {
+        color: #384255;
+        background-color: rgba(#909cb5, 0.2);
+        border-color: transparent;
+
+        &:last-child {
+            margin-right: toRem(10);
+        }
+
+        & + & {
+            margin-left: toRem(12);
+        }
+    }
+
+    &__list {
+        margin-top: toRem(16);
+    }
+}

@@ -35,11 +35,16 @@
 <script lang="ts">
 import { Component, Prop, VModel, Vue } from 'vue-property-decorator'
 
+type inputThemePropType =
+    | 'light'
+    | 'dark'
+    | 'transparent'
+
 @Component
 export default class Input extends Vue {
     @VModel({ type: String }) inputValue!: string
 
-    @Prop({ default: 'light' }) readonly theme!: 'light' | 'dark'
+    @Prop({ default: 'light' }) readonly theme!: inputThemePropType
 
     @Prop() readonly placeholder!: string
 

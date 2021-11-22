@@ -1,62 +1,63 @@
 <template lang="pug">
-include ../../tools/pug/mixins
 
-+b.HEADER.header
-    +e.top
-        +e.container.container
-            +e.logo
-                +e.image
+header.header
+    ._top
+        ._container.container
+            ._logo
+                ._image
                     img(
                         src="/images/common/logo.svg"
                     )
-                +e.LINK-COMPONENT.city(
+                link-component._city(
                     v-if="!device.size.mobile"
                     icon="collapse"
                     iconSize="s"
 
                     @click="clickCityEmit"
                 ) Москва
-            +e.user-actions(
+            ._user-actions(
                 v-if="device.size.desktop"
             )
-                +e.DEALERS-COMPONENT.info
-                +e.REQUEST-CALL-COMPONENT.info
-                +e.LOGIN-BUTTON-COMPONENT.info.__login
-            +e.user-actions(
+                dealers-component._info
+                request-call-component._info
+                login-button-component._info.header__login
+            ._user-actions(
                 v-if="!device.size.desktop"
             )
-                +e.I.action.icon--size-m.icon--search
+                i._action.icon.icon--size-m.icon--search(
+                    v-on:click="clickSearchEmit"
+                )
                 template(
                     v-if="device.size.tablet || device.size.tabletLate"
                 )
-                    +e.I.action.icon--size-m.icon--stats
-                    +e.I.action.icon--size-m.icon--heart
-                +e.I.action.icon--size-m.icon--cart
-                +e.I.action.icon--size-l.icon--burger(
+                    i._action.icon.icon--size-m.icon--stats
+                    i._action.icon.icon--size-m.icon--heart
+                i._action.icon.icon--size-m.icon--cart
+                i._action.icon.icon--size-l.icon--burger(
                     v-on:click="clickBurgerEmit"
                 )
-    +e.middle(
+    ._middle(
         v-if="device.size.desktop || device.size.desktopLate"
     )
-        +e.container.container
-            +e.navbar
-                +e.BUTTON-COMPONENT.catalog(
+        ._container.container
+            ._navbar
+                button-component._catalog(
                     :iconLeft="true"
                     icon="bento"
                     size="m"
                     theme="brand"
                 ) Каталог
-                +e.search
-                    i.icon.icon--size-m.icon--search
-                +e.NAVIGATION-COMPONENT.navigation(
+                ._search
+                    i.icon.-size-m.icon--search
+                navigation-component._navigation(
                     align="horizontal"
                 )
-            +e.icons
-                +e.I.action.icon--size-m.icon--stats
-                +e.I.action.icon--size-m.icon--heart
-                +e.I.action.icon--size-m.icon--cart
-    +e.bottom
-        +e.container.container
+            ._icons
+                i._action.icon.icon--size-m.icon--stats
+                i._action.icon.icon--size-m.icon--heart
+                i._action.icon.icon--size-m.icon--cart
+    ._bottom
+        ._container.container
             link-component(
                 v-for="(item, index) in additionItems"
                 :key="index"
@@ -90,6 +91,8 @@ export default class TheHeader extends Mixins(Device) {
     @Emit('clickBurger') clickBurgerEmit (): void {/**/}
 
     @Emit('clickCity') clickCityEmit (): void {/**/}
+
+    @Emit('clickSearch') clickSearchEmit (): void {/**/}
 
     additionItems = [
         'Для дома',

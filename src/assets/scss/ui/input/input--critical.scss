@@ -1,4 +1,6 @@
 .input {
+    $b: &;
+
     &--theme {
         &-light {
             --backgroud-color: #f6f6f6;
@@ -16,6 +18,20 @@
             --placeholder-color: #{rgba(#f6f6f6, 0.2)};
             --prefix-color: #{rgba(#858FA4, 0.7)};
             --prefix-border-color: #{rgba(#858FA4, 0.15)};
+        }
+
+        &-transparent {
+            --backgroud-color: transparent;
+            --border-color: transparent;
+            --input-color: $darken;
+            --placeholder-color: #909cb5;
+            --prefix-color: #{rgba(#858FA4, 0.7)};
+            --prefix-border-color: #{rgba(#858FA4, 0.15)};
+
+            #{$b}__field {
+                border-radius: 0;
+                border-bottom: 1px solid rgba(#858fa4, 0.15);
+            }
         }
     }
 
