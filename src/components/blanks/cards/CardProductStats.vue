@@ -3,9 +3,11 @@ include ../../../tools/pug/mixins
 
 +b.card-product-stats
     +e.QUANTITY-COMPONENT.quantity(
+        v-if="quantity"
         :count="quantity"
     )
     +e.LINK-COMPONENT.link(
+        v-if="hasShowRoom"
         tag="router-link"
         href="/"
     ) {{ hasShowRoom ? 'Есть в шоу-руме' : 'Скоро ожидается' }}
@@ -25,7 +27,9 @@ include ../../../tools/pug/mixins
             :class="{ 'card-product-stats__price--row' : isPriceRow }"
         )
             span {{ price[0].toLocaleString() }}
-            del {{ price[1].toLocaleString() }}
+            del(
+                v-if="price.length > 1"
+            ) {{ price[1].toLocaleString() }}
         +e.action(
             v-if="$slots.action"
         )

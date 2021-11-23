@@ -1,12 +1,30 @@
 .search-content {
     margin-top: toRem(-13);
 
-    &__item {
-        padding-top: toRem(20);
+    &__input {
+        margin-bottom: toRem(16);
+    }
 
+    &__item {
         & + & {
+            padding-top: toRem(20);
             margin-top: toRem(20);
             border-top: 1px solid rgba(#858fa4, 0.15);
+        }
+    }
+
+    &__card {
+        width: toRem(126);
+        display: inline-block;
+        white-space: normal;
+
+        .card-product__image {
+            width: toRem(126);
+            height: toRem(126);
+        }
+
+        & + & {
+            margin-left: toRem(12);
         }
     }
 }

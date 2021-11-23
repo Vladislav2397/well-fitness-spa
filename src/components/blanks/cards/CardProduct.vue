@@ -1,13 +1,12 @@
 <template lang="pug">
-include ../../../tools/pug/mixins
 
-+b.card-product
-    +e.image
+.card-product
+    ._image
         img(
             src=""
             alt="image"
         )
-    +e.content
+    ._content
         slot
     
 </template>
