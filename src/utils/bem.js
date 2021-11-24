@@ -128,9 +128,8 @@ function ucFirst(str) {
 
 function vueFileTemplate(cssName, vueName, nesting) {
     return `<template lang="pug">
-    include ../${'../'.repeat(nesting)}tools/pug/mixins
 
-    +b.${camelToKebab(cssName)}
+.${camelToKebab(cssName)}
     
 </template>
 

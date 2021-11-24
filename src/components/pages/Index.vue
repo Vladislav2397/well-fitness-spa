@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.home
+.page
     carousel-component
     home-equipment-component
     gym-equipment-component

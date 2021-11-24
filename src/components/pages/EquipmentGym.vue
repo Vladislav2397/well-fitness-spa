@@ -1,6 +1,6 @@
 <template lang="pug">
 
-equipment-layout-component.equipment(
+equipment-layout-component.page(
     :breadcrumb-list="breadcrumbList"
 )
 
