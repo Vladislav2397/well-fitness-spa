@@ -1,5 +1,11 @@
 # well-fitness-spa
 
+### project configuration
+- vue2
+- vue-property-decorator
+- typescript
+- scss
+
 ## Project setup
 ```
 yarn install

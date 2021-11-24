@@ -1,17 +1,8 @@
 import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-
-import Index from '@/components/pages/Index.vue'
+import VueRouter from 'vue-router'
+import routes from './routes'
 
 Vue.use(VueRouter)
-
-const routes: Array<RouteConfig> = [
-    {
-        path: '/',
-        name: 'Index',
-        component: Index
-    },
-]
 
 const router = new VueRouter({
     mode: 'history',

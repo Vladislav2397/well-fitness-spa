@@ -191,31 +191,28 @@
         background-color: $dark;
         color: $white;
         font-weight: 600;
-
-        span {
-            line-height: toRem(44);
-
-            & + span {
-                position: relative;
-                padding-left: toRem(20);
-                margin-left: toRem(20);
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    left: 0;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    width: 1px;
-                    height: toRem(30);
-                    background-color: rgba(#fff, 0.15);
-                }
-            }
-        }
     }
 
     &__link {
         display: inline-block;
+        line-height: toRem(44);
+
+        & + & {
+            position: relative;
+            padding-left: toRem(20);
+            margin-left: toRem(20);
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 1px;
+                height: toRem(30);
+                background-color: rgba(#fff, 0.15);
+            }
+        }
     }
 
     @media (min-width: 650px) {

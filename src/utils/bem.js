@@ -4,7 +4,7 @@ const type = params[0]
 const namePath = getNamePath(params[1])
 const name = namePath[namePath.length - 1]
 const folders = namePath.filter(folder => folder !== name).reduce((t, f) => (t += `/${f}`), '')
-const validTypes = ['ui', 'blanks', 'popups', 'modals', 'sections']
+const validTypes = ['ui', 'blanks', 'popups', 'modals', 'sections', 'layouts']
 
 const cssDirectory = './src/assets/scss'
 const vueDirectory = './src/components'

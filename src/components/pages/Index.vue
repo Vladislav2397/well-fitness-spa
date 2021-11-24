@@ -1,4 +1,5 @@
 <template lang="pug">
+
 .home
     carousel-component
     home-equipment-component
@@ -10,6 +11,7 @@
     about-component
     become-partner-component
     blog-component
+
 </template>
 
 <script lang="ts">

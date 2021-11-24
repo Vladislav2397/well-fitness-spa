@@ -58,14 +58,15 @@ header.header
                 i._action.icon.icon--size-m.icon--cart
     ._bottom
         ._container.container
-            link-component(
-                v-for="(item, index) in additionItems"
+            link-component._link(
+                v-for="({ text, href }, index) in additionItems"
                 :key="index"
-                tag="span"
+                :href="href"
+                tag="router-link"
                 icon="collapse"
                 iconSize="s"
                 theme="white"
-            ) {{ item }}
+            ) {{ text }}
 
 </template>
 
@@ -95,8 +96,14 @@ export default class TheHeader extends Mixins(Device) {
     @Emit('clickSearch') clickSearchEmit (): void {/**/}
 
     additionItems = [
-        'Для дома',
-        'Для фитнес клуба',
+        {
+            text: 'Для дома',
+            href: '/equipment/home',
+        },
+        {
+            text: 'Для фитнес клуба',
+            href: '/equipment/gym',
+        },
     ]
 }
 </script>
