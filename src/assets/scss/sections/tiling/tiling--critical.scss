@@ -1,0 +1,8 @@
+.tiling {
+    padding-top: toRem(20);
+    padding-bottom: toRem(40);
+
+    @media (min-width: 1200px) {
+        padding-top: toRem(30);
+    }
+}

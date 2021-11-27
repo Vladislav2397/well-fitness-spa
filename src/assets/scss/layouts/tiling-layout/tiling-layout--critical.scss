@@ -3,7 +3,6 @@
 
     &__item {
         display: block;
-        background-color: #fff;
     }
 
     @media (max-width: 649px) {
@@ -19,10 +18,12 @@
     }
 
     @media (min-width: 650px) {
+        width: #{t-columns(12) + t-columns(0)};
         margin-bottom: toRem(-30);
 
         &__item {
-            width: t-columns(6);
+            width: calc(100% / var(--item-count) - #{t-columns(0)});
+            margin-right: t-columns(0);
             margin-bottom: toRem(30);
         }
 
@@ -36,20 +37,7 @@
             &__item {
                 display: inline-block;
                 vertical-align: top;
-
-                &:nth-child(even) {
-                    margin-left: t-columns(0);
-                }
             }
-        }
-    }
-
-    @media (min-width: 980px) {
-        width: #{t-columns(12) + t-columns(0)};
-
-        &__item {
-            width: #{33.333% - d-columns(0)};
-            margin-right: d-columns(0);
         }
     }
 

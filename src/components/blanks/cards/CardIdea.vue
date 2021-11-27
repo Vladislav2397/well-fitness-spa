@@ -1,7 +1,6 @@
 <template lang="pug">
-include ../../../tools/pug/mixins
 
-+b.card-idea(
+.card-idea(
     :class="classes"
 )
     img(
@@ -17,7 +16,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class CardIdea extends Vue {
     @Prop() readonly src!: string
     @Prop() readonly alt!: string
-
     @Prop() readonly size!: string
 
     get imageAttributes (): Record<string, string> {

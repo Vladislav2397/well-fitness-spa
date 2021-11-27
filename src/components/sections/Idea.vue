@@ -1,16 +1,16 @@
 <template lang="pug">
-include ../../tools/pug/mixins
 
-+b.idea
-    +e.container.container
-        +e.SECTION-WRAPPER-COMPONENT.wrapper(
+.idea
+    ._container.container
+        section-wrapper-component._wrapper(
             title="Идеи и подборки"
             theme="dark"
             buttonText="Полная подборка"
-            button-theme="ghost-light"
+            buttonTheme="ghost-light"
+            @click="onClick"
         )
-            +e.list
-                +e.CARD-IDEA-COMPONENT.card(
+            ._list
+                card-idea-component._card(
                     v-for="({size, src, alt}, index) in cards"
                     :key="index"
                     :size="size"
@@ -50,6 +50,10 @@ export default class Idea extends Vue {
             alt: ''
         },
     ]
+
+    onClick() {
+        this.$router.push('/idea')
+    }
 }
 
 </script>

@@ -4,6 +4,11 @@
     overflow: hidden;
     position: relative;
 
+    &::before {
+        content: '';
+        display: block;
+    }
+
     img {
         position: absolute;
         top: 0;
@@ -16,8 +21,10 @@
         &--size {
             &-s,
             &-l {
-                height: 0;
-                padding-bottom: 53.33%;
+                &::before {
+                    height: 0;
+                    padding-bottom: 53.33%;
+                }
             }
         }
     }
@@ -25,13 +32,15 @@
     @media (min-width: 768px) {
         &--size {
             &-l {
-                width: toRem(690);
-                height: toRem(400);
+                &::before {
+                    height: 0;
+                    padding-bottom: 57.97%;
+                }
             }
 
             &-s {
-                width: toRem(330);
-                height: toRem(400);
+                //width: toRem(330);
+                //height: toRem(400);
             }
         }
     }
