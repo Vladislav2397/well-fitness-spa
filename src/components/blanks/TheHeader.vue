@@ -4,7 +4,9 @@ header.header
     ._top
         ._container.container
             ._logo
-                ._image
+                router-link._image(
+                    to="/"
+                )
                     img(
                         src="/images/common/logo.svg"
                     )

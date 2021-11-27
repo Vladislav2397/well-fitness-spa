@@ -1,18 +1,20 @@
 <template lang="pug">
 
-.tiling-layout
+.tiling-layout(
+    :style="{ '--item-count': countInRow }"
+)
     slot(
-        v-bind:itemClass="'tiling-layout__item'"
+        :itemClass="'tiling-layout__item'"
     )
     
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class TilingLayout extends Vue {
-
+    @Prop({ default: 3 }) readonly countInRow!: number
 }
 
 </script>

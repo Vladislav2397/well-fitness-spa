@@ -1,27 +1,27 @@
 <template lang="pug">
-    include ../../tools/pug/mixins
 
-    +b.SECTION-WRAPPER-COMPONENT.grid-section(
-        :title="title"
-        :buttonText="button"
+section-wrapper-component.grid-section(
+    :title="title"
+    :buttonText="button"
+    @click="clickEmit"
+)
+    vue-grid-component._grid(
+        :layout="layout"
     )
-        +e.VUE-GRID-COMPONENT.grid(
-            :layout="layout"
+        card-grid-component._card(
+            v-for="(card, index) in cardList"
+            :key="index"
+            :title="card.title"
+            :imageSrc="card.image.src"
+            :imageAlt="card.image.alt"
+            :theme="card.theme"
+            :stretch="card.stretch"
         )
-            +e.CARD-GRID-COMPONENT.card(
-                v-for="(card, index) in cardList"
-                :key="index"
-                :title="card.title"
-                :imageSrc="card.image.src"
-                :imageAlt="card.image.alt"
-                :theme="card.theme"
-                :stretch="card.stretch"
-            )
 
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
 
 import { Point } from './VueGrid.vue'
 
@@ -56,6 +56,8 @@ export default class GridSection extends Vue {
     @Prop() readonly title!: string
 
     @Prop() readonly button!: string
+
+    @Emit('click') clickEmit() {/**/}
 }
 
 </script>

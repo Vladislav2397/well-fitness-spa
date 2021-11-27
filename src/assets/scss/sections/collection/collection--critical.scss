@@ -1,0 +1,8 @@
+.collection {
+    @include paddingLevel(top, gray);
+    @include paddingLevel(bottom, beige);
+
+    &__container {
+        overflow: hidden;
+    }
+}

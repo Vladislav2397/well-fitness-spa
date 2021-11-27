@@ -1,13 +1,13 @@
 <template lang="pug">
-include ../../tools/pug/mixins
 
-+b.gym-equipment
-    +e.container.container
-        +e.GRID-SECTION-COMPONENT.grid(
+.gym-equipment
+    ._container.container
+        grid-section-component._grid(
             title="Тренажеры для фитнес клуба"
             button="Все категории"
             :layout="layout"
             :cardList="cardList"
+            @click="onClick"
         )
 
 </template>
@@ -135,6 +135,10 @@ export default class GymEquipment extends Mixins(Device) {
                 stretch: 'default',
             },
         ]
+    }
+
+    onClick() {
+        this.$router.push('/equipment/gym')
     }
 }
 

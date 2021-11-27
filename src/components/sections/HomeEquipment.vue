@@ -1,13 +1,13 @@
 <template lang="pug">
-include ../../tools/pug/mixins
 
-+b.home-equipment
-    +e.container.container
-        +e.GRID-SECTION-COMPONENT.grid(
+.home-equipment
+    ._container.container
+        grid-section-component._grid(
             title="Тренажеры для дома"
             button="Все категории"
             :layout="layout"
             :cardList="cardList"
+            @click="onClick"
         )
 
 </template>
@@ -183,6 +183,10 @@ export default class HomeEquipmentPage extends Mixins(Device) {
                 stretch: 'default',
             },
         ]
+    }
+
+    onClick() {
+        this.$router.push('/equipment/home')
     }
 }
 

@@ -3,6 +3,7 @@ import { RouteConfig } from 'vue-router'
 import Index from '@/components/pages/Index.vue'
 import EquipmentPage from '@/components/pages/EquipmentHome.vue'
 import EquipmentGymPage from '@/components/pages/EquipmentGym.vue'
+import IdeaPage from '@/components/pages/Idea.vue'
 
 export default [
     {
@@ -23,6 +24,11 @@ export default [
         path: '/equipment/gym',
         name: 'EquipmentGym',
         component: EquipmentGymPage,
+    },
+    {
+        path: '/idea',
+        name: 'Idea',
+        component: IdeaPage,
     },
     {
         path: '*',

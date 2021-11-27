@@ -9,7 +9,7 @@ include ../../tools/pug/mixins
             template(
                 #title
             )
-                +e.TAB-LIST-COMPONENT.tabs(
+                +e.TAB-LIST-COMPONENT.tabs.scroll-row(
                     v-model="activeTabIndex"
                     :list="tabList"
                 )
