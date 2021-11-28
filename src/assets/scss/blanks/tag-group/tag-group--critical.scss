@@ -1,0 +1,26 @@
+.tag-group {
+    @media (max-width: 649px) {
+        width: 100vw;
+        transform: translateX(#{toRem(-10)});
+        padding: 0 toRem(10);
+        box-sizing: border-box;
+
+        &__tag {
+            & + & {
+                margin-left: toRem(12);
+            }
+
+            &:last-child {
+                margin-right: toRem(12);
+            }
+        }
+    }
+
+    @media (min-width: 650px) {
+        margin-right: toRem(-12);
+
+        &__tag {
+            margin-right: toRem(12);
+        }
+    }
+}

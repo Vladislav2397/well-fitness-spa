@@ -1,0 +1,12 @@
+.row-layout {
+    &--scroll {
+        white-space: nowrap;
+        overflow: auto;
+    }
+
+    &__item {
+        display: inline-block;
+        vertical-align: middle;
+        white-space: normal;
+    }
+}

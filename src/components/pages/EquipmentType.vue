@@ -5,7 +5,7 @@
         title="Кардиотренажеры"
     )
     pagination-wrapper-component
-        banner-component
+        equipment-type-detail-component
 
 </template>
 
@@ -14,11 +14,11 @@ import { Vue, Component } from 'vue-property-decorator'
 
 import PageBreadcrumb from '@/components/blanks/PageBreadcrumb.vue'
 import PaginationWrapper from '@/components/sections/PaginationWrapper.vue'
-import Banner from '@/components/blanks/Banner.vue'
+import EquipmentTypeDetail from '@/components/sections/EquipmentTypeDetail.vue'
 
 @Component({
     components: {
-        'banner-component': Banner,
+        'equipment-type-detail-component': EquipmentTypeDetail,
         'pagination-wrapper-component': PaginationWrapper,
         'page-breadcrumb-component': PageBreadcrumb
     }
