@@ -5,6 +5,7 @@ import EquipmentPage from '@/components/pages/EquipmentHome.vue'
 import EquipmentGymPage from '@/components/pages/EquipmentGym.vue'
 import IdeaPage from '@/components/pages/Idea.vue'
 import EquipmentTypePage from '@/components/pages/EquipmentType.vue'
+import EquipmentAccessoryPage from '@/components/pages/EquipmentAccessory.vue'
 
 export default [
     {
@@ -17,14 +18,16 @@ export default [
         redirect: '/equipment/home',
     },
     {
-        path: '/equipment/home',
+        path: '/equipment/:type',
         name: 'EquipmentHome',
-        component: EquipmentPage,
-    },
-    {
-        path: '/equipment/gym',
-        name: 'EquipmentGym',
-        component: EquipmentGymPage,
+        component: EquipmentAccessoryPage,
+        beforeEnter: (to, from, next) => {
+            if (['home', 'gym'].includes(to.params.type)) {
+                next()
+            } else {
+                next('/')
+            }
+        }
     },
     {
         path: '/equipment/(gym|home)/:id',

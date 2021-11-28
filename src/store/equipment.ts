@@ -6,10 +6,11 @@ import {
 } from 'vuex-module-decorators'
 import store from './index'
 import api from '@/api'
+import { API } from '@/api/types'
 
-interface EquipmentType {
+type EquipmentType = {
     image: [src: string, alt: string],
-    title: '',
+    title: string,
     list: [name: string, count: number][]
 }
 
@@ -31,25 +32,27 @@ export default class EquipmentModule extends VuexModule {
     }
 
     @Action({ commit: 'updateList' })
-    async fetchList(type: 'home' | 'gym'): Promise<any> {
+    async fetchList(type: 'home' | 'gym'): Promise<API.GET.equipment.list> {
         try {
-            return api.getEquipmentList(type)
+            return await api.equipment.getList(type)
         } catch (error) {
             console.error(error)
+            return new Promise(() => {/**/})
         }
-        return []
     }
 
     @Mutation
-    updateList(list: any[]) {
-        this._list = list.map(item => ({
+    updateList(equipmentData: API.GET.equipment.list) {
+        this._meta = equipmentData.meta
+
+        this._list = equipmentData.data.map(item => ({
             image: [
                 item.image.src,
                 item.image.alt,
             ],
             title: item.title,
-            list: item.list.map((i: any) => [
-                i.text, i.count
+            list: item.list.map(el => [
+                el.text, el.count
             ])
         }))
     }
