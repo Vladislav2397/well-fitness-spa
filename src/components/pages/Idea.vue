@@ -5,20 +5,21 @@
         title="Идеи и подборки"
         :list="breadcrumbList"
     )
-    tiling-component(
-        count-in-row="2"
-    )
-        template(
-            #default="slotProps"
+    pagination-wrapper-component
+        tiling-layout-component(
+            count-in-row="2"
         )
-            card-idea-component(
-                v-for="({size, src, alt}, index) in cards"
-                :key="index"
-                :class="slotProps.classItem"
-                :size="size"
-                :src="src"
-                :alt="alt"
+            template(
+                #default="slotProps"
             )
+                card-idea-component(
+                    v-for="({size, src, alt}, index) in cards"
+                    :key="index"
+                    :class="slotProps.classItem"
+                    :size="size"
+                    :src="src"
+                    :alt="alt"
+                )
 
 </template>
 
@@ -29,9 +30,13 @@ import PageBreadcrumb, { breadcrumbListType } from '@/components/blanks/PageBrea
 import Tiling from '@/components/sections/Tiling.vue'
 import TilingLayout from '@/components/layouts/TilingLayout.vue'
 import CardIdea from '@/components/blanks/cards/CardIdea.vue'
+import Pagination from '@/components/blanks/Pagination.vue'
+import PaginationWrapper from '@/components/sections/PaginationWrapper.vue'
 
 @Component({
     components: {
+        'pagination-wrapper-component': PaginationWrapper,
+        'pagination-component': Pagination,
         'card-idea-component': CardIdea,
         'tiling-component': Tiling,
         'tiling-layout-component': TilingLayout,

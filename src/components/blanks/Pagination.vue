@@ -100,17 +100,3 @@ export default class Pagination extends Vue {
 }
 
 </script>
-
-<style lang="scss">
-.pagination {
-    &__item {
-        padding: 10px 16px;
-        background-color: #cccccc;
-        display: inline-block;
-
-        &.active {
-            background-color: #aaa;
-        }
-    }
-}
-</style>

@@ -32,6 +32,8 @@
     @media (min-width: 768px) {
         &--size {
             &-l {
+                width: toRem(690);
+
                 &::before {
                     height: 0;
                     padding-bottom: 57.97%;
@@ -39,8 +41,12 @@
             }
 
             &-s {
-                //width: toRem(330);
-                //height: toRem(400);
+                width: toRem(330);
+
+                &::before {
+                    height: 0;
+                    padding-bottom: 121.21%;
+                }
             }
         }
     }

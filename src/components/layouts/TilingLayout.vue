@@ -4,7 +4,7 @@
     :style="{ '--item-count': countInRow }"
 )
     slot(
-        :itemClass="'tiling-layout__item'"
+        :classItem="'tiling-layout__item'"
     )
     
 </template>
