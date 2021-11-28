@@ -11,7 +11,8 @@
         v-if="!device.size.desktop"
     )
         link-component._text.-link.-block(
-            v-for="{ text, href } in dealers"
+            v-for="({ text, href }, index) in dealers"
+            :key="index"
             :href="href"
         ) {{ text }}
     ._section.-mailsend

@@ -5,6 +5,7 @@
         +e.list
             +e.star(
                 v-for="i in 5"
+                :key="i"
                 :class="{ 'rating__star--fill' : i <= count }"
             )
 

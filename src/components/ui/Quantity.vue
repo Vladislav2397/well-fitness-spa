@@ -8,6 +8,7 @@ include ../../tools/pug/mixins
     +e.list
         +e.dot(
             v-for="i in 3"
+            :key="i"
             :class="{ 'quantity__dot--fill' : i <= count }"
         )
 

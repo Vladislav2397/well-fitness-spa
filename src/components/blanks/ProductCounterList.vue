@@ -4,20 +4,18 @@
     ._title {{ title }}
     ._list
         ._item(
-            v-for="item in list"
+            v-for="([ text, count], index) in list"
+            :key="index"
         )
-            span {{ item.text }}
-            span {{ item.count }}
+            span {{ text }}
+            span {{ count }}
 
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-export type productCounterListType = {
-    text: string
-    count: number
-}[]
+export type productCounterListType = [text: string, count: number][]
 
 @Component
 export default class ProductCounterList extends Vue {

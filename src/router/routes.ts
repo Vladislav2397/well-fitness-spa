@@ -4,6 +4,7 @@ import Index from '@/components/pages/Index.vue'
 import EquipmentPage from '@/components/pages/EquipmentHome.vue'
 import EquipmentGymPage from '@/components/pages/EquipmentGym.vue'
 import IdeaPage from '@/components/pages/Idea.vue'
+import EquipmentTypePage from '@/components/pages/EquipmentType.vue'
 
 export default [
     {
@@ -24,6 +25,11 @@ export default [
         path: '/equipment/gym',
         name: 'EquipmentGym',
         component: EquipmentGymPage,
+    },
+    {
+        path: '/equipment/(gym|home)/:id',
+        name: 'EquipmentType',
+        component: EquipmentTypePage,
     },
     {
         path: '/idea',

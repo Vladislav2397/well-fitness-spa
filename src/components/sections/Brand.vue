@@ -18,6 +18,7 @@ include ../../tools/pug/mixins
             +e.list
                 +e.item(
                     v-for="(i, index) in brandLogoCount"
+                    :key="index"
                     :class="itemClasses(index)"
                 )
 

@@ -16,7 +16,8 @@ include ../../../tools/pug/mixins
         v-if="info"
     )
         p(
-            v-for="line in info"
+            v-for="(line, index) in info"
+            :key="index"
         ) {{ `${line[0]}: ${line[1]}` }}
     +e.RATING-COMPONENT.rating(
         :count="rating"

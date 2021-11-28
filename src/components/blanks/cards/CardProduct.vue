@@ -1,6 +1,8 @@
 <template lang="pug">
 
-.card-product
+router-link.card-product(
+    to="/equipment/gym/1"
+)
     ._image
         img(
             :src="imageSrc"

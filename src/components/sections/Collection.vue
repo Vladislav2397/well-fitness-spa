@@ -9,7 +9,8 @@
                 #default="slotProps"
             )
                 card-product-component._card(
-                    v-for="product in productList"
+                    v-for="(product, index) in productList"
+                    :key="index"
                     :class="slotProps.itemClass"
                     :image-src="product.image.src"
                     :image-alt="product.image.alt"

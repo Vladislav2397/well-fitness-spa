@@ -9,7 +9,7 @@
                 #default="slotProps"
             )
                 slot(
-                    :classItem="slotProps.itemClass"
+                    :classItem="slotProps.classItem"
                 )
     
 </template>
