@@ -1,22 +1,22 @@
 .tiling-layout {
     --item-count: 3;
 
-    &__item {
-        display: block;
-    }
+    //&__item {
+    //    display: block;
+    //}
+    //
+    //@media (max-width: 649px) {
+    //    &__item {
+    //        margin-left: auto;
+    //        margin-right: auto;
+    //
+    //        & + & {
+    //            margin-top: toRem(20);
+    //        }
+    //    }
+    //}
 
-    @media (max-width: 649px) {
-        &__item {
-            margin-left: auto;
-            margin-right: auto;
-
-            & + & {
-                margin-top: toRem(20);
-            }
-        }
-    }
-
-    @media (min-width: 650px) {
+    //@media (min-width: 650px) {
         width: #{t-columns(12) + t-columns(0)};
         margin-bottom: toRem(-30);
 
@@ -38,7 +38,7 @@
                 vertical-align: top;
             }
         }
-    }
+    //}
 
     @media (min-width: 1200px) {
         width: #{d-columns(12) + d-columns(0)};

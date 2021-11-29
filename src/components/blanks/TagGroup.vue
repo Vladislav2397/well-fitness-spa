@@ -6,8 +6,7 @@ row-layout-component.tag-group(
     template(
         v-for="(item, index) in list"
     )
-        component._tag(
-            :is="`${tagName}-component`"
+        button-component._tag(
             :key="index"
             :theme="isActive(index) ? 'brand' : 'secondary'"
             @click="onClick(index)"
@@ -28,8 +27,6 @@ import Device from '@/mixins/device'
 })
 export default class TagGroup extends Mixins(Device) {
     @VModel() activeIndex!: number | number[]
-
-    @Prop({ default: 'button' }) readonly tagName!: 'button' | 'link'
 
     @Prop() readonly list!: string[]
 
