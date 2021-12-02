@@ -1,12 +1,11 @@
 <template lang="pug">
-include ../../tools/pug/mixins
 
-+b.quantity(
+.quantity(
     :class="`quantity--${state.class}`"
 )
     | {{ state.label }}
-    +e.list
-        +e.dot(
+    ._list
+        ._dot(
             v-for="i in 3"
             :key="i"
             :class="{ 'quantity__dot--fill' : i <= count }"

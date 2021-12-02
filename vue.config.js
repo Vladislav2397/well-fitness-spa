@@ -14,6 +14,9 @@ module.exports = {
                 .oneOf('vue-loader')
                     .use('pug-bem')
                     .loader('pug-bem-plain-loader')
+                    // .options({
+                    //     b: true
+                    // })
             .end()
         config.module
             .rule('pug')
@@ -26,6 +29,9 @@ module.exports = {
                 .oneOf('raw-pug-files')
                     .use('pug-bem')
                     .loader('pug-bem-plain-loader')
+                    // .options({
+                    //     b: true
+                    // })
             .end()
     }
 }

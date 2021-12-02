@@ -1,37 +1,38 @@
 <template lang="pug">
-include ../../../tools/pug/mixins
 
-+b.card-product-stats
-    +e.QUANTITY-COMPONENT.quantity(
-        v-if="quantity"
-        :count="quantity"
-    )
-    +e.LINK-COMPONENT.link(
-        v-if="hasShowRoom"
-        tag="router-link"
-        href="/"
-    ) {{ hasShowRoom ? 'Есть в шоу-руме' : 'Скоро ожидается' }}
-    +e.title {{ title }}
-    +e.info(
+.card-product-stats
+    ._top
+        quantity-component._quantity(
+            v-if="quantity !== undefined"
+            :count="quantity"
+        )
+        link-component._link(
+            v-if="hasShowRoom !== undefined"
+            tag="router-link"
+            href="/"
+        ) {{ hasShowRoom ? 'Есть в шоу-руме' : 'Скоро ожидается' }}
+    ._title {{ title }}
+    ._info(
         v-if="info"
     )
         p(
             v-for="(line, index) in info"
             :key="index"
         ) {{ `${line[0]}: ${line[1]}` }}
-    +e.RATING-COMPONENT.rating(
+    rating-component._rating(
+        v-if="hasRating"
         :count="rating"
         :hasLabel="isRatingLabel"
     )
-    +e.bottom
-        +e.price(
+    ._bottom
+        ._price(
             :class="{ 'card-product-stats__price--row' : isPriceRow }"
         )
             span {{ price[0].toLocaleString() }}
             del(
                 v-if="price.length > 1"
             ) {{ price[1].toLocaleString() }}
-        +e.action(
+        ._action(
             v-if="$slots.action"
         )
             slot(
@@ -65,6 +66,7 @@ export default class CardProductStats extends Vue {
     @Prop({ default: false }) readonly isTitleBold!: boolean
     @Prop({ default: true }) readonly isRatingLabel!: boolean
     @Prop({ default: false }) readonly isPriceRow!: boolean
+    @Prop({ default: true }) readonly hasRating!: boolean
 }
 
 </script>

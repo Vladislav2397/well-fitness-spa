@@ -1,4 +1,6 @@
 .equipment-type-detail {
+    overflow: hidden;
+
     &__content {
         padding: toRem(10);
     }

@@ -1,0 +1,24 @@
+.catalog-layout {
+    position: relative;
+
+    &__main {
+        width: 100%;
+    }
+
+    @media (max-width: 649px) {
+        &__aside {
+            position: absolute;
+        }
+    }
+
+    @media (min-width: 650px) {
+        &__main {
+            width: t-columns(9);
+        }
+
+        &__aside {
+            width: t-columns(3);
+            margin-left: t-columns(0);
+        }
+    }
+}

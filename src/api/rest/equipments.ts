@@ -1,6 +1,6 @@
 import { API } from '@/api/types'
 
-export const getList = (type: 'home' | 'gym'): Promise<API.GET.equipment.list> => new Promise(
+export const getList = (type: string): Promise<API.GET.equipment.list> => new Promise(
     (resolve) => {
         if (type === 'home')
             resolve({

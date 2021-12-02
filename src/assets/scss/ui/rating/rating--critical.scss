@@ -1,5 +1,8 @@
 .rating {
+    @include fontSize(p4, medium);
+
     vertical-align: middle;
+    color: $secondary;
 
     &__list {
         display: inline-block;

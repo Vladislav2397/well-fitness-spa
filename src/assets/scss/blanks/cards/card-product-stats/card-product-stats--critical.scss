@@ -1,17 +1,22 @@
 .card-product-stats {
     &__quantity {
         display: inline-block;
-        margin-bottom: toRem(8);
+        margin-right: toRem(12);
         vertical-align: middle;
     }
 
     &__link {
-        margin-left: toRem(12);
-        margin-bottom: toRem(8);
         vertical-align: middle;
     }
 
+    &__top {
+        @include fontSize(p4, medium);
+        margin-bottom: toRem(8);
+    }
+
     &__title {
+        @include fontSize(p3);
+
         margin-bottom: toRem(8);
     }
 
@@ -25,12 +30,18 @@
     }
 
     &__price {
-        &--row {
-            display: inline-block;
-        }
+        display: inline-block;
 
         span, del {
-            display: inherit;
+            display: block;
+        }
+
+        &--row {
+            display: block;
+
+            span, del {
+                display: inline-block;
+            }
         }
 
         span {

@@ -15,6 +15,7 @@
 </template>
 
 <script lang="ts">
+// FIXME: Replace all components bem on b-block
 import { Vue, Component } from 'vue-property-decorator'
 
 import Carousel from '@/components/sections/Carousel.vue'

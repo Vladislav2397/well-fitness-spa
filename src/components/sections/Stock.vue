@@ -1,47 +1,49 @@
 <template lang="pug">
-include ../../tools/pug/mixins
 
-+b.stock
-    +e.container.container
+.stock
+    ._container.container
         section-wrapper-component(
             buttonText="Все товары по акции"
         )
             template(
                 #title
             )
-                +e.TAB-LIST-COMPONENT.tabs.scroll-row(
+                tab-list-component._tabs.scroll-row(
                     v-model="activeTabIndex"
                     :list="tabList"
                 )
-            +e.cards
-                +e.CARD-PRODUCT-COMPONENT.card(
+            ._cards
+                card-product-component._card(
                     v-for="card in cards"
                     :key="card.id"
                 )
-                    card-product-stats-component(
+                    card-product-stats-component._stats(
                         :quantity="card.quantity"
                         :hasShowRoom="card.hasShowRoom"
                         :title="card.title"
                         :rating="card.rating"
                         :price="card.price"
+                        :is-price-row="device.size.mobile"
                     )
                         template(
                             #action
                         )
                             button-component(
+                                v-if="!device.size.mobile"
                                 :iconLeft="true"
                                 icon="cart"
-                            ) Добавить
+                            ) Купить
 
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
 
 import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
 import TabList from '@/components/blanks/TabList.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
+import Device from '@/mixins/device'
 
 export type ProductCardType = {
     id: number,
@@ -65,7 +67,7 @@ export type ProductCardType = {
         'section-wrapper-component': SectionWrapper
     },
 })
-export default class Stock extends Vue {
+export default class Stock extends Mixins(Device) {
     activeTabIndex = 0
 
     tabList = [

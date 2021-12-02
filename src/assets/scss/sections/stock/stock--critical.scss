@@ -32,6 +32,7 @@
         white-space: normal;
         vertical-align: top;
         background-color: #fff;
+        width: toRem(220);
 
         &:last-child {
             margin-right: var(--spacing);
@@ -42,6 +43,10 @@
         }
     }
 
+    &__stats {
+        padding: toRem(16);
+    }
+
     @media (min-width: 650px) {
         padding-top: toRem(104);
         padding-bottom: toRem(80);
@@ -49,6 +54,16 @@
         --spacing: #{toRem(16)};
         --n-spacing: #{toRem(-16)};
         --i-spacing: #{toRem(30)};
+
+        &__card {
+            width: toRem(270);
+        }
+    }
+
+    @media (min-width: 768px) {
+        &__card {
+            width: toRem(300);
+        }
     }
 
     @media (min-width: 1200px) {
