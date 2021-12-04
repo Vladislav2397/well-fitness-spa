@@ -1,0 +1,40 @@
+.range {
+    &__top {
+        @include marginLevel(bottom, gray);
+    }
+
+    &__start,
+    &__end {
+        line-height: toRem(16);
+        display: inline-block;
+        vertical-align: middle;
+        width: 45%;
+    }
+
+    &__divider {
+        width: 6%;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 2%;
+        height: 1px;
+        background-color: rgba(#858fa4, 0.5);
+    }
+
+    &__bar {
+        padding-left: toRem(16);
+        padding-right: toRem(16);
+    }
+
+    @media (min-width: 768px) {
+        &__start,
+        &__end {
+            width: 35%;
+        }
+
+        &__divider {
+            width: 20%;
+            margin: 0 5%;
+            background-color: rgba(#858fa4, 0.5);
+        }
+    }
+}

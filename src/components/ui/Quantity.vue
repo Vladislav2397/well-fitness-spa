@@ -20,23 +20,23 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class Quantity extends Vue {
     @Prop() readonly count!: 0 | 1 | 2 | 3
 
-    get state (): { label: string, class: string } {
+    get state(): { label: string, class: string } {
         switch (this.count) {
-            case 0:
-                return {
-                    label: 'Нет в наличии',
-                    class: 'error',
-                }
-            case 1:
-                return {
-                    label: 'Осталось мало',
-                    class: 'warning',
-                }
-            default:
-                return {
-                    label: 'В наличии',
-                    class: 'success'
-                }
+        case 0:
+            return {
+                label: 'Нет в наличии',
+                class: 'error',
+            }
+        case 1:
+            return {
+                label: 'Осталось мало',
+                class: 'warning',
+            }
+        default:
+            return {
+                label: 'В наличии',
+                class: 'success'
+            }
         }
     }
 }

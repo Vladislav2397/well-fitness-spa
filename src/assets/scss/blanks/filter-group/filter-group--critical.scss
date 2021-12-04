@@ -1,0 +1,19 @@
+.filter-group {
+
+    &--theme {
+        &-secondary {
+            background-color: #f6f6f6;
+        }
+    }
+
+    &__title {
+        @include fontSize(p3, bold);
+        margin-bottom: toRem(12);
+    }
+
+    &__item {
+        & + & {
+            margin-top: toRem(8);
+        }
+    }
+}

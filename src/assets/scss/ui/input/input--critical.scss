@@ -35,6 +35,21 @@
         }
     }
 
+    &--size {
+        &-base {
+            // border top + border bottom = 2
+            --height: #{toRem(40 - 2)};
+        }
+
+        &-inherit {
+            --height: inherit;
+
+            #{$b}__field {
+                line-height: inherit;
+            }
+        }
+    }
+
     &__field {
         @include fontSize(p3);
 
@@ -56,9 +71,8 @@
 
         position: relative;
         width: 100%;
-        // border top + border bottom = 2
-        line-height: toRem(40 - 2);
-        height: toRem(40 - 2);
+        line-height: var(--height);
+        height: var(--height);
 
         input {
             height: inherit;

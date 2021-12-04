@@ -24,5 +24,11 @@ import EquipmentTypeDetail from '@/components/sections/EquipmentTypeDetail.vue'
     }
 })
 export default class EquipmentType extends Vue {
+    // breadcrumbList: breadcrumbListType = [
+    //     {
+    //         text: 'Для фитнес клуба',
+    //         href: '/equipment/gym'
+    //     },
+    // ]
 }
 </script>

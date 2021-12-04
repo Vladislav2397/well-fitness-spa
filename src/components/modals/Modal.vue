@@ -19,12 +19,16 @@ import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
 export default class Modal extends Vue {
     @Prop({ default: 'dark' }) readonly theme!: 'light' | 'dark'
 
+    @Prop({ default: true }) readonly hasPadding!: boolean
+
     @Emit('clickClose') clickCloseEmit (): void {/**/}
 
     get classes (): string[] {
         const classes = []
 
         if (this.theme) classes.push(`modal--theme-${this.theme}`)
+
+        if (!this.hasPadding) classes.push('modal--no-padding')
 
         return classes
     }

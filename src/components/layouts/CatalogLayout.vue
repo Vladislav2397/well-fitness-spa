@@ -3,15 +3,15 @@
 .catalog-layout
     ._main
         slot
-    ._aside
-        slot(
-            name="aside"
-        )
+    slot(
+        name="aside"
+        :classContainer="'catalog-layout__aside'"
+    )
 
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class CatalogLayouts extends Vue {

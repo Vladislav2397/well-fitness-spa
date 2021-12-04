@@ -1,7 +1,40 @@
 .equipment-type-detail {
-    overflow: hidden;
+    &__banner {
+        @include marginLevel(bottom, gray);
+    }
 
     &__content {
         padding: toRem(10);
+    }
+
+    &__aside {
+        padding-left: toRem(12);
+        border-left: 1px solid rgba(#858fa4, 0.2);
+        box-sizing: border-box;
+    }
+
+    &__link {
+        @include fontSize(p3, medium);
+        @include marginLevel(bottom, yellow);
+
+        padding: toRem(12) toRem(16);
+    }
+
+    &__sort {
+        @include marginLevel(top, yellow);
+        @include marginLevel(bottom, gray);
+    }
+
+    &__group {
+        @media (max-width: 649px) {
+            padding: toRem(20);
+        }
+
+        & + & {
+            @include marginLevel(top, purple);
+            @include paddingLevel(top, purple);
+
+            border-top: 1px solid rgba(#858fa4, 0.15);
+        }
     }
 }

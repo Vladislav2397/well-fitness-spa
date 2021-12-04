@@ -9,6 +9,7 @@ row-layout-component.tag-group(
         button-component._tag(
             :key="index"
             :theme="isActive(index) ? 'brand' : 'secondary'"
+            size="s"
             @click="onClick(index)"
         ) {{ item }}
 

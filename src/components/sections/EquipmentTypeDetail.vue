@@ -2,11 +2,19 @@
 
 .equipment-type-detail
     banner-component._banner
-    tag-group-component(
+    link-component._link(
+        v-if="device.size.mobile"
+        :iconLeft="true"
+        icon="filter"
+        theme="dark"
+        @click="isModal = true"
+    ) Фильтры
+    tag-group-component._tags(
         v-model="tags.active"
         :list="tags.list"
     )
-    sort-component(
+    sort-component._sort(
+        v-if="!device.size.mobile"
         v-model="filters.active"
         :list="filters.list"
     )
@@ -36,14 +44,46 @@
                             :is-price-row="device.size.tablet"
                         )
         template(
-            #aside
+            #aside="asideProps"
         )
-            ._aside
+            ._aside(
+                v-if="!device.size.mobile"
+                :class="asideProps.classContainer"
+            )
+                filter-group-component._group(
+                    v-for="({ title, filters }, index) in filterList"
+                    :key="index"
+                    :title="title"
+                )
+                    template(
+                        #default="props"
+                    )
+                        checkbox-component(
+                            v-for="[name, value] in filters"
+                            v-model="value"
+                            :id="`input${index}${name}`"
+                            :class="props.classItem"
+                        ) {{ name }}
+                filter-group-component._group(
+                    title="Цена"
+                )
+                    range-component(
+                        :range="[2000, 10000]"
+                    )
+                filter-group-component._group
+                    button-component(
+                        theme="ghost-brand"
+                    ) Очистить
+    filter-modal-component(
+        v-if="device.size.mobile && isModal"
+
+        @close="onCloseModal"
+    )
 
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Mixins } from 'vue-property-decorator'
 
 import TagGroup from '@/components/blanks/TagGroup.vue'
 import Banner from '@/components/blanks/Banner.vue'
@@ -51,11 +91,22 @@ import Sort from '@/components/blanks/Sort.vue'
 import TilingLayout from '@/components/layouts/TilingLayout.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
-import Device from '@/mixins/device'
 import CatalogLayout from '@/components/layouts/CatalogLayout.vue'
+import Modal from '@/components/modals/Modal.vue'
+import FilterModal from '@/components/modals/FilterModal.vue'
+import FilterGroup from '@/components/blanks/FilterGroup.vue'
+import Checkbox from '@/components/ui/Checkbox.vue'
+import Range from '@/components/ui/Range.vue'
+
+import Device from '@/mixins/device'
 
 @Component({
     components: {
+        'range-component': Range,
+        'checkbox-component': Checkbox,
+        'filter-group-component': FilterGroup,
+        'filter-modal-component': FilterModal,
+        'modal-component': Modal,
         'catalog-layout-component': CatalogLayout,
         'card-product-stats-component': CardProductStats,
         'card-product-component': CardProduct,
@@ -65,7 +116,9 @@ import CatalogLayout from '@/components/layouts/CatalogLayout.vue'
         'banner-component': Banner,
     },
 })
-export default class EquipmentTypeDetail extends (Device) {
+export default class EquipmentTypeDetail extends Mixins(Device) {
+    isModal = false
+
     tags = {
         active: 0,
         list: [
@@ -159,10 +212,48 @@ export default class EquipmentTypeDetail extends (Device) {
         },
     ]
 
+    filterList = [
+        {
+            title: 'Производители',
+            theme: 'light',
+            filters: [
+                ['Gym80', false],
+                ['CardioPower', true],
+                ['Original Fitness', false],
+                ['Nautilus', true],
+                ['Sole Fitness', true],
+                ['Nautilus', false],
+            ]
+        },
+        {
+            title: 'Функциональность',
+            theme: 'light',
+            filters: [
+                ['Самые продвинутые', false],
+                ['Компактные', false],
+                ['С моб. приложением', false],
+            ]
+        },
+        {
+            title: 'Акции, наличие',
+            theme: 'light',
+            filters: [
+                ['Акция', false],
+                ['Новинки', false],
+                ['В наличии', false],
+                ['Наш выбор', false],
+            ]
+        },
+    ]
+
     get rowCount(): number {
-        if (this.device.size.mobile) return 2
-        else if (this.device.size.tablet) return 3
-        else return 4
+        if (this.device.size.desktop) return 4
+        if (this.device.size.tabletLate) return 3
+        return 2
+    }
+
+    onCloseModal() {
+        this.isModal = false
     }
 }
 

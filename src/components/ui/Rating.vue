@@ -1,9 +1,11 @@
 <template lang="pug">
-    include ../../tools/pug/mixins
 
-    +b.rating {{ hasLabel && 'Рейтинг' }}
-        +e.list
-            +e.star(
+    .rating
+        span(
+            v-if="hasLabel"
+        ) Рейтинг
+        ._list
+            ._star(
                 v-for="i in 5"
                 :key="i"
                 :class="{ 'rating__star--fill' : i <= count }"

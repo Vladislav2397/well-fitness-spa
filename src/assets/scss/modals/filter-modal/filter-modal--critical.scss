@@ -1,0 +1,38 @@
+.filter-modal {
+    padding: toRem(25) 0;
+    z-index: 1;
+
+    &__top {
+        padding: 0 toRem(10);
+    }
+
+    &__back,
+    &__back + span {
+        display: block;
+    }
+
+    &__group {
+        padding: toRem(20);
+
+        & + & {
+            border-top: 1px solid rgba(#858fa4, 0.15);
+        }
+        
+        &--theme {
+            &-secondary {
+                background-color: #f6f6f6;
+            }
+        }
+    }
+
+    &__title {
+        @include fontSize(p3, bold);
+        margin-bottom: toRem(12);
+    }
+
+    &__item {
+        & + & {
+            margin-top: toRem(8);
+        }
+    }
+}

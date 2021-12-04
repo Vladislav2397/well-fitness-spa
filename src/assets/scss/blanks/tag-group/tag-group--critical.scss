@@ -18,9 +18,11 @@
 
     @media (min-width: 650px) {
         margin-right: toRem(-12);
+        margin-bottom: toRem(-12);
 
         &__tag {
             margin-right: toRem(12);
+            margin-bottom: toRem(12);
         }
     }
 }

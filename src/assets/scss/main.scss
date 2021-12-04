@@ -9,6 +9,8 @@
 @import 'popups/popups--main';
 @import 'utility/libs';
 
+@import "libs/vue-slider-component";
+
 @media screen and (min-width: 0\0) and (min-resolution: +72dpi) {
     @import 'ie';
 }

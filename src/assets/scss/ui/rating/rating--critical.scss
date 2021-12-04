@@ -6,9 +6,11 @@
 
     &__list {
         display: inline-block;
-        margin-left: toRem(6);
         vertical-align: middle;
         color: #f99808;
+    }
+    span + &__list {
+        margin-left: toRem(6);
     }
 
     &__star {

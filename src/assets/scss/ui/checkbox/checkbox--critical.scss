@@ -1,0 +1,18 @@
+.checkbox {
+    @include fontSize(p3);
+
+    &__box {
+        width: toRem(16);
+        height: toRem(16);
+        display: inline-block;
+        margin-right: toRem(12);
+        vertical-align: middle;
+        border-radius: toRem(4);
+        border: 1px solid #858fa4;
+
+        &:checked {
+            background-color: #2fc509;
+            border: 1px solid #2fc509;
+        }
+    }
+}

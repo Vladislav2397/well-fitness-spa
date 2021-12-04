@@ -2,6 +2,10 @@
     padding-top: toRem(20);
     padding-bottom: toRem(32);
 
+    &__container {
+        overflow: hidden;
+    }
+
     &__wrapper {
         text-align: center;
         display: block;
