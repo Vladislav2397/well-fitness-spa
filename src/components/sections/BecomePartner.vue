@@ -1,4 +1,5 @@
 <template lang="pug">
+
 section.become-partner
     ._container.container
         ._caption

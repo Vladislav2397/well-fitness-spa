@@ -1,22 +1,21 @@
 <template lang="pug">
-include ../../tools/pug/mixins
 
-+b.brand
-    +e.container.container
-        +e.SECTION-WRAPPER-COMPONENT.wrapper(
+.brand
+    ._container.container
+        section-wrapper-component._wrapper(
             title="Популярные бренды"
             buttonText="Все бренды"
         )
-            +e.links.scroll-row
-                +e.LINK-COMPONENT.link(
+            ._links.scroll-row
+                link-component._link(
                     v-for="({text, href}, index) in links"
                     :key="index"
                     :href="href"
                     tag="router-link"
                     theme="dark"
                 ) {{ text }}
-            +e.list
-                +e.item(
+            ._list
+                ._item(
                     v-for="(i, index) in brandLogoCount"
                     :key="index"
                     :class="itemClasses(index)"

@@ -1,21 +1,20 @@
 <template lang="pug">
-    include ../../tools/pug/mixins
 
-    +b.section-wrapper(
-        :class="`section-wrapper--theme-${theme}`"
+.section-wrapper(
+    :class="`section-wrapper--theme-${theme}`"
+)
+    ._title(
+        v-if="title"
+    ) {{ title }}
+    slot(
+        name="title"
+        v-else
     )
-        +e.title(
-            v-if="title"
-        ) {{ title }}
-        slot(
-            name="title"
-            v-else
-        )
-        slot
-        +e.BUTTON-COMPONENT.button(
-            :theme="buttonTheme"
-            v-on:click="clickEmit"
-        ) {{ buttonText }}
+    slot
+    button-component._button(
+        :theme="buttonTheme"
+        v-on:click="clickEmit"
+    ) {{ buttonText }}
 
 </template>
 

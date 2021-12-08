@@ -1,4 +1,5 @@
 <template lang="pug">
+
 section.about
     ._container.container
         section-wrapper-component._wrapper(

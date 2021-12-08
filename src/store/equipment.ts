@@ -8,11 +8,7 @@ import store from './index'
 import api from '@/api'
 import { API } from '@/api/types'
 
-type EquipmentType = {
-    image: [src: string, alt: string],
-    title: string,
-    list: [name: string, count: number][]
-}
+import { EquipmentModuleTypes } from '@/store/types'
 
 @Module({
     namespaced: true,
@@ -21,20 +17,132 @@ type EquipmentType = {
     name: 'EquipmentModule',
 })
 export default class EquipmentModule extends VuexModule {
-    _list: EquipmentType[] = []
+    _item: EquipmentModuleTypes.item = {
+        brand: 'bowflex',
+        images: [
+            ['some/path.png', 'alt image'],
+            ['some/path.png', 'alt image'],
+            ['some/path.png', 'alt image'],
+            ['some/path.png', 'alt image'],
+        ],
+        title: 'title product',
+        currentImage: 0,
+        stickies: [true, true, true],
+        hasLiked: false,
+        hasCompared: false,
+        viewedCharacteristicIndexes: [0, 1, 2, 3, 4, 5],
+        quantity: 3,
+        hasShowRoom: true,
+        price: [1_000_000, 1_099_999],
+        dealerPrice: 959_000,
+        bonusMoney: 0,
+        totalCount: 50,
+        instalmentsPrice: 16_458,
+        configuration: [
+            [
+                'Размер, см', [
+                '1500x2000',
+                '1700x2000',
+                '1900x2000',
+                ['1700x2000', 1000],
+                ['2000x2000', 2000],
+            ]
+            ],
+            [
+                'Вес', [
+                '150',
+                '500',
+                ['850', 1000],
+            ]
+            ],
+            [
+                'Цвет', [
+                '#000 Черный',
+                '#f00 Красный',
+                '#fff Белый',
+                ['#0f0 Зеленый', 1000],
+                ['#00f Синий', 2000],
+            ]
+            ]
+        ],
+        ratingFields: [
+            ['Функциональность', 4],
+            ['Качество', 3],
+            ['Комфорт', 3],
+            ['Цена', 5],
+        ],
+        rating: 4,
+        description: '<div class="dark-description-block"><div class="left">Some content into block</div></div>',
+        characteristics: [
+            [
+                'Основные характеристики', [
+                ['Тип дорожки', 'Домашняя'],
+                ['Бег.полотно', '1200 х 450 мм'],
+                ['Мощность двигателя', '2,0 л.с.'],
+                ['Беговое полотно', '2-х слойное'],
+                ['Производитель', 'Cardio Power'],
+            ]
+            ],
+            [
+                'Мультимедиа', [
+                ['Тип дорожки', 'Домашняя'],
+                ['Бег.полотно', '1200 х 450 мм'],
+                ['Мощность двигателя', '2,0 л.с.'],
+                ['Беговое полотно', '2-х слойное'],
+                ['Производитель', 'Cardio Power'],
+            ]
+            ],
+            [
+                'Дополнительные характеристики', [
+                ['Тип дорожки', 'Домашняя'],
+                ['Бег.полотно', '1200 х 450 мм'],
+                ['Мощность двигателя', '2,0 л.с.'],
+                ['Беговое полотно', '2-х слойное'],
+                ['Производитель', 'Cardio Power'],
+            ]
+            ]
+        ],
+        reviews: {
+            grade: '4,5',
+            count: 1740,
+            byFields: [
+                23, 5, 17, 8, 2
+            ],
+            list: [
+                {
+                    user: {
+                        avatar: ['', '']
+                    },
+                    date: '',
+                    rating: [5, [5, 5, 4, 5]],
+                    text: 'Some review for this product',
+                    childReview: 'Добрый день. Благодарим за ваш отзыв',
+                }
+            ]
+        },
+        delivery: {
+            city: 'Москва',
+            prices: [
+                0, 0, 1000
+            ]
+        },
+    }
+
+    _list: EquipmentModuleTypes.list = []
+
     _meta = {
         title: '',
         type: '',
     }
 
-    get list(): EquipmentType[] {
-        return this._list
+    get item(): any {
+        return this._item
     }
 
     @Action({ commit: 'updateList' })
-    async fetchList(type: 'home' | 'gym'): Promise<API.GET.equipment.list> {
+    async fetchList(): Promise<unknown> {
         try {
-            return await api.equipment.getList(type)
+            return
         } catch (error) {
             console.error(error)
             return new Promise(() => {/**/})
@@ -42,18 +150,7 @@ export default class EquipmentModule extends VuexModule {
     }
 
     @Mutation
-    updateList(equipmentData: API.GET.equipment.list) {
-        this._meta = equipmentData.meta
-
-        this._list = equipmentData.data.map(item => ({
-            image: [
-                item.image.src,
-                item.image.alt,
-            ],
-            title: item.title,
-            list: item.list.map(el => [
-                el.text, el.count
-            ])
-        }))
+    updateList() {
+        //
     }
 }

@@ -2,11 +2,17 @@
 
 .page
     page-breadcrumb-component(
-        title="Кардиотренажеры"
         :list="breadcrumbList"
+        title="Беговая дорожка Bowflex BTX128"
     )
-    pagination-wrapper-component
-        equipment-type-detail-component
+    .gallery-component
+    .quick-info-component
+    .configure-component
+    .tab-group-component
+        template(
+            v-if="true"
+        )
+    .accessories-component
 
 </template>
 
@@ -16,17 +22,13 @@ import { Vue, Component } from 'vue-property-decorator'
 import PageBreadcrumb, {
     breadcrumbListType
 } from '@/components/blanks/PageBreadcrumb.vue'
-import PaginationWrapper from '@/components/sections/PaginationWrapper.vue'
-import EquipmentTypeDetail from '@/components/sections/EquipmentTypeDetail.vue'
 
 @Component({
     components: {
-        'equipment-type-detail-component': EquipmentTypeDetail,
-        'pagination-wrapper-component': PaginationWrapper,
         'page-breadcrumb-component': PageBreadcrumb
     }
 })
-export default class EquipmentType extends Vue {
+export default class EquipmentPage extends Vue {
     breadcrumbList: breadcrumbListType = [
         {
             text: 'Для фитнес клуба',
@@ -36,6 +38,10 @@ export default class EquipmentType extends Vue {
             text: 'Кардиотренажеры',
             href: '/equipment/gym/cardio'
         },
+        {
+            text: 'Беговая дорожка Bowflex BTX128',
+            href: '/equipment/gym/cardio/1'
+        }
     ]
 }
 </script>

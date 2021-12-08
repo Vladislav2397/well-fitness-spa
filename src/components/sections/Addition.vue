@@ -1,4 +1,5 @@
 <template lang="pug">
+
 section.addition
     ._container.container
         ._cards

@@ -26,7 +26,7 @@ export default class Navigation extends Vue {
     navigationItems = [
         {
             text: 'Бренды',
-            href: '/',
+            href: '/brands',
         },
         {
             text: 'Сервис',

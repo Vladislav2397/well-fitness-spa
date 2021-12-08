@@ -1,29 +1,28 @@
 <template lang="pug">
-include ../../tools/pug/mixins
 
-+b.carousel
-    +e.container.container
-        +e.SWIPER-COMPONENT.swiper
-            +e.SWIPER-SLIDE-COMPONENT.slide
-                +e.caption
-                    +e.SPAN.brand zero runner
-                    +e.H2.title Бег с нулевой#[br]ударной#[br]нагрузкой#[br]
+.carousel
+    ._container.container
+        swiper-component._swiper
+            swiper-slide-component._slide
+                ._caption
+                    span._brand zero runner
+                    h2._title Бег с нулевой#[br]ударной#[br]нагрузкой#[br]
                         span на&nbsp;суставы
-                    +e.BUTTON-COMPONENT.button(
+                    button-component._button(
                         tag="button"
                         theme="ghost-brand"
                     ) Узнать больше
-                +e.triangle
+                ._triangle
                     img(
                         src="/images/index/triangle.svg"
                     )
-                +e.image
+                ._image
                     img(
                         src="/images/carousel/1.png"
                     )
-            +e.controls
-                +e.BUTTON-ICON-COMPONENT.action--left
-                +e.BUTTON-ICON-COMPONENT.action--right
+            ._controls
+                button-icon-component._action.-left
+                button-icon-component._action.-right
     
 </template>
 

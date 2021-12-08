@@ -1,4 +1,5 @@
 <template lang="pug">
+
 section.blog
     ._container.container
         section-wrapper-component._wrapper(
