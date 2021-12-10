@@ -1,0 +1,16 @@
+.in-stock {
+    &__inner {
+        margin-bottom: toRem(-12);
+    }
+
+    &__quantity,
+    &__link {
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: toRem(12);
+    }
+
+    &__link {
+        margin-left: toRem(12);
+    }
+}

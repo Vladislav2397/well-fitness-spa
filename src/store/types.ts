@@ -15,9 +15,9 @@ export namespace EquipmentModuleTypes {
         hasLiked: boolean,
         hasCompared: boolean,
         viewedCharacteristicIndexes: number[],
-        quantity: number,
+        quantity: 0 | 1 | 2 | 3,
         hasShowRoom: boolean,
-        price: [oldPrice: number, newPrice: number],
+        price: ([oldPrice: number, newPrice: number] | number),
         dealerPrice: number,
         bonusMoney: number,
         totalCount: number,
@@ -61,11 +61,11 @@ export namespace EquipmentModuleTypes {
             | 'quantity'
             | 'hasShowRoom'
             | 'title'
-            | 'viewedCharacteristicIndexes'
             | 'rating'
             | 'price'
         > & {
             image: imageType
+            characteristics: [key: string, value: string][]
         }
     )[]
 }

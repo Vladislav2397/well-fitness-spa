@@ -1,0 +1,11 @@
+.equipment-detail {
+    background-color: #fff;
+
+    &__gallery {
+        max-width: toRem(450);
+    }
+
+    @media (min-width: 1200px) {
+        max-width: none;
+    }
+}

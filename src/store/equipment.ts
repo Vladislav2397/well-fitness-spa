@@ -5,8 +5,8 @@ import {
     Action,
 } from 'vuex-module-decorators'
 import store from './index'
-import api from '@/api'
-import { API } from '@/api/types'
+// import api from '@/api'
+// import { API } from '@/api/types'
 
 import { EquipmentModuleTypes } from '@/store/types'
 
@@ -128,7 +128,88 @@ export default class EquipmentModule extends VuexModule {
         },
     }
 
-    _list: EquipmentModuleTypes.list = []
+    _list: EquipmentModuleTypes.list = [
+        {
+            stickies: [true, true, true],
+            quantity: 3,
+            characteristics: [
+                ['Тип дорожки', 'Домашняя'],
+                ['Бег.полотно', '1200 х 450 мм'],
+                ['Мощность двигателя', '2,0 л.с.'],
+                ['Беговое полотно', '2-х слойное'],
+                ['Производитель', 'Cardio Power'],
+            ],
+            hasShowRoom: true,
+            price: [100_000, 120_000],
+            rating: 5,
+            title: 'Беговая дорожка Bowflex G32i9',
+            image: ['path/to/src.png', 'alt image'],
+        },
+        {
+            stickies: [true, true, false],
+            quantity: 2,
+            characteristics: [
+                ['Тип дорожки', 'Домашняя'],
+                ['Бег.полотно', '1200 х 450 мм'],
+                ['Мощность двигателя', '2,0 л.с.'],
+                ['Беговое полотно', '2-х слойное'],
+                ['Производитель', 'Cardio Power'],
+            ],
+            hasShowRoom: true,
+            price: [100_000, 120_000],
+            rating: 4,
+            title: 'Беговая дорожка Bowflex G32i9',
+            image: ['path/to/src.png', 'alt image'],
+        },
+        {
+            stickies: [true, false, false],
+            quantity: 1,
+            characteristics: [
+                ['Тип дорожки', 'Домашняя'],
+                ['Бег.полотно', '1200 х 450 мм'],
+                ['Мощность двигателя', '2,0 л.с.'],
+                ['Беговое полотно', '2-х слойное'],
+                ['Производитель', 'Cardio Power'],
+            ],
+            hasShowRoom: true,
+            price: [100_000, 120_000],
+            rating: 3,
+            title: 'Беговая дорожка Bowflex G32i9',
+            image: ['path/to/src.png', 'alt image'],
+        },
+        {
+            stickies: [true, true, true],
+            quantity: 0,
+            characteristics: [
+                ['Тип дорожки', 'Домашняя'],
+                ['Бег.полотно', '1200 х 450 мм'],
+                ['Мощность двигателя', '2,0 л.с.'],
+                ['Беговое полотно', '2-х слойное'],
+                ['Производитель', 'Cardio Power'],
+            ],
+            hasShowRoom: true,
+            price: 100_000,
+            rating: 2,
+            title: 'Беговая дорожка Bowflex G32i9',
+            image: ['path/to/src.png', 'alt image'],
+        },
+        {
+            stickies: [true, true, true],
+            quantity: 1,
+            characteristics: [
+                ['Тип дорожки', 'Домашняя'],
+                ['Бег.полотно', '1200 х 450 мм'],
+                ['Мощность двигателя', '2,0 л.с.'],
+                ['Беговое полотно', '2-х слойное'],
+                ['Производитель', 'Cardio Power'],
+            ],
+            hasShowRoom: true,
+            price: [100_000, 120_000],
+            rating: 1,
+            title: 'Беговая дорожка Bowflex G32i9',
+            image: ['path/to/src.png', 'alt image'],
+        },
+    ]
 
     _meta = {
         title: '',

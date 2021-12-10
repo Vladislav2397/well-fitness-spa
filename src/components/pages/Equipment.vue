@@ -1,13 +1,11 @@
 <template lang="pug">
 
-.page
+.page.-light
     page-breadcrumb-component(
         :list="breadcrumbList"
         title="Беговая дорожка Bowflex BTX128"
     )
-    .gallery-component
-    .quick-info-component
-    .configure-component
+    equipment-detail-section
     .tab-group-component
         template(
             v-if="true"
@@ -22,9 +20,11 @@ import { Vue, Component } from 'vue-property-decorator'
 import PageBreadcrumb, {
     breadcrumbListType
 } from '@/components/blanks/PageBreadcrumb.vue'
+import EquipmentDetail from '@/components/sections/EquipmentDetail.vue'
 
 @Component({
     components: {
+        'equipment-detail-section': EquipmentDetail,
         'page-breadcrumb-component': PageBreadcrumb
     }
 })

@@ -1,0 +1,24 @@
+.two-columns-layout {
+    @media (min-width: 650px) {
+        &__left,
+        &__right {
+            display: inline-block;
+            vertical-align: top;
+            width: t-columns(6);
+        }
+
+        &__right {
+            margin-left: t-columns(0);
+        }
+    }
+    @media (min-width: 1200px) {
+        &__left,
+        &__right {
+            width: d-columns(6);
+        }
+
+        &__right {
+            margin-left: d-columns(0);
+        }
+    }
+}
