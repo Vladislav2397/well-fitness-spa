@@ -1,0 +1,78 @@
+.equipment-preview {
+    @include paddingLevel(top, beige);
+
+    background-color: #f6f6f6;
+
+    &__row {
+        min-height: toRem(26);
+        margin-left: toRem(-10);
+        margin-right: toRem(-10);
+        padding-left: toRem(10);
+        padding-right: toRem(10);
+    }
+
+    &__tab {
+        & + & {
+            margin-left: toRem(12);
+        }
+    }
+
+    &__downloads {
+        @include marginLevel(bottom, pink);
+
+        span {
+            display: block;
+        }
+    }
+
+    &__ad {
+        background-color: $dark;
+        color: $white;
+    }
+
+    &__video-link {
+        @include marginLevel(top, gray);
+    }
+
+    &__post {
+        & + & {
+            @include paddingLevel(top, gray);
+            @include marginLevel(top, gray);
+
+            border-top: 1px solid rgba(#858fa4, 0.2);
+        }
+    }
+
+    &__lightbox {
+        @include paddingLevel(top, pink);
+        @include paddingLevel(bottom, beige);
+    }
+
+    &__peculiarity {
+        p {
+            padding-right: toRem(28);
+            position: relative;
+        }
+
+        i {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
+        & + & {
+            border-top: 1px solid rgba(#858fa4, 0.2);
+        }
+    }
+
+    &__section {
+        @include paddingLevel(top, gray);
+
+        border-top: 1px solid rgba(#858fa4, 0.2);
+    }
+
+    &__button {
+        width: 100%;
+    }
+}

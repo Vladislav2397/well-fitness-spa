@@ -1,0 +1,10 @@
+.tab-group {
+    &__tab {
+        display: inline-block;
+        vertical-align: middle;
+
+        & + & {
+            margin-left: toRem(12);
+        }
+    }
+}

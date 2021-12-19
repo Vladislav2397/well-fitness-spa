@@ -1,0 +1,18 @@
+.post {
+    &__image {
+        min-height: toRem(200);
+        background-color: #eee;
+    }
+
+    &__title {
+        @include marginLevel(bottom, orange);
+
+        color: inherit;
+    }
+
+    &__content {
+        @include fontSize(p2);
+
+        padding: toRem(16);
+    }
+}

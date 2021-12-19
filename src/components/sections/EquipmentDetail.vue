@@ -24,11 +24,11 @@
                 v-if="!device.size.desktop"
             )
                 gallery-component._gallery
-                price-tag-component(
+                price-tag-component._price(
                     quantity="2"
                     :has-show-room="true"
                 )
-                .configure-component
+                ._accessories
 
 </template>
 

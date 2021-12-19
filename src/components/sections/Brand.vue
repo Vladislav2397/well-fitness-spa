@@ -77,12 +77,12 @@ export default class Brand extends Mixins(Device) {
         const classes = []
 
         switch ((index + 1) % this.countColumns) {
-            case 0:
-                classes.push('last')
-                break
-            case 1:
-                classes.push('first')
-                break
+        case 0:
+            classes.push('last')
+            break
+        case 1:
+            classes.push('first')
+            break
         }
 
         if (index >= this.countColumns) {

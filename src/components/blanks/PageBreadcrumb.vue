@@ -30,3 +30,7 @@ export default class PageBreadcrumb extends Vue {
 }
 
 </script>
+
+<style lang="scss">
+@import 'src/assets/scss/blanks/page-breadcrumb/page-breadcrumb--critical';
+</style>

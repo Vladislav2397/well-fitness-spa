@@ -34,7 +34,14 @@
             href="#"
         ) Купить в рассрочку от 16 658 ₽ /мес
     ._section
-        ._rating
+        rating-component._rating(
+            v-for="rating in ratings"
+            :count="rating[1]"
+        ) {{ rating[0] }}
+        rating-component._rating.-common(
+            :is-bold="true"
+            :count="commonRating"
+        ) Общий рейтинг
     ._section
         button-component._button.-to-modal(
             theme="ghost-brand"
@@ -51,9 +58,11 @@ import Quantity from '@/components/ui/Quantity.vue'
 import InStock from '@/components/blanks/InStock.vue'
 import Price from '@/components/blanks/Price.vue'
 import Counter from '@/components/ui/Counter.vue'
+import Rating from '@/components/ui/Rating.vue'
 
 @Component({
     components: {
+        'rating-component': Rating,
         'counter-component': Counter,
         'price-component': Price,
         'in-stock-component': InStock,
@@ -66,11 +75,26 @@ export default class PriceTag extends Vue {
 
     counter = 1
 
+    ratings = [
+        ['Функциональность', 4],
+        ['Качество', 5],
+        ['Комфорт', 4],
+        ['Цена', 4],
+    ] as [string, (0 | 1 | 2 | 3 | 4 | 5)][]
+
     get inStockProps() {
         return {
             quantity: this.quantity,
             hasShowRoom: this.hasShowRoom,
         }
+    }
+
+    get commonRating(): any {
+        let result = 0
+
+        this.ratings.forEach(item => result += item[1])
+
+        return Math.round(result / this.ratings.length)
     }
 }
 

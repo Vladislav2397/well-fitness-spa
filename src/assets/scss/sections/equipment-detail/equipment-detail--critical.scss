@@ -5,6 +5,17 @@
         max-width: toRem(450);
     }
 
+    @media (max-width: 649px) {
+        &__price {
+            @include marginLevel(top, purple);
+        }
+    }
+
+    &__accessories {
+        @include paddingLevel(top, purple);
+        @include paddingLevel(bottom, gray);
+    }
+
     @media (min-width: 1200px) {
         max-width: none;
     }

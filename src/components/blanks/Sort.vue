@@ -30,7 +30,7 @@ export default class Sort extends Vue {
         return undefined
     }
 
-    onClick(index: number) {
+    onClick(index: number): void {
         if (this.activeIndex === index) {
             this.isUp = !this.isUp
         } else {

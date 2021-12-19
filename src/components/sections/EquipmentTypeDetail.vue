@@ -59,7 +59,8 @@
                         #default="props"
                     )
                         checkbox-component(
-                            v-for="[name, value] in filters"
+                            v-for="([name, value], index) in filters"
+                            :key="index"
                             v-model="value"
                             :id="`input${index}${name}`"
                             :class="props.classItem"

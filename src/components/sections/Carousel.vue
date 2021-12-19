@@ -27,8 +27,8 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
-import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import { Component, Vue } from 'vue-property-decorator'
+import { directive, Swiper, SwiperSlide } from 'vue-awesome-swiper'
 
 import ButtonIcon from '@/components/ui/ButtonIcon.vue'
 
@@ -45,3 +45,7 @@ import ButtonIcon from '@/components/ui/ButtonIcon.vue'
 export default class Carousel extends Vue {}
 
 </script>
+
+<style lang="scss">
+@import "./src/assets/scss/sections/carousel/carousel--critical";
+</style>

@@ -26,8 +26,8 @@
 
     &__section {
         & + & {
-            @include marginLevel(top, blue);
-            @include paddingLevel(top, blue);
+            @include marginLevel(top, gray);
+            @include paddingLevel(top, gray);
 
             border-top: 1px solid rgba(#858fa4, 0.2);
         }
@@ -52,7 +52,7 @@
     }
 
     &__actions {
-        @include marginLevel(bottom, blue);
+        @include marginLevel(bottom, gray);
         position: relative;
         text-align: right;
     }
@@ -77,6 +77,18 @@
 
             &-modal {
                 width: 100%;
+            }
+        }
+    }
+
+    &__rating {
+        color: $dark;
+
+        & + & {
+            @include marginLevel(top, blue);
+
+            &--common {
+                @include marginLevel(top, purple);
             }
         }
     }

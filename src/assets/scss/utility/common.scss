@@ -11,8 +11,14 @@
     min-height: 100vh;
 }
 
-.page--light {
-    background-color: #fff;
+.page {
+    &--light {
+        background-color: #fff;
+    }
+
+    &--secondary {
+        background-color: #f6f6f6;
+    }
 }
 
 body {

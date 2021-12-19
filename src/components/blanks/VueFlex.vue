@@ -73,7 +73,6 @@ export default class VueFlex extends Vue {
 
 <style lang="scss">
 .flex {
-    padding: 0 toRem(50);
     width: 100%;
     white-space: nowrap;
 }

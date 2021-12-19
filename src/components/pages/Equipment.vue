@@ -6,11 +6,7 @@
         title="Беговая дорожка Bowflex BTX128"
     )
     equipment-detail-section
-    .tab-group-component
-        template(
-            v-if="true"
-        )
-    .accessories-component
+    equipment-preview-section
 
 </template>
 
@@ -21,9 +17,11 @@ import PageBreadcrumb, {
     breadcrumbListType
 } from '@/components/blanks/PageBreadcrumb.vue'
 import EquipmentDetail from '@/components/sections/EquipmentDetail.vue'
+import EquipmentPreview from '@/components/sections/EquipmentPreview.vue'
 
 @Component({
     components: {
+        'equipment-preview-section': EquipmentPreview,
         'equipment-detail-section': EquipmentDetail,
         'page-breadcrumb-component': PageBreadcrumb
     }
