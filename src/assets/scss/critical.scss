@@ -1,9 +1,10 @@
 @import 'utility/reset';
-//@import 'utility/swiper';
+@import 'utility/vars/scroll-bar';
+@import 'utility/vars/theme';
 @import 'utility/vars';
+
 @import 'utility/common';
 @import 'utility/text';
-@import 'utility/vars/functions';
 @import 'utility/icons';
 @import 'ui/ui--critical';
 @import 'blanks/blanks--critical';

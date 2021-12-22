@@ -18,7 +18,7 @@
 // FIXME: Replace all components bem on b-block
 import { Vue, Component } from 'vue-property-decorator'
 
-import Carousel from '@/components/sections/Carousel.vue'
+import Carousel from '@/components/sections/Carousel/Carousel.vue'
 import HomeEquipment from '@/components/sections/HomeEquipment.vue'
 import GymEquipment from '@/components/sections/GymEquipment.vue'
 import Stock from '@/components/sections/Stock.vue'

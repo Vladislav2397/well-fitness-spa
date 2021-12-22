@@ -7,49 +7,37 @@ module.exports = {
     css: {
         loaderOptions: {
             scss: {
-                prependData: `@import "./src/assets/scss/utility/vars.scss";`,
+                additionalData: '@import "~@/assets/scss/utility/vars";'
+            },
+            postcss: {
+                sourceMap: false,
+                options: {}
             }
-        }
+        },
+        requireModuleExtension: false,
     },
     chainWebpack: config => {
-        config.module
-            .rule('scss')
-            .oneOf('vue')
-
-            .uses
-            .clear()
-            .end()
-
-            .use('vue-style-loader')
-            .loader('vue-style-loader')
-            .end()
-
-            .use('css-loader')
-            .loader(__dirname + '/node_modules/css-loader/dist/cjs.js')
-            .options({
-                sourceMap: false,
-                importLoaders: 2
-            })
-            .end()
-
-            .use('postcss-loader')
-            .loader(__dirname + '/node_modules/postcss-loader/src/index.js')
-            .options({
-                sourceMap: false,
-                plugins: [
-                    function () { /* omitted long function */
-                    }
-                ]
-            })
-            .end()
-
-            .use('sass-loader')
-            .loader(__dirname + '/node_modules/sass-loader/dist/cjs.js')
-            .options({
-                sourceMap: false,
-                additionalData: `@import "./src/assets/scss/utility/vars.scss";`,
-            })
-            .end()
+        // config.module
+        //     .rule('main')
+        //     .test(/main.scss/)
+        //     .after('scss')
+        //     .oneOf('vue')
+        //
+        //     .use('debug')
+        //     .loader('debug-loader')
+        //     .end()
+        //
+        //     .use('css-loader')
+        //     .loader(path.join(__dirname, 'node_modules', 'css-loader', 'dist', 'cjs.js'))
+        //     .end()
+        //
+        //     .use('postcss-loader')
+        //     .loader(path.join(__dirname, 'node_modules', 'postcss-loader', 'dist', 'cjs.js'))
+        //     .end()
+        //
+        //     .use('sass-loader')
+        //     .loader(path.join(__dirname, 'node_modules', 'sass-loader', 'dist', 'cjs.js'))
+        //     .end()
 
         // ========== PUG BEM ==========
 

@@ -4,6 +4,7 @@
         "module": "ES2020",
         "strict": true,
         "jsx": "preserve",
+        "noUnusedParameters": false,
         "importHelpers": true,
         "moduleResolution": "node",
         "experimentalDecorators": true,
