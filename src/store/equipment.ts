@@ -1,23 +1,20 @@
-import {
-    VuexModule,
-    Module,
-    Mutation,
-    Action,
-} from 'vuex-module-decorators'
-import store from './index'
-// import api from '@/api'
-// import { API } from '@/api/types'
+import { Mutation, Action, State } from 'vuex-simple'
+import { Inject, Injectable } from "vue-typedi"
 
 import { EquipmentModuleTypes } from '@/store/types'
 
-@Module({
-    namespaced: true,
-    dynamic: true,
-    store,
-    name: 'EquipmentModule',
-})
-export default class EquipmentModule extends VuexModule {
-    _item: EquipmentModuleTypes.item = {
+import EquipmentService from "@/services/equipment"
+
+import tokens from "@/store/tokens"
+
+@Injectable()
+export default class EquipmentModule {
+
+    @Inject()
+    public equipmentService!: EquipmentService
+
+    @State()
+    public item: EquipmentModuleTypes.item = {
         brand: 'bowflex',
         images: [
             ['some/path.png', 'alt image'],
@@ -128,7 +125,8 @@ export default class EquipmentModule extends VuexModule {
         },
     }
 
-    _list: EquipmentModuleTypes.list = [
+    @State()
+    public list: EquipmentModuleTypes.list = [
         {
             stickies: [true, true, true],
             quantity: 3,
@@ -211,31 +209,25 @@ export default class EquipmentModule extends VuexModule {
         },
     ]
 
-    _meta = {
+    @State()
+    public meta = {
         title: '',
         type: '',
     }
 
-    get item(): any {
-        return this._item
-    }
-
-    get list(): any {
-        return this._list
-    }
-
-    @Action({ commit: 'updateList' })
+    @Action()
     async fetchList(name?: 'home' | 'gym'): Promise<unknown> {
         try {
-            return
+            return '' // this.equipmentService.fetch()
         } catch (error) {
             console.error(error)
             return new Promise(() => {/**/})
         }
     }
 
-    @Mutation
-    updateList() {
-        //
+    @Mutation()
+    updateList(payload: string): void {
+        // @ts-ignore
+        this._list.push(payload ?? 'unk')
     }
 }
