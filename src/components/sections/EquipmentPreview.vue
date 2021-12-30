@@ -51,21 +51,33 @@
                 | {{ title }}<br />{{ content }}
     ._lightbox
     ._container.container
-        peculiarity-component._peculiarity(
-            v-for="({ title, list }, index) in peculiarities"
-            :list="list"
-            :is-active="index === 0"
+        section-wrapper-component(
+            title="Характеристики"
+            button-text="Все характеристики"
         )
-            template(
-                #title
+            peculiarity-component._peculiarity(
+                v-for="({ title, list }, index) in peculiarities"
+                :list="list"
+                :is-active="index === 0"
             )
-                p {{ title }}
-                    i.icon.-size-m.icon--collapse
-        ._section
-            button-component._button.-pecularity(
-                theme="ghost-brand"
-            ) Все характеристики
-
+                template(
+                    #title
+                )
+                    p {{ title }}
+                        i.icon.-size-m.icon--collapse
+        section-wrapper-component(
+            title="Отзывы"
+            button-text="Все отзывы"
+        )
+            review-quantity-component(
+                :reviews="[23, 5, 17, 4, 2]"
+            )
+            review-component(
+                :rating="[]"
+                user=""
+                text=""
+                is-collapsed=""
+            )
 
 </template>
 
@@ -76,9 +88,17 @@ import TabGroup from '@/components/blanks/TabGroup.vue'
 import RowLayout from '@/components/layouts/RowLayout.vue'
 import Post from '@/components/blanks/Post.vue'
 import Peculiarity from '@/components/ui/Peculiarity.vue'
+import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
+import ReviewQuantity from '@/components/blanks/ReviewQuantity.vue'
+import Review from '@/components/blanks/Review.vue'
+
+import { ReviewModel } from '@/components/blanks/Review.vue'
 
 @Component({
     components: {
+        'review-component': Review,
+        'review-quantity-component': ReviewQuantity,
+        'section-wrapper-component': SectionWrapper,
         'peculiarity-component': Peculiarity,
         'post-component': Post,
         'row-layout': RowLayout,
@@ -136,6 +156,27 @@ export default class EquipmentPreview extends Vue {
                 ['key', 'value'],
                 ['key', 'value'],
             ],
+        }
+    ]
+
+    reviews: ReviewModel[] = [
+        {
+            user: {
+                avatar: 'null',
+                name: 'John Snow',
+                date: '11 декабря 2020',
+            },
+            rating: [14, 32, 42, 32, 2],
+            text: 'Some content of review. Maybe lorem ipsum',
+        },
+        {
+            user: {
+                avatar: '',
+                name: '',
+                date: '',
+            },
+            rating: [20, 11, 0, 5, 2],
+            text: 'Some content of review. Maybe lorem ipsum',
         }
     ]
 

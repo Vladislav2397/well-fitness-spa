@@ -11,10 +11,13 @@
         v-else
     )
     slot
-    button-component._button(
-        :theme="buttonTheme"
-        v-on:click="clickEmit"
-    ) {{ buttonText }}
+    slot(
+        name="button"
+    )
+        button-component._button(
+            :theme="buttonTheme"
+            v-on:click="clickEmit"
+        ) {{ buttonText }}
 
 </template>
 
