@@ -1,10 +1,11 @@
-type imageType = [src: string, alt: string]
+export type imageType = [src: string, alt: string]
 type stickiesType = [
     isSales: boolean,
     isRecommended: boolean,
     isNew: boolean
 ]
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace EquipmentModuleTypes {
     export type item = {
         images: imageType[]
@@ -68,4 +69,6 @@ export namespace EquipmentModuleTypes {
             characteristics: [key: string, value: string][]
         }
     )[]
+
+    export type type = 'home' | 'gym'
 }

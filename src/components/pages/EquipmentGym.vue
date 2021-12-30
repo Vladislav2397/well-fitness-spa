@@ -8,12 +8,12 @@
         :count-in-row="currentCountItems"
     )
         template(
-            #default="props"
+            #default="{ classItem }"
         )
             card-product-component(
                 v-for="(product, index) in productList"
                 :key="index"
-                :class="props.classItem"
+                :class="classItem"
                 :image-src="product.image[0]"
                 :image-alt="product.image[1]"
             )
@@ -28,7 +28,6 @@
 
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
-import { getModule } from 'vuex-module-decorators'
 
 import PageBreadcrumb, {
     breadcrumbListType
@@ -39,7 +38,6 @@ import Tiling from '@/components/sections/Tiling.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
 import Device from '@/mixins/device'
-import EquipmentModule from '@/store/equipment'
 
 
 @Component({
@@ -53,8 +51,6 @@ import EquipmentModule from '@/store/equipment'
     },
 })
 export default class EquipmentPage extends Mixins(Device) {
-    equipment = getModule(EquipmentModule)
-
     breadcrumbList: breadcrumbListType = [
         {
             text: 'Для фитнес клуба',
@@ -62,12 +58,8 @@ export default class EquipmentPage extends Mixins(Device) {
         }
     ]
 
-    async created() {
-        await this.equipment.fetchList('gym')
-    }
-
-    get productList() {
-        return this.equipment.list
+    get productList(): [] {
+        return []
     }
 
     get currentCountItems(): 1 | 2 | 3 | 4 {

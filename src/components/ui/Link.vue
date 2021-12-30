@@ -20,9 +20,9 @@ export default class Link extends Vue {
 
     @Prop() readonly icon!: string
 
-    @Prop() readonly iconLeft!: string
+    @Prop() readonly iconLeft!: boolean
 
-    @Emit('click') clickEmit() {/**/}
+    @Emit('click') clickEmit(): void {/**/}
 
     get classes (): string[] {
         const classes = ['link']

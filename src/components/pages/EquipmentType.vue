@@ -18,6 +18,8 @@ import PageBreadcrumb, {
 } from '@/components/blanks/PageBreadcrumb.vue'
 import PaginationWrapper from '@/components/sections/PaginationWrapper.vue'
 import EquipmentTypeDetail from '@/components/sections/EquipmentTypeDetail.vue'
+import { useModule } from "vuex-simple"
+import EquipmentModule from "@/store/equipment"
 
 @Component({
     components: {
@@ -37,5 +39,11 @@ export default class EquipmentType extends Vue {
             href: '/equipment/gym/cardio'
         },
     ]
+
+    equipmentModule: EquipmentModule = useModule(this.$store, ['equipment'])
+
+    mounted(): void {
+        this.equipmentModule.fetchList('home')
+    }
 }
 </script>

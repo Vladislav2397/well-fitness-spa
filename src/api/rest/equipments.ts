@@ -1,6 +1,9 @@
 import { API } from '@/api/types'
+import { EquipmentModuleTypes } from "@/store/types"
 
-export const getList = (type: string): Promise<API.GET.equipment.list> => new Promise(
+export const getList = (
+    type: EquipmentModuleTypes.type
+): Promise<API.GET.equipment.list> => new Promise(
     (resolve) => {
         if (type === 'home')
             resolve({

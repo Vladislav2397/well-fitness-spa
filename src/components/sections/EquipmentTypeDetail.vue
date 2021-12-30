@@ -26,12 +26,12 @@
                 :count-in-row="rowCount"
             )
                 template(
-                    #default="props"
+                    #default="{ classItem }"
                 )
                     card-product-component._card(
                         v-for="(item, index) in productList"
                         :key="index"
-                        :class="props.classItem"
+                        :class="classItem"
                     )
                         card-product-stats-component._content(
                             :has-show-room="true"
@@ -39,16 +39,16 @@
                             :quantity="item.quantity"
                             :title="item.title"
                             :rating="item.rating"
-                            :info="device.size.desktop && item.info"
+                            :info="device.size.desktop ? item.info : []"
                             :is-rating-label="!device.size.mobile"
                             :is-price-row="device.size.tablet"
                         )
         template(
-            #aside="asideProps"
+            #aside="{ classContainer }"
         )
             ._aside(
                 v-if="!device.size.mobile"
-                :class="asideProps.classContainer"
+                :class="classContainer"
             )
                 filter-group-component._group(
                     v-for="({ title, filters }, index) in filterList"
@@ -56,14 +56,14 @@
                     :title="title"
                 )
                     template(
-                        #default="props"
+                        #default="{ classItem }"
                     )
                         checkbox-component(
                             v-for="([name, value], index) in filters"
                             :key="index"
                             v-model="value"
                             :id="`input${index}${name}`"
-                            :class="props.classItem"
+                            :class="classItem"
                         ) {{ name }}
                 filter-group-component._group(
                     title="Цена"
@@ -253,7 +253,7 @@ export default class EquipmentTypeDetail extends Mixins(Device) {
         return 2
     }
 
-    onCloseModal() {
+    onCloseModal(): void {
         this.isModal = false
     }
 }

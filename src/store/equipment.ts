@@ -5,8 +5,6 @@ import { EquipmentModuleTypes } from '@/store/types'
 
 import EquipmentService from "@/services/equipment"
 
-import tokens from "@/store/tokens"
-
 @Injectable()
 export default class EquipmentModule {
 
@@ -216,9 +214,11 @@ export default class EquipmentModule {
     }
 
     @Action()
-    async fetchList(name?: 'home' | 'gym'): Promise<unknown> {
+    async fetchList(
+        name: EquipmentModuleTypes.type = 'home'
+    ): Promise<EquipmentModuleTypes.list> {
         try {
-            return '' // this.equipmentService.fetch()
+            return this.equipmentService.fetchList(name)
         } catch (error) {
             console.error(error)
             return new Promise(() => {/**/})
