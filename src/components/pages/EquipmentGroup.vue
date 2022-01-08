@@ -39,8 +39,7 @@ import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
 import Device from '@/mixins/device'
 
-import { useModule } from "vuex-simple"
-import EquipmentModule from "@/store/equipment"
+import { EquipmentGroupModule } from "@/store/equipmentGroup"
 
 @Component({
     components: {
@@ -52,9 +51,8 @@ import EquipmentModule from "@/store/equipment"
         'page-breadcrumb-component': PageBreadcrumb
     },
 })
-export default class EquipmentAccessory extends Mixins(Device) {
-
-    equipmentModule: EquipmentModule = useModule(this.$store, ['equipment'])
+export default class EquipmentGroup extends Mixins(Device) {
+    equipmentModule = EquipmentGroupModule
 
     breadcrumbList: breadcrumbListType = [
         {
@@ -64,10 +62,10 @@ export default class EquipmentAccessory extends Mixins(Device) {
     ]
 
     created(): void {
-        this.equipmentModule.fetchList('home')
+        this.equipmentModule.setCards('home')
     }
 
-    get productList(): [] {
+    get productList(): unknown {
         return this.equipmentModule.list
     }
 

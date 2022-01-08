@@ -1,6 +1,9 @@
+import { Service } from "vue-typedi"
+
 import api from '@/api'
 import { EquipmentModuleTypes } from "@/store/types"
 
+@Service()
 export default class EquipmentService {
     async fetchList(
         type: EquipmentModuleTypes.type

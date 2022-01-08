@@ -3,8 +3,8 @@ import { RouteConfig } from 'vue-router'
 import Index from '@/components/pages/Index.vue'
 import IdeaPage from '@/components/pages/Idea.vue'
 import EquipmentPage from '@/components/pages/Equipment.vue'
-import EquipmentTypePage from '@/components/pages/EquipmentType.vue'
-import EquipmentAccessoryPage from '@/components/pages/EquipmentAccessory.vue'
+import EquipmentFamilyPage from '@/components/pages/EquipmentFamily.vue'
+import EquipmentGroupPage from '@/components/pages/EquipmentGroup.vue'
 import BrandPage from '@/components/pages/Brand.vue'
 
 export default [
@@ -18,24 +18,24 @@ export default [
         redirect: '/equipment/home',
     },
     {
-        path: '/equipment/:type',
-        name: 'EquipmentHome',
-        component: EquipmentAccessoryPage,
+        path: '/equipments/:group',
+        name: 'EquipmentGroup',
+        component: EquipmentGroupPage,
         beforeEnter: (to, from, next) => {
-            if (['home', 'gym'].includes(to.params.type)) {
+            if (['home', 'gym'].includes(to.params.group)) {
                 next()
             } else {
-                next('/')
+                next('/equipments/home')
             }
         }
     },
     {
-        path: '/equipment/(gym|home)/:type',
-        name: 'EquipmentType',
-        component: EquipmentTypePage,
+        path: '/equipments/:group/:family',
+        name: 'EquipmentFamily',
+        component: EquipmentFamilyPage,
     },
     {
-        path: '/equipment/(gym|home)/:type/:id',
+        path: '/equipments/:group/:family/:id',
         name: 'Equipment',
         component: EquipmentPage,
     },
