@@ -1,22 +1,39 @@
 // import { Inject, Injectable } from "vue-typedi"
 
-import { EquipmentFamilyTypes } from "@/store/equipmentFamily"
-import { State } from "vuex-simple"
+import { EquipmentFamilyState } from '@/store/equipmentFamily'
+import { Action, State } from 'vuex-simple'
+import { Inject, Injectable } from 'vue-typedi'
+import tokens from '@/store/tokens'
+import EquipmentGroupService from '@/services/equipmentGroup'
+import equipmentGroup from '@/api/rest/equipmentGroup'
 
 // TODO: Realise interfaces
 
+type equipmentFamilyListItem = (
+    Pick<EquipmentFamilyState, 'title' | 'preview'> & {
+        theme: 'dark' | 'light' | 'base'
+    }
+)
+
+@Injectable()
 export default class EquipmentGroupModule {
+    @Inject(tokens.EQUIPMENT_GROUP)
+    equipmentGroupService!: EquipmentGroupService
+
     @State()
-    public cards: EquipmentGroupTypes.cards = []
+    home: equipmentFamilyListItem[] = []
+
+    @State()
+    gym: equipmentFamilyListItem[] = []
+
+    @Action()
+    fetchList() {
+        // this
+    }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace EquipmentGroupTypes {
-    export type cards = (
-        Pick<EquipmentFamilyTypes.state, 'title' | 'preview'> & {
-            theme: 'dark' | 'light' | 'base'
-        }
-    )[]
-
-    export type type = 'home' | 'gym'
+export type EquipmentGroupState = {
+    list: equipmentFamilyListItem[]
 }
+
+export type EquipmentGroupTypes = 'home' | 'gym'

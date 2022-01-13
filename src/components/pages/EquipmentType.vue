@@ -18,8 +18,10 @@ import PageBreadcrumb, {
 } from '@/components/blanks/PageBreadcrumb.vue'
 import PaginationWrapper from '@/components/sections/PaginationWrapper.vue'
 import EquipmentTypeDetail from '@/components/sections/EquipmentTypeDetail.vue'
-import { useModule } from "vuex-simple"
+
 import EquipmentModule from "@/store/equipment"
+import { Inject } from 'vue-typedi'
+import tokens from '@/store/tokens'
 
 @Component({
     components: {
@@ -40,7 +42,8 @@ export default class EquipmentType extends Vue {
         },
     ]
 
-    equipmentModule: EquipmentModule = useModule(this.$store, ['equipment'])
+    @Inject(tokens.EQUIPMENT)
+    equipmentModule!: EquipmentModule
 
     mounted(): void {
         this.equipmentModule.fetchList('home')

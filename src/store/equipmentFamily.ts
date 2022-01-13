@@ -3,44 +3,25 @@
 import { imageType } from "@/store/types"
 import { State } from "vuex-simple"
 
-export interface EquipmentFamily {
-    title: string
-    preview: imageType
-    banner: imageType
-    tags: [id: number, name: string][]
-    list: {
-        title: string
-    }[]
-}
-
 export default class EquipmentFamilyModule {
-    @State() public title = 'some'
-    @State() public preview = ['som', 'cosm']
-    @State() public banner = ['som', 'cosm']
-    @State() public tags = [ [1, 'socd'], [2, 'sdfodm'] ]
+    @State() public title: string = ''
+    @State() public preview?: imageType
+    @State() public banner?: imageType
+    @State() public tags: [key: string, value: string ][] = []
     @State() public list: unknown[] = []
-
-    constructor(options?: EquipmentFamily) {
-        if (options) {
-            this.title = options.title
-            this.preview = options.preview
-            this.banner = options.banner
-            this.tags = options.tags
-            this.list = options.list
-        }
-    }
 }
+
+export type EquipmentFamilyState = Pick<
+    EquipmentFamilyModule,
+    | 'title'
+    | 'preview'
+    | 'banner'
+    | 'tags'
+    | 'list'
+>
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace EquipmentFamilyTypes {
-
-    export type state = {
-        title: string
-        preview: imageType
-        banner: imageType
-        tags: [id: number, name: string]
-    }
-
     export type list = {
         title: string
         items: {
