@@ -184,6 +184,7 @@ const itemEquipment: EquipmentModuleTypes.item = {
             },
         ],
     },
+
     delivery: {
         city: 'Москва',
         prices: [0, 0, 1000],
