@@ -1,39 +1,68 @@
-// import { Inject, Injectable } from "vue-typedi"
+import {
+    VuexModule,
+    Module,
+    Action,
+    Mutation,
+    getModule,
+} from 'vuex-module-decorators'
+import { Container } from "vue-typedi"
 
-import { EquipmentFamilyState } from '@/store/equipmentFamily'
-import { Action, State } from 'vuex-simple'
-import { Inject, Injectable } from 'vue-typedi'
-import tokens from '@/store/tokens'
-import EquipmentGroupService from '@/services/equipmentGroup'
-import equipmentGroup from '@/api/rest/equipmentGroup'
+import store from '@/store'
 
-// TODO: Realise interfaces
+import { EquipmentFamilyTypes } from "@/store/equipmentFamily"
 
-type equipmentFamilyListItem = (
-    Pick<EquipmentFamilyState, 'title' | 'preview'> & {
-        theme: 'dark' | 'light' | 'base'
+import EquipmentGroupService from "@/services/equipmentGroup"
+
+const equipmentGroupService = Container.get(EquipmentGroupService)
+
+@Module({
+    name: 'equipmentGroup',
+    dynamic: true,
+    store
+})
+export default class EquipmentGroup extends VuexModule {
+
+    public cards: EquipmentGroupTypes.cards = {
+        home: [],
+        gym: [],
     }
-)
 
-@Injectable()
-export default class EquipmentGroupModule {
-    @Inject(tokens.EQUIPMENT_GROUP)
-    equipmentGroupService!: EquipmentGroupService
+    @Action({ commit: 'setCardItems' })
+    async setCards(
+        type: EquipmentGroupTypes.cardsTypes
+    ): Promise<unknown> {
+        const items = await equipmentGroupService.fetchList(type)
 
-    @State()
-    home: equipmentFamilyListItem[] = []
+        return { type, items }
+    }
 
-    @State()
-    gym: equipmentFamilyListItem[] = []
-
-    @Action()
-    fetchList() {
-        // this
+    @Mutation
+    setCardItems(
+        payload: {
+            type: EquipmentGroupTypes.cardsTypes,
+            items: EquipmentGroupTypes.group[]
+        }
+    ): void {
+        this.cards[payload.type] = payload.items
     }
 }
 
-export type EquipmentGroupState = {
-    list: equipmentFamilyListItem[]
-}
+export const EquipmentGroupModule = getModule(EquipmentGroup, store)
 
-export type EquipmentGroupTypes = 'home' | 'gym'
+// eslint-disable-next-line @typescript-eslint/no-namespace
+export namespace EquipmentGroupTypes {
+    export type cardsTypes = keyof cards
+
+    export type group = (
+        {
+            title: string,
+            preview: string
+            theme: 'dark' | 'light' | 'base',
+        }
+    )
+
+    export type cards = {
+        home: group[],
+        gym: group[]
+    }
+}

@@ -3,8 +3,9 @@
 import { imageType } from "@/store/types"
 import { State } from "vuex-simple"
 
+// @ts-ignore
 export default class EquipmentFamilyModule {
-    @State() public title: string = ''
+    @State() public title = ''
     @State() public preview?: imageType
     @State() public banner?: imageType
     @State() public tags: [key: string, value: string ][] = []

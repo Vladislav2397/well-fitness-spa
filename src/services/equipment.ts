@@ -1,4 +1,4 @@
-import { Service } from 'vue-typedi'
+import { Service } from "vue-typedi"
 
 import api from '@/api'
 import { EquipmentModuleTypes } from "@/store/types"
