@@ -17,6 +17,9 @@
 <script lang="ts">
 // FIXME: Replace all components bem on b-block
 import { Vue, Component } from 'vue-property-decorator'
+import { useModule } from 'vuex-simple'
+
+import EquipmentModule from '@/store/equipment'
 
 import Carousel from '@/components/sections/Carousel/Carousel.vue'
 import HomeEquipment from '@/components/sections/HomeEquipment.vue'
@@ -43,5 +46,12 @@ import Blog from '@/components/sections/Blog.vue'
         'blog-component': Blog,
     }
 })
-export default class IndexPage extends Vue {}
+export default class IndexPage extends Vue {
+    // public equipmentModule: EquipmentModule =
+    //     useModule(this.$store, ['EquipmentModule'])
+
+    mounted(): void {
+        // this.equipmentModule.fetchList('home')
+    }
+}
 </script>

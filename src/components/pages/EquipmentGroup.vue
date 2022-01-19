@@ -8,12 +8,12 @@
         :count-in-row="currentCountItems"
     )
         template(
-            #default="props"
+            #default="{ classItem }"
         )
             card-product-component(
                 v-for="(product, index) in productList"
                 :key="index"
-                :class="props.classItem"
+                :class="classItem"
                 :image-src="product.image[0]"
                 :image-alt="product.image[1]"
             )
@@ -27,8 +27,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Watch } from 'vue-property-decorator'
-import { getModule } from 'vuex-module-decorators'
+import { Component, Mixins } from 'vue-property-decorator'
 
 import PageBreadcrumb, {
     breadcrumbListType
@@ -39,8 +38,8 @@ import Tiling from '@/components/sections/Tiling.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
 import Device from '@/mixins/device'
-import EquipmentModule from '@/store/equipment'
 
+import { EquipmentGroupModule } from "@/store/equipmentGroup"
 
 @Component({
     components: {
@@ -52,8 +51,8 @@ import EquipmentModule from '@/store/equipment'
         'page-breadcrumb-component': PageBreadcrumb
     },
 })
-export default class EquipmentAccessory extends Mixins(Device) {
-    equipment = getModule(EquipmentModule)
+export default class EquipmentGroup extends Mixins(Device) {
+    equipmentModule = EquipmentGroupModule
 
     breadcrumbList: breadcrumbListType = [
         {
@@ -62,13 +61,12 @@ export default class EquipmentAccessory extends Mixins(Device) {
         }
     ]
 
-    async created() {
-        // @ts-ignore
-        await this.equipment.fetchList(this.$route.params.type)
+    created(): void {
+        this.equipmentModule.setCards('home')
     }
 
-    get productList() {
-        return this.equipment.list
+    get productList(): unknown {
+        return this.equipmentModule.list
     }
 
     get currentCountItems(): 1 | 2 | 3 | 4 {
@@ -77,11 +75,6 @@ export default class EquipmentAccessory extends Mixins(Device) {
             return 2
         if (this.device.size.tabletLate) return 3
         return 4
-    }
-
-    @Watch('$route')
-    onChangeRoute(to: any) {
-        this.equipment.fetchList(to.params.type)
     }
 }
 </script>

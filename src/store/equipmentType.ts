@@ -5,8 +5,6 @@ import {
     Action,
 } from 'vuex-module-decorators'
 import store from './index'
-import api from '@/api'
-import { API } from '@/api/types'
 
 type ProductType = {
     quantity: 0 | 1 | 2 | 3,
