@@ -1,17 +1,12 @@
-import {
-    VuexModule,
-    Module,
-    Mutation,
-    Action,
-} from 'vuex-module-decorators'
+import { VuexModule, Module } from 'vuex-module-decorators'
 import store from './index'
 
 type ProductType = {
-    quantity: 0 | 1 | 2 | 3,
-    hasShowRoom: boolean,
-    title: string,
-    rating: 0 | 1 | 2 | 3 | 4 | 5,
-    price: [newPrice: number, oldPrice: number],
+    quantity: 0 | 1 | 2 | 3
+    hasShowRoom: boolean
+    title: string
+    rating: 0 | 1 | 2 | 3 | 4 | 5
+    price: [newPrice: number, oldPrice: number]
 }
 
 @Module({
@@ -25,35 +20,35 @@ export default class EquipmentTypeModule extends VuexModule {
         {
             quantity: 3,
             hasShowRoom: true,
-            title: "Беговая дорожка CardioPower S35",
+            title: 'Беговая дорожка CardioPower S35',
             rating: 5,
             price: [133000, 140000],
         },
         {
             quantity: 3,
             hasShowRoom: true,
-            title: "Беговая дорожка CardioPower S35",
+            title: 'Беговая дорожка CardioPower S35',
             rating: 5,
             price: [133000, 140000],
         },
         {
             quantity: 3,
             hasShowRoom: true,
-            title: "Беговая дорожка CardioPower S35",
+            title: 'Беговая дорожка CardioPower S35',
             rating: 5,
             price: [133000, 140000],
         },
         {
             quantity: 3,
             hasShowRoom: true,
-            title: "Беговая дорожка CardioPower S35",
+            title: 'Беговая дорожка CardioPower S35',
             rating: 5,
             price: [133000, 140000],
         },
         {
             quantity: 3,
             hasShowRoom: true,
-            title: "Беговая дорожка CardioPower S35",
+            title: 'Беговая дорожка CardioPower S35',
             rating: 5,
             price: [133000, 140000],
         },
