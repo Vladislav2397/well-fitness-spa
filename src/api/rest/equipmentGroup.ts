@@ -1,10 +1,10 @@
 import { API } from '@/api/types'
-import { EquipmentModuleTypes } from "@/store/types"
+import { EquipmentModuleTypes } from '@/store/types'
 
 export const getList = (
-    type: EquipmentModuleTypes.type
-): Promise<API.GET.equipment.list> => new Promise(
-    (resolve) => {
+    type: EquipmentModuleTypes.type,
+): Promise<API.GET.equipment.list> =>
+    new Promise((resolve) => {
         if (type === 'home')
             resolve({
                 meta: {
@@ -21,29 +21,29 @@ export const getList = (
                         list: [
                             {
                                 text: 'Кардиотренажеры',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Эллиптические тренажеры',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Велотренажеры',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Лестницы и степперы',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Гребные тренажеры',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Сайклинг',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -54,25 +54,25 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Скамьи, стойки',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -83,25 +83,25 @@ export const getList = (
                         list: [
                             {
                                 text: 'Комплексы для ФТ',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Горнолыжные тренажеры',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Slide&FIT',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Скамьи, стойки',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -112,21 +112,21 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -137,17 +137,17 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -158,21 +158,21 @@ export const getList = (
                         list: [
                             {
                                 text: 'Бесконтактные гидромассажные ванны',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -183,17 +183,17 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -204,9 +204,9 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -214,15 +214,15 @@ export const getList = (
                             alt: '',
                         },
                         title: 'Силовые тренажеры',
-                        list: []
+                        list: [],
                     },
-                ]
+                ],
             })
         else
             resolve({
                 meta: {
                     title: 'Для фитнес клубов',
-                    type: 'gym'
+                    type: 'gym',
                 },
                 data: [
                     {
@@ -234,25 +234,25 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Скамьи, стойки',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -263,9 +263,9 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -276,25 +276,25 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Скамьи, стойки',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -305,29 +305,29 @@ export const getList = (
                         list: [
                             {
                                 text: 'Кардиотренажеры',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Эллиптические тренажеры',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Велотренажеры',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Лестницы и степперы',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Гребные тренажеры',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Сайклинг',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -338,21 +338,21 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -363,25 +363,25 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Скамьи, стойки',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -392,25 +392,25 @@ export const getList = (
                         list: [
                             {
                                 text: 'Комплексы для ФТ',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Горнолыжные тренажеры',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Slide&FIT',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Скамьи, стойки',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -421,17 +421,17 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -442,25 +442,25 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Скамьи, стойки',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -471,21 +471,21 @@ export const getList = (
                         list: [
                             {
                                 text: 'Бесконтактные гидромассажные ванны',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Рамы и комплексы',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -496,17 +496,17 @@ export const getList = (
                         list: [
                             {
                                 text: 'Грузоблочные',
-                                count: 57
+                                count: 57,
                             },
                             {
                                 text: 'Нагружаемые дисками',
-                                count: 2
+                                count: 2,
                             },
                             {
                                 text: 'Мультистанции',
-                                count: 2
+                                count: 2,
                             },
-                        ]
+                        ],
                     },
                     {
                         image: {
@@ -514,13 +514,12 @@ export const getList = (
                             alt: '',
                         },
                         title: 'Силовые тренажеры',
-                        list: []
+                        list: [],
                     },
-                ]
+                ],
             })
-    }
-)
+    })
 
 export default {
-    getList
+    getList,
 }

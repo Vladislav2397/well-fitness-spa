@@ -13,29 +13,29 @@ const homeEquipment = {
             list: [
                 {
                     text: 'Кардиотренажеры',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Эллиптические тренажеры',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Велотренажеры',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Лестницы и степперы',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Гребные тренажеры',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Сайклинг',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -46,25 +46,25 @@ const homeEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Скамьи, стойки',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -75,25 +75,25 @@ const homeEquipment = {
             list: [
                 {
                     text: 'Комплексы для ФТ',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Горнолыжные тренажеры',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Slide&FIT',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Скамьи, стойки',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -104,21 +104,21 @@ const homeEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -129,17 +129,17 @@ const homeEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -150,21 +150,21 @@ const homeEquipment = {
             list: [
                 {
                     text: 'Бесконтактные гидромассажные ванны',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -175,17 +175,17 @@ const homeEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -196,9 +196,9 @@ const homeEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -206,15 +206,15 @@ const homeEquipment = {
                 alt: '',
             },
             title: 'Силовые тренажеры',
-            list: []
+            list: [],
         },
-    ]
+    ],
 }
 
 const gymEquipment = {
     meta: {
         title: 'Для фитнес клубов',
-        type: 'gym'
+        type: 'gym',
     },
     data: [
         {
@@ -226,25 +226,25 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Скамьи, стойки',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -255,9 +255,9 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -268,25 +268,25 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Скамьи, стойки',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -297,29 +297,29 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Кардиотренажеры',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Эллиптические тренажеры',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Велотренажеры',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Лестницы и степперы',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Гребные тренажеры',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Сайклинг',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -330,21 +330,21 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -355,25 +355,25 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Скамьи, стойки',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -384,25 +384,25 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Комплексы для ФТ',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Горнолыжные тренажеры',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Slide&FIT',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Скамьи, стойки',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -413,17 +413,17 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -434,25 +434,25 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Скамьи, стойки',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -463,21 +463,21 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Бесконтактные гидромассажные ванны',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Рамы и комплексы',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -488,17 +488,17 @@ const gymEquipment = {
             list: [
                 {
                     text: 'Грузоблочные',
-                    count: 57
+                    count: 57,
                 },
                 {
                     text: 'Нагружаемые дисками',
-                    count: 2
+                    count: 2,
                 },
                 {
                     text: 'Мультистанции',
-                    count: 2
+                    count: 2,
                 },
-            ]
+            ],
         },
         {
             image: {
@@ -506,9 +506,9 @@ const gymEquipment = {
                 alt: '',
             },
             title: 'Силовые тренажеры',
-            list: []
+            list: [],
         },
-    ]
+    ],
 }
 
 export default {
