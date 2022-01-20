@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 // import VueFlex from '@/components/blanks/VueFlex.vue'
 
-import Button from '@/components/ui/Button.vue'
+import Button from '@/components/ui/Button/Button.vue'
 import Link from '@/components/ui/Link.vue'
 import Avatar from '@/components/ui/Avatar.vue'
 
