@@ -36,7 +36,7 @@ export default class Pagination extends Vue {
     get prevAndNextIndexes(): [prev: number, next: number] {
         return [
             this.index - this.prevVisiblePages,
-            this.index + this.nextVisiblePages
+            this.index + this.nextVisiblePages,
         ]
     }
 

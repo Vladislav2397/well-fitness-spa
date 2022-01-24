@@ -1,5 +1,10 @@
 import { EquipmentModuleTypes } from '@/store/types'
 
+const metaEquipment = {
+    title: 'Title',
+    type: 'home',
+}
+
 const listEquipment: EquipmentModuleTypes.list = [
     {
         stickies: [true, true, true],
@@ -60,7 +65,7 @@ const listEquipment: EquipmentModuleTypes.list = [
             ['Производитель', 'Cardio Power'],
         ],
         hasShowRoom: true,
-        price: 100_000,
+        price: [100_000],
         rating: 2,
         title: 'Беговая дорожка Bowflex G32i9',
         image: ['path/to/src.png', 'alt image'],
@@ -189,4 +194,10 @@ const itemEquipment: EquipmentModuleTypes.item = {
         city: 'Москва',
         prices: [0, 0, 1000],
     },
+}
+
+export default {
+    metaEquipment,
+    listEquipment,
+    itemEquipment,
 }

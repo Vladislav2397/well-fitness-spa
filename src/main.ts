@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import 'vue-class-component/hooks'
 
 import Vue from 'vue'
 import App from './App.vue'
@@ -18,7 +19,7 @@ Vue.use(VueTypeDI)
 import VueSimplePortal from '@linusborg/vue-simple-portal'
 Vue.use(VueSimplePortal, {
     name: 'portal-simple',
-    selector: '#modal-window'
+    selector: '#modal-window',
 })
 
 Vue.config.productionTip = false
@@ -26,5 +27,5 @@ Vue.config.productionTip = false
 new Vue({
     router,
     store,
-    render: h => h(App)
+    render: (h) => h(App),
 }).$mount('#app')

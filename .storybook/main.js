@@ -4,8 +4,8 @@ const path = require('path')
 
 module.exports.parameters = {
     docs: {
-        theme: themes.dark
-    }
+        theme: themes.dark,
+    },
 }
 
 module.exports = {
@@ -13,28 +13,31 @@ module.exports = {
         '../src/stories/**/*.stories.mdx',
         '../src/stories/**/*.stories.@(js|jsx|ts|tsx)',
     ],
-    'addons': [
+    addons: [
         '@storybook/addon-docs',
         '@storybook/addon-links',
         '@storybook/addon-essentials',
     ],
-    webpackFinal: async config => {
+    webpackFinal: async (config) => {
         config.resolve.alias['@'] = path.resolve(__dirname, '../src/')
         config.module.rules.push({
             test: /\.pug$/,
-            use: [
-                'pug-plain-loader',
-                'pug-bem-plain-loader'
-            ]
+            use: ['pug-plain-loader', 'pug-bem-plain-loader'],
         })
         config.module.rules.push({
             test: /\.scss$/,
             use: [
                 'style-loader',
                 'css-loader',
-                'sass-loader',
-            ]
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        additionalData:
+                            '@import "~@/assets/scss/utility/vars";',
+                    },
+                },
+            ],
         })
         return config
-    }
+    },
 }

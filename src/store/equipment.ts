@@ -1,13 +1,12 @@
 import { Mutation, Action, State } from 'vuex-simple'
-import { Inject, Injectable } from "vue-typedi"
+import { Inject, Injectable } from 'vue-typedi'
 
 import { EquipmentModuleTypes } from '@/store/types'
 
-import EquipmentService from "@/services/equipment"
+import EquipmentService from '@/services/equipment'
 
 @Injectable()
 export default class EquipmentModule {
-
     @Inject()
     public equipmentService!: EquipmentService
 
@@ -35,30 +34,26 @@ export default class EquipmentModule {
         instalmentsPrice: 16_458,
         configuration: [
             [
-                'Размер, см', [
+                'Размер, см',
+                [
                     '1500x2000',
                     '1700x2000',
                     '1900x2000',
                     ['1700x2000', 1000],
                     ['2000x2000', 2000],
-                ]
+                ],
             ],
+            ['Вес', ['150', '500', ['850', 1000]]],
             [
-                'Вес', [
-                    '150',
-                    '500',
-                    ['850', 1000],
-                ]
-            ],
-            [
-                'Цвет', [
+                'Цвет',
+                [
                     '#000 Черный',
                     '#f00 Красный',
                     '#fff Белый',
                     ['#0f0 Зеленый', 1000],
                     ['#00f Синий', 2000],
-                ]
-            ]
+                ],
+            ],
         ],
         ratingFields: [
             ['Функциональность', 4],
@@ -67,59 +62,59 @@ export default class EquipmentModule {
             ['Цена', 5],
         ],
         rating: 4,
-        description: '<div class="dark-description-block"><div class="left">Some content into block</div></div>',
+        description:
+            '<div class="dark-description-block"><div class="left">Some content into block</div></div>',
         characteristics: [
             [
-                'Основные характеристики', [
+                'Основные характеристики',
+                [
                     ['Тип дорожки', 'Домашняя'],
                     ['Бег.полотно', '1200 х 450 мм'],
                     ['Мощность двигателя', '2,0 л.с.'],
                     ['Беговое полотно', '2-х слойное'],
                     ['Производитель', 'Cardio Power'],
-                ]
+                ],
             ],
             [
-                'Мультимедиа', [
+                'Мультимедиа',
+                [
                     ['Тип дорожки', 'Домашняя'],
                     ['Бег.полотно', '1200 х 450 мм'],
                     ['Мощность двигателя', '2,0 л.с.'],
                     ['Беговое полотно', '2-х слойное'],
                     ['Производитель', 'Cardio Power'],
-                ]
+                ],
             ],
             [
-                'Дополнительные характеристики', [
+                'Дополнительные характеристики',
+                [
                     ['Тип дорожки', 'Домашняя'],
                     ['Бег.полотно', '1200 х 450 мм'],
                     ['Мощность двигателя', '2,0 л.с.'],
                     ['Беговое полотно', '2-х слойное'],
                     ['Производитель', 'Cardio Power'],
-                ]
-            ]
+                ],
+            ],
         ],
         reviews: {
             grade: '4,5',
             count: 1740,
-            byFields: [
-                23, 5, 17, 8, 2
-            ],
+            byFields: [23, 5, 17, 8, 2],
             list: [
                 {
                     user: {
-                        avatar: ['', '']
+                        avatar: ['', ''],
                     },
                     date: '',
                     rating: [5, [5, 5, 4, 5]],
                     text: 'Some review for this product',
                     childReview: 'Добрый день. Благодарим за ваш отзыв',
-                }
-            ]
+                },
+            ],
         },
         delivery: {
             city: 'Москва',
-            prices: [
-                0, 0, 1000
-            ]
+            prices: [0, 0, 1000],
         },
     }
 
@@ -184,7 +179,7 @@ export default class EquipmentModule {
                 ['Производитель', 'Cardio Power'],
             ],
             hasShowRoom: true,
-            price: 100_000,
+            price: [100_000],
             rating: 2,
             title: 'Беговая дорожка Bowflex G32i9',
             image: ['path/to/src.png', 'alt image'],
@@ -215,13 +210,15 @@ export default class EquipmentModule {
 
     @Action()
     async fetchList(
-        name: EquipmentModuleTypes.type = 'home'
+        name: EquipmentModuleTypes.type = 'home',
     ): Promise<EquipmentModuleTypes.list> {
         try {
             return this.equipmentService.fetchList(name)
         } catch (error) {
             console.error(error)
-            return new Promise(() => {/**/})
+            return new Promise(() => {
+                /**/
+            })
         }
     }
 

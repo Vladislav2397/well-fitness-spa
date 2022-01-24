@@ -1,24 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { createVuexStore, Module } from 'vuex-simple'
+import VuexORM from '@vuex-orm/core'
 
-import EquipmentModule from '@/store/equipment'
-import EquipmentFamilyModule from "@/store/equipmentFamily"
+import EquipmentGroupModel from '@/store/models/equipmentGroup'
+import EquipmentFamilyModel from '@/store/models/equipmentFamily'
 
 Vue.use(Vuex)
 
-export class Store {
-    @Module()
-    public equipment = new EquipmentModule()
+const database = new VuexORM.Database()
 
-    @Module()
-    public equipmentFamily = new EquipmentFamilyModule()
-}
+database.register(EquipmentGroupModel)
+database.register(EquipmentFamilyModel)
 
-const instance = new Store()
-
-export default createVuexStore(instance, {
-    strict: false,
-    modules: {},
-    plugins: []
+const store = new Vuex.Store({
+    plugins: [VuexORM.install(database)],
 })
+
+export default store

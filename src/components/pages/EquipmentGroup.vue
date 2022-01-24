@@ -39,8 +39,6 @@ import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
 import Device from '@/mixins/device'
 
-import { EquipmentGroupModule } from "@/store/equipmentGroup"
-
 @Component({
     components: {
         'product-counter-list-component': ProductCounterList,
@@ -52,8 +50,6 @@ import { EquipmentGroupModule } from "@/store/equipmentGroup"
     },
 })
 export default class EquipmentGroup extends Mixins(Device) {
-    equipmentModule = EquipmentGroupModule
-
     breadcrumbList: breadcrumbListType = [
         {
             text: 'Для фитнес клуба',
@@ -62,11 +58,11 @@ export default class EquipmentGroup extends Mixins(Device) {
     ]
 
     created(): void {
-        this.equipmentModule.setCards('home')
+        // this.equipmentModule.setCards('home')
     }
 
     get productList(): unknown {
-        return this.equipmentModule.list
+        return [] // this.equipmentModule.list
     }
 
     get currentCountItems(): 1 | 2 | 3 | 4 {

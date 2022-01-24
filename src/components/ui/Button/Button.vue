@@ -1,6 +1,22 @@
 <script lang="ts">
+import 'reflect-metadata'
 import { CreateElement, VNode } from 'vue'
-import { Vue, Component, Prop, Emit } from 'vue-property-decorator'
+import { Vue, Component, Prop, Emit, PropSync } from 'vue-property-decorator'
+
+export interface ButtonProps {
+    iconSize: 's' | 'm' | 'l',
+    size: 's' | 'm'
+    theme: buttonThemeType,
+    icon: string
+    href: string
+    errorSync: boolean
+    error?: boolean
+    iconLeft: boolean
+
+    clickEmit: () => void
+
+    render(h: CreateElement): VNode
+}
 
 export type buttonThemeType = 'brand'
     | 'ghost-brand'
@@ -9,24 +25,20 @@ export type buttonThemeType = 'brand'
     | 'secondary'
 
 @Component
-export default class Button extends Vue {
+export default class Button extends Vue implements ButtonProps {
     @Prop({ default: 'button' }) readonly tag!: 'button' | 'a' | 'div' | 'router-link'
-
     @Prop({ default: 'm' }) readonly size!: 'm' | 's'
-
-    @Prop({ default: 'brand' }) readonly theme!: buttonThemeType
-
+    @Prop({ default: 'brand' }) readonly theme!: ButtonProps['theme']
     @Prop() readonly icon!: string
-
-    @Prop({ default: 'm' }) readonly iconSize!: 's' | 'm' | 'l'
-
+    @Prop({ default: 'm'}) readonly iconSize!: ButtonProps['iconSize']
     @Prop() readonly href!: string
-
     @Prop() readonly iconLeft!: boolean
+
+    @PropSync('error') errorSync!: boolean
 
     @Emit('click') clickEmit (): void {/**/}
 
-    get classes (): string[] {
+    get classes(): string[] {
         const classes = ['button']
 
         classes.push(`button--theme-${this.theme}`)
@@ -43,7 +55,7 @@ export default class Button extends Vue {
         return classes
     }
 
-    render (h: CreateElement): VNode {
+    render(h: CreateElement): VNode {
         const children = []
 
         const icon = h('i', {
@@ -82,6 +94,9 @@ export default class Button extends Vue {
         }, children)
     }
 }
+
+console.log(Reflect.getMetadata('type:design', Button))
+
 </script>
 
 <!--<style lang="scss" src="./button&#45;&#45;critical.scss"></style>-->

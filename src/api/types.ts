@@ -1,21 +1,24 @@
+import { EquipmentModuleTypes } from '@/store/types'
+
 export namespace API {
     export namespace GET {
         export namespace equipment {
-            export interface list {
+            type equipmentListItem = EquipmentModuleTypes.list[number]
+
+            export type list = {
                 meta: {
-                    title: string,
-                    type: string,
-                },
-                data: {
-                    image: {
-                        src: string
-                        alt: string
-                    },
                     title: string
-                    list: {
-                        text: string
-                        count: number
-                    }[]
+                    type: string
+                }
+                data: {
+                    stickies: equipmentListItem['stickies']
+                    quantity: number
+                    characteristics: equipmentListItem['characteristics']
+                    hasShowRoom: boolean
+                    price: equipmentListItem['price']
+                    rating: number
+                    title: string
+                    image: equipmentListItem['image']
                 }[]
             }
         }

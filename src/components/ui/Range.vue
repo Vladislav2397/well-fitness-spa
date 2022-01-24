@@ -29,6 +29,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import Input from '@/components/ui/Input.vue'
 import VueSlider from 'vue-slider-component'
 
+// @ts-ignore
 @Component({
     components: {
         'input-component': Input,

@@ -1,16 +1,4 @@
-import equipment from '@/api/rest/equipments'
-
-const origin = {
-    equipment: {
-        ...equipment
-    }
-}
-
-const mock = {
-    equipment: {
-        // ...equipmentMock
-    }
-}
+import equipment from '@/api/rest/equipmentGroups'
 
 /**
  * api/v1
@@ -26,6 +14,12 @@ const mock = {
  * - /equipments/:groups(home|gym)
  * - /equipments/:groups(home|gym)/:family/
  * - /equipments/:groups(home|gym)/:family/:id
-*/
+ */
 
-export default origin
+const api = {
+    equipment: {
+        ...equipment,
+    },
+}
+
+export default api

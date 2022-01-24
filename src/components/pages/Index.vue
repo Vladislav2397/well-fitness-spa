@@ -17,9 +17,6 @@
 <script lang="ts">
 // FIXME: Replace all components bem on b-block
 import { Vue, Component } from 'vue-property-decorator'
-import { useModule } from 'vuex-simple'
-
-import EquipmentModule from '@/store/equipment'
 
 import Carousel from '@/components/sections/Carousel/Carousel.vue'
 import HomeEquipment from '@/components/sections/HomeEquipment.vue'
@@ -31,6 +28,12 @@ import Addition from '@/components/sections/Addition.vue'
 import About from '@/components/sections/About.vue'
 import BecomePartner from '@/components/sections/BecomePartner.vue'
 import Blog from '@/components/sections/Blog.vue'
+
+import EquipmentGroupService from '@/services/equipmentGroup'
+import { Container } from 'typedi'
+import EquipmentGroupModel from '@/store/models/equipmentFamily'
+
+const equipmentGroupService = Container.get(EquipmentGroupService)
 
 @Component({
     components: {
@@ -47,11 +50,32 @@ import Blog from '@/components/sections/Blog.vue'
     }
 })
 export default class IndexPage extends Vue {
-    // public equipmentModule: EquipmentModule =
-    //     useModule(this.$store, ['EquipmentModule'])
+    async created(): Promise<void> {
+        await equipmentGroupService.fetchGroups()
 
-    mounted(): void {
-        // this.equipmentModule.fetchList('home')
+        await EquipmentGroupModel.insert({
+            data: [{
+                stickies: [true, true, true],
+                quantity: 3,
+                characteristics: [
+                    ['Тип дорожки', 'Домашняя'],
+                    ['Бег.полотно', '1200 х 450 мм'],
+                    ['Мощность двигателя', '2,0 л.с.'],
+                    ['Беговое полотно', '2-х слойное'],
+                    ['Производитель', 'Cardio Power'],
+                ],
+                hasShowRoom: true,
+                price: [100_000, 120_000],
+                rating: 5,
+                title: 'Беговая дорожка Bowflex G32i9',
+                image: ['path/to/src.png', 'alt image'],
+            }],
+        })
+    }
+
+    get groups() {
+        return equipmentGroupService.getGroups()
+
     }
 }
 </script>
