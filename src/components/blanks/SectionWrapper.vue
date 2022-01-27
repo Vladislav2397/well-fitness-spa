@@ -15,6 +15,7 @@
         name="button"
     )
         button-component._button(
+            tag="a"
             :theme="buttonTheme"
             v-on:click="clickEmit"
         ) {{ buttonText }}
@@ -24,7 +25,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
 
-import { buttonThemeType } from '@/components/ui/Button.vue'
+import { buttonThemeType } from '@/components/ui/Button/Button.vue'
 
 @Component
 export default class SectionWrapper extends Vue {

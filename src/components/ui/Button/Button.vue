@@ -1,9 +1,10 @@
 <script lang="ts">
 import 'reflect-metadata'
 import { CreateElement, VNode } from 'vue'
-import { Vue, Component, Prop, Emit, PropSync } from 'vue-property-decorator'
+import { Component, Emit, Prop, PropSync, Vue } from 'vue-property-decorator'
 
 export interface ButtonProps {
+    tag: 'button' | 'a' | 'div' | 'router-link'
     iconSize: 's' | 'm' | 'l',
     size: 's' | 'm'
     theme: buttonThemeType,
@@ -12,10 +13,6 @@ export interface ButtonProps {
     errorSync: boolean
     error?: boolean
     iconLeft: boolean
-
-    clickEmit: () => void
-
-    render(h: CreateElement): VNode
 }
 
 export type buttonThemeType = 'brand'
@@ -95,9 +92,7 @@ export default class Button extends Vue implements ButtonProps {
     }
 }
 
-console.log(Reflect.getMetadata('type:design', Button))
-
 </script>
 
-<!--<style lang="scss" src="./button&#45;&#45;critical.scss"></style>-->
-<!--<style lang="scss" src="./button&#45;&#45;main.scss"></style>-->
+<style lang="scss" src="./button--critical.scss"></style>
+<style lang="scss" src="./button--main.scss"></style>

@@ -1,7 +1,18 @@
 import { EquipmentModuleTypes } from '@/store/types'
 
-export namespace API {
+import { equipmentGroup as equipmentGroupNamespace } from '@/api/rest/equipmentGroup'
+import { equipmentFamily as equipmentFamilyNamespace } from '@/api/rest/equipmentFamily'
+
+namespace API {
+    export enum equipmentGroupNames {
+        HOME = 'home',
+        GYM = 'gym',
+    }
+
     export namespace GET {
+        export import equipmentGroup = equipmentGroupNamespace
+        export import equipmentFamily = equipmentFamilyNamespace
+
         export namespace equipment {
             type equipmentListItem = EquipmentModuleTypes.list[number]
 
@@ -24,3 +35,5 @@ export namespace API {
         }
     }
 }
+
+export default API

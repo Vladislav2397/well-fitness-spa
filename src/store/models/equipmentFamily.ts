@@ -1,29 +1,22 @@
 import { TypedModelFactory } from '@/store/helper'
+import { imageType } from '@/store/types'
 
-interface IEquipmentFamilyModel {
-    stickies: [boolean, boolean, boolean]
-    quantity: number
-    characteristics: [string, string][]
-    hasShowRoom: boolean
-    price: [newPrice: number, oldPrice?: number]
-    rating: number
+export interface IEquipmentFamilyModel {
+    image: imageType
     title: string
-    image: [string, string]
+    list: [name: string, count: number][]
 }
 
-export default class EquipmentFamilyModel extends TypedModelFactory<IEquipmentFamilyModel>() {
+class EquipmentFamilyModel extends TypedModelFactory<IEquipmentFamilyModel>() {
     static entity = 'equipmentFamily'
 
-    static fields() {
+    static fields<IEquipmentFamilyModel>() {
         return {
-            stickies: this.attr([]),
-            quantity: this.number(0),
-            characteristics: this.attr([]),
-            hasShowRoom: this.boolean(false),
-            price: this.attr([0, 0]),
-            rating: this.number(0),
-            title: this.string(''),
             image: this.attr(['', '']),
+            title: this.string(''),
+            list: this.attr([]),
         }
     }
 }
+
+export default EquipmentFamilyModel

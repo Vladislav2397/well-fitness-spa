@@ -1,18 +1,38 @@
-import { API } from '@/api/types'
-import equipment from '../mock/equipmentFamily'
-import { EquipmentModuleTypes } from '@/store/types'
+import API from '@/api/types'
+import { imageType } from '@/store/types'
 
-export function getList(
-    type: EquipmentModuleTypes.type,
-): Promise<API.GET.equipment.list> {
+export namespace equipmentFamily {
+    export type list = {
+        image: imageType
+        title: string
+        types: [name: string, count: number][]
+    }
+
+    export type getList = (type: API.equipmentGroupNames) => Promise<list[]>
+}
+
+const getFamilies: equipmentFamily.getList = (type) => {
     return new Promise((resolve) => {
-        return resolve({
-            meta: equipment.metaEquipment,
-            data: equipment.listEquipment,
-        })
+        return resolve([
+            {
+                image: ['path/to', 'alt'],
+                title: 'Title',
+                types: [],
+            },
+            {
+                image: ['path/to', 'alt'],
+                title: 'Title',
+                types: [],
+            },
+            {
+                image: ['path/to', 'alt'],
+                title: 'Title',
+                types: [],
+            },
+        ])
     })
 }
 
 export default {
-    getList,
+    getFamilies,
 }

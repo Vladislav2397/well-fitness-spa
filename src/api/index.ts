@@ -1,4 +1,5 @@
-import equipment from '@/api/rest/equipmentGroups'
+import equipmentGroup from '@/api/rest/equipmentGroup'
+import equipmentFamily from '@/api/rest/equipmentFamily'
 
 /**
  * api/v1
@@ -17,8 +18,11 @@ import equipment from '@/api/rest/equipmentGroups'
  */
 
 const api = {
-    equipment: {
-        ...equipment,
+    equipmentGroup: {
+        ...equipmentGroup,
+    },
+    equipmentFamily: {
+        ...equipmentFamily,
     },
 }
 

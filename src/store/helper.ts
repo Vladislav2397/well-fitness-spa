@@ -1,4 +1,11 @@
-import { Model, Collection, Item, InstanceOf } from '@vuex-orm/core'
+import {
+    Collection,
+    Collections,
+    InstanceOf,
+    Item,
+    Model,
+} from '@vuex-orm/core'
+import { Insert } from '@vuex-orm/core/dist/src/modules/payloads/Actions'
 
 export function TypedModelFactory<TAttrs>() {
     class TypedModel extends Model {
@@ -14,6 +21,16 @@ export function TypedModelFactory<TAttrs>() {
             id: string | number | (number | string)[],
         ): Item<InstanceOf<T> & TAttrs> {
             return super.find(id) as any
+        }
+
+        static insert(
+            payload: Insert | { data: TAttrs[] },
+        ): Promise<Collections> {
+            return super.insert(payload)
+        }
+
+        static fields(): Record<keyof TAttrs, any> {
+            return super.fields() as any
         }
 
         // ... and other finder methods that I need

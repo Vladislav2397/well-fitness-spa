@@ -1,27 +1,23 @@
-import Button from '../../components/ui/Button.vue'
+import Button from '../../components/ui/Button/Button.vue'
 import { booleanControl, selectControl, textControl } from '@/tools/stories'
 
 export default {
     title: 'Ui/Button',
     component: Button,
     argTypes: {
-        tag: selectControl([
-            'button', 'a', 'div', 'router-link'
-        ]),
+        tag: selectControl(['button', 'a', 'div', 'router-link']),
         size: selectControl(['m', 's']),
-        theme: selectControl([
-            'brand', 'ghost-brand', 'ghost', 'secondary'
-        ]),
+        theme: selectControl(['brand', 'ghost-brand', 'ghost', 'secondary']),
         icon: textControl(),
         iconSize: selectControl(['s', 'm', 'l']),
         href: textControl(),
         iconLeft: booleanControl(),
-    }
+    },
 }
 
 const Template = (args: any, { argTypes }: any) => ({
     props: Object.keys(argTypes),
-    components: {'button-component': Button},
+    components: { 'button-component': Button },
     template: '<button-component v-bind="$props" >Button</button-component>',
 })
 

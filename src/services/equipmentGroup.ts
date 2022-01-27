@@ -8,7 +8,7 @@ export default class EquipmentGroupService {
     async fetchGroups(): Promise<void> {
         if (!EquipmentGroupModel?.all()?.length) {
             await EquipmentGroupModel.insert({
-                data: await api.equipment.getGroups(),
+                data: await api.equipmentGroup.getGroups(),
             })
         }
     }

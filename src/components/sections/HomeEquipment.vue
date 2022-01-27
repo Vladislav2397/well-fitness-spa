@@ -25,6 +25,8 @@ import Device from '@/mixins/device'
 
 type Point = [x: number, y: number, sizeX: number, sizeY: number]
 
+export type onHomeEquipmentCreatedHook = () => void
+
 @Component({
     components: {
         'vue-grid-component': VueGrid,
@@ -34,6 +36,7 @@ type Point = [x: number, y: number, sizeX: number, sizeY: number]
     }
 })
 export default class HomeEquipmentPage extends Mixins(Device) {
+
     layoutMobile: Point[] = [
         [0, 0, 2, 1],
         [0, 1, 2, 1],
@@ -186,7 +189,7 @@ export default class HomeEquipmentPage extends Mixins(Device) {
     }
 
     onClick() {
-        this.$router.push('/equipment/home')
+        this.$router.push('/equipments/home')
     }
 }
 

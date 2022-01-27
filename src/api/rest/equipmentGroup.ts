@@ -1,9 +1,13 @@
-export type groupList = {
-    id: number
-    type: string
-}[]
+export namespace equipmentGroup {
+    export type groupList = {
+        id: number
+        type: string
+    }[]
 
-async function getGroups(): Promise<groupList> {
+    export type getGroups = () => Promise<groupList>
+}
+
+const getGroups: equipmentGroup.getGroups = () => {
     return new Promise((resolve) =>
         resolve([
             {
