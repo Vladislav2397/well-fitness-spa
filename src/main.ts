@@ -10,13 +10,15 @@ import store from './store'
 import './global'
 
 import PortalVue from 'portal-vue'
-Vue.use(PortalVue)
-
 import VueTypeDI from 'vue-typedi'
-Vue.use(VueTypeDI)
-
 // @ts-ignore
 import VueSimplePortal from '@linusborg/vue-simple-portal'
+import Device, { IDevice } from '@/mixins/device'
+
+Vue.use(PortalVue)
+
+Vue.use(VueTypeDI)
+
 Vue.use(VueSimplePortal, {
     name: 'portal-simple',
     selector: '#modal-window',
@@ -25,6 +27,12 @@ Vue.use(VueSimplePortal, {
 Vue.config.productionTip = false
 
 new Vue({
+    mixins: [Device],
+    provide: (vm: Vue & { device: IDevice }) => {
+        return {
+            $device: vm.device,
+        }
+    },
     router,
     store,
     render: (h) => h(App),

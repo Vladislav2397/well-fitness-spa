@@ -62,13 +62,12 @@
 
 <script lang="ts">
 // FIXME: Refactor component: Soo much portals and components
-import { Component, Mixins } from 'vue-property-decorator'
+import { Component, Inject, Vue } from 'vue-property-decorator'
 
 import FooterMiddle from '@/components/blanks/FooterMiddle.vue'
 import FooterLayout from '@/components/blanks/FooterLayout.vue'
 import Logo from '@/components/ui/Logo.vue'
-
-import Device from '@/mixins/device'
+import { IDevice } from '@/mixins/device'
 
 @Component({
     components: {
@@ -77,7 +76,9 @@ import Device from '@/mixins/device'
         'footer-middle-component': FooterMiddle,
     }
 })
-export default class TheFooter extends Mixins(Device) {
+export default class TheFooter extends Vue {
+    @Inject('$device') device!: IDevice
+
     links = [
         {
             title: 'Каталог',

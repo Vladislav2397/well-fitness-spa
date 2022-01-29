@@ -66,12 +66,12 @@ import { Component, Mixins } from 'vue-property-decorator'
 import TheHeader from '@/components/blanks/TheHeader.vue'
 import Modal from '@/components/modals/Modal.vue'
 import HeaderModal from '@/components/modals/HeaderModal.vue'
-import EquipmentModal from '@/components/modals/EquipmentModal.vue'
+import EquipmentModal, {
+    equipmentModalLinkType
+} from '@/components/modals/EquipmentModal.vue'
 import TheFooter from '@/components/sections/TheFooter.vue'
 
 import Device from '@/mixins/device'
-
-import { equipmentModalLinkType } from '@/components/modals/EquipmentModal.vue'
 import CityModal from '@/components/modals/CityModal.vue'
 import SearchContent from '@/components/sections/SearchContent.vue'
 
@@ -89,7 +89,7 @@ type equipmentModalContentType = {
         'header-component': TheHeader,
         'footer-component': TheFooter,
         'modal-component': Modal
-    }
+    },
 })
 export default class App extends Mixins(Device) {
     isModal = false

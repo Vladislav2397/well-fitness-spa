@@ -1,21 +1,21 @@
-import { Vue, Component } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
-interface IDevice {
+export interface IDevice {
     size: {
-        mobile: boolean,
-        mobileLate: boolean,
-        tablet: boolean,
-        tabletLate: boolean,
+        mobile: boolean
+        mobileLate: boolean
+        tablet: boolean
+        tabletLate: boolean
         desktop: boolean
         desktopLate: boolean
-    },
+    }
     breakpoints: {
         mobileLate: number
-        tablet: number,
-        tabletLate: number,
+        tablet: number
+        tabletLate: number
         desktop: number
         desktopLate: number
-    },
+    }
     type: null | string
 }
 
@@ -28,30 +28,30 @@ export default class Device extends Vue {
             tablet: false,
             tabletLate: false,
             desktop: false,
-            desktopLate: false
+            desktopLate: false,
         },
         breakpoints: {
             mobileLate: 450,
             tablet: 650,
             tabletLate: 768,
             desktop: 1200,
-            desktopLate: 1410
+            desktopLate: 1410,
         },
-        type: null
+        type: null,
     }
 
-    mounted (): void {
+    mounted(): void {
         this.getDeviceSize()
         this.getDeviceType()
 
         window.addEventListener('resize', this.getDeviceSize)
     }
 
-    beforeDestroy (): void {
+    beforeDestroy(): void {
         window.removeEventListener('resize', this.getDeviceSize)
     }
 
-    getDeviceSize (): void {
+    getDeviceSize(): void {
         this.device.size.mobile =
             window.innerWidth < this.device.breakpoints.tablet
 
@@ -74,9 +74,13 @@ export default class Device extends Vue {
             window.innerWidth >= this.device.breakpoints.desktopLate
     }
 
-    getDeviceType (): void {
+    getDeviceType(): void {
         this.device.type = document.querySelector('meta[property="device"]')
-            ? (document.querySelector('meta[property="device"]') as HTMLMetaElement).content
+            ? (
+                  document.querySelector(
+                      'meta[property="device"]',
+                  ) as HTMLMetaElement
+              ).content
             : null
     }
 }

@@ -73,14 +73,14 @@ header.header
 </template>
 
 <script lang="ts">
-import { Component, Emit, Mixins } from 'vue-property-decorator'
+import { Component, Emit, Inject, Vue } from 'vue-property-decorator'
 
 import LoginButton from '@/components/ui/LoginButton.vue'
 import RequestCall from '@/components/blanks/RequestCall.vue'
 import Dealers from '@/components/blanks/Dealers.vue'
 import Navigation from '@/components/blanks/Navigation.vue'
 
-import Device from '@/mixins/device'
+import { IDevice } from '@/mixins/device'
 
 @Component({
     components: {
@@ -90,7 +90,9 @@ import Device from '@/mixins/device'
         'login-button-component': LoginButton,
     }
 })
-export default class TheHeader extends Mixins(Device) {
+export default class TheHeader extends Vue {
+    @Inject('$device') device!: IDevice
+
     @Emit('clickBurger') clickBurgerEmit (): void {/**/}
 
     @Emit('clickCity') clickCityEmit (): void {/**/}
