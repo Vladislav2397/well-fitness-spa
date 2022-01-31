@@ -1,11 +1,11 @@
 import { TypedModelFactory } from '@/store/helper'
 
-interface IEquipmentGroupModel {
+interface EquipmentGroupModel {
     id: number
     type: string
 }
 
-export default class EquipmentGroupModel extends TypedModelFactory<IEquipmentGroupModel>() {
+class EquipmentGroupStore extends TypedModelFactory<EquipmentGroupModel>() {
     static entity = 'equipmentGroup'
 
     static fields() {
@@ -15,3 +15,5 @@ export default class EquipmentGroupModel extends TypedModelFactory<IEquipmentGro
         }
     }
 }
+
+export default EquipmentGroupStore
