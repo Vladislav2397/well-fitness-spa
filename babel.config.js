@@ -1,5 +1,9 @@
 module.exports = {
     presets: [
         '@vue/cli-plugin-babel/preset'
-    ]
+    ],
+    test: {
+        "presets": [["env", { "targets": { "node": "current" } }]]
+    }
+
 }
