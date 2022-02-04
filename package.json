@@ -51,6 +51,7 @@
         "vue-slider-component": "^3.2.15",
         "vue-typedi": "^1.1.1",
         "vuex": "^3.4.0",
+        "vuex-class-component": "^2.3.6",
         "vuex-module-decorators": "^2.0.0",
         "vuex-simple": "^2.2.0",
         "webfont": "^11.2.26"

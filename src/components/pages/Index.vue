@@ -32,9 +32,11 @@ import Blog from '@/components/sections/Blog.vue'
 
 import EquipmentGroupService from '@/services/equipmentGroup'
 import EquipmentFamilyService from '@/services/equipmentFamily'
+import CustomService from '@/services/customService'
 
 const equipmentGroupService = Container.get(EquipmentGroupService)
 const equipmentFamilyService = Container.get(EquipmentFamilyService)
+const customService = Container.get(CustomService)
 
 @Component({
     components: {
@@ -52,6 +54,10 @@ const equipmentFamilyService = Container.get(EquipmentFamilyService)
 })
 export default class IndexPage extends Vue {
     async created(): Promise<void> {
+        customService.incr()
+        customService.incr()
+        customService.fetch()
+
         await equipmentGroupService.fetchGroups()
         await equipmentFamilyService.fetchFamilies()
     }
