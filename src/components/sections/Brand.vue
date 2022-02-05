@@ -28,7 +28,7 @@ import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
 
 import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
 
-import Device, {IDevice} from '@/mixins/device'
+import Device, {IDevice} from '@/use/device'
 
 @Component({
     components: {

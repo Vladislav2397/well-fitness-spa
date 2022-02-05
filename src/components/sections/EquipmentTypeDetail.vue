@@ -99,7 +99,7 @@ import FilterGroup from '@/components/blanks/FilterGroup.vue'
 import Checkbox from '@/components/ui/Checkbox.vue'
 import Range from '@/components/ui/Range.vue'
 
-import Device, {IDevice} from '@/mixins/device'
+import { IDevice } from '@/use/device'
 
 @Component({
     components: {

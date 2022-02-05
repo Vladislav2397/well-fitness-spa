@@ -13,11 +13,11 @@
 </template>
 
 <script lang="ts">
-import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
+import {Component, Inject, Vue} from 'vue-property-decorator'
 
-import GridSection, { cardType } from '@/components/blanks/GridSection.vue'
-import { Point } from '@/components/blanks/VueGrid.vue'
-import Device, {IDevice} from '@/mixins/device'
+import GridSection, {cardType} from '@/components/blanks/GridSection.vue'
+import {Point} from '@/components/blanks/VueGrid.vue'
+import {IDevice} from '@/use/device'
 
 @Component({
     components: {

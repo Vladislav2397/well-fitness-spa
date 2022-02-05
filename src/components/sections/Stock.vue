@@ -43,7 +43,7 @@ import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
 import TabList from '@/components/blanks/TabList.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
-import {IDevice} from '@/mixins/device'
+import {IDevice} from '@/use/device'
 
 export type ProductCardType = {
     id: number,

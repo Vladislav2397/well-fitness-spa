@@ -1,6 +1,6 @@
 // @ts-ignore
 import { onMounted, reactive } from '@vue/composition-api'
-import useResize from '@/mixins/resize'
+import useResize from '@/use/resize'
 
 export interface IDevice {
     size: {
@@ -49,8 +49,6 @@ export default function useDevice(): IDevice {
     })
 
     const getDeviceSize = () => {
-        console.log('resize')
-
         const breakpoints = device.breakpoints
         const windowWidth = window.innerWidth
 

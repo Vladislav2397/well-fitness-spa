@@ -37,7 +37,7 @@ import Stock from '@/components/sections/Stock.vue'
 import Tiling from '@/components/sections/Tiling.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
-import {IDevice} from '@/mixins/device'
+import {IDevice} from '@/use/device'
 
 @Component({
     components: {

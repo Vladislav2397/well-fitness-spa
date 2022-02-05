@@ -3,6 +3,7 @@
 ### project configuration
 - vue2
 - vue-property-decorator
+- vue/composition-api
 - typescript
 - scss
 

@@ -37,7 +37,7 @@ import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
 
 import TwoColumnsLayout from '@/components/layouts/TwoColumnsLayout.vue'
 
-import Device, {IDevice} from '@/mixins/device'
+import Device, {IDevice} from '@/use/device'
 import Gallery from '@/components/blanks/Gallery.vue'
 import PriceTag from '@/components/blanks/PriceTag.vue'
 

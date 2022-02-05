@@ -7,7 +7,6 @@
         @clickCity="currentModalName = 'city'"
     )
 
-    p {{ device }}
     router-view
 
     footer-component
@@ -73,7 +72,7 @@ import EquipmentModal, {
 import TheFooter from '@/components/sections/TheFooter.vue'
 import CityModal from '@/components/modals/CityModal.vue'
 import SearchContent from '@/components/sections/SearchContent.vue'
-import { IDevice } from '@/mixins/device'
+import { IDevice } from '@/use/device'
 
 type equipmentModalContentType = {
     title: string,

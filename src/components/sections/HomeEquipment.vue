@@ -13,15 +13,15 @@
 </template>
 
 <script lang="ts">
-import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
+import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import GridLayout from '@/components/blanks/GridLayout.vue'
 import CardGrid from '@/components/blanks/cards/CardGrid.vue'
 import VueGrid from '@/components/blanks/VueGrid.vue'
 
-import GridSection, { cardType } from '@/components/blanks/GridSection.vue'
+import GridSection, {cardType} from '@/components/blanks/GridSection.vue'
 
-import Device, {IDevice} from '@/mixins/device'
+import {IDevice} from '@/use/device'
 import {RouteNames} from '@/router/helpers'
 
 type Point = [x: number, y: number, sizeX: number, sizeY: number]

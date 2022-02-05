@@ -19,7 +19,7 @@ row-layout-component.tag-group(
 import {Component, Vue, Prop, VModel, Inject} from 'vue-property-decorator'
 
 import RowLayout from '@/components/layouts/RowLayout.vue'
-import { IDevice } from '@/mixins/device'
+import { IDevice } from '@/use/device'
 
 @Component({
     components: {

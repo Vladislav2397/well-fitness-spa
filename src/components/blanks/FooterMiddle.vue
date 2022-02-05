@@ -78,7 +78,7 @@
 import { Component, Vue, Prop, Inject } from 'vue-property-decorator'
 
 import Input from '@/components/ui/Input.vue'
-import { IDevice } from '@/mixins/device'
+import { IDevice } from '@/use/device'
 
 @Component({
     components: {

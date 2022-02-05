@@ -7,11 +7,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
-import store from './store'
+import store from './store/storeInstance'
 
 import './global'
 
-import useDevice, { IDevice } from '@/mixins/device'
+import useDevice, { IDevice } from '@/use/device'
 
 Vue.config.productionTip = false
 

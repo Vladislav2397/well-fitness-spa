@@ -1,5 +1,5 @@
 import { VuexModule, Module } from 'vuex-module-decorators'
-import store from './index'
+import store from './storeInstance'
 
 type ProductType = {
     quantity: 0 | 1 | 2 | 3

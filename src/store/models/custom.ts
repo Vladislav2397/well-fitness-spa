@@ -1,4 +1,4 @@
-import {Action, Module, Mutation, VuexModule} from "vuex-module-decorators"
+import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
 
 @Module({
     name: 'customModule',
@@ -6,7 +6,7 @@ import {Action, Module, Mutation, VuexModule} from "vuex-module-decorators"
     stateFactory: true,
 })
 export default class CustomModule extends VuexModule {
-    _counter = 0
+    private _counter = 0
 
     get count(): number {
         return this._counter
@@ -14,11 +14,11 @@ export default class CustomModule extends VuexModule {
 
     @Action
     increment(): void {
-        this._increment(this.count + 1)
+        this.INCREMENT(this.count + 1)
     }
 
     @Mutation
-    _increment(value: number): void {
+    private INCREMENT(value: number): void {
         this._counter = value
     }
 }

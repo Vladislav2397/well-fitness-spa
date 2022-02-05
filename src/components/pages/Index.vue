@@ -54,10 +54,6 @@ const customService = Container.get(CustomService)
 })
 export default class IndexPage extends Vue {
     async created(): Promise<void> {
-        customService.incr()
-        customService.incr()
-        customService.fetch()
-
         await equipmentGroupService.fetchGroups()
         await equipmentFamilyService.fetchFamilies()
     }
