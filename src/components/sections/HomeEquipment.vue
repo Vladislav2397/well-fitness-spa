@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from 'vue-property-decorator'
+import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
 
 import GridLayout from '@/components/blanks/GridLayout.vue'
 import CardGrid from '@/components/blanks/cards/CardGrid.vue'
@@ -21,7 +21,7 @@ import VueGrid from '@/components/blanks/VueGrid.vue'
 
 import GridSection, { cardType } from '@/components/blanks/GridSection.vue'
 
-import Device from '@/mixins/device'
+import Device, {IDevice} from '@/mixins/device'
 import {RouteNames} from '@/router/helpers'
 
 type Point = [x: number, y: number, sizeX: number, sizeY: number]
@@ -36,7 +36,8 @@ export type onHomeEquipmentCreatedHook = () => void
         'grid-section-component': GridSection,
     }
 })
-export default class HomeEquipmentPage extends Mixins(Device) {
+export default class HomeEquipmentPage extends Vue {
+    @Inject('$device') device!: IDevice
 
     layoutMobile: Point[] = [
         [0, 0, 2, 1],

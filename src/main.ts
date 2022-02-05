@@ -1,5 +1,7 @@
 import 'reflect-metadata'
-import 'vue-class-component/hooks'
+import Component from 'vue-class-component'
+
+Component.registerHooks(['setup'])
 
 import Vue from 'vue'
 import App from './App.vue'
@@ -9,25 +11,16 @@ import store from './store'
 
 import './global'
 
-import PortalVue from 'portal-vue'
-import VueTypeDI from 'vue-typedi'
-// @ts-ignore
-import VueSimplePortal from '@linusborg/vue-simple-portal'
-import Device, { IDevice } from '@/mixins/device'
-
-Vue.use(PortalVue)
-
-Vue.use(VueTypeDI)
-
-Vue.use(VueSimplePortal, {
-    name: 'portal-simple',
-    selector: '#modal-window',
-})
+import useDevice, { IDevice } from '@/mixins/device'
 
 Vue.config.productionTip = false
 
 new Vue({
-    mixins: [Device],
+    setup() {
+        const device = useDevice()
+
+        return { device }
+    },
     provide: (vm: Vue & { device: IDevice }) => {
         return {
             $device: vm.device,

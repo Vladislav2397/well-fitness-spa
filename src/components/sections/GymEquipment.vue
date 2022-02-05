@@ -13,18 +13,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from 'vue-property-decorator'
+import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
 
 import GridSection, { cardType } from '@/components/blanks/GridSection.vue'
 import { Point } from '@/components/blanks/VueGrid.vue'
-import Device from '@/mixins/device'
+import Device, {IDevice} from '@/mixins/device'
 
 @Component({
     components: {
         'grid-section-component': GridSection
     }
 })
-export default class GymEquipment extends Mixins(Device) {
+export default class GymEquipment extends Vue {
+    @Inject('$device') device!: IDevice
+
     layoutMobile: Point[] = [
         [0, 0, 2, 1],
         [0, 1, 1, 1],

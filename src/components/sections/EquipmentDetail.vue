@@ -33,11 +33,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from 'vue-property-decorator'
+import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
 
 import TwoColumnsLayout from '@/components/layouts/TwoColumnsLayout.vue'
 
-import Device from '@/mixins/device'
+import Device, {IDevice} from '@/mixins/device'
 import Gallery from '@/components/blanks/Gallery.vue'
 import PriceTag from '@/components/blanks/PriceTag.vue'
 
@@ -48,8 +48,8 @@ import PriceTag from '@/components/blanks/PriceTag.vue'
         'two-columns-layout': TwoColumnsLayout,
     }
 })
-export default class EquipmentDetail extends Mixins(Device) {
-
+export default class EquipmentDetail extends Vue {
+    @Inject('$device') device!: IDevice
 }
 
 </script>

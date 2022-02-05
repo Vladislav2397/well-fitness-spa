@@ -1,4 +1,6 @@
-import { Component, Vue } from 'vue-property-decorator'
+// @ts-ignore
+import { onMounted, reactive } from '@vue/composition-api'
+import useResize from '@/mixins/resize'
 
 export interface IDevice {
     size: {
@@ -16,68 +18,74 @@ export interface IDevice {
         desktop: number
         desktopLate: number
     }
-    type: null | string
+    type: string | null
 }
 
-@Component
-export default class Device extends Vue {
-    device: IDevice = {
-        size: {
-            mobile: false,
-            mobileLate: false,
-            tablet: false,
-            tabletLate: false,
-            desktop: false,
-            desktopLate: false,
-        },
-        breakpoints: {
-            mobileLate: 450,
-            tablet: 650,
-            tabletLate: 768,
-            desktop: 1200,
-            desktopLate: 1410,
-        },
-        type: null,
+const deviceInitData: IDevice = {
+    size: {
+        mobile: false,
+        mobileLate: false,
+        tablet: false,
+        tabletLate: false,
+        desktop: false,
+        desktopLate: false,
+    },
+    breakpoints: {
+        mobileLate: 450,
+        tablet: 650,
+        tabletLate: 768,
+        desktop: 1200,
+        desktopLate: 1410,
+    },
+    type: null,
+}
+
+export default function useDevice(): IDevice {
+    const device = reactive<IDevice>(deviceInitData)
+
+    onMounted(() => {
+        getDeviceSize()
+        getDeviceType()
+    })
+
+    const getDeviceSize = () => {
+        console.log('resize')
+
+        const breakpoints = device.breakpoints
+        const windowWidth = window.innerWidth
+
+        device.size.mobile = windowWidth < breakpoints.tablet
+
+        device.size.mobileLate =
+            windowWidth >= breakpoints.mobileLate &&
+            windowWidth < breakpoints.tablet
+
+        device.size.tablet =
+            windowWidth >= breakpoints.tablet &&
+            windowWidth < breakpoints.desktop
+
+        device.size.tabletLate =
+            windowWidth >= breakpoints.tabletLate &&
+            windowWidth < breakpoints.desktop
+
+        device.size.desktop = windowWidth >= breakpoints.desktop
+
+        device.size.desktopLate = windowWidth >= breakpoints.desktopLate
     }
 
-    mounted(): void {
-        this.getDeviceSize()
-        this.getDeviceType()
+    const getDeviceType = () => {
+        const deviceType = document.querySelector<HTMLMetaElement>(
+            'meta[property="device"]',
+        )
 
-        window.addEventListener('resize', this.getDeviceSize)
+        if (deviceType) {
+            device.type = deviceType.content
+        } else {
+            device.type = null
+        }
     }
 
-    beforeDestroy(): void {
-        window.removeEventListener('resize', this.getDeviceSize)
-    }
+    useResize(getDeviceSize)
 
-    getDeviceSize(): void {
-        this.device.size.mobile =
-            window.innerWidth < this.device.breakpoints.tablet
-
-        this.device.size.mobileLate =
-            window.innerWidth >= this.device.breakpoints.mobileLate &&
-            window.innerWidth < this.device.breakpoints.tablet
-
-        this.device.size.tablet =
-            window.innerWidth >= this.device.breakpoints.tablet &&
-            window.innerWidth < this.device.breakpoints.desktop
-
-        this.device.size.tabletLate =
-            window.innerWidth >= this.device.breakpoints.tabletLate &&
-            window.innerWidth < this.device.breakpoints.desktop
-
-        this.device.size.desktop =
-            window.innerWidth >= this.device.breakpoints.desktop
-
-        this.device.size.desktopLate =
-            window.innerWidth >= this.device.breakpoints.desktopLate
-    }
-
-    getDeviceType(): void {
-        this.device.type = document.querySelector('meta[property="device"]')
-            ? document.querySelector<HTMLMetaElement>('meta[property="device"]')
-                  ?.content ?? null
-            : null
-    }
+    return device
 }

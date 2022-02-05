@@ -24,18 +24,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from 'vue-property-decorator'
+import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
 
 import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
 
-import Device from '@/mixins/device'
+import Device, {IDevice} from '@/mixins/device'
 
 @Component({
     components: {
         'section-wrapper-component': SectionWrapper
     }
 })
-export default class Brand extends Mixins(Device) {
+export default class Brand extends Vue {
+    @Inject('$device') device!: IDevice
+
     links = [
         {
             text: 'Беговые дорожки',

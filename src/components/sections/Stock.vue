@@ -37,13 +37,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from 'vue-property-decorator'
+import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
 import TabList from '@/components/blanks/TabList.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
-import Device from '@/mixins/device'
+import {IDevice} from '@/mixins/device'
 
 export type ProductCardType = {
     id: number,
@@ -67,7 +67,9 @@ export type ProductCardType = {
         'section-wrapper-component': SectionWrapper
     },
 })
-export default class Stock extends Mixins(Device) {
+export default class Stock extends Vue {
+    @Inject('$device') device!: IDevice
+
     activeTabIndex = 0
 
     tabList = [

@@ -7,6 +7,7 @@
         @clickCity="currentModalName = 'city'"
     )
 
+    p {{ device }}
     router-view
 
     footer-component

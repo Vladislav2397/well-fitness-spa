@@ -84,7 +84,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from 'vue-property-decorator'
+import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
 
 import TagGroup from '@/components/blanks/TagGroup.vue'
 import Banner from '@/components/blanks/Banner.vue'
@@ -99,7 +99,7 @@ import FilterGroup from '@/components/blanks/FilterGroup.vue'
 import Checkbox from '@/components/ui/Checkbox.vue'
 import Range from '@/components/ui/Range.vue'
 
-import Device from '@/mixins/device'
+import Device, {IDevice} from '@/mixins/device'
 
 @Component({
     components: {
@@ -117,7 +117,9 @@ import Device from '@/mixins/device'
         'banner-component': Banner,
     },
 })
-export default class EquipmentTypeDetail extends Mixins(Device) {
+export default class EquipmentTypeDetail extends Vue {
+    @Inject('$device') device!: IDevice
+
     isModal = false
 
     tags = {
