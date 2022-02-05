@@ -75,17 +75,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop, Inject } from 'vue-property-decorator'
 
 import Input from '@/components/ui/Input.vue'
-import Device from '@/mixins/device'
+import { IDevice } from '@/mixins/device'
 
 @Component({
     components: {
         'input-component': Input,
     },
 })
-export default class FooterMiddle extends Mixins(Device) {
+export default class FooterMiddle extends Vue {
+    @Inject('$device') device!: IDevice
+
     @Prop({ default: false }) readonly isRow!: boolean
 
     dealers = [

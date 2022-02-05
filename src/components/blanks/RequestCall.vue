@@ -17,10 +17,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from 'vue-property-decorator'
+import {Component, Inject, Vue} from 'vue-property-decorator'
 
-import Device from '@/mixins/device'
+import { IDevice } from '@/mixins/device'
 
 @Component
-export default class RequestCall extends Mixins(Device) {}
+export default class RequestCall extends Vue {
+    @Inject('$device') device!: IDevice
+}
 </script>

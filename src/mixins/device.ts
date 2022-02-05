@@ -76,11 +76,8 @@ export default class Device extends Vue {
 
     getDeviceType(): void {
         this.device.type = document.querySelector('meta[property="device"]')
-            ? (
-                  document.querySelector(
-                      'meta[property="device"]',
-                  ) as HTMLMetaElement
-              ).content
+            ? document.querySelector<HTMLMetaElement>('meta[property="device"]')
+                  ?.content ?? null
             : null
     }
 }

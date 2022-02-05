@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from 'vue-property-decorator'
+import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import TheHeader from '@/components/blanks/TheHeader.vue'
 import Modal from '@/components/modals/Modal.vue'
@@ -70,10 +70,9 @@ import EquipmentModal, {
     equipmentModalLinkType
 } from '@/components/modals/EquipmentModal.vue'
 import TheFooter from '@/components/sections/TheFooter.vue'
-
-import Device from '@/mixins/device'
 import CityModal from '@/components/modals/CityModal.vue'
 import SearchContent from '@/components/sections/SearchContent.vue'
+import { IDevice } from '@/mixins/device'
 
 type equipmentModalContentType = {
     title: string,
@@ -91,7 +90,9 @@ type equipmentModalContentType = {
         'modal-component': Modal
     },
 })
-export default class App extends Mixins(Device) {
+export default class App extends Vue {
+    @Inject('$device') device!: IDevice
+
     isModal = false
 
     currentModalName = ''

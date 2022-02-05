@@ -16,17 +16,19 @@ row-layout-component.tag-group(
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Prop, VModel } from 'vue-property-decorator'
+import {Component, Vue, Prop, VModel, Inject} from 'vue-property-decorator'
 
 import RowLayout from '@/components/layouts/RowLayout.vue'
-import Device from '@/mixins/device'
+import { IDevice } from '@/mixins/device'
 
 @Component({
     components: {
         'row-layout-component': RowLayout
     }
 })
-export default class TagGroup extends Mixins(Device) {
+export default class TagGroup extends Vue {
+    @Inject('$device') device!: IDevice
+
     @VModel() activeIndex!: number | number[]
 
     @Prop() readonly list!: string[]

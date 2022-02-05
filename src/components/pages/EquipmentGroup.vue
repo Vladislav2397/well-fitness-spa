@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from 'vue-property-decorator'
+import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import PageBreadcrumb, {
     breadcrumbListType
@@ -37,7 +37,7 @@ import Stock from '@/components/sections/Stock.vue'
 import Tiling from '@/components/sections/Tiling.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
-import Device from '@/mixins/device'
+import {IDevice} from '@/mixins/device'
 
 @Component({
     components: {
@@ -49,7 +49,9 @@ import Device from '@/mixins/device'
         'page-breadcrumb-component': PageBreadcrumb
     },
 })
-export default class EquipmentGroup extends Mixins(Device) {
+export default class EquipmentGroup extends Vue {
+    @Inject('$device') device!: IDevice
+
     breadcrumbList: breadcrumbListType = [
         {
             text: 'Для фитнес клуба',
