@@ -22,6 +22,7 @@ import VueGrid from '@/components/blanks/VueGrid.vue'
 import GridSection, { cardType } from '@/components/blanks/GridSection.vue'
 
 import Device from '@/mixins/device'
+import {RouteNames} from '@/router/helpers'
 
 type Point = [x: number, y: number, sizeX: number, sizeY: number]
 
@@ -188,8 +189,13 @@ export default class HomeEquipmentPage extends Mixins(Device) {
         ]
     }
 
-    onClick() {
-        this.$router.push('/equipments/home')
+    onClick(): void {
+        this.$router.push({
+            name: RouteNames.EQUIPMENT_GROUP,
+            params: {
+                group: 'home'
+            }
+        }).catch(error => console.error(error))
     }
 }
 

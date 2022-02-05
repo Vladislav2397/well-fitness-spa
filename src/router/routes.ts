@@ -7,11 +7,13 @@ import EquipmentFamilyPage from '@/components/pages/EquipmentFamily.vue'
 import EquipmentGroupPage from '@/components/pages/EquipmentGroup.vue'
 import BrandPage from '@/components/pages/Brand.vue'
 
+import { RouteNames } from './helpers'
+
 export default [
     {
         path: '/',
-        name: 'Index',
-        component: Index
+        name: RouteNames.INDEX,
+        component: Index,
     },
     {
         path: '/equipment',
@@ -19,7 +21,7 @@ export default [
     },
     {
         path: '/equipments/:group',
-        name: 'EquipmentGroup',
+        name: RouteNames.EQUIPMENT_GROUP,
         component: EquipmentGroupPage,
         beforeEnter: (to, from, next) => {
             if (['home', 'gym'].includes(to.params.group)) {
@@ -27,26 +29,26 @@ export default [
             } else {
                 next('/equipments/home')
             }
-        }
+        },
     },
     {
         path: '/equipments/:group/:family',
-        name: 'EquipmentFamily',
+        name: RouteNames.EQUIPMENT_FAMILY,
         component: EquipmentFamilyPage,
     },
     {
         path: '/equipments/:group/:family/:id',
-        name: 'Equipment',
+        name: RouteNames.EQUIPMENT,
         component: EquipmentPage,
     },
     {
         path: '/idea',
-        name: 'Idea',
+        name: RouteNames.IDEA,
         component: IdeaPage,
     },
     {
         path: '/brands',
-        name: 'Brand',
+        name: RouteNames.BRANDS,
         component: BrandPage,
     },
     // {
@@ -56,6 +58,6 @@ export default [
     // },
     {
         path: '*',
-        redirect: '/'
-    }
+        redirect: '/',
+    },
 ] as Array<RouteConfig>
