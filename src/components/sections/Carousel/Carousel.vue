@@ -48,8 +48,3 @@ export default class Carousel extends Vue {}
 
 <style lang="scss" src="./carousel--critical.scss"></style>
 <style lang="scss" src="./carousel--main.scss"></style>
-
-<!--<style lang="scss">-->
-<!--@import "carousel&#45;&#45;critical";-->
-<!--@import "carousel&#45;&#45;main";-->
-<!--</style>-->

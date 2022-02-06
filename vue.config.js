@@ -1,22 +1,28 @@
-const path = require('path')
-
 /**
  * @type {import('@vue/cli-service').ProjectOptions}
  */
 module.exports = {
+    parallel: false,
     css: {
         loaderOptions: {
             scss: {
-                additionalData: '@import "~@/assets/scss/utility/vars";'
+                additionalData: '@import "~@/assets/scss/utility/vars";',
             },
             postcss: {
                 sourceMap: false,
-                options: {}
-            }
+                options: {},
+            },
         },
         requireModuleExtension: false,
     },
-    chainWebpack: config => {
+    configureWebpack: {
+        plugins: [
+            require('unplugin-vue2-script-setup/webpack')({
+                /* options */
+            }),
+        ],
+    },
+    chainWebpack: (config) => {
         // config.module
         //     .rule('main')
         //     .test(/main.scss/)

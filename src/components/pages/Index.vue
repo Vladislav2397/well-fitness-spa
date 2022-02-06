@@ -15,10 +15,6 @@
 </template>
 
 <script lang="ts">
-// FIXME: Replace all components bem on b-block
-import { Component, Vue } from 'vue-property-decorator'
-import { Container } from 'typedi'
-
 import Carousel from '@/components/sections/Carousel/Carousel.vue'
 import HomeEquipment from '@/components/sections/HomeEquipment.vue'
 import GymEquipment from '@/components/sections/GymEquipment.vue'
@@ -30,15 +26,7 @@ import About from '@/components/sections/About.vue'
 import BecomePartner from '@/components/sections/BecomePartner.vue'
 import Blog from '@/components/sections/Blog.vue'
 
-import EquipmentGroupService from '@/services/equipmentGroup'
-import EquipmentFamilyService from '@/services/equipmentFamily'
-import CustomService from '@/services/customService'
-
-const equipmentGroupService = Container.get(EquipmentGroupService)
-const equipmentFamilyService = Container.get(EquipmentFamilyService)
-const customService = Container.get(CustomService)
-
-@Component({
+export default {
     components: {
         'c-carousel': Carousel,
         'c-home-equipment': HomeEquipment,
@@ -51,15 +39,23 @@ const customService = Container.get(CustomService)
         'c-become-partner': BecomePartner,
         'c-blog': Blog,
     }
-})
-export default class IndexPage extends Vue {
-    async created(): Promise<void> {
-        await equipmentGroupService.fetchGroups()
-        await equipmentFamilyService.fetchFamilies()
-    }
-
-    get groups() {
-        return equipmentGroupService.getGroups()
-    }
 }
+</script>
+
+<script setup lang="ts">
+// FIXME: Replace all components bem on b-block
+import { computed } from '@vue/composition-api'
+
+import { Container } from 'typedi'
+
+import EquipmentGroupService from '@/services/equipmentGroup'
+import EquipmentFamilyService from '@/services/equipmentFamily'
+
+const equipmentGroupService = Container.get(EquipmentGroupService)
+const equipmentFamilyService = Container.get(EquipmentFamilyService)
+
+equipmentGroupService.fetchGroups()
+equipmentFamilyService.fetchFamilies()
+
+const groups = computed(() => equipmentGroupService.getGroups())
 </script>

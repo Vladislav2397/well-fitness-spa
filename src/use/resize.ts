@@ -1,4 +1,3 @@
-// @ts-ignore
 import { onBeforeUnmount, onMounted, reactive } from '@vue/composition-api'
 
 type width = number | null

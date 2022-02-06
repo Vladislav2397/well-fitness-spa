@@ -1,4 +1,3 @@
-// @ts-ignore
 import { onMounted, reactive } from '@vue/composition-api'
 import useResize from '@/use/resize'
 
