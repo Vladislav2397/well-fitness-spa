@@ -1,6 +1,6 @@
 import { RouteConfig } from 'vue-router'
 
-import Index from '@/components/pages/Index.vue'
+import Index from '@/components/pages/Index'
 import IdeaPage from '@/components/pages/Idea.vue'
 import EquipmentPage from '@/components/pages/Equipment.vue'
 import EquipmentFamilyPage from '@/components/pages/EquipmentFamily.vue'
