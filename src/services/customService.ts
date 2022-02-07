@@ -1,15 +1,12 @@
-import { Service } from 'typedi'
-
 // import api from '@/api'
-import { store } from '@/store/plugin'
-import { getModule } from "vuex-module-decorators"
-import CustomModule from "@/store/models/custom"
-import { Store } from "vuex"
+import BaseService from '@/services/BaseService'
 
-@Service()
-export default class CustomService {
+import { getModule } from 'vuex-module-decorators'
+import CustomModule from '@/store/models/custom'
+
+export default class CustomService extends BaseService {
     protected get customModule(): CustomModule {
-        return getModule(CustomModule, store as Store<CustomModule>)
+        return getModule(CustomModule, this.store)
     }
 
     fetch(): void {

@@ -1,9 +1,7 @@
 <template lang="pug">
-include ../../tools/pug/mixins
-
-+b.login-button
+.login-button
     span Войти
-    +e.AVATAR-COMPONENT.avatar
+    avatar-component._avatar
 
 </template>
 

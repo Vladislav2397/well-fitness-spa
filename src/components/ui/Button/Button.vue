@@ -1,5 +1,4 @@
 <script lang="ts">
-import 'reflect-metadata'
 import { CreateElement, VNode } from 'vue'
 import { Component, Emit, Prop, PropSync, Vue } from 'vue-property-decorator'
 
