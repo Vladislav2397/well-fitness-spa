@@ -5,4 +5,5 @@ export enum RouteNames {
     EQUIPMENT = 'Equipment',
     IDEA = 'Idea',
     BRANDS = 'Brands',
+    TEST = 'Test',
 }

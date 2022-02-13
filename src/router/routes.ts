@@ -6,6 +6,7 @@ import EquipmentPage from '@/components/pages/Equipment.vue'
 import EquipmentFamilyPage from '@/components/pages/EquipmentFamily.vue'
 import EquipmentGroupPage from '@/components/pages/EquipmentGroup.vue'
 import BrandPage from '@/components/pages/Brand.vue'
+import TestPage from '@/components/pages/Test.vue'
 
 import { RouteNames } from './helpers'
 
@@ -56,6 +57,11 @@ export default [
     //     name: 'BrandDetail',
     //     component: BrandDetailPage,
     // },
+    {
+        path: '/test',
+        name: RouteNames.TEST,
+        component: TestPage,
+    },
     {
         path: '*',
         redirect: '/',

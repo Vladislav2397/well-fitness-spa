@@ -35,6 +35,10 @@
         }
     }
 
+    &--error {
+        --border-color: #{rgba(red, 0.7)};
+    }
+
     &--size {
         &-base {
             // border top + border bottom = 2

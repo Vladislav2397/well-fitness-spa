@@ -18,6 +18,7 @@
                 v-model="inputValue"
                 :name="name"
                 :disabled="disabled"
+                v-on:input="onInput"
                 autocomplete="false"
             )
             ._placeholder(
@@ -29,11 +30,14 @@
             slot(
                 name="postfix"
             )
+    ._description(
+        v-if="errorSync && errorText"
+    ) {{ errorText }}
 
 </template>
 
 <script lang="ts">
-import { Component, Prop, VModel, Vue } from 'vue-property-decorator'
+import {Component, Prop, PropSync, VModel, Vue} from 'vue-property-decorator'
 
 type inputThemePropType =
     | 'light'
@@ -45,27 +49,30 @@ export default class Input extends Vue {
     @VModel({ type: [String, Number] }) inputValue!: string | number
 
     @Prop({ default: 'light' }) readonly theme!: inputThemePropType
-
     @Prop({ default: 'base' }) readonly size!: 'base' | 'inherit'
-
     @Prop() readonly textSize!: 'p3' | 'p4'
-
     @Prop() readonly placeholder!: string
-
     @Prop() readonly name!: string
-
     @Prop() readonly label!: string
-
     @Prop() readonly disabled!: boolean
+    @Prop() readonly errorText!: string
+
+    @PropSync('error') errorSync?: boolean
 
     get classes(): string[] {
         const classes = []
 
         if (this.theme) classes.push(`input--theme-${this.theme}`)
-
         if (this.size) classes.push(`input--size-${this.size}`)
+        if (this.errorSync) classes.push('input--error')
 
         return classes
+    }
+
+    onInput(): void {
+        if (this.errorSync) {
+            this.errorSync = false
+        }
     }
 }
 
