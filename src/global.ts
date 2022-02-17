@@ -7,6 +7,10 @@ import VueTypeDI from 'vue-typedi'
 Vue.use(VueTypeDI)
 
 // @ts-ignore
+import VueInjector from 'vue-inject'
+Vue.use(VueInjector)
+
+// @ts-ignore
 import VueSimplePortal from '@linusborg/vue-simple-portal'
 Vue.use(VueSimplePortal, {
     name: 'portal-simple',

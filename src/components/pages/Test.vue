@@ -3,27 +3,12 @@
 div.test
     .__container.container
         c-input.__field(
-            v-model="form.email.value"
-            :error.sync="form.email.error"
-            :errorText="form.email.errorText"
-            v-bind="form.email.optionals"
+            v-model.trim="email.value.value"
+            :error.sync="email.error.value"
+            :errorText="email.errorText.value"
+            v-bind="email.optionals"
             name="email"
         )
-        c-input.__field(
-            v-model="form.password.value"
-            :error.sync="form.password.error"
-            :errorText="form.password.errorText"
-            v-bind="form.password.optionals"
-            name="password"
-        )
-        //c-input._field(
-        //    v-model="input.value"
-        //    :error.sync="phoneError"
-        //    :label="input.label"
-        //    :placeholder="input.placeholder"
-        //    :errorText="phoneErrorText"
-        //    name="phone"
-        //)
         button-component(
             @click="validate"
         ) Validate
@@ -32,92 +17,50 @@ div.test
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator'
+// @ts-ignore
+import VueInject from 'vue-inject'
+
+import InjectorService from '@/services/InjectorService'
 
 import Input from '@/components/ui/Input.vue'
 
-import FormSingleField from '@/tools/forms/formSingleField'
+// import FormSingleField from '@/tools/forms/formSingleField'
+import useSingleForm from '@/use/form'
+import {Deco, Log} from '@/decorators'
 
 @Component({
     components: {
         'c-input': Input
+    },
+    setup() {
+        const formState = useSingleForm({
+            validRegex: /.{4,}/
+        })
+
+        return {
+            email: {
+                value: formState.value,
+                error: formState.error,
+                validRegex: formState.validRegex,
+                optionals: formState.optionals,
+                errorText: formState.errorText,
+                isValid: formState.isValid,
+                validate: formState.validate,
+            }
+        }
     }
 })
 export default class TestPage extends Vue {
-    form = {
-        email: new FormSingleField({
-            validRegex: /^\S+@\S+\.\S{2,}$/,
-            optionals: {
-                label: 'Email',
-                placeholder: 'input email address'
-            },
-            errorText: this.errorText,
-        }),
-        password: new FormSingleField({
-            validRegex: /^.{6,}$/,
-            optionals: {
-                label: 'Password',
-                placeholder: 'input password'
-            },
-            errorText: this.phoneErrorText,
-        }),
-    }
+    email!: { value: string, error: boolean, optionals: Record<string, unknown>, isValid: boolean, errorText: string, validate: () => void }
 
-    // input = {
-    //     value: '',
-    //     error: false,
-    //     label: 'Phone',
-    //     placeholder: 'Enter a phone',
-    // }
+    @Log() injectorService!: InjectorService
 
-    // get phoneErrorText() {
-    //     console.log('Test.phoneErrorText')
-    //
-    //     if ( !this.input.value) {
-    //         return 'empty field'
-    //     } else if ( !/\d{4,}/.test(this.input.value)) {
-    //         return 'not valid'
-    //     }
-    //     return 'unknown'
-    // }
-
-    // get phoneError() {
-    //     console.log('Test.phoneError')
-    //
-    //     return this.input.error
-    // }
-
-    // get isPhoneFilled() {
-    //     console.log('Test.isPhoneFilled')
-    //
-    //     return Boolean(this.input.value)
-    // }
-
-    errorText(): string {
-        console.log('Test.errorText')
-
-        if ( !this.form.email.value) {
-            return 'empty field'
-        }
-        return 'not valid'
-    }
-
-    phoneErrorText(): string {
-        console.log('Test.phoneErrorText')
-
-        if ( !this.form.password.value) {
-            return 'empty field'
-        }
-        return 'not valid'
+    mounted() {
+        console.log('this.injectorService', this.injectorService)
     }
 
     validate(): void {
-        Object.entries(this.form).forEach(([, form]) => {
-            form.validate()
-        })
-
-        // if ( !this.input.value || !/\d{4,}/.test(this.input.value)) {
-        //     this.input.error = true
-        // }
+        this.email.validate()
     }
 
     updated(): void {

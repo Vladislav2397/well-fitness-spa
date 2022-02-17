@@ -1,4 +1,5 @@
 import FormBaseField, { IFormBaseField } from '@/tools/forms/formBaseField'
+import { Vue } from 'vue-property-decorator'
 
 export interface IFormSingleField<T> extends IFormBaseField {
     value: string
@@ -11,6 +12,8 @@ export interface IFormSingleField<T> extends IFormBaseField {
 export default class FormSingleField<T> extends FormBaseField<
     IFormSingleField<T>
 > {
+    observer
+
     constructor(props?: Partial<IFormSingleField<T>>) {
         console.log('FormSingleField.constructor()')
 
@@ -28,6 +31,24 @@ export default class FormSingleField<T> extends FormBaseField<
                 get: props.errorText,
             })
         }
+
+        this.observer = Vue.observable({
+            ...defaultValues,
+            ...props,
+            get isValid() {
+                // @ts-ignore
+                return this.validRegex.test(this.value)
+            },
+            validate() {
+                if (!this.isValid) {
+                    this.error = true
+                }
+            },
+        })
+    }
+
+    getObserver() {
+        return this.observer
     }
 
     get isValid(): boolean {
