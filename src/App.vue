@@ -62,7 +62,7 @@
 
 <script lang="ts">
 import {Component, Inject, Vue} from 'vue-property-decorator'
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 
 import TheHeader from '@/components/blanks/TheHeader.vue'
 import Modal from '@/components/modals/Modal.vue'
@@ -74,7 +74,9 @@ import TheFooter from '@/components/sections/TheFooter.vue'
 import CityModal from '@/components/modals/CityModal.vue'
 import SearchContent from '@/components/sections/SearchContent.vue'
 import { IDevice } from '@/use/device'
-import {Action, Deco, State} from '@/decorators'
+import {Action, Getter} from '@/decorators'
+import {GetterCountCounter} from '@/store/models/counter/getters'
+import {ActionCountIncrement} from '@/store/models/counter/actions'
 
 type equipmentModalContentType = {
     title: string,
@@ -99,13 +101,12 @@ export default class App extends Vue {
 
     currentModalName = ''
 
-    // @Deco logout!: () => void
-    @State('customModule') login!: Record<string, unknown>
-    @Action('customModule/increment') increment!: () => void
+    @Getter('count/counter') counter!: GetterCountCounter
+    @Action('count/increment') increment!: ActionCountIncrement
 
-    mounted() {
-        console.log(this.increment())
-        // this.login()
+    async mounted() {
+        await this.increment()
+        console.log('this.counter', this.counter)
     }
 
     currentEquipment: equipmentModalContentType[] = [

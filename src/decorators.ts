@@ -1,5 +1,5 @@
 import { createDecorator } from 'vue-class-component'
-import { ActionMethod, Computed, mapActions, mapState } from 'vuex'
+import { ActionMethod, Computed, mapActions, mapGetters, mapState } from 'vuex'
 
 // @ts-ignore
 import VueInject from 'vue-inject'
@@ -58,7 +58,7 @@ export const Deco = createDecorator((options, key, index) => {
 type mapActionFnType = (map: string) => ActionMethod
 type mapComputedFnType = (map: string) => Computed
 
-export const State = createDecoratorFactory('computed', mapState)
+export const Getter = createDecoratorFactory('computed', mapGetters)
 export const Action = createDecoratorFactory('methods', mapActions)
 
 function createDecoratorFactory(
@@ -66,17 +66,20 @@ function createDecoratorFactory(
     mapFn: any,
 ) {
     return (storeKey: string) => {
-        return createDecorator((componentOptions, key) => {
+        return createDecorator((options, key) => {
             const mapObject = { [key]: storeKey }
 
-            if (typeof componentOptions[optionsKey] === 'undefined') {
-                componentOptions[optionsKey] = {}
+            if (typeof options[optionsKey] === 'undefined') {
+                options[optionsKey] = {}
             }
 
-            if (typeof componentOptions[optionsKey]![key] !== 'undefined') {
+            if (typeof options[optionsKey]![key] !== 'undefined') {
                 return
             }
-            componentOptions[optionsKey]![key] = mapFn(mapObject)[key]
+
+            console.log(mapFn(mapObject)[key])
+
+            options[optionsKey]![key] = mapFn(mapObject)[key]
         })
     }
 }

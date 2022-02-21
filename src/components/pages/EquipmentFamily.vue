@@ -19,10 +19,6 @@ import PageBreadcrumb, {
 import PaginationWrapper from '@/components/sections/PaginationWrapper.vue'
 import EquipmentTypeDetail from '@/components/sections/EquipmentTypeDetail.vue'
 
-import EquipmentModule from "@/store/equipment"
-import { Inject } from 'vue-typedi'
-import tokens from '@/store/tokens'
-
 @Component({
     components: {
         'equipment-type-detail-component': EquipmentTypeDetail,
@@ -42,11 +38,6 @@ export default class EquipmentType extends Vue {
         },
     ]
 
-    @Inject(tokens.EQUIPMENT)
-    equipmentModule!: EquipmentModule
 
-    mounted(): void {
-        this.equipmentModule.fetchList('home')
-    }
 }
 </script>
