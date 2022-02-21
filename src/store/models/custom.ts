@@ -14,7 +14,8 @@ export default class CustomModule extends VuexModule {
 
     @Action
     increment(): void {
-        this.INCREMENT(this.count + 1)
+        console.log('custom module increment')
+        // return this._counter + 1
     }
 
     @Mutation

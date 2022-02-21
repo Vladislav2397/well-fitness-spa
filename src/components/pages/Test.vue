@@ -16,17 +16,12 @@ div.test
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
-// @ts-ignore
-import VueInject from 'vue-inject'
-
-import InjectorService from '@/services/InjectorService'
+import {Component, Mixins} from 'vue-property-decorator'
 
 import Input from '@/components/ui/Input.vue'
 
-// import FormSingleField from '@/tools/forms/formSingleField'
 import useSingleForm from '@/use/form'
-import {Deco, Log} from '@/decorators'
+import TestServiceProvider from '@/mixins/serviceProviders/testServiceProvider'
 
 @Component({
     components: {
@@ -50,14 +45,8 @@ import {Deco, Log} from '@/decorators'
         }
     }
 })
-export default class TestPage extends Vue {
+export default class TestPage extends Mixins(TestServiceProvider) {
     email!: { value: string, error: boolean, optionals: Record<string, unknown>, isValid: boolean, errorText: string, validate: () => void }
-
-    @Log() injectorService!: InjectorService
-
-    mounted() {
-        console.log('this.injectorService', this.injectorService)
-    }
 
     validate(): void {
         this.email.validate()
