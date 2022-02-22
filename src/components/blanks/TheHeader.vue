@@ -9,6 +9,7 @@ header.header
                 )
                     img(
                         src="/images/common/logo.svg"
+                        height="40"
                     )
                 link-component._city(
                     v-if="!device.size.mobile"
@@ -94,9 +95,7 @@ export default class TheHeader extends Vue {
     @Inject('$device') device!: IDevice
 
     @Emit('clickBurger') clickBurgerEmit (): void {/**/}
-
     @Emit('clickCity') clickCityEmit (): void {/**/}
-
     @Emit('clickSearch') clickSearchEmit (): void {/**/}
 
     additionItems = [

@@ -62,7 +62,6 @@
 
 <script lang="ts">
 import {Component, Inject, Vue} from 'vue-property-decorator'
-import {mapActions, mapState} from 'vuex'
 
 import TheHeader from '@/components/blanks/TheHeader.vue'
 import Modal from '@/components/modals/Modal.vue'
@@ -97,12 +96,12 @@ type equipmentModalContentType = {
 export default class App extends Vue {
     @Inject('$device') device!: IDevice
 
+    @Getter('count/counter') counter!: GetterCountCounter
+    @Action('count/increment') increment!: ActionCountIncrement
+
     isModal = false
 
     currentModalName = ''
-
-    @Getter('count/counter') counter!: GetterCountCounter
-    @Action('count/increment') increment!: ActionCountIncrement
 
     async mounted() {
         await this.increment()

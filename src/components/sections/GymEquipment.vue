@@ -139,7 +139,7 @@ export default class GymEquipment extends Vue {
         ]
     }
 
-    onClick() {
+    onClick(): void {
         this.$router.push('/equipment/gym')
     }
 }

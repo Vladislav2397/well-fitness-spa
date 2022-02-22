@@ -57,7 +57,7 @@ export default class GridSection extends Vue {
 
     @Prop() readonly button!: string
 
-    @Emit('click') clickEmit() {/**/}
+    @Emit('click') clickEmit(): void {/**/}
 }
 
 </script>
