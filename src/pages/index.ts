@@ -1,3 +1,5 @@
-import Index from './Index'
+import Routing from './Index.vue'
+import { routes } from './routes'
+import { RouteNames } from './helpers'
 
-const routes = [{ path: '/', component: Index }]
+export { Routing, routes, RouteNames }

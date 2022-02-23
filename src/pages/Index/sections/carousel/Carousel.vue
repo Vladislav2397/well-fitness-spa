@@ -46,5 +46,5 @@ export default class Carousel extends Vue {}
 
 </script>
 
-<style lang="scss" src="./carousel--critical.scss"></style>
-<style lang="scss" src="./carousel--main.scss"></style>
+<style lang="scss" src="carousel--critical.scss"></style>
+<style lang="scss" src="carousel--main.scss"></style>
