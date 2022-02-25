@@ -1,27 +1,23 @@
 import FormBaseField, { IFormBaseField } from '@/tools/forms/formBaseField'
 import { Vue } from 'vue-property-decorator'
 
-export interface IFormSingleField<T> extends IFormBaseField {
+export interface IFormSingleField extends IFormBaseField {
     value: string
     error: boolean
     validRegex: RegExp
-    optionals: T & Record<string, unknown>
+    optionals: Record<string, unknown>
     errorText?: () => string
 }
 
-export default class FormSingleField<T> extends FormBaseField<
-    IFormSingleField<T>
-> {
-    observer
-
-    constructor(props?: Partial<IFormSingleField<T>>) {
+export default class FormSingleField extends FormBaseField<IFormSingleField> {
+    constructor(props?: Partial<IFormSingleField>) {
         console.log('FormSingleField.constructor()')
 
-        const defaultValues: IFormSingleField<T> = {
+        const defaultValues: IFormSingleField = {
             value: '',
             error: false,
             validRegex: /.*/,
-            optionals: {} as IFormSingleField<T>['optionals'],
+            optionals: {} as IFormSingleField['optionals'],
         }
 
         super({ ...defaultValues, ...props })
@@ -31,24 +27,6 @@ export default class FormSingleField<T> extends FormBaseField<
                 get: props.errorText,
             })
         }
-
-        this.observer = Vue.observable({
-            ...defaultValues,
-            ...props,
-            get isValid() {
-                // @ts-ignore
-                return this.validRegex.test(this.value)
-            },
-            validate() {
-                if (!this.isValid) {
-                    this.error = true
-                }
-            },
-        })
-    }
-
-    getObserver() {
-        return this.observer
     }
 
     get isValid(): boolean {

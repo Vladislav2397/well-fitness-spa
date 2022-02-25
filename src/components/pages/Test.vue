@@ -9,9 +9,16 @@ div.test
             v-bind="email.optionals"
             name="email"
         )
+        c-input.__field(
+            v-for="(field, name) in fields"
+            :key="name"
+            :value="storeFields[name]"
+            @input="changeValue({field: name, value: $event})"
+        )
         button-component(
             @click="validate"
         ) Validate
+        c-form
 
 </template>
 
@@ -22,10 +29,14 @@ import Input from '@/components/ui/Input.vue'
 
 import useSingleForm from '@/use/form'
 import TestServiceProvider from '@/mixins/serviceProviders/testServiceProvider'
+import Form from '@/components/pages/Form.vue'
+import {Action, Getter} from '@/decorators'
+import FormSingleField from '@/tools/forms/formSingleField'
 
 @Component({
     components: {
-        'c-input': Input
+        'c-input': Input,
+        'c-form': Form,
     },
     setup() {
         const formState = useSingleForm({
@@ -46,14 +57,47 @@ import TestServiceProvider from '@/mixins/serviceProviders/testServiceProvider'
     }
 })
 export default class TestPage extends Mixins(TestServiceProvider) {
-    email!: { value: string, error: boolean, optionals: Record<string, unknown>, isValid: boolean, errorText: string, validate: () => void }
+    @Getter('purchase/fields') storeFields!: Record<string, string>
+
+    @Action('purchase/changeValue')
+    changeValue!: ({field, value}) => Promise<void>
+
+    // changeValue(field, value) {
+    //     console.log('changeValue', field, value)
+    //     this.$store.dispatch('purchase/changeValue', {field, value})
+    // }
+
+    fields: Record<string, FormSingleField> = {}
+
+    email!: {
+        value: string
+        error: boolean
+        optionals: Record<string, unknown>
+        isValid: boolean
+        errorText: string
+        validate: () => void
+    }
+
+    createFields(): Record<string, FormSingleField> {
+        const result: Record<string, FormSingleField> = {}
+
+        Object.entries(this.storeFields).forEach(([key, value]) => {
+            result[key] = new FormSingleField({
+                value: this.storeFields[key],
+            })
+        })
+
+        console.log(result)
+
+        return result
+    }
+
+    mounted() {
+        this.fields = this.createFields()
+    }
 
     validate(): void {
         this.email.validate()
-    }
-
-    updated(): void {
-        console.log('update')
     }
 }
 </script>

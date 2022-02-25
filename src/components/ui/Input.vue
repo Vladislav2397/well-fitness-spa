@@ -15,7 +15,7 @@
             )
         ._value
             input(
-                v-model="inputValue"
+                :value="inputValue"
                 :name="name"
                 :disabled="disabled"
                 v-on:input="onInput"
@@ -37,7 +37,15 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, PropSync, VModel, Vue} from 'vue-property-decorator'
+import {
+    Component,
+    Prop,
+    PropSync,
+    VModel,
+    Vue
+} from 'vue-property-decorator'
+
+// FIXME: Upgrade two-way binding
 
 type inputThemePropType =
     | 'light'
@@ -69,7 +77,9 @@ export default class Input extends Vue {
         return classes
     }
 
-    onInput(): void {
+    onInput(event: KeyboardEvent): void {
+        this.inputValue = event.target?.value
+
         if (this.errorSync) {
             this.errorSync = false
         }
