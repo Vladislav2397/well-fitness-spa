@@ -78,6 +78,7 @@ export default class Input extends Vue {
     }
 
     onInput(event: KeyboardEvent): void {
+        // @ts-ignore
         this.inputValue = event.target?.value
 
         if (this.errorSync) {

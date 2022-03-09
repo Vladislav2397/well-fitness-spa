@@ -27,7 +27,7 @@
                 :disabled="!device.size.mobile"
                 to="logo"
             )
-                logo-component
+                c-logo
                 span © WellFitness. 2007 Все права защищены
             ._social
                 i.icon.-size-m.-instagram
@@ -66,12 +66,12 @@ import { Component, Inject, Vue } from 'vue-property-decorator'
 
 import FooterMiddle from '@/components/blanks/FooterMiddle.vue'
 import FooterLayout from '@/components/blanks/FooterLayout.vue'
-import Logo from '@/components/ui/Logo.vue'
+import { Logo } from '@/shared/ui/Logo'
 import { IDevice } from '@/use/device'
 
 @Component({
     components: {
-        'logo-component': Logo,
+        'c-logo': Logo,
         'footer-layout-component': FooterLayout,
         'footer-middle-component': FooterMiddle,
     }

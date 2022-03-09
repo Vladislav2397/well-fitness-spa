@@ -1,21 +1,15 @@
-import 'reflect-metadata'
-import Component from 'vue-class-component'
-
-Component.registerHooks(['setup'])
-
 import Vue from 'vue'
-import App from '@/App.vue'
-import '@/registerServiceWorker'
-import router from '@/router'
-import store from '@/store'
 
-import './global'
+import router from './router'
+// import store from '@/store'
+
+import App from './Index.vue'
+
+import './config'
 
 import useDevice, { IDevice } from '@/use/device'
 
-Vue.config.productionTip = false
-
-new Vue({
+const app = new Vue({
     setup() {
         const device = useDevice()
 
@@ -27,6 +21,8 @@ new Vue({
         }
     },
     router,
-    store,
+    // store,
     render: (h) => h(App),
-}).$mount('#app')
+})
+
+export default app

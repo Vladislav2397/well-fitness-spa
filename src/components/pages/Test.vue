@@ -9,12 +9,6 @@ div.test
             v-bind="email.optionals"
             name="email"
         )
-        c-input.__field(
-            v-for="(field, name) in fields"
-            :key="name"
-            :value="storeFields[name]"
-            @input="changeValue({field: name, value: $event})"
-        )
         button-component(
             @click="validate"
         ) Validate
@@ -30,7 +24,7 @@ import Input from '@/components/ui/Input.vue'
 import useSingleForm from '@/use/form'
 import TestServiceProvider from '@/mixins/serviceProviders/testServiceProvider'
 import Form from '@/components/pages/Form.vue'
-import {Action, Getter} from '@/decorators'
+import {Action, Getter} from '@/shared/config/decorators'
 import FormSingleField from '@/tools/forms/formSingleField'
 
 @Component({
@@ -60,7 +54,7 @@ export default class TestPage extends Mixins(TestServiceProvider) {
     @Getter('purchase/fields') storeFields!: Record<string, string>
 
     @Action('purchase/changeValue')
-    changeValue!: ({field, value}) => Promise<void>
+    changeValue!: ({field, value}: {field:string, value: string}) => Promise<void>
 
     // changeValue(field, value) {
     //     console.log('changeValue', field, value)
@@ -92,7 +86,7 @@ export default class TestPage extends Mixins(TestServiceProvider) {
         return result
     }
 
-    mounted() {
+    mounted(): void {
         this.fields = this.createFields()
     }
 

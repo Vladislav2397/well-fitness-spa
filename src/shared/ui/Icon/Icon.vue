@@ -1,16 +1,30 @@
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import { CreateElement, VNode } from 'vue'
+import {CreateElement, RenderContext, VNode} from 'vue'
+import { Component } from 'vue-property-decorator'
+
+import {VueFunctional} from '@/shared/config/functionalComponent'
+
+interface IconProps {
+    size: string
+    name: string
+}
 
 @Component
-export default class Icon extends Vue {
-    @Prop() size!: string
-    @Prop() name!: string
-
-    render(h: CreateElement): VNode {
+export default class Icon extends VueFunctional {
+    render(h: CreateElement, { props, data, listeners }: RenderContext<IconProps>): VNode {
         return h('i', {
-            class: [`icon--size-${this.size}`, `icon--${this.name}`]
+            class: [
+                `${data.staticClass}`,
+                'icon',
+                `icon--size-${props.size ?? 'm'}`,
+                `icon--${props.name ?? 'arrow'}`
+            ],
+            on: {
+                ...listeners
+            }
         })
     }
 }
 </script>
+
+<style lang="scss" src="./icon--critical.scss"></style>

@@ -51,30 +51,22 @@ module.exports = {
             .rule('pug')
             .oneOf('vue-loader')
 
-            .use('pug-plain')
-            .loader('pug-plain-loader')
-            .end()
-
             .use('pug-bem')
             .loader('pug-bem-plain-loader')
-            // .options({
-            //     b: true
-            // })
+            .options({
+                b: true,
+            })
             .end()
 
         config.module
             .rule('pug')
             .oneOf('raw-pug-files')
 
-            .use('pug-plain')
-            .loader('pug-plain-loader')
-            .end()
-
             .use('pug-bem')
             .loader('pug-bem-plain-loader')
-            // .options({
-            //     b: true
-            // })
+            .options({
+                b: true,
+            })
             .end()
     },
 }

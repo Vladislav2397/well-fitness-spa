@@ -1,7 +1,6 @@
 <template lang="pug">
-include ../../tools/pug/mixins
 
-+b.dealers(
+.b-dealers(
     :class="classes"
 )
     span Для дилеров
@@ -26,7 +25,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class Dealers extends Vue {
-    @Prop({ default: 'default'}) readonly view!: 'default' | 'modal'
+    @Prop({ default: 'default' }) readonly view!: 'default' | 'modal'
 
     get classes (): string[] {
         const classes = []

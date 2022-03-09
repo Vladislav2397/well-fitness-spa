@@ -1,4 +1,4 @@
-import { ref } from '@vue/composition-api'
+import { ref, getCurrentInstance } from '@vue/composition-api'
 
 interface FormFactoryOptions {
     value: string
@@ -11,6 +11,8 @@ const useSingleForm = (props?: Partial<FormFactoryOptions>) => {
     const value = ref(props?.value ?? '')
     const error = ref(props?.error ?? false)
     const validRegex = ref(props?.validRegex ?? /.*/)
+
+    const instance = getCurrentInstance()
 
     const isValid = () => {
         console.log('useSingleForm.isValid')

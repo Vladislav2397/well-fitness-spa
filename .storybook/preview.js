@@ -10,7 +10,7 @@ import RouterLink from './RouterLink.vue'
 
 // import Divider from '../src/components/ui/Divider.vue'
 import Button from '../src/components/ui/Button/Button.vue'
-import Link from '../src/components/ui/Link.vue'
+import { Link } from '../src/shared/ui/Link'
 import Avatar from '../src/components/ui/Avatar.vue'
 // import Title from '../src/components/ui/Title.vue'
 // import ImageCircle from '../src/components/blanks/ImageCircle.vue'
