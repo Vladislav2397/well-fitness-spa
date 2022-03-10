@@ -1,6 +1,7 @@
 <script lang="ts">
 import {CreateElement, RenderContext, VNode} from 'vue'
 import { Component } from 'vue-property-decorator'
+
 import {VueFunctional} from '@/shared/config/functionalComponent'
 
 const navigationItems = [
