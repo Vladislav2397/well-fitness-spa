@@ -2,6 +2,7 @@ import { action } from '@storybook/addon-actions'
 import { withDesign } from 'storybook-addon-designs'
 
 import Button from './Button.vue'
+import { icons } from '@/shared/ui/Icon'
 import { defineControls } from '@/tools/stories'
 
 export default {
@@ -12,7 +13,7 @@ export default {
         tag: ['button', 'a', 'div', 'router-link'],
         size: ['m', 's'],
         theme: ['brand', 'ghost-brand', 'ghost', 'secondary'],
-        icon: '',
+        icon: ['', ...icons],
         iconSize: ['s', 'm', 'l'],
         href: '',
         iconLeft: false,

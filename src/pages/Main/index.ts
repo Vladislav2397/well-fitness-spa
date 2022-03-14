@@ -1,3 +1,3 @@
-import Index from '@/components/pages/Index/Index.vue'
+import Index from './Index.vue'
 
 export { Index }

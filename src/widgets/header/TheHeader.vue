@@ -9,8 +9,6 @@ header.b-header
                     v-if="!device.size.mobile"
                     icon="collapse"
                     iconSize="s"
-
-                    @click="clickCityEmit"
                 ) Москва
             .__user-actions(
                 v-if="device.size.desktop"
@@ -23,8 +21,6 @@ header.b-header
             )
                 c-icon.__action(
                     name="search"
-
-                    v-on:click="clickSearchEmit"
                 )
                 template(
                     v-if="device.size.tablet || device.size.tabletLate"
@@ -40,7 +36,6 @@ header.b-header
                 )
                 c-icon.__action(
                     name="burger"
-                    v-on:click="clickBurgerEmit"
                 )
     .__middle(
         v-if="device.size.desktop || device.size.desktopLate"
@@ -62,12 +57,15 @@ header.b-header
                 )
             .__icons
                 c-icon.__action(
+                    size="m"
                     name="stats"
                 )
                 c-icon.__action(
+                    size="m"
                     name="heart"
                 )
                 c-icon.__action(
+                    size="m"
                     name="cart"
                 )
     .__bottom
@@ -86,7 +84,7 @@ header.b-header
 
 <script setup lang="ts">
 import { defineEmits } from '@vue/runtime-dom'
-import { inject } from '@vue/composition-api'
+import {inject} from '@vue/composition-api'
 
 const device = inject('$device')
 

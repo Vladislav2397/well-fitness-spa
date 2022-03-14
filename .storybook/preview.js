@@ -31,7 +31,12 @@ Vue.component('avatar-component', Avatar)
 export const decorators = [
     (story) => ({
         components: { story },
-        template: '<div class="theme-light"><story /></div>',
+        template: `
+            <div style="display: flex;justify-content: space-between;align-items: stretch;">
+                <div class="theme-light" style="width: 50%;padding: 25px;"><story /></div>
+                <div class="theme-dark" style="background-color: #1a1a25;width: 50%;padding: 25px;"><story /></div>
+            </div>
+        `,
     }),
 ]
 

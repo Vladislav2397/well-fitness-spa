@@ -13,50 +13,58 @@
 
     transition(
         name="fade"
+        mode="out-in"
     )
-        .overlay(
-            v-if="currentModalName"
-            @click="currentModalName = ''"
+        modals-component(
+            v-if="isModal"
         )
 
-    transition(
-        :name=" device.size.mobile && !device.size.mobileLate ? 'translate-bottom' : 'translate-right'"
-        mode="in-out"
-    )
-        modal-component(
-            v-if="currentModalName === 'header' && !device.size.desktop"
-            key="header"
-            @clickClose="currentModalName = ''"
-        )
-            header-modal-component(
-                @clickEquipment="currentModalName = 'equipment'"
-                @clickCity="currentModalName = 'city'"
-            )
-        modal-component(
-            v-if="currentModalName === 'equipment' && !device.size.desktop"
-            key="equipment"
-            @clickClose="currentModalName = ''"
-        )
-            equipment-modal-component(
-                :title="currentEquipment[0].title"
-                :list="currentEquipment[0].list"
-
-                @clickBreadcrumb="currentModalName = 'header'"
-            )
-        modal-component(
-            v-if="currentModalName === 'city'"
-            key="city"
-            theme="light"
-            @clickClose="currentModalName = ''"
-        )
-            city-modal-component
-        modal-component(
-            v-if="currentModalName === 'search'"
-            key="city"
-            theme="light"
-            @clickClose="currentModalName = ''"
-        )
-            search-content-component
+    //transition(
+    //    name="fade"
+    //)
+    //    .overlay(
+    //        v-if="currentModalName"
+    //        @click="currentModalName = ''"
+    //    )
+    //
+    //transition(
+    //    :name=" device.size.mobile && !device.size.mobileLate ? 'translate-bottom' : 'translate-right'"
+    //    mode="in-out"
+    //)
+    //    modal-component(
+    //        v-if="currentModalName === 'header' && !device.size.desktop"
+    //        key="header"
+    //        @clickClose="currentModalName = ''"
+    //    )
+    //        header-modal-component(
+    //            @clickEquipment="currentModalName = 'equipment'"
+    //            @clickCity="currentModalName = 'city'"
+    //        )
+    //    modal-component(
+    //        v-if="currentModalName === 'equipment' && !device.size.desktop"
+    //        key="equipment"
+    //        @clickClose="currentModalName = ''"
+    //    )
+    //        equipment-modal-component(
+    //            :title="currentEquipment[0].title"
+    //            :list="currentEquipment[0].list"
+    //
+    //            @clickBreadcrumb="currentModalName = 'header'"
+    //        )
+    //    modal-component(
+    //        v-if="currentModalName === 'city'"
+    //        key="city"
+    //        theme="light"
+    //        @clickClose="currentModalName = ''"
+    //    )
+    //        city-modal-component
+    //    modal-component(
+    //        v-if="currentModalName === 'search'"
+    //        key="city"
+    //        theme="light"
+    //        @clickClose="currentModalName = ''"
+    //    )
+    //        search-content-component
 
 </template>
 
@@ -64,16 +72,16 @@
 import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import { TheHeader } from '@/widgets/header'
-import Modal from '@/components/modals/Modal.vue'
-import HeaderModal from '@/components/modals/HeaderModal.vue'
-import EquipmentModal, {
+// import HeaderModal from '@/components/modals/HeaderModal.vue'
+import /*EquipmentModal, */{
     equipmentModalLinkType
 } from '@/components/modals/EquipmentModal.vue'
 import TheFooter from '@/components/sections/TheFooter.vue'
-import CityModal from '@/components/modals/CityModal.vue'
+// import CityModal from '@/components/modals/CityModal.vue'
 import SearchContent from '@/components/sections/SearchContent.vue'
 
 import { IDevice } from '@/use/device'
+import {Getter} from '@/shared/config'
 // import {Action, Getter} from '@/shared/config/decorators'
 // import {GetterCountCounter} from '@/store/models/counter/getters'
 // import {ActionCountIncrement} from '@/store/models/counter/actions'
@@ -87,20 +95,20 @@ type equipmentModalContentType = {
     components: {
         'c-header': TheHeader,
         'search-content-component': SearchContent,
-        'city-modal-component': CityModal,
-        'equipment-modal-component': EquipmentModal,
-        'header-modal-component': HeaderModal,
+        // 'city-modal-component': CityModal,
+        // 'equipment-modal-component': EquipmentModal,
+        // 'header-modal-component': HeaderModal,
         'footer-component': TheFooter,
-        'modal-component': Modal
+        'modals-component': () => import(/* webpackChunkName: modals */ '@/widgets/modals')
     },
 })
 export default class App extends Vue {
     @Inject('$device') device!: IDevice
 
+    @Getter('modals/isModal') isModal!: boolean
+
     // @Getter('count/counter') counter!: GetterCountCounter
     // @Action('count/increment') increment!: ActionCountIncrement
-
-    isModal = false
 
     currentModalName = ''
 

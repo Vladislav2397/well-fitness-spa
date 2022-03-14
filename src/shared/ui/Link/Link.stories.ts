@@ -1,4 +1,5 @@
 import Link from './Link.vue'
+import { icons } from '@/shared/ui/Icon'
 import { defineControls } from '@/tools/stories'
 
 export default {
@@ -9,7 +10,7 @@ export default {
         iconSize: ['s', 'm', 'l'],
         theme: ['primary', 'secondary'],
         href: '',
-        icon: '',
+        icon: ['', ...icons],
         iconLeft: false,
     }),
 }
@@ -17,9 +18,9 @@ export default {
 const Template = (args: any, { argTypes }: any) => ({
     props: Object.keys(argTypes),
     components: {
-        'link-component': Link,
+        Link,
     },
-    template: '<link-component v-bind="$props">Link</link-component>',
+    template: '<Link v-bind="$props">Link</Link>',
 })
 
 export const Default = Template.bind({})

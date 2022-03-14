@@ -2,6 +2,7 @@ import { RouteConfig } from 'vue-router'
 
 import { Index } from '@/pages/Main'
 import TestPage from '@/components/pages/Test.vue'
+import Test2Page from '@/pages/Test2.vue'
 
 import { RouteNames } from './helpers'
 
@@ -56,6 +57,11 @@ export default [
         path: '/test',
         name: RouteNames.TEST,
         component: TestPage,
+    },
+    {
+        path: '/test2',
+        name: RouteNames.TEST2,
+        component: Test2Page,
     },
     {
         path: '*',

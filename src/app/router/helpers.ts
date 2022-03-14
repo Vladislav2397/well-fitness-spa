@@ -6,4 +6,5 @@ export enum RouteNames {
     IDEA = 'Idea',
     BRANDS = 'Brands',
     TEST = 'Test',
+    TEST2 = 'Test2',
 }

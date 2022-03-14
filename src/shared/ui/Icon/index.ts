@@ -1,3 +1,3 @@
-import Icon from './Icon.vue'
+import Icon, { IconProps, icons } from './Icon.vue'
 
-export { Icon }
+export { Icon, IconProps, icons }
