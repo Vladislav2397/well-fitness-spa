@@ -6,6 +6,7 @@ import store from '@/store'
 import App from './Index.vue'
 
 import './config'
+import './directives'
 
 import useDevice, { IDevice } from '@/use/device'
 

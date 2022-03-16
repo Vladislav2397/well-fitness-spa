@@ -118,9 +118,13 @@ import { Dealers } from '@/shared/blanks/Dealers'
 import { RequestCall } from '@/shared/blanks/RequestCall'
 import { LoginButton } from '@/features/auth'
 import { Navigation } from '@/shared/blanks/Navigation'
+import { DropdownWrapper } from '@/shared/ui/DropdownWrapper'
+import { Card } from '@/shared/ui/Card'
 
 export default {
     components: {
+        'c-card': Card,
+        'c-dropdown': DropdownWrapper,
         'c-logo': Logo,
         'c-dealers': Dealers,
         'c-request-call': RequestCall,
