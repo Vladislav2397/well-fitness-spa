@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.input(
+.b-input(
     :class="classes"
 )
     ._label(

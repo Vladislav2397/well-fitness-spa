@@ -2,12 +2,10 @@
 
 div.test
     .__container.container
-        c-input.__field(
-            v-model.trim="email.value.value"
-            :error.sync="email.error.value"
-            :errorText="email.errorText.value"
-            v-bind="email.optionals"
-            name="email"
+        c-hoc(
+            ref="hoc"
+            :binding="hocProps"
+            :validRegex="inputField.validRegex"
         )
         button-component(
             @click="validate"
@@ -17,7 +15,7 @@ div.test
 </template>
 
 <script lang="ts">
-import {Component, Mixins} from 'vue-property-decorator'
+import {Component, Mixins, Ref} from 'vue-property-decorator'
 
 import Input from '@/components/ui/Input.vue'
 
@@ -26,9 +24,11 @@ import TestServiceProvider from '@/mixins/serviceProviders/testServiceProvider'
 import Form from '@/components/pages/Form.vue'
 import {Action, Getter} from '@/shared/config/decorators'
 import FormSingleField from '@/tools/forms/formSingleField'
+import Hoc from '@/shared/hoc/hoc.vue'
 
 @Component({
     components: {
+        'c-hoc': Hoc,
         'c-input': Input,
         'c-form': Form,
     },
@@ -56,10 +56,26 @@ export default class TestPage extends Mixins(TestServiceProvider) {
     @Action('purchase/changeValue')
     changeValue!: ({field, value}: {field:string, value: string}) => Promise<void>
 
+    @Ref('hoc') hocRef!: Hoc
+
     // changeValue(field, value) {
     //     console.log('changeValue', field, value)
     //     this.$store.dispatch('purchase/changeValue', {field, value})
     // }
+
+    hocProps = {
+        placeholder: 'hoc placeholder',
+    }
+
+    inputField = {
+        value: '',
+        error: false,
+        component: 'input',
+        validRegex: /.+/,
+        binding: {
+            placeholder
+        },
+    }
 
     fields: Record<string, FormSingleField> = {}
 
@@ -91,7 +107,8 @@ export default class TestPage extends Mixins(TestServiceProvider) {
     }
 
     validate(): void {
-        this.email.validate()
+        this.hocRef?.validate()
+        console.log('hoc validRegex', this.hocRef?.validRegex)
     }
 }
 </script>
