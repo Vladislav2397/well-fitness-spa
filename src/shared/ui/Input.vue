@@ -15,14 +15,16 @@
             )
         ._value
             input(
-                v-model="inputValue"
+                v-model.lazy="inputValue"
                 :name="name"
                 :disabled="disabled"
                 v-on:input="onInput"
+                v-on:focus="onFocus"
+                v-on:blur="onBlur"
                 autocomplete="false"
             )
             ._placeholder(
-                v-if="!inputValue && placeholder"
+                v-if="!inputValue && !isFocus && placeholder"
             ) {{ placeholder }}
         ._postfix(
             v-if="$slots.postfix"
@@ -59,6 +61,8 @@ export default class Input extends Vue {
 
     @PropSync('error') errorSync?: boolean
 
+    isFocus = false
+
     get classes(): string[] {
         const classes = []
 
@@ -67,6 +71,18 @@ export default class Input extends Vue {
         if (this.errorSync) classes.push('input--error')
 
         return classes
+    }
+
+    onFocus() {
+        this.isFocus = true
+    }
+
+    onBlur() {
+        this.isFocus = false
+    }
+
+    updated(): void {
+        console.log('updated Input')
     }
 
     onInput(): void {

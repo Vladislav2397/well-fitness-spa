@@ -1,10 +1,24 @@
 <template lang="pug">
-.b-test2
-    h1 {{ msg }}
+div(
+    style="padding: 3rem 4rem; background: #000"
+)
+    div(
+        style="background: #fff"
+    )
+        vue-flex(
+            justify-content="start"
+        )
+            span Title
+            div badge
 </template>
 
-<script lang="ts" setup>
-import {ref} from '@vue/composition-api'
+<script lang="ts">
+import { VueFlex } from '@/shared/layouts/VueFlex'
 
-const msg = ref('Hello world')
+export default {
+    name: 'Test',
+    components: {
+        VueFlex
+    }
+}
 </script>

@@ -10,6 +10,7 @@ geckodriver.log
 
 examples/
 output.js
+src/utils/flexibility
 
 
 # local env files

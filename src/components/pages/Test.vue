@@ -3,6 +3,7 @@
 div.test
     .__container.container
         c-hoc(
+            v-model="inputField.value"
             ref="hoc"
             :binding="hocProps"
             :validRegex="inputField.validRegex"
@@ -71,9 +72,9 @@ export default class TestPage extends Mixins(TestServiceProvider) {
         value: '',
         error: false,
         component: 'input',
-        validRegex: /.+/,
+        validRegex: /\d{2}\.\d{2}\.\d{4}/,
         binding: {
-            placeholder
+            placeholder: 'placeholder'
         },
     }
 
@@ -104,6 +105,10 @@ export default class TestPage extends Mixins(TestServiceProvider) {
 
     mounted(): void {
         this.fields = this.createFields()
+    }
+
+    updated(): void {
+        console.log('updated Test')
     }
 
     validate(): void {

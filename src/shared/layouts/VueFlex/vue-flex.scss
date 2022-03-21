@@ -1,0 +1,75 @@
+.vue-flex {
+    display: flex;
+
+    &--jc {
+        &-start {
+            justify-content: flex-start;
+        }
+
+        &-center {
+            justify-content: center;
+        }
+
+        &-end {
+            justify-content: flex-end;
+        }
+
+        &-space-between {
+            justify-content: space-between;
+        }
+
+        &-space-around {
+            justify-content: space-around;
+        }
+
+        &-space-evenly {
+            justify-content: space-evenly;
+        }
+    }
+
+    &--ai {
+        &-start {
+            align-items: flex-start;
+        }
+
+        &-center {
+            align-items: center;
+        }
+
+        &-end {
+            align-items: flex-end;
+        }
+
+        &-stretch {
+            align-items: stretch;
+        }
+    }
+
+    &--d {
+        &-row {
+            flex-direction: row;
+        }
+
+        &-row-reverse {
+            flex-direction: row-reverse;
+        }
+
+        &-column {
+            flex-direction: column;
+        }
+
+        &-column-reverse {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &__item {
+        &--fg {
+            @for $i from 1 through 5 {
+                &-#{$i} {
+                    flex-grow: $i;
+                }
+            }
+        }
+    }
+}

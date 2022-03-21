@@ -3,7 +3,6 @@ import Input from '@/shared/ui/Input.vue'
 
 const withValidation = ({
     binding,
-    listeners,
 }: {
     binding: Record<string, any>
     listeners?: Record<string, any>
