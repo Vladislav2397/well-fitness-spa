@@ -1,21 +1,21 @@
 <template lang="pug">
 
-.footer-middle(
+.b-footer-middle(
     :class="{ 'footer-middle--row' : isRow }"
 )
-    portal-target._section(
+    portal-target.__section(
         v-if="device.size.tablet"
         name="phone"
     )
-    ._section.-dealers(
+    .__section.-dealers(
         v-if="!device.size.desktop"
     )
-        link-component._text.-link.-block(
+        link-component.__text.-link.-block(
             v-for="({ text, href }, index) in dealers"
             :key="index"
             :href="href"
         ) {{ text }}
-    ._section.-mailsend
+    .__section.-mailsend
         input-component(
             v-model="input.value"
             theme="dark"
@@ -25,14 +25,14 @@
                 #postfix
             )
                 i.icon.-size-m.-search
-        portal-target._privacy(
+        portal-target.__privacy(
             name="privacy"
         )
-    portal._section.-phone(
+    portal.__section.-phone(
         :disabled="!device.size.tablet"
         to="phone"
     )
-        ._text
+        .__text
             template(
                 v-if="device.size.tablet"
             ) +7 (000) 000-00-00 #[br] для Москвы
@@ -40,35 +40,35 @@
                 v-else
             ) +7 (000) 000-00-00 для Москвы
 
-        ._text
+        .__text
             template(
                 v-if="device.size.tablet"
             )  8 (800) 000-00-00 #[br] для России
             template(
                 v-else
             ) 8 (800) 000-00-00 для России
-        link-component._text.-link(
+        link-component.__text.-link(
             theme="white"
         ) Заказать звонок
-        portal-target._inner(
+        portal-target.__inner(
             name="email"
         )
 
-    portal._section.-email(
+    portal.__section.-email(
         to="email"
     )
-        ._text wellfitness@wellfit.ru
-        link-component._text.-link(
+        .__text wellfitness@wellfit.ru
+        link-component.__text.-link(
             theme="white"
         ) Написать
-    portal._section.-privacy(
+    portal.__section.-privacy(
         :disabled="!device.size.tablet"
         to="privacy"
     )
-        link-component._text.-link.-block(
+        link-component.__text.-link.-block(
             theme="primary"
         ) Публичная оферта
-        link-component._text.-link.-block(
+        link-component.__text.-link.-block(
             theme="primary"
         ) Политика конфиденциальности
 

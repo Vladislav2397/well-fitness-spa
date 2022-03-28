@@ -1,17 +1,17 @@
 <template lang="pug">
 
-.page-breadcrumb
-    ._container.container
-        ._top
-            i.icon.icon--size-m.icon--home
-            ._links
+.b-page-breadcrumb
+    .__container.container
+        .__top
+            i.b-icon.-size-m.-home
+            .__links
                 link-component(
                     v-for="({ text, href }, index) in list"
                     :key="index"
                     tag="router-link"
                     :href="href"
                 ) {{ text }}
-        ._title {{ title || list.at(-1).text }}
+        .__title {{ title || list.at(-1).text }}
 
 </template>
 

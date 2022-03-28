@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.tiling-layout(
+.b-tiling-layout(
     :style="{ '--item-count': countInRow }"
 )
     slot(

@@ -1,14 +1,14 @@
 <template lang="pug">
 
-router-link.card-product(
+router-link.b-card-product(
     to="/equipment/gym/1"
 )
-    ._image
+    .__image
         img(
             :src="imageSrc"
             :alt="imageAlt"
         )
-    ._content
+    .__content
         slot
     
 </template>

@@ -1,8 +1,8 @@
 <template lang="pug">
 
-.gym-equipment
-    ._container.container
-        grid-section-component._grid(
+.b-gym-equipment
+    .__container.container
+        grid-section-component.__grid(
             title="Тренажеры для фитнес клуба"
             button="Все категории"
             :layout="layout"

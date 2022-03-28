@@ -1,32 +1,32 @@
 <template lang="pug">
 
-.carousel
-    ._container.container
-        c-swiper._swiper
-            c-swiper-slide._slide
-                ._caption
-                    span._brand zero runner
-                    h2._title Бег с нулевой#[br]ударной#[br]нагрузкой#[br]
+.b-carousel
+    .__container.container
+        c-swiper.__swiper
+            c-swiper-slide.__slide
+                .__caption
+                    span.__brand zero runner
+                    h2.__title Бег с нулевой#[br]ударной#[br]нагрузкой#[br]
                         span на&nbsp;суставы
-                    button-component._button(
+                    button-component.__button(
                         tag="button"
                         theme="ghost-brand"
                     ) Узнать больше
-                ._triangle
+                .__triangle
                     img(
                         src="/images/index/triangle.svg"
                     )
-                ._image
+                .__image
                     img(
                         src="/images/carousel/1.png"
                     )
-            ._controls
-                c-button-icon._action.-left
-                c-button-icon._action.-right
+            .__controls
+                c-button-icon.__action.-left
+                c-button-icon.__action.-right
     
 </template>
 
-<script>
+<script lang="ts">
 import { directive, Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import ButtonIcon from '@/components/ui/ButtonIcon.vue'
 
@@ -42,5 +42,5 @@ export default {
 }
 </script>
 
-<style lang="scss" src="carousel--critical.scss"></style>
-<style lang="scss" src="carousel--main.scss"></style>
+<style lang="scss" src="./carousel--critical.scss"></style>
+<style lang="scss" src="./carousel--main.scss"></style>

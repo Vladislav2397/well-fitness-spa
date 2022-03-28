@@ -1,13 +1,12 @@
 <template lang="pug">
-include ../../../tools/pug/mixins
 
-+b.card-grid(
+.b-card-grid(
     :class="classes"
 )
-    +e.title(
+    .__title(
         v-html="title"
     )
-    +e.image
+    .__image
         img(
             :src="imageSrc"
             :alt="imageAlt"

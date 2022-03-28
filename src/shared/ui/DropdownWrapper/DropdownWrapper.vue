@@ -39,12 +39,6 @@ const closeDropdown = () => emit('input', false)
 
 </script>
 
-<script lang="ts">
-export default {
-    name: 'DropdownWrapper'
-}
-</script>
-
 <style lang="scss">
 .dropdown-wrapper {
     position: relative;

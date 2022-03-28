@@ -6,10 +6,10 @@
             :count-in-row="countInRow"
         )
             template(
-                #default="slotProps"
+                #default="{ classItem }"
             )
                 slot(
-                    :classItem="slotProps.classItem"
+                    :classItem="classItem"
                 )
     
 </template>

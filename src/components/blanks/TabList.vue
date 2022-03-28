@@ -1,8 +1,6 @@
 <template lang="pug">
-include ../../tools/pug/mixins
-
-+b.tab-list
-    +e.TAB-COMPONENT.item(
+.b-tab-list
+    tab-component.__item(
         v-for="(tab, index) in list"
         :key="index"
         :value="activeIndex === index"

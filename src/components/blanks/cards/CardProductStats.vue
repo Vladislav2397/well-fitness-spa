@@ -1,38 +1,38 @@
 <template lang="pug">
 
-.card-product-stats
-    ._top
-        quantity-component._quantity(
+.b-card-product-stats
+    .__top
+        quantity-component.__quantity(
             v-if="quantity !== undefined"
             :count="quantity"
         )
-        link-component._link(
+        link-component.__link(
             v-if="hasShowRoom !== undefined"
             tag="router-link"
             href="/"
         ) {{ hasShowRoom ? 'Есть в шоу-руме' : 'Скоро ожидается' }}
-    ._title {{ title }}
-    ._info(
+    .__title {{ title }}
+    .__info(
         v-if="info"
     )
         p(
             v-for="(line, index) in info"
             :key="index"
         ) {{ `${line[0]}: ${line[1]}` }}
-    rating-component._rating(
+    rating-component.__rating(
         v-if="hasRating"
         :count="rating"
         :hasLabel="isRatingLabel"
     )
-    ._bottom
-        ._price(
+    .__bottom
+        .__price(
             :class="{ 'card-product-stats__price--row' : isPriceRow }"
         )
             span {{ price[0].toLocaleString() }}
             del(
                 v-if="price.length > 1"
             ) {{ price[1].toLocaleString() }}
-        ._action(
+        .__action(
             v-if="$slots.action"
         )
             slot(

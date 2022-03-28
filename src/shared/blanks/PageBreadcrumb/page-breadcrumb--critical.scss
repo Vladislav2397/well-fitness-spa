@@ -1,0 +1,43 @@
+.page-breadcrumb {
+    &__top {
+        @media (max-width: 649px) {
+            @include paddingLevel(both, yellow);
+        }
+
+        color: rgba(#384255, 0.6);
+    }
+
+    i.icon,
+    &__links {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__links {
+        margin-left: toRem(12);
+    }
+
+    &__title {
+        @include fontSize(h1, extra);
+
+        padding: toRem(20) 0 toRem(16);
+        border-bottom: 1px solid rgba(#858fa4, 0.2);
+    }
+
+    @media (min-width: 650px) {
+        &__top {
+            padding-top: toRem(40);
+        }
+
+        &__title {
+            @include paddingLevel(top, pink);
+            @include paddingLevel(bottom, orange);
+        }
+    }
+
+    @media (min-width: 1200px) {
+        &__top {
+            padding-top: toRem(60);
+        }
+    }
+}

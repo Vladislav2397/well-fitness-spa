@@ -1,10 +1,14 @@
 import { RouteConfig } from 'vue-router'
 
 import { Index } from '@/pages/Main'
+import { EquipmentGroup } from '@/pages/EquipmentGroup'
+import IdeaPage from '@/components/pages/Idea.vue'
+
 import TestPage from '@/components/pages/Test.vue'
 import Test2Page from '@/pages/Test2.vue'
 
 import { RouteNames } from './helpers'
+import { LastVisitedView } from '@/widgets/LastVisitedView'
 
 export default [
     {
@@ -12,22 +16,23 @@ export default [
         name: RouteNames.INDEX,
         component: Index,
     },
-    // {
-    //     path: '/equipment',
-    //     redirect: '/equipment/home',
-    // },
-    // {
-    //     path: '/equipments/:group',
-    //     name: RouteNames.EQUIPMENT_GROUP,
-    //     component: EquipmentGroupPage,
-    //     beforeEnter: (to, from, next) => {
-    //         if (['home', 'gym'].includes(to.params.group)) {
-    //             next()
-    //         } else {
-    //             next('/equipments/home')
-    //         }
-    //     },
-    // },
+    {
+        path: '/equipments',
+        component: LastVisitedView,
+        redirect: '/equipments/gym',
+        children: [
+            {
+                path: ':group(gym|home)',
+                name: RouteNames.EQUIPMENT_GROUP,
+                component: EquipmentGroup,
+            },
+            {
+                path: '/ideas',
+                name: RouteNames.IDEA,
+                component: IdeaPage,
+            },
+        ],
+    },
     // {
     //     path: '/equipments/:group/:family',
     //     name: RouteNames.EQUIPMENT_FAMILY,
@@ -37,11 +42,6 @@ export default [
     //     path: '/equipments/:group/:family/:id',
     //     name: RouteNames.EQUIPMENT,
     //     component: EquipmentPage,
-    // },
-    // {
-    //     path: '/idea',
-    //     name: RouteNames.IDEA,
-    //     component: IdeaPage,
     // },
     // {
     //     path: '/brands',

@@ -1,15 +1,13 @@
 <template lang="pug">
-    include ../../../tools/pug/mixins
-
-    +b.card-addition
-        +e.image
+    .b-card-addition
+        .__image
             img(
                 :src="imageSrc"
                 :alt="imageAlt"
             )
-        +e.title {{ title }}
-        +e.description {{ description }}
-        +e.LINK-COMPONENT.link(
+        .__title {{ title }}
+        .__description {{ description }}
+        link-component.__link(
             :href="linkHref"
             tag="router-link"
             theme="primary"

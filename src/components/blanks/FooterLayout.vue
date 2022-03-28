@@ -1,15 +1,15 @@
 <template lang="pug">
 
-.footer-layout
-    ._top
+.b-footer-layout
+    .__top
         slot(
             name="top"
         )
-    ._middle
+    .__middle
         slot(
             name="middle"
         )
-    ._bottom
+    .__bottom
         slot(
             name="bottom"
         )
@@ -20,8 +20,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class FooterLayout extends Vue {
-
-}
+export default class FooterLayout extends Vue {}
 
 </script>

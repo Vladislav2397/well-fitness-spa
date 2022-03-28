@@ -1,11 +1,11 @@
 <template lang="pug">
 
-.quantity(
+.b-quantity(
     :class="`quantity--${state.class}`"
 )
     | {{ state.label }}
-    ._list
-        ._dot(
+    .__list
+        .__dot(
             v-for="i in 3"
             :key="i"
             :class="{ 'quantity__dot--fill' : i <= count }"

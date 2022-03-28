@@ -1,19 +1,19 @@
 <template lang="pug">
 
-.input(
+.b-input(
     :class="classes"
 )
-    ._label(
+    .__label(
         v-if="label"
     )
-    label._field
-        ._prefix(
+    label.__field
+        .__prefix(
             v-if="$slots.prefix"
         )
             slot(
                 name="prefix"
             )
-        ._value
+        .__value
             input(
                 :value="inputValue"
                 :name="name"
@@ -21,16 +21,16 @@
                 v-on:input="onInput"
                 autocomplete="false"
             )
-            ._placeholder(
+            .__placeholder(
                 v-if="!inputValue && placeholder"
             ) {{ placeholder }}
-        ._postfix(
+        .__postfix(
             v-if="$slots.postfix"
         )
             slot(
                 name="postfix"
             )
-    ._description(
+    .__description(
         v-if="errorSync && errorText"
     ) {{ errorText }}
 

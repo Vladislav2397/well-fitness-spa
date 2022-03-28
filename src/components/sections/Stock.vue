@@ -1,23 +1,23 @@
 <template lang="pug">
 
-.stock
-    ._container.container
+.b-stock
+    .__container.container
         section-wrapper-component(
             buttonText="Все товары по акции"
         )
             template(
                 #title
             )
-                tab-list-component._tabs.scroll-row(
+                tab-list-component.__tabs.scroll-row(
                     v-model="activeTabIndex"
                     :list="tabList"
                 )
-            ._cards
-                card-product-component._card(
+            .__cards
+                card-product-component.__card(
                     v-for="card in cards"
                     :key="card.id"
                 )
-                    card-product-stats-component._stats(
+                    card-product-stats-component.__stats(
                         :quantity="card.quantity"
                         :hasShowRoom="card.hasShowRoom"
                         :title="card.title"

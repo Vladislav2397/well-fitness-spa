@@ -1,14 +1,14 @@
 <template lang="pug">
 
-section-wrapper-component.grid-section(
+section-wrapper-component.b-grid-section(
     :title="title"
     :buttonText="button"
     @click="clickEmit"
 )
-    vue-grid-component._grid(
+    vue-grid-component.__grid(
         :layout="layout"
     )
-        card-grid-component._card(
+        c-equipment-preview.__card(
             v-for="(card, index) in cardList"
             :key="index"
             :title="card.title"
@@ -25,9 +25,10 @@ import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
 
 import { Point } from './VueGrid.vue'
 
+import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
 import VueGrid from '@/components/blanks/VueGrid.vue'
 import CardGrid from '@/components/blanks/cards/CardGrid.vue'
-import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
+import { EquipmentPreview } from '@/entities/equipment'
 
 export type cardType = {
     title: string
@@ -45,16 +46,13 @@ export type cardType = {
         'section-wrapper-component': SectionWrapper,
         'vue-grid-component': VueGrid,
         'card-grid-component': CardGrid,
-
-    }
+        'c-equipment-preview': EquipmentPreview
+    },
 })
 export default class GridSection extends Vue {
     @Prop() readonly layout!: Point[]
-
     @Prop() readonly cardList!: cardType[]
-
     @Prop() readonly title!: string
-
     @Prop() readonly button!: string
 
     @Emit('click') clickEmit(): void {/**/}

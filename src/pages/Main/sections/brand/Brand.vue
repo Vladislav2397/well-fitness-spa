@@ -1,21 +1,21 @@
 <template lang="pug">
 
-.brand
-    ._container.container
-        section-wrapper-component._wrapper(
+.b-brand
+    .__container.container
+        section-wrapper-component.__wrapper(
             title="Популярные бренды"
             buttonText="Все бренды"
         )
-            ._links.scroll-row
-                link-component._link(
+            .__links.scroll-row
+                link-component.__link(
                     v-for="({text, href}, index) in links"
                     :key="index"
                     :href="href"
                     tag="router-link"
                     theme="dark"
                 ) {{ text }}
-            ._list
-                ._item(
+            .__list
+                .__item(
                     v-for="(i, index) in brandLogoCount"
                     :key="index"
                     :class="itemClasses(index)"
@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
-import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
+import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
 
-import Device, {IDevice} from '@/use/device'
+import {IDevice} from '@/use/device'
 
 @Component({
     components: {

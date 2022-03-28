@@ -1,7 +1,7 @@
 <template lang="pug">
 
-.rating
-    span._label(
+.b-rating
+    span.__label(
         v-if="hasLabel"
         :class="{ 'rating__label--bold': isBold }"
     )
@@ -11,8 +11,8 @@
         template(
             v-else
         ) Рейтинг
-    ._list
-        ._star(
+    .__list
+        .__star(
             v-for="i in 5"
             :key="i"
             :class="{ 'rating__star--fill' : i <= count }"

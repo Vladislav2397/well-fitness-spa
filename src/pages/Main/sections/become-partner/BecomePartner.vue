@@ -1,16 +1,16 @@
 <template lang="pug">
 
-section.become-partner
-    ._container.container
-        ._caption
-            ._content
+section.b-become-partner
+    .__container.container
+        .__caption
+            .__content
                 | Станьте нашим партнером и&nbsp;
                 span получите возможность
                 | &nbsp;представлять нашу продукцию в&nbsp;вашем регионе.
-            button-component._button(
+            button-component.__button(
                 theme="ghost-light"
             ) Стать партнером
-        ._image
+        .__image
             img(
                 src=""
                 alt=""

@@ -83,7 +83,7 @@ header.b-header
 </template>
 
 <script setup lang="ts">
-import { defineEmits } from '@vue/runtime-dom'
+import {defineEmits} from '@vue/runtime-dom'
 import {inject} from '@vue/composition-api'
 
 const device = inject('$device')

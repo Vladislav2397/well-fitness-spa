@@ -1,16 +1,16 @@
 <template lang="pug">
 
-.idea
-    ._container.container
-        section-wrapper-component._wrapper(
+.b-idea
+    .__container.container
+        section-wrapper-component.__wrapper(
             title="Идеи и подборки"
             theme="dark"
             buttonText="Полная подборка"
             buttonTheme="ghost-light"
             @click="onClick"
         )
-            ._list
-                card-idea-component._card(
+            .__list
+                card-idea-component.__card(
                     v-for="({size, src, alt}, index) in cards"
                     :key="index"
                     :size="size"
@@ -51,8 +51,8 @@ export default class Idea extends Vue {
         },
     ]
 
-    onClick() {
-        this.$router.push('/idea')
+    onClick(): void {
+        this.$router.push({ name: 'Idea'})
     }
 }
 

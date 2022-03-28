@@ -1,9 +1,9 @@
 <template lang="pug">
 
-.section-wrapper(
+.b-section-wrapper(
     :class="`section-wrapper--theme-${theme}`"
 )
-    ._title(
+    .__title(
         v-if="title"
     ) {{ title }}
     slot(
@@ -14,7 +14,8 @@
     slot(
         name="button"
     )
-        button-component._button(
+        button-component.__button(
+            v-if="buttonText"
             tag="a"
             :theme="buttonTheme"
             v-on:click="clickEmit"
