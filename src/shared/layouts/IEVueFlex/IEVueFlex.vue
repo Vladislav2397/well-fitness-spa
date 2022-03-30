@@ -1,7 +1,12 @@
 <script lang="ts">
 import {Component, Mixins, Ref} from 'vue-property-decorator'
-import {CreateElement, VNode} from 'vue'
+import {VNode} from 'vue'
 import FlexProps from '@/shared/mixins/FlexProps'
+
+// import read from '@/utils/flexibility/lib/read'
+import readAll from '@/utils/flexibility/lib/readAll'
+// import write from '@/utils/flexibility/lib/write'
+import writeAll from '@/utils/flexibility/lib/writeAll'
 
 const sum = (...args: (number | string)[]) => args.reduce<number>((t, i) => +t + +i, 0)
 
@@ -26,17 +31,17 @@ export default class IEVueFlex extends Mixins(FlexProps) {
     get classes(): string[] {
         const classes: string[] = []
 
-        if (this.justifyContent) {
-            classes.push(`${this.class}--jc-${this.justifyContent}`)
-        }
-
-        if (this.alignItems) {
-            classes.push(`${this.class}--ai-${this.alignItems}`)
-        }
-
-        if (this.direction) {
-            classes.push(`${this.class}--d-${this.direction}`)
-        }
+        // if (this.justifyContent) {
+        //     classes.push(`${this.class}--jc-${this.justifyContent}`)
+        // }
+        //
+        // if (this.alignItems) {
+        //     classes.push(`${this.class}--ai-${this.alignItems}`)
+        // }
+        //
+        // if (this.direction) {
+        //     classes.push(`${this.class}--d-${this.direction}`)
+        // }
 
         return classes
     }
@@ -92,27 +97,27 @@ export default class IEVueFlex extends Mixins(FlexProps) {
 
     slots(): VNode[] {
         return this.currentSlot.map((slot, index) => {
-            let spacing = ''
+            // let spacing = ''
 
-            if (this.justifyContent === 'space-between') {
-                spacing = this.spaceBetween(index) || ''
-            } else if (this.justifyContent === 'space-around') {
-                spacing = this.spaceAround(index) || ''
-            } else if (this.justifyContent === 'space-evenly') {
-                spacing = this.spaceEvenly()
-            }
+            // if (this.justifyContent === 'space-between') {
+            //     spacing = this.spaceBetween(index) || ''
+            // } else if (this.justifyContent === 'space-around') {
+            //     spacing = this.spaceAround(index) || ''
+            // } else if (this.justifyContent === 'space-evenly') {
+            //     spacing = this.spaceEvenly()
+            // }
 
             return this.$createElement('div', {
                 class: `ie-vue-flex__item`,
-                ...this.justifyContent === 'space-between' && spacing && {
-                    style: { 'margin-left':  spacing }
-                },
-                ...this.justifyContent === 'space-around' && spacing && {
-                    style: { 'margin-left':  spacing }
-                },
-                ...this.justifyContent === 'space-evenly' && spacing && {
-                    style: { 'margin-left':  spacing }
-                },
+                // ...this.justifyContent === 'space-between' && spacing && {
+                //     style: { 'margin-left':  spacing }
+                // },
+                // ...this.justifyContent === 'space-around' && spacing && {
+                //     style: { 'margin-left':  spacing }
+                // },
+                // ...this.justifyContent === 'space-evenly' && spacing && {
+                //     style: { 'margin-left':  spacing }
+                // },
                 ref: 'item',
                 refInFor: true,
             }, [ slot ])
@@ -120,7 +125,9 @@ export default class IEVueFlex extends Mixins(FlexProps) {
     }
 
     slotsReverse(): VNode[] {
-        return this.currentSlot.reverse().map((slot, index) => {
+        const copy = [ ...this.currentSlot ]
+
+        return copy.reverse().map((slot, index) => {
             let spacing = ''
 
             if (this.justifyContent === 'space-between') {
@@ -152,34 +159,70 @@ export default class IEVueFlex extends Mixins(FlexProps) {
         this.isMount = true
     }
 
+    get dataStyleAttrs() {
+        let stylesString = 'display: flex'
+
+        const join = (...args: string[]) => [...args].join(';')
+
+        if (this.justifyContent) {
+            stylesString = join(stylesString, `justify-content:${this.justifyContent}`)
+        }
+
+        if (this.alignItems) {
+            stylesString = join(stylesString, `align-items:${this.alignItems}`)
+        }
+
+        if (this.direction) {
+            stylesString = join(stylesString, `flex-direction:${this.direction}`)
+        }
+
+        return stylesString
+    }
+
     root(): VNode {
+
         return this.$createElement(
             'div',
             {
                 class: [
                     this.class,
-                    ...this.classes
+                    // ...this.classes
                 ],
-                ref: 'container'
+                ref: 'container',
+                attrs: {
+                    'data-style': this.dataStyleAttrs
+                }
             },
-            this.direction === 'row-reverse' || this.direction === 'column-reverse'
+            /*this.direction === 'row-reverse' || this.direction === 'column-reverse'
                 ? this.slotsReverse()
-                : this.slots()
+                :*/ this.slots()
         )
     }
 
-    render(h: CreateElement): VNode {
-        console.log('render', this.containerRef)
-
+    render(): VNode {
         const root = this.root()
 
+
         if (this.isMount) {
-            const spacing = this.containerWidth() - this.itemsWidth()
-            console.log(spacing)
+            // const spacing = this.containerWidth() - this.itemsWidth()
+            // flexibility(document.querySelector('.ie-vue-flex'))
+            this.$nextTick(() => {
+                const styles = readAll(document.querySelector('.ie-vue-flex'))
+                console.log('read styles', styles)
+                writeAll(styles)
+            })
         }
 
         return root
     }
+
+    // @Watch('dataStyleAttrs')
+    // onChangeAttrs() {
+    //     this.$nextTick(() => {
+    //         console.log('call flexibility')
+    //         console.log('flex write', write(read(document.querySelector('.ie-vue-flex'))))
+    //     })
+    // }
 }
 </script>
 

@@ -14,6 +14,9 @@ module.exports = {
         '../src/stories/**/*.stories.mdx',
         '../src/stories/**/*.stories.@(js|jsx|ts|tsx)',
     ],
+    features: {
+        babelModelV7: true,
+    },
     addons: [
         '@storybook/addon-docs',
         '@storybook/addon-links',

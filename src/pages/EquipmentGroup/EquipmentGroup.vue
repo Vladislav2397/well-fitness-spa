@@ -1,4 +1,5 @@
 <template lang="pug">
+
 .b-equipment-group
     page-breadcrumb-component(
         :list="breadcrumbList"
@@ -20,7 +21,6 @@
                     :title="product.title"
                     :list="product.list"
                 )
-
     c-idea
     c-stock
 </template>

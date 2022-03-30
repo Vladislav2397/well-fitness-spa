@@ -6,14 +6,14 @@ export default {
     component: Flex,
     argTypes: defineControls({
         justifyContent: [
-            'start',
+            'flex-start',
             'center',
-            'end',
+            'flex-end',
             'space-between',
             'space-around',
             'space-evenly',
         ],
-        alignItems: ['start', 'center', 'end', 'stretch'],
+        alignItems: ['flex-start', 'center', 'flex-end', 'stretch'],
         direction: ['row', 'row-reverse', 'column', 'column-reverse'],
     }),
 }

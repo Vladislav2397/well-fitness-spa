@@ -1,90 +1,98 @@
-.ie-vue-flex {
-    $b: &;
-
-    &::before {
-        content: '';
-        height: 100%;
-        width: 0;
-        display: inline-block;
-    }
-
-    &--jc {
-        &-start {
-            text-align: left;
-        }
-
-        &-center {
-            text-align: center;
-        }
-
-        &-end {
-            text-align: right;
-        }
-
-        &-space-between {
-            //text-align: center;
-        }
-
-        &-space-around {
-            //text-align: center;
-        }
-
-        &-space-evenly {
-            //text-align: center;
-        }
-    }
-
-    &--ai {
-        &-start {
-            &::before {
-                vertical-align: top;
-            }
-
-            #{$b}__item {
-                vertical-align: top;
-            }
-        }
-
-        &-center {
-            &::before {
-                vertical-align: middle;
-            }
-
-            #{$b}__item {
-                vertical-align: middle;
-            }
-        }
-
-        &-end {
-            &::before {
-                vertical-align: bottom;
-            }
-
-            #{$b}__item {
-                vertical-align: bottom;
-            }
-        }
-
-        &-stretch {
-            &::before {
-                vertical-align: top;
-            }
-
-            #{$b}__item {
-                height: 100%;
-
-                & > * {
-                    height: 100%;
-                }
-            }
-        }
-    }
-
-    &__item {
-        display: inline-block;
-
-        & > * {
-            display: inline-block;
-        }
-    }
-}
+//.ie-vue-flex {
+//    $b: &;
+//
+//    &::before {
+//        content: '';
+//        height: 100%;
+//        width: 0;
+//        display: inline-block;
+//    }
+//
+//    &--jc {
+//        &-start {
+//            text-align: left;
+//        }
+//
+//        &-center {
+//            text-align: center;
+//        }
+//
+//        &-end {
+//            text-align: right;
+//        }
+//
+//        &-space-between {
+//            //text-align: center;
+//        }
+//
+//        &-space-around {
+//            //text-align: center;
+//        }
+//
+//        &-space-evenly {
+//            //text-align: center;
+//        }
+//    }
+//
+//    &--ai {
+//        &-start {
+//            &::before {
+//                vertical-align: top;
+//            }
+//
+//            #{$b}__item {
+//                vertical-align: top;
+//            }
+//        }
+//
+//        &-center {
+//            &::before {
+//                vertical-align: middle;
+//            }
+//
+//            #{$b}__item {
+//                vertical-align: middle;
+//            }
+//        }
+//
+//        &-end {
+//            &::before {
+//                vertical-align: bottom;
+//            }
+//
+//            #{$b}__item {
+//                vertical-align: bottom;
+//            }
+//        }
+//
+//        &-stretch {
+//            &::before {
+//                vertical-align: top;
+//            }
+//
+//            #{$b}__item {
+//                height: 100%;
+//
+//                & > * {
+//                    height: 100%;
+//                }
+//            }
+//        }
+//    }
+//
+//    &--d {
+//        &-column {
+//            #{$b}__item {
+//                display: block;
+//            }
+//        }
+//    }
+//
+//    &__item {
+//        display: inline-block;
+//
+//        & > * {
+//            display: inline-block;
+//        }
+//    }
+//}
