@@ -101,11 +101,11 @@ const clickCityEmit = () => emit('clickCity')
 const additionItems = [
     {
         text: 'Для дома',
-        href: '/equipment/home',
+        href: '/equipments/home',
     },
     {
         text: 'Для фитнес клуба',
-        href: '/equipment/gym',
+        href: '/equipments/gym',
     },
 ]
 

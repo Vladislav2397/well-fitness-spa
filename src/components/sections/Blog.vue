@@ -1,19 +1,19 @@
 <template lang="pug">
 
 section.blog
-    ._container.container
-        section-wrapper-component._wrapper(
+    .__container.container
+        section-wrapper-component.__wrapper(
             buttonText="Все новости"
         )
             template(
                 v-slot:title
             )
-                tab-list-component._tabs.scroll-row(
+                tab-list-component.__tabs.scroll-row(
                     v-model="activeTabIndex"
                     :list="tabList"
                 )
             template
-                ._list.scroll-row
+                .__list.scroll-row
                     card-blog-component._item(
                         v-for="card in cardList"
                         :key="card.id"

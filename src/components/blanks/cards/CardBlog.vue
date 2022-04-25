@@ -1,14 +1,15 @@
 <template lang="pug">
-.card-blog
-    ._image
+
+.b-card-blog
+    .__image
         img(
             :src="imageSrc"
             :alt="imageAlt"
         )
-    ._content
-        ._title {{ title }}
-        ._description {{ description }}
-        ._date {{ date }}
+    .__content
+        .__title {{ title }}
+        .__description {{ description }}
+        .__date {{ date }}
     
 </template>
 

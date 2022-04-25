@@ -26,3 +26,12 @@ function createDecoratorFactory(
         })
     }
 }
+
+export const Service = (serviceName: string) =>
+    createDecorator((options, key) => {
+        if (!('dependencies' in options)) {
+            options['dependencies'] = {}
+        }
+
+        options.dependencies[key] = serviceName
+    })

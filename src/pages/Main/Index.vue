@@ -23,7 +23,7 @@ import { Brand } from './sections/brand'
 import { Addition } from './sections/addition'
 import { About } from './sections/about'
 import { BecomePartner } from './sections/become-partner'
-import Blog from '@/components/sections/Blog.vue'
+import { Blog } from '@/shared/blanks/Blog'
 
 export default {
     components: {

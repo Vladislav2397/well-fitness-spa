@@ -1,1 +1,3 @@
-export { Action, Getter } from '@/shared/config/decorators'
+import { Action, Getter, Service } from '@/shared/config/decorators'
+
+export { Action, Getter, Service }

@@ -3,9 +3,6 @@ import Vue from 'vue'
 import PortalVue from 'portal-vue'
 Vue.use(PortalVue)
 
-import VueTypeDI from 'vue-typedi'
-Vue.use(VueTypeDI)
-
 // @ts-ignore
 import VueInjector from 'vue-inject'
 Vue.use(VueInjector)

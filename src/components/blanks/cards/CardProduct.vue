@@ -1,7 +1,7 @@
 <template lang="pug">
 
 router-link.b-card-product(
-    to="/equipment/gym/1"
+    :to="to"
 )
     .__image
         img(
@@ -20,6 +20,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class CardProduct extends Vue {
     @Prop({ default: '' }) readonly imageSrc!: string
     @Prop({ default: '' }) readonly imageAlt!: string
+    @Prop({ default: '' }) readonly to!: string
 }
 
 </script>
+
+<style lang="scss" src="../../../assets/scss/blanks/cards/card-product/card-product--critical.scss" />
+<style lang="scss" src="../../../assets/scss/blanks/cards/card-product/card-product--main.scss" />

@@ -1,7 +1,7 @@
 <template lang="pug">
 
-.catalog-layout
-    ._main
+.b-catalog-layout
+    .__main
         slot
     slot(
         name="aside"

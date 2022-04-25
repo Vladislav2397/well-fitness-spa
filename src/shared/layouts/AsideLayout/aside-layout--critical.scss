@@ -1,0 +1,51 @@
+.aside-layout {
+    position: relative;
+
+    &__main,
+    &__aside {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &__main {
+        width: 100%;
+    }
+
+    @media (max-width: 649px) {
+        &__aside {
+            position: absolute;
+        }
+    }
+
+    @media (min-width: 650px) {
+        &__main {
+            width: t-columns(8);
+        }
+
+        &__aside {
+            width: t-columns(4);
+            margin-left: t-columns(0);
+        }
+    }
+
+    @media (min-width: 1200px) {
+        &__main {
+            width: d-columns(9, 2);
+        }
+
+        &__aside {
+            width: d-columns(3) - d-columns(0) - d-columns(0);
+            margin-left: d-columns(0);
+        }
+    }
+
+    @media (min-width: 1410px) {
+        &__main {
+            width: d-columns(10);
+        }
+
+        &__aside {
+            width: d-columns(2);
+        }
+    }
+}

@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
+import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import PageBreadcrumb, {
     breadcrumbListType

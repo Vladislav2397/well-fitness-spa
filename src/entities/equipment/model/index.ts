@@ -1,37 +1,83 @@
-import { Module } from 'vuex'
+import { Module, Getter } from 'vuex'
 import { actions } from './actions'
 
+import { state, EquipmentState } from './state'
+
 type VuexState = {
-    cards: {
-        group: 'gym' | 'home'
-        title: string
-        href: string
-        image: {
-            src: string
-            alt: string
+    //
+}
+
+type GetterType = Getter<EquipmentState, VuexState>
+
+const families: GetterType = (state) => state.families
+
+const categories: GetterType = (state) => state.categories
+
+const activeCategory: GetterType = (state) => state.activeCategory ?? Object.keys(state.categories)[0]
+
+const stockEquipments: GetterType = (state) => {
+    const result: typeof state.equipments = {}
+
+    state.isPromo.forEach((id) => {
+        result[id] = state.equipments[id]
+    })
+
+    return result
+}
+
+const equipments: GetterType = (state) => state.equipments
+
+export const module: Module<EquipmentState, VuexState> = {
+    namespaced: true,
+    state,
+    actions: {
+        setEquipments({ commit }, payload) {
+            commit('setEquipments', payload)
+        },
+        setEquipmentFamilies({ commit }, payload) {
+            commit('setEquipmentFamilies', payload)
+        },
+        setEquipmentCategories({ commit }, payload) {
+            commit('setEquipmentCategories', payload)
+        },
+        setActiveCategory({ commit }, payload) {
+            commit('setActiveCategory', payload)
         }
-        theme: 'dark' | 'secondary' | 'light'
-        stretch: 'horizontal' | 'vertical'
-    }[]
-}
+    },
+    mutations: {
+        setEquipments(state, payload: typeof state.equipments) {
+            state.equipments = {...state.equipments, ...payload}
 
-type GetterType = (state: VuexState) => unknown
+            // Object.entries(payload).forEach(
+            //     ([id, equipment]) => {
+            //         state.equipments[id] = { ...equipment }
+            //     }
+            // )
+        },
+        setEquipmentFamilies(state, payload) {
+            state.families = { ...state.families, ...payload }
 
-const equipmentForGym: GetterType = (state) => {
-    return state.cards.filter((card) => card.group === 'gym')
-}
+            // Object.entries(payload).forEach(([id, family]) => {
+            //     state.families[id] = { ...family }
+            // })
+        },
+        setEquipmentCategories(state, payload) {
+            state.categories = { ...state.categories, ...payload }
 
-const equipmentForHome: GetterType = (state) => {
-    return state.cards.filter((card) => card.group === 'gym')
-}
-
-export const module: Module<VuexState, {}> = {
-    state: () => ({
-        cards: [],
-    }),
+            // Object.entries(payload).forEach(([id, category]) => {
+            //     state.categories[id] = { ...category }
+            // })
+        },
+        setActiveCategory(state, payload) {
+            state.activeCategory = payload
+        }
+    },
     getters: {
-        equipmentForGym,
-        equipmentForHome,
+        families,
+        activeCategory,
+        equipments,
+        stockEquipments,
+        categories,
     },
 }
 

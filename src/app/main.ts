@@ -1,7 +1,11 @@
 import Vue from 'vue'
 
 import router from './router'
-import store from '@/store'
+import store from './providers/store'
+
+// @ts-ignore
+import injector from 'vue-inject'
+injector.constant('$store', store)
 
 import App from './Index.vue'
 

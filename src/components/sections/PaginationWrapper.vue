@@ -1,11 +1,11 @@
 <template lang="pug">
 
-.pagination-wrapper
-    ._container.container
+.b-pagination-wrapper
+    .__container.container
         slot
-        ._wrapper
-            link-component._link Показать еще
-            pagination-component._pagination(
+        .__wrapper
+            link-component.__link Показать еще
+            pagination-component.__pagination(
                 v-model="pageCount"
             )
 

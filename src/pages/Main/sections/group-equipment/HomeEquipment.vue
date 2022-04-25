@@ -13,16 +13,16 @@
 </template>
 
 <script lang="ts">
-import {Component, Inject, Vue} from 'vue-property-decorator'
+import { Component, Inject, Vue } from 'vue-property-decorator'
 
 import GridLayout from '@/components/blanks/GridLayout.vue'
 import CardGrid from '@/components/blanks/cards/CardGrid.vue'
-import VueGrid, {Point} from '@/components/blanks/VueGrid.vue'
+import VueGrid, { Point } from '@/components/blanks/VueGrid.vue'
 
-import GridSection, {cardType} from '@/components/blanks/GridSection.vue'
+import GridSection, { cardType } from '@/components/blanks/GridSection.vue'
 
-import {IDevice} from '@/use/device'
-import {RouteNames} from '@/app/router/helpers'
+import { IDevice } from '@/use/device'
+import { RouteNames } from '@/app/router/helpers'
 
 export type onHomeEquipmentCreatedHook = () => void
 
@@ -76,14 +76,14 @@ export default class HomeEquipmentPage extends Vue {
         [3, 2, 1, 1],
     ]
 
-    get layout (): Point[] {
+    get layout(): Point[] {
         if (this.device.size.tabletLate) return this.layoutDesktop
         if (this.device.size.tablet) return this.layoutTablet
         if (this.device.size.mobile) return this.layoutMobile
         return this.layoutDesktop
     }
 
-    get cardList (): cardType[] {
+    get cardList(): cardType[] {
         return [
             {
                 title: 'Беговые<br />дорожки',

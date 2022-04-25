@@ -1,5 +1,3 @@
-import PageBreadcrumb from './PageBreadcrumb.vue'
+import PageBreadcrumb, { breadcrumbListType } from './PageBreadcrumb.vue'
 
-export {
-    PageBreadcrumb
-}
+export { PageBreadcrumb, breadcrumbListType }

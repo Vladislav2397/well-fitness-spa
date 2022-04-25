@@ -2,6 +2,8 @@ import { RouteConfig } from 'vue-router'
 
 import { Index } from '@/pages/Main'
 import { EquipmentGroup } from '@/pages/EquipmentGroup'
+import { EquipmentFamily } from '@/pages/EquipmentFamily'
+
 import IdeaPage from '@/components/pages/Idea.vue'
 
 import TestPage from '@/components/pages/Test.vue'
@@ -25,6 +27,11 @@ export default [
                 path: ':group(gym|home)',
                 name: RouteNames.EQUIPMENT_GROUP,
                 component: EquipmentGroup,
+            },
+            {
+                path: ':group(gym|home)/:family',
+                name: RouteNames.EQUIPMENT_FAMILY,
+                component: EquipmentFamily,
             },
             {
                 path: '/ideas',

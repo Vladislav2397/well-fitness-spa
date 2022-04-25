@@ -1,39 +1,32 @@
 <template lang="pug">
 
-.equipment-type-detail
-    banner-component._banner
-    link-component._link(
+.b-equipment-type-detail
+    banner-component.__banner
+    link-component.__link(
         v-if="device.size.mobile"
         :iconLeft="true"
         icon="filter"
         theme="dark"
         @click="isModal = true"
     ) Фильтры
-    tag-group-component._tags(
-        v-model="tags.active"
-        :list="tags.list"
-    )
-    sort-component._sort(
-        v-if="!device.size.mobile"
-        v-model="filters.active"
-        :list="filters.list"
-    )
-    catalog-layout-component
+    c-category-filters
+    c-sorting
+    l-aside-layout
         template(
             #default
         )
-            tiling-layout-component._tiling(
+            tiling-layout-component.__tiling(
                 :count-in-row="rowCount"
             )
                 template(
                     #default="{ classItem }"
                 )
-                    card-product-component._card(
+                    card-product-component.__card(
                         v-for="(item, index) in productList"
                         :key="index"
                         :class="classItem"
                     )
-                        card-product-stats-component._content(
+                        card-product-stats-component.__content(
                             :has-show-room="true"
                             :price="item.price"
                             :quantity="item.quantity"
@@ -46,11 +39,11 @@
         template(
             #aside="{ classContainer }"
         )
-            ._aside(
+            .__aside(
                 v-if="!device.size.mobile"
                 :class="classContainer"
             )
-                filter-group-component._group(
+                filter-group-component.__group(
                     v-for="({ title, filters }, index) in filterList"
                     :key="index"
                     :title="title"
@@ -65,13 +58,13 @@
                             :id="`input${index}${name}`"
                             :class="classItem"
                         ) {{ name }}
-                filter-group-component._group(
+                filter-group-component.__group(
                     title="Цена"
                 )
                     range-component(
                         :range="[2000, 10000]"
                     )
-                filter-group-component._group
+                filter-group-component.__group
                     button-component(
                         theme="ghost-brand"
                     ) Очистить
@@ -84,9 +77,8 @@
 </template>
 
 <script lang="ts">
-import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
+import {Component, Inject, Vue} from 'vue-property-decorator'
 
-import TagGroup from '@/components/blanks/TagGroup.vue'
 import Banner from '@/components/blanks/Banner.vue'
 import Sort from '@/components/blanks/Sort.vue'
 import TilingLayout from '@/components/layouts/TilingLayout.vue'
@@ -100,9 +92,17 @@ import Checkbox from '@/components/ui/Checkbox.vue'
 import Range from '@/components/ui/Range.vue'
 
 import { IDevice } from '@/use/device'
+// import { EquipmentCategoryFilters } from '@/features/equipmentCategoryFilters'
+import AsideLayout from '@/shared/layouts/AsideLayout/AsideLayout.vue'
+import { CategoryFilters, Sorting }
+    from '@/features/equipment'
 
 @Component({
     components: {
+        'c-sorting': Sorting,
+        'c-category-filters': CategoryFilters,
+        'l-aside-layout': AsideLayout,
+        // 'c-equipment-category-filters': EquipmentCategoryFilters,
         'range-component': Range,
         'checkbox-component': Checkbox,
         'filter-group-component': FilterGroup,
@@ -113,7 +113,6 @@ import { IDevice } from '@/use/device'
         'card-product-component': CardProduct,
         'tiling-layout-component': TilingLayout,
         'sort-component': Sort,
-        'tag-group-component': TagGroup,
         'banner-component': Banner,
     },
 })
@@ -121,26 +120,6 @@ export default class EquipmentTypeDetail extends Vue {
     @Inject('$device') device!: IDevice
 
     isModal = false
-
-    tags = {
-        active: 0,
-        list: [
-            'Беговые дорожки',
-            'Эллиптические',
-            'Велотренажеры',
-            'Степперы',
-        ]
-    }
-
-    filters = {
-        active: 0,
-        list: [
-            'По популярности',
-            'По новизне',
-            'По цене',
-            'По рейтингу',
-        ]
-    }
 
     productList = [
         {

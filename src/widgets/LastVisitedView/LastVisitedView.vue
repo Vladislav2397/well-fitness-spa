@@ -1,4 +1,5 @@
 <template lang="pug">
+
 .b-last-visited-view
     router-view
     .container
