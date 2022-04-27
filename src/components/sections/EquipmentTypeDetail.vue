@@ -92,7 +92,6 @@ import Checkbox from '@/components/ui/Checkbox.vue'
 import Range from '@/components/ui/Range.vue'
 
 import { IDevice } from '@/use/device'
-// import { EquipmentCategoryFilters } from '@/features/equipmentCategoryFilters'
 import AsideLayout from '@/shared/layouts/AsideLayout/AsideLayout.vue'
 import { CategoryFilters, Sorting }
     from '@/features/equipment'
@@ -102,7 +101,6 @@ import { CategoryFilters, Sorting }
         'c-sorting': Sorting,
         'c-category-filters': CategoryFilters,
         'l-aside-layout': AsideLayout,
-        // 'c-equipment-category-filters': EquipmentCategoryFilters,
         'range-component': Range,
         'checkbox-component': Checkbox,
         'filter-group-component': FilterGroup,
