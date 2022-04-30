@@ -7,7 +7,7 @@ type NormalizrList<T extends { id: StringNumber | string | number }> = Record<
 
 export type Equipment = {
     id: StringNumber
-    title: string
+    name: string
     image: string
     price: {
         current: string
@@ -35,9 +35,11 @@ export type EquipmentState = {
     activeCategory: Maybe<Equipment['id']>
     categories: NormalizrList<EquipmentCategory>
     equipments: NormalizrList<Equipment>
+    activeEquipments: Equipment['id'][]
 }
 
 export const state: () => EquipmentState = () => ({
+    activeFamily: null,
     families: {
         '1': {
             id: '1',
@@ -65,7 +67,7 @@ export const state: () => EquipmentState = () => ({
     equipments: {
         '1': {
             id: '1',
-            title: 'Беговая дорожка',
+            name: 'Беговая дорожка',
             image: '',
             price: {
                 current: '2352',
@@ -74,7 +76,7 @@ export const state: () => EquipmentState = () => ({
         },
         '2': {
             id: '2',
-            title: 'Беговая дорожка',
+            name: 'Беговая дорожка',
             image: '',
             price: {
                 current: '23252',
@@ -83,7 +85,7 @@ export const state: () => EquipmentState = () => ({
         },
         '3': {
             id: '3',
-            title: 'Беговая дорожка',
+            name: 'Беговая дорожка',
             image: '',
             price: {
                 current: '23352',
@@ -92,7 +94,7 @@ export const state: () => EquipmentState = () => ({
         },
         '4': {
             id: '4',
-            title: 'Беговая дорожка',
+            name: 'Беговая дорожка',
             image: '',
             price: {
                 current: '24352',
@@ -100,4 +102,5 @@ export const state: () => EquipmentState = () => ({
             },
         },
     },
+    activeEquipments: []
 })

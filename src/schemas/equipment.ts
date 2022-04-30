@@ -10,4 +10,6 @@ export const equipmentFamilySchema = new schema.Entity('equipmentFamily', {
     categories: [equipmentCategorySchema],
 })
 
+export const familySchema = equipmentFamilySchema
+
 export const equipmentFamiliesSchema = new schema.Array(equipmentFamilySchema)

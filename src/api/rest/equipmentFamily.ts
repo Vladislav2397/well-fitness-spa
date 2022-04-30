@@ -1,5 +1,7 @@
 import API from '@/api/types'
 import { imageType } from '@/store/types'
+import makeRequest from '@/shared/api/helpers/makeRequest'
+import { StringNumber } from '@/types/common'
 
 export namespace equipmentFamily {
     export type list = {
@@ -33,6 +35,12 @@ const getFamilies: equipmentFamily.getList = (type) => {
     })
 }
 
+const getCategory = (id: StringNumber) =>
+    makeRequest({
+        url: `${process.env.VUE_APP_API_HOST}api/v1/categories/${id}`,
+    })
+
 export default {
     getFamilies,
+    getCategory,
 }

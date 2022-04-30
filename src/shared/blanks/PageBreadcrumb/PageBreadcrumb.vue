@@ -11,7 +11,7 @@
                     tag="router-link"
                     :href="href"
                 ) {{ text }}
-        .__title {{ title || list.at(-1).text }}
+        .__title {{ currentTitle }}
 
 </template>
 
@@ -27,6 +27,10 @@ export type breadcrumbListType = {
 export default class PageBreadcrumb extends Vue {
     @Prop() readonly list!: breadcrumbListType
     @Prop() readonly title!: string
+
+    get currentTitle(): string {
+        return this.title || (this.list?.at(-1)?.text ?? '')
+    }
 }
 </script>
 

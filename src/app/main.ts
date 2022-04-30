@@ -3,6 +3,11 @@ import Vue from 'vue'
 import router from './router'
 import store from './providers/store'
 
+import { PiniaVuePlugin, createPinia } from 'pinia'
+
+Vue.use(PiniaVuePlugin)
+const pinia = createPinia()
+
 // @ts-ignore
 import injector from 'vue-inject'
 injector.constant('$store', store)
@@ -27,6 +32,7 @@ const app = new Vue({
     },
     router,
     store,
+    pinia,
     render: (h) => h(App),
 })
 

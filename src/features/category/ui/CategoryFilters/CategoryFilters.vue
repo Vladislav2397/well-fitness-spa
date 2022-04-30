@@ -19,6 +19,7 @@ import {Component, Vue, Inject} from 'vue-property-decorator'
 import RowLayout from '@/components/layouts/RowLayout.vue'
 import { IDevice } from '@/use/device'
 import { Action, Getter } from '@/shared/config'
+// import { categoryModel } from '@/entities/category'
 
 @Component({
     components: {
@@ -34,6 +35,8 @@ export default class CategoryFilters extends Vue {
 
     @Action('equipment/setActiveCategory') setActiveCategory!: (id: string) => void
 
+    // categoryStore = categoryModel.useStore()
+
     get activeFamily(): string {
         return this.$route.params?.family ?? '1'
     }
@@ -46,7 +49,7 @@ export default class CategoryFilters extends Vue {
 
     get list(): { id: string, name: string }[] {
         if (this.families[this.activeFamily]) {
-            this.setActiveCategory(this.families[this.activeFamily].categories[0])
+            // this.setActiveCategory(this.families[this.activeFamily].categories[0])
 
             return this.families[this.activeFamily].categories.map(
                 id => this.categories[id]
@@ -60,6 +63,7 @@ export default class CategoryFilters extends Vue {
     }
 
     onClick(id: string): void {
+        console.log('onClick setActiveCategory', id)
         this.setActiveCategory(id)
     }
 }

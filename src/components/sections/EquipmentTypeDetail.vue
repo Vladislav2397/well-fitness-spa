@@ -21,21 +21,12 @@
                 template(
                     #default="{ classItem }"
                 )
-                    card-product-component.__card(
-                        v-for="(item, index) in productList"
+                    c-equipment-card.__card(
+                        v-for="(card, index) in cards"
                         :key="index"
                         :class="classItem"
+                        :equipmentCard="card"
                     )
-                        card-product-stats-component.__content(
-                            :has-show-room="true"
-                            :price="item.price"
-                            :quantity="item.quantity"
-                            :title="item.title"
-                            :rating="item.rating"
-                            :info="device.size.desktop ? item.info : []"
-                            :is-rating-label="!device.size.mobile"
-                            :is-price-row="device.size.tablet"
-                        )
         template(
             #aside="{ classContainer }"
         )
@@ -80,7 +71,6 @@
 import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import Banner from '@/components/blanks/Banner.vue'
-import Sort from '@/components/blanks/Sort.vue'
 import TilingLayout from '@/components/layouts/TilingLayout.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
@@ -91,13 +81,18 @@ import FilterGroup from '@/components/blanks/FilterGroup.vue'
 import Checkbox from '@/components/ui/Checkbox.vue'
 import Range from '@/components/ui/Range.vue'
 
+import { Sorting } from '@/features/equipment'
+import { CategoryFilters } from '@/features/category'
+import { EquipmentCard } from '@/entities/equipment'
+import { AsideLayout } from '@/shared/layouts/AsideLayout'
+
 import { IDevice } from '@/use/device'
-import AsideLayout from '@/shared/layouts/AsideLayout/AsideLayout.vue'
-import { CategoryFilters, Sorting }
-    from '@/features/equipment'
+import { Getter } from '@/shared/config'
+import { StringNumber } from '@/types/common'
 
 @Component({
     components: {
+        'c-equipment-card': EquipmentCard,
         'c-sorting': Sorting,
         'c-category-filters': CategoryFilters,
         'l-aside-layout': AsideLayout,
@@ -110,87 +105,20 @@ import { CategoryFilters, Sorting }
         'card-product-stats-component': CardProductStats,
         'card-product-component': CardProduct,
         'tiling-layout-component': TilingLayout,
-        'sort-component': Sort,
         'banner-component': Banner,
     },
 })
 export default class EquipmentTypeDetail extends Vue {
     @Inject('$device') device!: IDevice
 
+    @Getter('equipment/activeEquipments') activeEquipments!: StringNumber[]
+    @Getter('equipment/equipments') equipments!: Record<string, any>
+
     isModal = false
 
-    productList = [
-        {
-            quantity: 3,
-            hasShowRoom: true,
-            title: "Беговая дорожка CardioPower S35",
-            rating: 5,
-            price: [133000, 140000],
-            info: [
-                ['Тип дорожки', 'Домашняя'],
-                ['Бег.полотно', '1200 х 450 мм'],
-                ['Мощность двигателя', '2,0 л.с.'],
-                ['Беговое полотно', '2-х слойное'],
-                ['Производитель', 'Cardio Power'],
-            ]
-        },
-        {
-            quantity: 3,
-            hasShowRoom: true,
-            title: "Беговая дорожка CardioPower S35",
-            rating: 5,
-            price: [133000, 140000],
-            info: [
-                ['Тип дорожки', 'Домашняя'],
-                ['Бег.полотно', '1200 х 450 мм'],
-                ['Мощность двигателя', '2,0 л.с.'],
-                ['Беговое полотно', '2-х слойное'],
-                ['Производитель', 'Cardio Power'],
-            ]
-        },
-        {
-            quantity: 3,
-            hasShowRoom: true,
-            title: "Беговая дорожка CardioPower S35",
-            rating: 5,
-            price: [133000, 140000],
-            info: [
-                ['Тип дорожки', 'Домашняя'],
-                ['Бег.полотно', '1200 х 450 мм'],
-                ['Мощность двигателя', '2,0 л.с.'],
-                ['Беговое полотно', '2-х слойное'],
-                ['Производитель', 'Cardio Power'],
-            ]
-        },
-        {
-            quantity: 3,
-            hasShowRoom: true,
-            title: "Беговая дорожка CardioPower S35",
-            rating: 5,
-            price: [133000, 140000],
-            info: [
-                ['Тип дорожки', 'Домашняя'],
-                ['Бег.полотно', '1200 х 450 мм'],
-                ['Мощность двигателя', '2,0 л.с.'],
-                ['Беговое полотно', '2-х слойное'],
-                ['Производитель', 'Cardio Power'],
-            ]
-        },
-        {
-            quantity: 3,
-            hasShowRoom: true,
-            title: "Беговая дорожка CardioPower S35",
-            rating: 5,
-            price: [133000, 140000],
-            info: [
-                ['Тип дорожки', 'Домашняя'],
-                ['Бег.полотно', '1200 х 450 мм'],
-                ['Мощность двигателя', '2,0 л.с.'],
-                ['Беговое полотно', '2-х слойное'],
-                ['Производитель', 'Cardio Power'],
-            ]
-        },
-    ]
+    get cards(): EquipmentCard['equipmentCard'][] {
+        return this.activeEquipments.map(id => this.equipments[id])
+    }
 
     filterList = [
         {

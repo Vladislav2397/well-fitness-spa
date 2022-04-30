@@ -20,8 +20,6 @@ function createDecoratorFactory(
                 return
             }
 
-            console.log(mapFn(mapObject)[key])
-
             options[optionsKey]![key] = mapFn(mapObject)[key]
         })
     }

@@ -33,6 +33,7 @@
         "imagemin-pngquant": "^9.0.2",
         "ncp": "^2.0.0",
         "normalizr": "^3.6.2",
+        "pinia": "^2.0.13",
         "portal-vue": "^2.1.7",
         "postcss-loader": "^6.2.1",
         "prettier": "^2.5.1",

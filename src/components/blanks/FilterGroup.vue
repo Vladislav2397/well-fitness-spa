@@ -1,9 +1,9 @@
 <template lang="pug">
 
-.filter-group(
+.b-filter-group(
     :class="classes"
 )
-    ._title(
+    .__title(
         v-if="title"
     ) {{ title }}
     slot(

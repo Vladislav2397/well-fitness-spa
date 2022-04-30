@@ -56,7 +56,7 @@ export type ProductCardType = {
     hasShowRoom?: boolean,
     title: string,
     rating: 1 | 2 | 3 | 4 | 5,
-    price: [current: number, old?: number]
+    price: [current: string | number, old?: string | number]
 }
 
 @Component({

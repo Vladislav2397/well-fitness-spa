@@ -1,4 +1,4 @@
-<template lang="pug">
+<template lang="pug" functional>
 
 .b-aside-layout
     .__main
@@ -9,15 +9,6 @@
     )
 
 </template>
-
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
-@Component
-export default class AsideLayout extends Vue {
-
-}
-</script>
 
 <style lang="scss" src="./aside-layout--critical.scss"></style>
 <style lang="scss" src="./aside-layout--main.scss"></style>

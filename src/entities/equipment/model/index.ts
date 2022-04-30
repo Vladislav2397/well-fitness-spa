@@ -1,5 +1,4 @@
 import { Module, Getter } from 'vuex'
-import { actions } from './actions'
 
 import { state, EquipmentState } from './state'
 
@@ -27,12 +26,17 @@ const stockEquipments: GetterType = (state) => {
 
 const equipments: GetterType = (state) => state.equipments
 
+const activeEquipments: GetterType = (state) => state.activeEquipments ?? []
+
 export const module: Module<EquipmentState, VuexState> = {
     namespaced: true,
     state,
     actions: {
         setEquipments({ commit }, payload) {
             commit('setEquipments', payload)
+        },
+        setActiveEquipments({ commit }, payload) {
+            commit('setActiveEquipments', payload)
         },
         setEquipmentFamilies({ commit }, payload) {
             commit('setEquipmentFamilies', payload)
@@ -41,32 +45,22 @@ export const module: Module<EquipmentState, VuexState> = {
             commit('setEquipmentCategories', payload)
         },
         setActiveCategory({ commit }, payload) {
+            console.log('setActiveCategoryAction', payload)
             commit('setActiveCategory', payload)
         }
     },
     mutations: {
         setEquipments(state, payload: typeof state.equipments) {
             state.equipments = {...state.equipments, ...payload}
-
-            // Object.entries(payload).forEach(
-            //     ([id, equipment]) => {
-            //         state.equipments[id] = { ...equipment }
-            //     }
-            // )
+        },
+        setActiveEquipments(state, payload) {
+            state.activeEquipments = [ ...payload ]
         },
         setEquipmentFamilies(state, payload) {
             state.families = { ...state.families, ...payload }
-
-            // Object.entries(payload).forEach(([id, family]) => {
-            //     state.families[id] = { ...family }
-            // })
         },
         setEquipmentCategories(state, payload) {
             state.categories = { ...state.categories, ...payload }
-
-            // Object.entries(payload).forEach(([id, category]) => {
-            //     state.categories[id] = { ...category }
-            // })
         },
         setActiveCategory(state, payload) {
             state.activeCategory = payload
@@ -76,9 +70,8 @@ export const module: Module<EquipmentState, VuexState> = {
         families,
         activeCategory,
         equipments,
+        activeEquipments,
         stockEquipments,
         categories,
     },
 }
-
-export { actions }

@@ -2,6 +2,7 @@
 import injector from 'vue-inject'
 import makeRequest from '@/shared/api/helpers/makeRequest'
 import { normalize, schema } from 'normalizr'
+// import { categoryModel } from '@/entities/category'
 
 export class EquipmentGroupService {
     store
@@ -17,9 +18,9 @@ export class EquipmentGroupService {
     //     })
     // }
 
-
-
     async initialize(): Promise<void> {
+        // const categoryState = categoryModel.useStore()
+
         const equipmentSchema = new schema.Entity('equipment')
 
         const equipmentCategorySchema = new schema.Entity('equipmentCategory', {
@@ -46,8 +47,6 @@ export class EquipmentGroupService {
             normalizedArray.entities.equipmentCategory,
         )
 
-        console.log('setActiveCategory')
-        
         await this.store.dispatch(
             'equipment/setActiveCategory',
             Object.keys(this.store.getters['equipment/categories'])[0]
