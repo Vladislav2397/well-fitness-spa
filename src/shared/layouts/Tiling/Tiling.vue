@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator'
+
 import TilingLayout from '@/components/layouts/TilingLayout.vue'
 
 @Component({

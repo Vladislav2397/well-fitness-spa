@@ -2,7 +2,7 @@
 import {Component, Prop, VModel, Vue} from 'vue-property-decorator'
 import {CreateElement, VNode} from 'vue'
 
-import Input from '@/shared/ui/Input.vue'
+import { Input } from '@/shared/ui/Input'
 
 export interface HocComponent {
     valueModel: Hoc['valueModel']

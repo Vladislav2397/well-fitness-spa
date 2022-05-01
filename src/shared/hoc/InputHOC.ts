@@ -1,5 +1,5 @@
 import Vue, { CreateElement, VNode } from 'vue'
-import Input from '@/shared/ui/Input.vue'
+import { Input } from '@/shared/ui/Input'
 
 const withValidation = ({
     binding,

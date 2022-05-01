@@ -20,7 +20,7 @@ import { Component, Inject, Prop, Vue } from 'vue-property-decorator'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
 
-import { Equipment } from '../../model/state'
+import { Equipment } from '../../model'
 import { IDevice } from '@/use/device'
 
 @Component({

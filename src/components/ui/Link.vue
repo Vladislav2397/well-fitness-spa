@@ -11,15 +11,10 @@ type linkThemeType =
 @Component
 export default class Link extends Vue {
     @Prop({ default: 'a' }) readonly tag!: 'a' | 'router-link' | 'span'
-
     @Prop({ default: 'm' }) readonly iconSize!: 's' | 'm' | 'l'
-
     @Prop({ default: 'secondary' }) readonly theme!: linkThemeType
-
     @Prop() readonly href!: string
-
     @Prop() readonly icon!: string
-
     @Prop() readonly iconLeft!: boolean
 
     @Emit('click') clickEmit(): void {/**/}
@@ -71,7 +66,9 @@ export default class Link extends Vue {
             if (this.iconLeft) {
                 children.push(icon)
             }
+
             children.push(this.$slots.default)
+
             if (!this.iconLeft) {
                 children.push(icon)
             }

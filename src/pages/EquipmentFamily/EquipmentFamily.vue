@@ -3,26 +3,27 @@
 .page
     c-page-breadcrumb
     pagination-wrapper-component
-        equipment-type-detail-component
+        c-catalog
 
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator'
 
-import { PageBreadcrumb } from '@/entities/page-breadcrumb'
 import PaginationWrapper from '@/components/sections/PaginationWrapper.vue'
-import EquipmentTypeDetail from '@/components/sections/EquipmentTypeDetail.vue'
+import { PageBreadcrumb } from '@/entities/page-breadcrumb'
+import { Catalog } from '@/pages/EquipmentFamily/Catalog'
 
 import { Action, Getter, Service } from '@/shared/config'
 import { EquipmentGroupService } from '@/services/equipmentGroup'
 import { EquipmentFamilyService } from '@/services/equipmentFamily'
 // import { categoryStore } from '@/entities/category/model'
 import { familyModel } from '@/entities/family'
+import { equipmentModel } from '@/entities/equipment'
 
 @Component({
     components: {
-        'equipment-type-detail-component': EquipmentTypeDetail,
+        'c-catalog': Catalog,
         'pagination-wrapper-component': PaginationWrapper,
         'c-page-breadcrumb': PageBreadcrumb,
     }
@@ -34,10 +35,11 @@ export default class EquipmentFamily extends Vue {
     @Getter('equipment/activeCategory') activeCategory!: any
     @Getter('equipment/families') families!: any
 
-    @Action('pageBreadcrumb/setList') setList!: (list: unknown[]) => void
+    @Action('pageBreadcrumb/setList') setList!: (list: unknown[]) => Promise<void>
 
     // categoryStore = categoryStore()
     familyStore = familyModel.useStore()
+    equipmentStore = equipmentModel.useStore()
 
     async created(): Promise<void> {
         await this.familyStore.fetchFamily(

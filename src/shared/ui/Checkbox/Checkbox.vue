@@ -1,16 +1,16 @@
 <template lang="pug">
 
-label.checkbox(
+label.b-checkbox(
     :for="id"
 )
-    input._box(
+    input.__box(
         v-model="isActive"
         :id="id"
         type="checkbox"
     )
     slot
 
-    
+
 </template>
 
 <script lang="ts">
@@ -24,3 +24,6 @@ export default class Checkbox extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="./checkbox--critical.scss"></style>
+<style lang="scss" src="./checkbox--main.scss"></style>

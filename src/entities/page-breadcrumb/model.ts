@@ -1,8 +1,8 @@
 import { Module } from 'vuex'
 
 enum mutationTypes {
-    SET_TITLE = 'setTitle',
-    SET_LIST = 'setList',
+    SET_TITLE = 'SET_TITLE',
+    SET_LIST = 'SET_LIST',
     ADD_ITEM = 'ADD_ITEM',
 }
 

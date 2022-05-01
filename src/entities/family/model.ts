@@ -1,12 +1,15 @@
 import { defineStore } from 'pinia'
-import { Maybe, NormalizedPool } from '@/types/common'
+import { Maybe, NormalizedPool, StringNumber } from '@/types/common'
 import makeRequest from '@/shared/api/helpers/makeRequest'
 import { normalize } from 'normalizr'
 import { familySchema } from '@/schemas/equipment'
+import { EquipmentCategory } from '@/entities/equipment/model'
 
 export type Family = {
-    id: `${number}`
+    id: StringNumber
     name: string
+    image: string
+    categories: EquipmentCategory['id'][]
 }
 
 export const useStore = defineStore('family', {

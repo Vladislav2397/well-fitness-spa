@@ -1,18 +1,18 @@
 <template lang="pug">
 
-.range
-    ._top
-        input-component._start(
+.b-range
+    .__top
+        input-component.__start(
             v-model="slider.value[0]"
             size="inherit"
         )
-        ._divider
-        input-component._end(
+        .__divider
+        input-component.__end(
             v-model="slider.value[1]"
             size="inherit"
         )
 
-    ._bar
+    .__bar
         slider-component(
             v-model="slider.value"
             :max="10000"
@@ -49,3 +49,6 @@ export default class Range extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="./range--critical.scss"></style>
+<style lang="scss" src="./range--main.scss"></style>

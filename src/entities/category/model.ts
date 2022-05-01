@@ -1,9 +1,12 @@
 import { defineStore } from 'pinia'
-import { Maybe, NormalizedPool } from '@/types/common'
+import { Maybe, NormalizedPool, StringNumber } from '@/types/common'
+import { Equipment } from '@/entities/equipment/model'
 
 type Category = {
-    id: `${number}`
+    id: StringNumber
     name: string
+    count: number
+    equipments: Equipment['id'][]
 }
 
 export const useStore = defineStore('category', {

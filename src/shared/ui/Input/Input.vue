@@ -1,40 +1,40 @@
 <template lang="pug">
 
-.b-input(
-    :class="classes"
-)
-    ._label(
-        v-if="label"
+    .b-input(
+        :class="classes"
     )
-    label._field
-        ._prefix(
-            v-if="$slots.prefix"
+        ._label(
+            v-if="label"
         )
-            slot(
-                name="prefix"
+        label._field
+            ._prefix(
+                v-if="$slots.prefix"
             )
-        ._value
-            input(
-                v-model.lazy="inputValue"
-                :name="name"
-                :disabled="disabled"
-                v-on:input="onInput"
-                v-on:focus="onFocus"
-                v-on:blur="onBlur"
-                autocomplete="false"
+                slot(
+                    name="prefix"
+                )
+            ._value
+                input(
+                    v-model.lazy="inputValue"
+                    :name="name"
+                    :disabled="disabled"
+                    v-on:input="onInput"
+                    v-on:focus="onFocus"
+                    v-on:blur="onBlur"
+                    autocomplete="false"
+                )
+                ._placeholder(
+                    v-if="!inputValue && !isFocus && placeholder"
+                ) {{ placeholder }}
+            ._postfix(
+                v-if="$slots.postfix"
             )
-            ._placeholder(
-                v-if="!inputValue && !isFocus && placeholder"
-            ) {{ placeholder }}
-        ._postfix(
-            v-if="$slots.postfix"
-        )
-            slot(
-                name="postfix"
-            )
-    ._description(
-        v-if="errorSync && errorText"
-    ) {{ errorText }}
+                slot(
+                    name="postfix"
+                )
+        ._description(
+            v-if="errorSync && errorText"
+        ) {{ errorText }}
 
 </template>
 
@@ -93,3 +93,6 @@ export default class Input extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="./input--critical.scss"></style>
+<style lang="scss" src="./input--main.scss"></style>

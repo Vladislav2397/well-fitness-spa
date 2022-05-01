@@ -50,7 +50,7 @@ const onClose = () => {
 </script>
 
 <script lang="ts">
-import Input from '@/shared/ui/Input.vue'
+import { Input } from '@/shared/ui/Input'
 import Button from '@/shared/ui/Button'
 import { Link } from '@/shared/ui/Link'
 import { Icon } from '@/shared/ui/Icon'

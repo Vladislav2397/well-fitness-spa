@@ -1,0 +1,19 @@
+.row-space-between {
+    &:not(.ie) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &.ie {
+        .row-space-between {
+            //display: table;
+            width: 100%;
+
+            &__wrapper {
+                display: inline-block;
+            }
+        }
+    }
+}
