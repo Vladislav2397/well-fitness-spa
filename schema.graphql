@@ -1,0 +1,30 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+}
+
+type EquipmentCategoryType {
+    id: ID!
+    name: String!
+}
+
+type EquipmentFamilyType {
+    group: EquipmentGroupType
+    id: ID!
+    image: String
+    name: String
+}
+
+type EquipmentGroupType {
+    id: ID!
+    name: String!
+}
+
+type Query {
+    categories: [EquipmentCategoryType]
+    families: [EquipmentFamilyType]
+    familiesByGroupId(id: Int): [EquipmentFamilyType]
+    groupById(id: Int): EquipmentGroupType
+    groups: [EquipmentGroupType]
+}
