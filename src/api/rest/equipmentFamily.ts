@@ -37,7 +37,7 @@ const getFamilies: equipmentFamily.getList = (type) => {
 
 const getCategory = (id: StringNumber) =>
     makeRequest({
-        url: `${process.env.VUE_APP_API_HOST}api/v1/categories/${id}`,
+        url: `${process.env.VUE_APP_API_HOST}categories/${id}`,
     })
 
 export default {

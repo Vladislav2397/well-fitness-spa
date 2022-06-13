@@ -18,7 +18,6 @@
 </template>
 
 <script lang="ts" setup>
-
 import {defineEmits, defineProps, withDefaults} from '@vue/runtime-dom'
 
 const props = withDefaults(
@@ -37,6 +36,7 @@ const emit = defineEmits<{
 const onClick = () => emit('input', !props.value)
 const closeDropdown = () => emit('input', false)
 
+export {}
 </script>
 
 <style lang="scss">

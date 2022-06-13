@@ -1,6 +1,7 @@
 <template lang="pug">
 
 .b-equipment-group
+    h1 Equipment Group
     page-breadcrumb-component(
         :list="breadcrumbList"
     )
@@ -55,11 +56,11 @@ import '@/services/equipmentGroup'
 export default class EquipmentGroup extends Vue {
     @Inject('$device') device!: IDevice
 
-    @Getter('equipment/families') families!: any
-    @Getter('equipment/categories') categories!: any
+    // @Getter('equipment/families') families!: any
+    // @Getter('equipment/categories') categories!: any
 
-    @Action('equipment/setEquipmentFamilies') setEquipmentFamilies!: any
-    @Action('equipment/setEquipmentCategories') setEquipmentCategories!: any
+    // @Action('equipment/setEquipmentFamilies') setEquipmentFamilies!: any
+    // @Action('equipment/setEquipmentCategories') setEquipmentCategories!: any
 
     @Service('EquipmentGroup') equipmentGroupService!: EquipmentGroupService
 

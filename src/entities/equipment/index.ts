@@ -5,6 +5,8 @@ import { EquipmentFamilyCard } from './ui/EquipmentFamilyCard'
 import { EquipmentCard } from './ui/EquipmentCard'
 // import * as model from './model'
 import * as equipmentModel from './model'
+// @ts-ignore
+import * as equipmentModels from './model/index.ts'
 
 export {
     EquipmentCard,
@@ -13,6 +15,7 @@ export {
     EquipmentFamilyCard,
     // model,
     equipmentModel,
+    equipmentModels,
     EquipmentFamily,
     EquipmentCategory,
     Equipment,

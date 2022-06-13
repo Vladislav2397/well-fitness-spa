@@ -17,7 +17,7 @@ export class EquipmentFamilyService {
 
     async fetchFamily(id: string | number) {
         const result = await makeRequest({
-            url: `${process.env.VUE_APP_API_HOST}api/v1/groups/2/families/${id}`,
+            url: `${process.env.VUE_APP_API_HOST}groups/2/families/${id}`,
             method: 'get',
         })
 
@@ -33,7 +33,7 @@ export class EquipmentFamilyService {
         const activeCategory = this.store.getters['equipment/activeCategory']
 
         const result = await makeRequest({
-            url: `${process.env.VUE_APP_API_HOST}api/v1/categories/${activeCategory}`,
+            url: `${process.env.VUE_APP_API_HOST}categories/${activeCategory}`,
             method: 'get',
         })
 
@@ -54,7 +54,7 @@ export class EquipmentFamilyService {
         const activeFamily = this.store.getters['equipment/activeFamily']
 
         const result = await makeRequest({
-            url: `${process.env.VUE_APP_API_HOST}api/v1/families/${activeFamily}`,
+            url: `${process.env.VUE_APP_API_HOST}families/${activeFamily}`,
             method: 'get',
         })
 

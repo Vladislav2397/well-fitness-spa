@@ -26,7 +26,7 @@ export const useStore = defineStore('family', {
             id: string | number
         ) {
             const result = await makeRequest({
-                url: `${process.env.VUE_APP_API_HOST}api/v1/groups/${group === 'gym' ? 2 : 1}/families/${id}`,
+                url: `${process.env.VUE_APP_API_HOST}groups/${group === 'gym' ? 2 : 1}/families/${id}`,
                 method: 'get',
             })
             const normalizedData = normalize(result, familySchema)
