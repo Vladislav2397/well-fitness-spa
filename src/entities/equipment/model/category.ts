@@ -1,12 +1,16 @@
 import { Model } from "@vuex-orm/core"
 
-export class Category extends Model {
+export default class EquipmentCategory extends Model {
     static entity = 'categories'
+
+    static primaryKey = 'id'
 
     static fields() {
         return {
             id: this.attr(null),
-            name: this.string('')
+            name: this.string(''),
+            count: this.attr(''),
+            family_id: this.attr(''),
         }
     }
 }

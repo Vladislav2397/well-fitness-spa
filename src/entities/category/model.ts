@@ -6,7 +6,8 @@ export class Category extends Model {
     static fields() {
         return {
             id: this.attr(null),
-            name: this.string('')
+            name: this.string(''),
+            family_id: this.attr(null)
         }
     }
 }

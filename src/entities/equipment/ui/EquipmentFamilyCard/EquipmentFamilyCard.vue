@@ -1,13 +1,13 @@
 <template lang="pug">
 
 c-card-product.b-equipment-family-card(
-    :imageSrc="equipmentFamily.image.src"
-    :imageAlt="equipmentFamily.image.alt"
-    :to="`${$route.params.group}/${equipmentFamily.id}`"
+    imageSrc="equipmentFamily.image.src"
+    imageAlt="equipmentFamily.image.alt"
+    :to="`${$route.params.group}/${1 /*equipmentFamily.id*/}`"
 )
     c-product-counter-list(
-        :title="equipmentFamily.title"
-        :list="equipmentFamily.list"
+        :title="content.name"
+        :list="list"
     )
 
 </template>
@@ -17,6 +17,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
+import * as equipmentModel from '../../model/index'
 
 type EquipmentFamily = {
     image: {
@@ -32,7 +33,21 @@ type EquipmentFamily = {
     }
 })
 export default class EquipmentFamilyCard extends Vue {
-    @Prop() readonly equipmentFamily!: EquipmentFamily
+    @Prop() readonly id!: number | string
+
+    get content() {
+        const Model = equipmentModel.EquipmentFamily
+
+        return Model.query().with('categories').find(this.id) // .query().whereId(this.id).get()
+    }
+
+    get list() {
+        // @ts-ignore
+        return this.content.categories.map(category => [
+            category.name,
+            category.count,
+        ])
+    }
 }
 </script>
 

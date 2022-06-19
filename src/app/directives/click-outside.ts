@@ -1,4 +1,6 @@
-function validate(binding) {
+import {VNode} from "vue"
+
+function validate(binding: any) {
     if (typeof binding.value !== 'function') {
         console.warn(
             '[Vue-click-outside:] provided expression',
@@ -11,7 +13,7 @@ function validate(binding) {
     return true
 }
 
-function isPopup(popupItem, elements) {
+function isPopup(popupItem: any, elements: any[]) {
     if (!popupItem || !elements) return false
 
     for (let i = 0, len = elements.length; i < len; i++) {
@@ -30,7 +32,7 @@ function isPopup(popupItem, elements) {
     return false
 }
 
-function isServer(vNode) {
+function isServer(vNode: VNode) {
     return (
         typeof vNode.componentInstance !== 'undefined' &&
         vNode.componentInstance.$isServer
@@ -39,11 +41,11 @@ function isServer(vNode) {
 /* eslint-disable */
 
 export default {
-    bind(el, binding, vNode) {
+    bind(el: any, binding: any, vNode: any) {
         if (!validate(binding)) return
 
         // Define Handler and cache it on the element
-        function handler(e) {
+        function handler(e: any) {
             if (!vNode.context) return
 
             // some components may have related popup item, on which we shall prevent the click outside event handler.
@@ -69,11 +71,11 @@ export default {
         !isServer(vNode) && document.addEventListener(clickHandler, handler)
     },
 
-    update(el, binding) {
+    update(el: any, binding: any) {
         if (validate(binding)) el.__vueClickOutside__.callback = binding.value
     },
 
-    unbind(el, binding, vNode) {
+    unbind(el: any, binding: any, vNode: any) {
         // Remove Event Listeners
         const clickHandler =
             'ontouchstart' in document.documentElement ? 'touchstart' : 'click'

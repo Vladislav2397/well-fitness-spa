@@ -28,6 +28,8 @@
         "core-js": "^3.6.5",
         "crypto": "^1.0.1",
         "debug-loader": "^0.0.1",
+        "graphql": "^16.5.0",
+        "graphql-request": "^4.3.0",
         "imagemin": "^8.0.1",
         "imagemin-mozjpeg": "^9.0.0",
         "imagemin-pngquant": "^9.0.2",

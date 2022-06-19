@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Service } from 'vue-typedi'
 
 import api from '@/api'

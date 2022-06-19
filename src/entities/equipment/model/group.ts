@@ -1,4 +1,5 @@
 import {Attr, Model} from "@vuex-orm/core"
+import EquipmentFamily from "./family"
 
 export default class EquipmentGroup extends Model {
     static entity = 'equipmentGroups'
@@ -7,6 +8,8 @@ export default class EquipmentGroup extends Model {
         return {
             id: this.attr(''),
             name: this.attr(''),
+            // @ts-ignore
+            families: this.hasMany(EquipmentFamily, 'group_id')
         }
     }
 }

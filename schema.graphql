@@ -5,11 +5,14 @@ schema {
 }
 
 type EquipmentCategoryType {
+    count: Int
+    family: EquipmentFamilyType
     id: ID!
     name: String!
 }
 
 type EquipmentFamilyType {
+    categories: [EquipmentCategoryType]
     group: EquipmentGroupType
     id: ID!
     image: String
@@ -17,6 +20,7 @@ type EquipmentFamilyType {
 }
 
 type EquipmentGroupType {
+    families: [EquipmentFamilyType]
     id: ID!
     name: String!
 }
@@ -25,6 +29,7 @@ type Query {
     categories: [EquipmentCategoryType]
     families: [EquipmentFamilyType]
     familiesByGroupId(id: Int): [EquipmentFamilyType]
+    familyById(id: Int): EquipmentFamilyType
     groupById(id: Int): EquipmentGroupType
     groups: [EquipmentGroupType]
 }

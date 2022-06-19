@@ -1,10 +1,6 @@
 <template lang="pug">
 
 .b-equipment-group
-    h1 Equipment Group
-    page-breadcrumb-component(
-        :list="breadcrumbList"
-    )
     tiling-component(
         :count-in-row="currentCountItems"
     )
@@ -12,10 +8,10 @@
             #default="{ classItem }"
         )
             c-equipment-family-card(
-                v-for="(product, index) in productList"
+                v-for="(id, index) in productList"
                 :key="index"
                 :class="classItem"
-                :equipmentFamily="product"
+                :id="id"
             )
     c-idea
     c-stock
@@ -25,9 +21,6 @@
 <script lang="ts">
 import {Component, Inject, Vue} from 'vue-property-decorator'
 
-import PageBreadcrumb, {
-    breadcrumbListType
-} from '@/components/blanks/PageBreadcrumb.vue'
 import { Idea } from '@/pages/Main/sections/idea'
 import Stock from '@/components/sections/Stock.vue'
 import { Tiling } from '@/shared/layouts/Tiling'
@@ -36,11 +29,9 @@ import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
 import {IDevice} from '@/use/device'
 import EquipmentFamilyCard
     from '@/entities/equipment/ui/EquipmentFamilyCard/EquipmentFamilyCard.vue'
-import { EquipmentGroupService } from '@/services/equipmentGroup'
+import { equipmentModels } from '@/entities/equipment'
 
-import { Action, Getter, Service } from '@/shared/config'
-
-import '@/services/equipmentGroup'
+import {gql, request} from "graphql-request"
 
 @Component({
     components: {
@@ -50,43 +41,46 @@ import '@/services/equipmentGroup'
         'tiling-component': Tiling,
         'c-stock': Stock,
         'c-idea': Idea,
-        'page-breadcrumb-component': PageBreadcrumb
     },
 })
 export default class EquipmentGroup extends Vue {
     @Inject('$device') device!: IDevice
 
-    // @Getter('equipment/families') families!: any
-    // @Getter('equipment/categories') categories!: any
-
-    // @Action('equipment/setEquipmentFamilies') setEquipmentFamilies!: any
-    // @Action('equipment/setEquipmentCategories') setEquipmentCategories!: any
-
-    @Service('EquipmentGroup') equipmentGroupService!: EquipmentGroupService
-
-    breadcrumbList: breadcrumbListType = [
-        {
-            text: 'Для фитнес клуба',
-            href: '/equipment/gym'
-        }
-    ]
+    // @Service('EquipmentGroup') equipmentGroupService!: EquipmentGroupService
 
     async created(): Promise<void> {
-        await this.equipmentGroupService.initialize()
+        const query = gql`
+            {
+                groups {
+                    id
+                    name
+                    families {
+                        id
+                        name
+                        categories {
+                            id
+                            name
+                            count
+                        }
+                    }
+                }
+            }
+        `
+
+        const { groups } = await request('http://localhost:8000/graphql', query)
+
+        await equipmentModels.EquipmentGroup.insert({
+            data: groups
+        })
     }
 
-    get productList(): EquipmentFamilyCard['equipmentFamily'][] {
-        return Object.values(this.families).map(family => ({
-            id: family.id,
-            image: family.image,
-            title: family.name,
-            list: family.categories.map(id => {
-                return [
-                    this.categories[id].name,
-                    this.categories[id].count,
-                ]
-            })
-        }))
+    get productList() {
+        const families = equipmentModels.EquipmentFamily
+            .query()
+            .with('categories')
+            .get()
+
+        return Object.values(families ?? {}).map(family => +family.id)
     }
 
     get currentCountItems(): 1 | 2 | 3 | 4 {
