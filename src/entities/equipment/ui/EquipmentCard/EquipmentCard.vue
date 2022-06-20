@@ -20,7 +20,7 @@ import { Component, Inject, Prop, Vue } from 'vue-property-decorator'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
 
-import { Equipment } from '../../model'
+// import { Equipment } from '../../model'
 import { IDevice } from '@/use/device'
 
 @Component({
@@ -30,7 +30,8 @@ import { IDevice } from '@/use/device'
     }
 })
 export default class EquipmentCard extends Vue {
-    @Prop() readonly equipmentCard!: Equipment
+    @Prop() readonly equipmentCard!: any
+    @Prop() readonly id!: any
 
     @Inject('$device') device!: IDevice
 

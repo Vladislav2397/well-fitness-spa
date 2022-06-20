@@ -3,7 +3,9 @@
 .b-pagination-wrapper
     .__container.container
         slot
-        .__wrapper
+        .__wrapper(
+            v-if="pageCount"
+        )
             link-component.__link Показать еще
             pagination-component.__pagination(
                 v-model="pageCount"

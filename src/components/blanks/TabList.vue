@@ -25,7 +25,7 @@ export default class TabList extends Vue {
 
     @VModel() activeIndex!: number
 
-    updateActiveIndex (index: number) {
+    updateActiveIndex (index: number): void {
         this.activeIndex = index
     }
 }

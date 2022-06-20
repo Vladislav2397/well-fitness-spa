@@ -24,7 +24,9 @@
         :count="rating"
         :hasLabel="isRatingLabel"
     )
-    .__bottom
+    .__bottom(
+        v-if="price && price.length"
+    )
         .__price(
             :class="{ 'card-product-stats__price--row' : isPriceRow }"
         )

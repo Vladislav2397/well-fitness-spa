@@ -10,7 +10,9 @@
         @click="isModal = true"
     ) Фильтры
     .__row
-        c-category-filters.__categories
+        c-category-filters.__categories(
+            :active.sync="activeCategorySync"
+        )
         c-sorting.__sorting
     l-aside-layout
         template(
@@ -22,11 +24,12 @@
                 template(
                     #default="{ classItem }"
                 )
-                    c-equipment-card.__card(
-                        v-for="(card, index) in cards"
-                        :key="index"
+                    c-equipment-catalog-card(
+                        v-for="id in activeEquipments"
+                        :key="id"
                         :class="classItem"
-                        :equipmentCard="card"
+                        :id="id"
+                        :to="`${$route.path}/${id}`"
                     )
         template(
             #aside="{ classContainer }"
@@ -69,7 +72,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Inject, Vue} from 'vue-property-decorator'
+import {Component, Inject, PropSync, Vue} from 'vue-property-decorator'
 
 import CatalogLayout from '@/components/layouts/CatalogLayout.vue'
 import Modal from '@/components/modals/Modal.vue'
@@ -83,15 +86,18 @@ import { Link } from '@/shared/ui/Link'
 import { Banner } from '@/shared/blanks/Banner'
 import { Sorting } from '@/features/equipment'
 import { CategoryFilters } from '@/features/category'
-import { EquipmentCard } from '@/entities/equipment'
+import {
+    EquipmentCard,
+} from '@/entities/equipment'
 import { AsideLayout } from '@/shared/layouts/AsideLayout'
+import {Equipment} from "@/entities/equipment/model/index"
 
 import { IDevice } from '@/use/device'
-import { Getter } from '@/shared/config'
-import { StringNumber } from '@/types/common'
+import { EquipmentCatalogCard } from "@/entities/equipment"
 
 @Component({
     components: {
+        'c-equipment-catalog-card': EquipmentCatalogCard,
         'c-link': Link,
         'c-equipment-card': EquipmentCard,
         'c-sorting': Sorting,
@@ -110,13 +116,20 @@ import { StringNumber } from '@/types/common'
 export default class EquipmentTypeDetail extends Vue {
     @Inject('$device') device!: IDevice
 
-    @Getter('equipment/activeEquipments') activeEquipments!: StringNumber[]
-    @Getter('equipment/equipments') equipments!: Record<string, any>
+    @PropSync('activeCategory') activeCategorySync!: string | number
 
     isModal = false
 
     get cards(): EquipmentCard['equipmentCard'][] {
-        return this.activeEquipments.map(id => this.equipments[id])
+        return [{
+            id: '1',
+            image: 'image',
+            name: 'name',
+            price: {
+                old: '1098',
+                current: '1000',
+            },
+        }]
     }
 
     filterList = [
@@ -152,6 +165,13 @@ export default class EquipmentTypeDetail extends Vue {
             ]
         },
     ]
+
+    get activeEquipments() {
+        return Object.values(Equipment
+            .query()
+            .where('category_id', this.activeCategorySync)
+            .all()).map(equipment => equipment.id)
+    }
 
     get rowCount(): number {
         if (this.device.size.desktop) return 4

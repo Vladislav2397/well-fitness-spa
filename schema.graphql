@@ -6,6 +6,7 @@ schema {
 
 type EquipmentCategoryType {
     count: Int
+    equipments: [EquipmentType]
     family: EquipmentFamilyType
     id: ID!
     name: String!
@@ -25,11 +26,36 @@ type EquipmentGroupType {
     name: String!
 }
 
+type EquipmentType {
+    description: String
+    id: ID!
+    inStock: EquipmentInStock!
+    isPromo: Boolean!
+    label: String!
+    name: String!
+    promotion: String
+    type: EquipmentCategoryType!
+}
+
 type Query {
     categories: [EquipmentCategoryType]
+    equipments: [EquipmentType]
+    equipmentsByCategoryId(id: Int): [EquipmentType]
     families: [EquipmentFamilyType]
     familiesByGroupId(id: Int): [EquipmentFamilyType]
     familyById(id: Int): EquipmentFamilyType
     groupById(id: Int): EquipmentGroupType
     groups: [EquipmentGroupType]
+}
+
+"An enumeration."
+enum EquipmentInStock {
+    "0"
+    NET_V_NALICHII
+    "1"
+    OSTALOS_MALO
+    "2"
+    V_NALICHII
+    "2"
+    V_NALICHII_3
 }

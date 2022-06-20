@@ -13,6 +13,7 @@ import Test2Page from '@/pages/Test2.vue'
 import {RouteNames} from './helpers'
 import { PageBreadcrumbView } from '@/widgets/PageBreadcrumbView'
 import {LastVisitedView} from '@/widgets/LastVisitedView'
+import {EquipmentDetail} from "@/pages/EquipmentDetail"
 
 export default [
     {
@@ -38,6 +39,11 @@ export default [
                         path: ':group(gym|home)/:family',
                         name: RouteNames.EQUIPMENT_FAMILY,
                         component: EquipmentFamily,
+                    },
+                    {
+                        path: ':group(gym|home)/:family/:equipment',
+                        name: RouteNames.EQUIPMENT,
+                        component: EquipmentDetail,
                     },
                     {
                         path: '/ideas',

@@ -3,7 +3,7 @@
 c-card-product.b-equipment-family-card(
     imageSrc="equipmentFamily.image.src"
     imageAlt="equipmentFamily.image.alt"
-    :to="`${$route.params.group}/${1 /*equipmentFamily.id*/}`"
+    :to="`${$route.params.group}/${id}`"
 )
     c-product-counter-list(
         :title="content.name"
@@ -19,12 +19,12 @@ import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
 import * as equipmentModel from '../../model/index'
 
-type EquipmentFamily = {
-    image: {
-        src: string
-        alt: string
-    }
-} & Pick<ProductCounterList, 'title' | 'list'>
+// type EquipmentFamily = {
+//     image: {
+//         src: string
+//         alt: string
+//     }
+// } & Pick<ProductCounterList, 'title' | 'list'>
 
 @Component({
     components: {

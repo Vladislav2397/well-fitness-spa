@@ -2,7 +2,9 @@
 
 .page
     pagination-wrapper-component
-        c-catalog
+        c-catalog(
+            :activeCategory.sync="activeCategory"
+        )
 
 </template>
 
@@ -14,6 +16,7 @@ import { Catalog } from '@/pages/EquipmentFamily/Catalog'
 
 import {equipmentModels} from '@/entities/equipment'
 import {gql, request} from "graphql-request"
+import {Maybe} from "@/types/common"
 
 @Component({
     components: {
@@ -22,6 +25,8 @@ import {gql, request} from "graphql-request"
     }
 })
 export default class EquipmentFamily extends Vue {
+    activeCategory: Maybe<number> = null
+
     async created(): Promise<void> {
         const query = gql`
             {
@@ -31,16 +36,26 @@ export default class EquipmentFamily extends Vue {
                     categories {
                         id
                         name
+                        equipments {
+                            id
+                            name
+                            label
+                            promotion
+                            inStock
+                            description
+                        }
                     }
                 }
             }
         `
 
-        const { family } = await request('http://localhost:8000/graphql', query)
+        const { familyById } = await request('http://localhost:8000/graphql', query)
 
         await equipmentModels.EquipmentFamily.insert({
-            data: family
+            data: familyById
         })
+
+        this.activeCategory = familyById.categories[0]?.id ?? null
     }
 }
 </script>

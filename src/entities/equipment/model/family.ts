@@ -6,12 +6,11 @@ export default class EquipmentFamily extends Model {
 
     static primaryKey = 'id'
 
-    static fields(): Record<string, Attr> {
+    static fields() {
         return {
             id: this.attr(''),
             name: this.attr(''),
             group_id: this.attr(''),
-            // @ts-ignore
             categories: this.hasMany(Category, 'family_id')
         }
     }

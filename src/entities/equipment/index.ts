@@ -1,8 +1,9 @@
-import { Equipment, EquipmentCategory, EquipmentFamily } from './model'
+import { Equipment, EquipmentCategory, EquipmentFamily } from './model/index'
 import { EquipmentPreview } from './ui/EquipmentPreview'
 import { EquipmentStockCard } from './ui/EquipmentStockCard'
 import { EquipmentFamilyCard } from './ui/EquipmentFamilyCard'
 import { EquipmentCard } from './ui/EquipmentCard'
+import { CatalogCard as EquipmentCatalogCard } from './ui/CatalogCard'
 // import * as model from './model'
 import * as equipmentModel from './model'
 // @ts-ignore
@@ -13,6 +14,7 @@ export {
     EquipmentPreview,
     EquipmentStockCard,
     EquipmentFamilyCard,
+    EquipmentCatalogCard,
     // model,
     equipmentModel,
     equipmentModels,
