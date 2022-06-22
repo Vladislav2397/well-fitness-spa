@@ -28,7 +28,7 @@ import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import { SectionWrapper } from '../SectionWrapper'
 
-import {IDevice} from '@/use/device'
+import type {IDevice} from '@/use/device'
 
 @Component({
     components: {

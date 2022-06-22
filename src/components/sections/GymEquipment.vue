@@ -16,8 +16,8 @@
 import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import GridSection, {cardType} from '@/components/blanks/GridSection.vue'
-import {Point} from '@/components/blanks/VueGrid.vue'
-import {IDevice} from '@/use/device'
+import type {Point} from '@/components/blanks/VueGrid.vue'
+import type {IDevice} from '@/use/device'
 
 @Component({
     components: {
