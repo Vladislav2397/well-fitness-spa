@@ -86,7 +86,7 @@ import { CategoryFilters } from '@/features/category'
 import { EquipmentCard } from '@/entities/equipment'
 import { AsideLayout } from '@/shared/layouts/AsideLayout'
 
-import { IDevice } from '@/use/device'
+import type { IDevice } from '@/use/device'
 import { Getter } from '@/shared/config'
 import { StringNumber } from '@/types/common'
 

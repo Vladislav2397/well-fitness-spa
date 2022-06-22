@@ -26,7 +26,7 @@
 <script lang="ts">
 import {Component, Inject, Vue} from 'vue-property-decorator'
 
-import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
+import { SectionWrapper } from '../SectionWrapper'
 
 import {IDevice} from '@/use/device'
 

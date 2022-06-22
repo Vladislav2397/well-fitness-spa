@@ -92,7 +92,7 @@ import {
 import { AsideLayout } from '@/shared/layouts/AsideLayout'
 import {Equipment} from "@/entities/equipment/model/index"
 
-import { IDevice } from '@/use/device'
+import type { IDevice } from '@/use/device'
 import { EquipmentCatalogCard } from "@/entities/equipment"
 
 @Component({
@@ -170,6 +170,7 @@ export default class EquipmentTypeDetail extends Vue {
         return Object.values(Equipment
             .query()
             .where('category_id', this.activeCategorySync)
+            // @ts-ignore
             .all()).map(equipment => equipment.id)
     }
 

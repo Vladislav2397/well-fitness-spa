@@ -23,12 +23,12 @@
             .__controls
                 c-button-icon.__action.-left
                 c-button-icon.__action.-right
-    
+
 </template>
 
 <script lang="ts">
 import { directive, Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import ButtonIcon from '@/components/ui/ButtonIcon.vue'
+import { ButtonIcon } from '@/shared/ui/ButtonIcon'
 
 export default {
     components: {

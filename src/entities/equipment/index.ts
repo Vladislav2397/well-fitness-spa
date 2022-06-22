@@ -5,7 +5,8 @@ import { EquipmentFamilyCard } from './ui/EquipmentFamilyCard'
 import { EquipmentCard } from './ui/EquipmentCard'
 import { CatalogCard as EquipmentCatalogCard } from './ui/CatalogCard'
 // import * as model from './model'
-import * as equipmentModel from './model'
+// @ts-ignore
+import * as equipmentModel from './model.ts'
 // @ts-ignore
 import * as equipmentModels from './model/index.ts'
 

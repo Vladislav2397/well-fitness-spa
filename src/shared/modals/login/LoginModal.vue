@@ -51,7 +51,7 @@ const onClose = () => {
 
 <script lang="ts">
 import { Input } from '@/shared/ui/Input'
-import Button from '@/shared/ui/Button'
+import { Button } from '@/shared/ui/Button'
 import { Link } from '@/shared/ui/Link'
 import { Icon } from '@/shared/ui/Icon'
 import { WrapperModal } from '@/shared/modals/wrapper'

@@ -26,7 +26,7 @@
 <script lang="ts">
 import {Component, Inject, Mixins, Vue} from 'vue-property-decorator'
 
-import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
+import { SectionWrapper } from '@/pages/Main/sections/SectionWrapper'
 
 import Device, {IDevice} from '@/use/device'
 

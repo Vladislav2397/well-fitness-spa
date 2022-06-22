@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 // import VueFlex from '@/components/blanks/VueFlex.vue'
 
-import Button from '@/shared/ui/Button'
+import { Button } from '@/shared/ui/Button'
 import { Link } from '@/shared/ui/Link'
 import Avatar from '@/components/ui/Avatar.vue'
 

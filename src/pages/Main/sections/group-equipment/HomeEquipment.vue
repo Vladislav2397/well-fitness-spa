@@ -15,22 +15,15 @@
 <script lang="ts">
 import { Component, Inject, Vue } from 'vue-property-decorator'
 
-import GridLayout from '@/components/blanks/GridLayout.vue'
-import CardGrid from '@/components/blanks/cards/CardGrid.vue'
-import VueGrid, { Point } from '@/components/blanks/VueGrid.vue'
+import { Point } from '@/shared/layouts/VueGrid'
 
-import GridSection, { cardType } from '@/components/blanks/GridSection.vue'
+import { GridSection, cardType } from '../GridSection'
 
-import { IDevice } from '@/use/device'
+import type { IDevice } from '@/use/device'
 import { RouteNames } from '@/app/router/helpers'
-
-export type onHomeEquipmentCreatedHook = () => void
 
 @Component({
     components: {
-        'vue-grid-component': VueGrid,
-        'card-grid-component': CardGrid,
-        'grid-layout-component': GridLayout,
         'grid-section-component': GridSection,
     }
 })

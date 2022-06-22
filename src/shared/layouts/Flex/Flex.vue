@@ -18,6 +18,7 @@ export default class Flex extends Mixins(FlexProps) {
                 alignItems: this.alignItems,
                 direction: this.direction,
             },
+        // @ts-ignore
         }, this.$scopedSlots.default({ slotClass: 'vue-flex__item' }))
     }
 }

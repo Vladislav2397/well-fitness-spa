@@ -80,7 +80,7 @@ import { TheFooter } from '@/widgets/TheFooter'
 // import CityModal from '@/components/modals/CityModal.vue'
 import SearchContent from '@/components/sections/SearchContent.vue'
 
-import { IDevice } from '@/use/device'
+import type { IDevice } from '@/use/device'
 import {Getter} from '@/shared/config'
 // import {Action, Getter} from '@/shared/config/decorators'
 // import {GetterCountCounter} from '@/store/models/counter/getters'
@@ -99,7 +99,7 @@ type equipmentModalContentType = {
         // 'equipment-modal-component': EquipmentModal,
         // 'header-modal-component': HeaderModal,
         'footer-component': TheFooter,
-        'modals-component': () => import(/* webpackChunkName: modals */ '@/widgets/modals')
+        'modals-component': () => import('@/widgets/modals')
     },
 })
 export default class App extends Vue {

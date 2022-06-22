@@ -19,7 +19,7 @@ section.b-addition
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-import CardAddition from '@/components/blanks/cards/CardAddition.vue'
+import { CardAddition } from '../CardAddition'
 
 @Component({
     components: {

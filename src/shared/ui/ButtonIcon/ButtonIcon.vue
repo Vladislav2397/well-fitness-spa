@@ -17,3 +17,6 @@ export default class ButtonIcon extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="./ButtonIcon.critical.scss" />
+<style lang="scss" src="./ButtonIcon.main.scss" />

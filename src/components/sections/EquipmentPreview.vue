@@ -88,7 +88,7 @@ import TabGroup from '@/components/blanks/TabGroup.vue'
 import RowLayout from '@/components/layouts/RowLayout.vue'
 import Post from '@/components/blanks/Post.vue'
 import Peculiarity from '@/components/ui/Peculiarity.vue'
-import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
+import { SectionWrapper } from '@/pages/Main/sections/SectionWrapper'
 import ReviewQuantity from '@/components/blanks/ReviewQuantity.vue'
 import Review from '@/components/blanks/Review.vue'
 

@@ -26,7 +26,7 @@ import Stock from '@/components/sections/Stock.vue'
 import { Tiling } from '@/shared/layouts/Tiling'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
-import {IDevice} from '@/use/device'
+import type { IDevice } from '@/use/device'
 import EquipmentFamilyCard
     from '@/entities/equipment/ui/EquipmentFamilyCard/EquipmentFamilyCard.vue'
 import { equipmentModels } from '@/entities/equipment'
@@ -80,6 +80,7 @@ export default class EquipmentGroup extends Vue {
             .with('categories')
             .get()
 
+        // @ts-ignore
         return Object.values(families ?? {}).map(family => +family.id)
     }
 

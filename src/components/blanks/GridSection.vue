@@ -25,7 +25,7 @@ import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
 
 import { Point } from './VueGrid.vue'
 
-import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
+import { SectionWrapper } from '@/pages/Main/sections/SectionWrapper'
 import VueGrid from '@/components/blanks/VueGrid.vue'
 import CardGrid from '@/components/blanks/cards/CardGrid.vue'
 import { EquipmentPreview } from '@/entities/equipment'

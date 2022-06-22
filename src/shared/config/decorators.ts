@@ -28,8 +28,10 @@ function createDecoratorFactory(
 export const Service = (serviceName: string) =>
     createDecorator((options, key) => {
         if (!('dependencies' in options)) {
+            // @ts-ignore
             options['dependencies'] = {}
         }
 
+        // @ts-ignore
         options.dependencies[key] = serviceName
     })

@@ -4,8 +4,10 @@ import {VNode} from 'vue'
 import FlexProps from '@/shared/mixins/FlexProps'
 
 // import read from '@/utils/flexibility/lib/read'
+// @ts-ignore
 import readAll from '@/utils/flexibility/lib/readAll'
 // import write from '@/utils/flexibility/lib/write'
+// @ts-ignore
 import writeAll from '@/utils/flexibility/lib/writeAll'
 
 const sum = (...args: (number | string)[]) => args.reduce<number>((t, i) => +t + +i, 0)

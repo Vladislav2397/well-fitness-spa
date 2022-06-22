@@ -49,7 +49,8 @@ export default class EquipmentFamily extends Vue {
             }
         `
 
-        const { familyById } = await request('http://localhost:8000/graphql', query)
+        // @ts-ignore
+        const { familyById } = await request(process.env.VUE_APP_GRAPHQL_HOST, query)
 
         await equipmentModels.EquipmentFamily.insert({
             data: familyById

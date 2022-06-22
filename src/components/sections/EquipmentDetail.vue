@@ -37,7 +37,7 @@ import { Component, Inject, Vue } from 'vue-property-decorator'
 
 import TwoColumnsLayout from '@/components/layouts/TwoColumnsLayout.vue'
 
-import { IDevice } from '@/use/device'
+import type { IDevice } from '@/use/device'
 import Gallery from '@/components/blanks/Gallery.vue'
 import PriceTag from '@/components/blanks/PriceTag.vue'
 

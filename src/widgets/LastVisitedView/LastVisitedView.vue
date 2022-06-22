@@ -20,7 +20,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
-import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
+import { SectionWrapper } from '@/pages/Main/sections/SectionWrapper'
 
 @Component({
     components: {

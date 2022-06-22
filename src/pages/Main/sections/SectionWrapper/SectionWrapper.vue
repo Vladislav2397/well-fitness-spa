@@ -26,7 +26,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator'
 
-import { buttonThemeType } from '@/components/ui/Button/Button.vue'
+import type { buttonThemeType } from '@/shared/ui/Button'
 
 @Component
 export default class SectionWrapper extends Vue {
@@ -44,3 +44,6 @@ export default class SectionWrapper extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="./SectionWrapper.critical.scss" />
+<style lang="scss" src="./SectionWrapper.main.scss" />

@@ -23,7 +23,7 @@ card-product-component.b-equipment-stock-card
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
-import { IDevice } from '@/use/device'
+import type { IDevice } from '@/use/device'
 
 type Card = Pick<
     CardProductStats,

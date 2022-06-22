@@ -8,12 +8,16 @@
 
 </template>
 
-<script lang="ts" setup>
-import {useStore} from '@/shared/hooks/store'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 
-const store = useStore()
+@Component
+export default class LoginButton extends Vue {
+    openModal(): void {
+        const store = useStore()
 
-const openModal = () => {
-    store?.dispatch('modals/openModal', 'login')
+        store?.dispatch('modals/openModal', 'login')
+    }
 }
+import {useStore} from '@/shared/hooks/store'
 </script>

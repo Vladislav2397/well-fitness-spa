@@ -1,7 +1,5 @@
 <template lang="pug">
-include ../../tools/pug/mixins
-
-+b.grid-layout
+.b-grid-layout
     //
 
 </template>

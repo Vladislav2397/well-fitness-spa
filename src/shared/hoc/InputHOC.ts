@@ -18,6 +18,7 @@ const withValidation = ({
                     ...binding,
                 },
                 on: {
+                    // @ts-ignore
                     'update:error': (value: boolean) => (this.error = value),
                 },
             })
@@ -30,6 +31,7 @@ export const InputValidation = withValidation({
         error: false,
     },
     listeners: {
+        // @ts-ignore
         'update:error': () => (this.error = true),
     },
 })

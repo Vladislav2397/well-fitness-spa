@@ -29,7 +29,7 @@ section.blog
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
+import { SectionWrapper } from '@/pages/Main/sections/SectionWrapper'
 import TabList from '@/components/blanks/TabList.vue'
 import CardBlog from '@/components/blanks/cards/CardBlog.vue'
 

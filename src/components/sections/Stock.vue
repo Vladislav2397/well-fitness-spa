@@ -37,13 +37,14 @@
 </template>
 
 <script lang="ts">
+// TODO: Refactor (use index page SectionWrapper)
 import {Component, Inject, Vue} from 'vue-property-decorator'
 
-import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
+import { SectionWrapper } from '@/pages/Main/sections/SectionWrapper'
 import TabList from '@/components/blanks/TabList.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
-import {IDevice} from '@/use/device'
+import type {IDevice} from '@/use/device'
 
 export type ProductCardType = {
     id: number,

@@ -3,6 +3,7 @@ import { Maybe, NormalizedPool, StringNumber } from '@/types/common'
 import makeRequest from '@/shared/api/helpers/makeRequest'
 import { normalize } from 'normalizr'
 import { familySchema } from '@/schemas/equipment'
+// @ts-ignore
 import { EquipmentCategory } from '@/entities/equipment/model'
 
 export type Family = {

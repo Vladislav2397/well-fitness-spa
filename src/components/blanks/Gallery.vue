@@ -24,7 +24,7 @@
 <script lang="ts">
 import {Component, Inject, Vue} from 'vue-property-decorator'
 
-import { IDevice } from '@/use/device'
+import type { IDevice } from '@/use/device'
 
 @Component
 export default class Gallery extends Vue {

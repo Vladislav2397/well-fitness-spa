@@ -17,7 +17,7 @@ row-layout-component.b-tag-group(
 import {Component, Vue, Inject, PropSync} from 'vue-property-decorator'
 
 import RowLayout from '@/components/layouts/RowLayout.vue'
-import { IDevice } from '@/use/device'
+import type { IDevice } from '@/use/device'
 import { EquipmentCategory } from '@/entities/equipment/model/index'
 
 @Component({

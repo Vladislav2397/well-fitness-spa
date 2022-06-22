@@ -9,7 +9,7 @@
     )
         slot
     .__content(
-        v-if="$slots.content && props.value"
+        v-if="$slots.content && valueModel"
     )
         slot(
             name="content"
@@ -17,26 +17,21 @@
 
 </template>
 
-<script lang="ts" setup>
-import {defineEmits, defineProps, withDefaults} from '@vue/runtime-dom'
+<script lang="ts">
+import {Component, VModel, Vue} from 'vue-property-decorator'
 
-const props = withDefaults(
-    defineProps<{
-        value: boolean
-    }>(),
-    {
-        value: false,
+@Component
+export default class DropdownWrapper extends Vue {
+    @VModel({ default: false }) valueModel!: boolean
+
+    onClick(): void {
+        this.valueModel = !this.valueModel
     }
-)
 
-const emit = defineEmits<{
-    (e: 'input', value: boolean): void
-}>()
-
-const onClick = () => emit('input', !props.value)
-const closeDropdown = () => emit('input', false)
-
-export {}
+    closeDropdown(): void {
+        this.valueModel = false
+    }
+}
 </script>
 
 <style lang="scss">

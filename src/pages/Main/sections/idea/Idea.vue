@@ -23,7 +23,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
-import SectionWrapper from '@/components/blanks/SectionWrapper.vue'
+import { SectionWrapper } from '../SectionWrapper'
+
+// entity
 import CardIdea from '@/components/blanks/cards/CardIdea.vue'
 
 @Component({

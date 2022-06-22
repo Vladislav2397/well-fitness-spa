@@ -67,7 +67,7 @@ import { Component, Inject, Vue } from 'vue-property-decorator'
 import FooterMiddle from '@/components/blanks/FooterMiddle.vue'
 import FooterLayout from '@/components/blanks/FooterLayout.vue'
 import { Logo } from '@/shared/ui/Logo'
-import { IDevice } from '@/use/device'
+import type { IDevice } from '@/use/device'
 
 @Component({
     components: {

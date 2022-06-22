@@ -74,16 +74,16 @@ export default [
     //     name: 'BrandDetail',
     //     component: BrandDetailPage,
     // },
-    {
-        path: '/test',
-        name: RouteNames.TEST,
-        component: TestPage,
-    },
-    {
-        path: '/test2',
-        name: RouteNames.TEST2,
-        component: Test2Page,
-    },
+    // {
+    //     path: '/test',
+    //     name: RouteNames.TEST,
+    //     component: TestPage,
+    // },
+    // {
+    //     path: '/test2',
+    //     name: RouteNames.TEST2,
+    //     component: Test2Page,
+    // },
     {
         path: '*',
         redirect: '/',

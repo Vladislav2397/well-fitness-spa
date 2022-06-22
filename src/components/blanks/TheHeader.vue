@@ -76,7 +76,7 @@ import RequestCall from '@/components/blanks/RequestCall.vue'
 import Dealers from '@/components/blanks/Dealers.vue'
 import Navigation from '@/components/blanks/Navigation.vue'
 
-import { IDevice } from '@/use/device'
+import type { IDevice } from '@/use/device'
 
 @Component({
     components: {
