@@ -10,10 +10,10 @@
  * @throwable
  */
 const getEnvVar = (key: string) => {
-    if (import.meta.env[key] === undefined) {
+    if (process.env?.[key] === undefined) {
         throw new Error(`Env variable ${key} is required`)
     }
-    return import.meta.env[key] || ""
+    return process.env[key] || ""
 }
 
 /** API entrypoint */
@@ -21,6 +21,6 @@ export const GRAPHQL_HOST = getEnvVar("VUE_APP_GRAPHQL_HOST")
 
 /** Режим запуска программы */
 /** Режим разработки */
-export const isDevEnv = getEnvVar("DEV") // Vite feature
+// export const isDevEnv = getEnvVar("DEV") // Vite feature
 /** Режим продакшена */
-export const isProdEnv = getEnvVar("PROD") // Vite feature
+// export const isProdEnv = getEnvVar("PROD") // Vite feature

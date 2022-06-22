@@ -8,7 +8,7 @@ c-card-product.b-catalog-card(
         :hasShowRoom="true"
         :quantity="3"
         :title="content.label"
-        :rating="4"
+        :rating="content.rating"
         :price="[1000, 1200]"
     )
 

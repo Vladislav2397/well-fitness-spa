@@ -17,6 +17,7 @@ import { Catalog } from '@/pages/EquipmentFamily/Catalog'
 import {equipmentModels} from '@/entities/equipment'
 import {gql, request} from "graphql-request"
 import {Maybe} from "@/types/common"
+import {env} from "@/shared/config"
 
 @Component({
     components: {
@@ -43,14 +44,15 @@ export default class EquipmentFamily extends Vue {
                             promotion
                             inStock
                             description
+                            brand
+                            rating
                         }
                     }
                 }
             }
         `
 
-        // @ts-ignore
-        const { familyById } = await request(process.env.VUE_APP_GRAPHQL_HOST, query)
+        const { familyById } = await request(env.GRAPHQL_HOST, query)
 
         await equipmentModels.EquipmentFamily.insert({
             data: familyById

@@ -32,6 +32,7 @@ import EquipmentFamilyCard
 import { equipmentModels } from '@/entities/equipment'
 
 import {gql, request} from "graphql-request"
+import {env} from "@/shared/config"
 
 @Component({
     components: {
@@ -67,7 +68,7 @@ export default class EquipmentGroup extends Vue {
             }
         `
 
-        const { groups } = await request('http://localhost:8000/graphql', query)
+        const { groups } = await request(env.GRAPHQL_HOST, query)
 
         await equipmentModels.EquipmentGroup.insert({
             data: groups

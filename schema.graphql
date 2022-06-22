@@ -27,20 +27,21 @@ type EquipmentGroupType {
 }
 
 type EquipmentType {
+    brand: String
     description: String
     id: ID!
     inStock: EquipmentInStock!
-    isPromo: Boolean!
     label: String!
     name: String!
     promotion: String
-    type: EquipmentCategoryType!
+    rating: String
 }
 
 type Query {
     categories: [EquipmentCategoryType]
     equipments: [EquipmentType]
     equipmentsByCategoryId(id: Int): [EquipmentType]
+    equipmentsByPromotion(id: Int): [EquipmentType]
     families: [EquipmentFamilyType]
     familiesByGroupId(id: Int): [EquipmentFamilyType]
     familyById(id: Int): EquipmentFamilyType
