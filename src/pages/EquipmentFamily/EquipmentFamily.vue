@@ -44,7 +44,10 @@ export default class EquipmentFamily extends Vue {
                             promotion
                             inStock
                             description
-                            brand
+                            brand {
+                                id
+                                name
+                            }
                             rating
                         }
                     }

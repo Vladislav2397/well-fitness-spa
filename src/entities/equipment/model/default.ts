@@ -1,4 +1,5 @@
 import {Model} from '@vuex-orm/core'
+import { brandModel } from "@/entities/brand"
 
 export default class Equipment extends Model {
     static entity = 'equipments'
@@ -14,7 +15,7 @@ export default class Equipment extends Model {
             promotion: this.attr(''),
             category_id: this.attr(null),
             rating: this.attr(null),
-            brand: this.string(''),
+            brand: this.hasOne(brandModel.Brand, 'id'),
         }
     }
 }

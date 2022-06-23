@@ -4,6 +4,12 @@ schema {
     query: Query
 }
 
+type BrandType {
+    id: ID!
+    image: String!
+    name: String!
+}
+
 type EquipmentCategoryType {
     count: Int
     equipments: [EquipmentType]
@@ -27,17 +33,18 @@ type EquipmentGroupType {
 }
 
 type EquipmentType {
-    brand: String
+    brand: BrandType
     description: String
     id: ID!
     inStock: EquipmentInStock!
     label: String!
     name: String!
     promotion: String
-    rating: String
+    rating: Int
 }
 
 type Query {
+    brands: [BrandType]
     categories: [EquipmentCategoryType]
     equipments: [EquipmentType]
     equipmentsByCategoryId(id: Int): [EquipmentType]

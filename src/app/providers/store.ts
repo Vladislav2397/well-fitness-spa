@@ -4,6 +4,7 @@ import VuexORM from "@vuex-orm/core"
 import { modalModel } from '@/entities/modal'
 import { pageBreadcrumbModel } from '@/entities/page-breadcrumb'
 import { equipmentModels } from '@/entities/equipment'
+import {brandModel} from "@/entities/brand"
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ database.register(equipmentModels.EquipmentCategory)
 database.register(equipmentModels.EquipmentGroup)
 database.register(equipmentModels.EquipmentFamily)
 database.register(equipmentModels.Equipment)
+database.register(brandModel.Brand)
 
 export default new Vuex.Store({
     plugins: [
