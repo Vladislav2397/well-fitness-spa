@@ -76,7 +76,7 @@ import { TheHeader } from '@/widgets/header'
 import /*EquipmentModal, */{
     equipmentModalLinkType
 } from '@/components/modals/EquipmentModal.vue'
-import { TheFooter } from '@/widgets/TheFooter'
+import { TheFooter } from '@/widgets/footer'
 // import CityModal from '@/components/modals/CityModal.vue'
 import SearchContent from '@/components/sections/SearchContent.vue'
 

@@ -23,6 +23,9 @@ module.exports = {
         ],
     },
     chainWebpack: (config) => {
+        // removed fork-ts-checker for production
+        config.plugins.delete('fork-ts-checker')
+
         // config.module
         //     .rule('main')
         //     .test(/main.scss/)

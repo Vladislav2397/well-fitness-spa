@@ -14,7 +14,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import PageBreadcrumb, { breadcrumbListType } from '@/components/blanks/PageBreadcrumb.vue'
-import Idea from '@/components/sections/Idea.vue'
+import { Idea } from '@/pages/Main/sections/Idea'
 import Stock from '@/components/sections/Stock.vue'
 
 @Component({

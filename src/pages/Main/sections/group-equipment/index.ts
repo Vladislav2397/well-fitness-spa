@@ -1,4 +1,4 @@
-import GymEquipment from './GymEquipment.vue'
-import HomeEquipment from './HomeEquipment.vue'
+import { GymEquipment } from './GymEquipment'
+import { HomeEquipment } from './HomeEquipment'
 
 export { GymEquipment, HomeEquipment }

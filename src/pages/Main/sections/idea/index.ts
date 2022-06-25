@@ -1,3 +1,5 @@
-import Idea from './Idea.vue'
+import { Idea } from './Idea'
 
-export { Idea }
+export {
+    Idea,
+}

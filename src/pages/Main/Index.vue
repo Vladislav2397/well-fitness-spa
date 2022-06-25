@@ -15,14 +15,14 @@
 </template>
 
 <script lang="ts">
-import { Carousel } from '@/pages/Main/sections/carousel'
+import { Carousel } from '@/pages/Main/sections/Carousel'
 import { HomeEquipment, GymEquipment } from './sections'
 import Stock from '@/components/sections/Stock.vue'
 import { Idea } from './sections/idea'
-import { Brand } from './sections/brand'
+import { Brand } from './sections/Brand'
 import { Addition } from './sections/addition'
-import { About } from './sections/about'
-import { BecomePartner } from './sections/become-partner'
+import { About } from './sections/About'
+import { BecomePartner } from './sections/BecomePartner'
 import { Blog } from '@/shared/blanks/Blog'
 
 export default {

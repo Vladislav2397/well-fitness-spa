@@ -1,3 +1,5 @@
-import Addition from './Addition.vue'
+import { Addition } from './Addition'
 
-export { Addition }
+export {
+    Addition,
+}
