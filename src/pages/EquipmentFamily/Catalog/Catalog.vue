@@ -72,12 +72,13 @@
 </template>
 
 <script lang="ts">
-import {Component, Inject, PropSync, Vue} from 'vue-property-decorator'
+import {Component, Inject, Prop, PropSync, Vue} from 'vue-property-decorator'
 
 import CatalogLayout from '@/components/layouts/CatalogLayout.vue'
 import Modal from '@/components/modals/Modal.vue'
 import FilterModal from '@/components/modals/FilterModal.vue'
 import FilterGroup from '@/components/blanks/FilterGroup.vue'
+import { EquipmentCatalogCard } from "@/entities/equipment"
 
 import { TilingLayout } from '@/shared/layouts/TilingLayout'
 import { Checkbox } from '@/shared/ui/Checkbox'
@@ -93,7 +94,6 @@ import { AsideLayout } from '@/shared/layouts/AsideLayout'
 import {Equipment} from "@/entities/equipment/model/index"
 
 import type { IDevice } from '@/use/device'
-import { EquipmentCatalogCard } from "@/entities/equipment"
 
 @Component({
     components: {
@@ -117,6 +117,7 @@ export default class EquipmentTypeDetail extends Vue {
     @Inject('$device') device!: IDevice
 
     @PropSync('activeCategory') activeCategorySync!: string | number
+    @Prop() readonly activeIds!: number[]
 
     isModal = false
 
@@ -169,7 +170,10 @@ export default class EquipmentTypeDetail extends Vue {
     get activeEquipments() {
         return Object.values(Equipment
             .query()
-            .where('category_id', this.activeCategorySync)
+            .where((equipment) => {
+                return equipment.category_id === this.activeCategorySync &&
+                    this.activeIds.includes(equipment.id)
+            })
             // @ts-ignore
             .all()).map(equipment => equipment.id)
     }

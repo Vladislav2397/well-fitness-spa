@@ -30,13 +30,11 @@ import PageBreadcrumb, { breadcrumbListType } from '@/components/blanks/PageBrea
 import Tiling from '@/components/sections/Tiling.vue'
 import TilingLayout from '@/components/layouts/TilingLayout.vue'
 import { CardIdea } from '@/pages/Main/sections/idea/CardIdea'
-import Pagination from '@/components/blanks/Pagination.vue'
-import PaginationWrapper from '@/components/sections/PaginationWrapper.vue'
+import { PaginationWrapper } from '@/shared/ui/PaginationWrapper'
 
 @Component({
     components: {
         'pagination-wrapper-component': PaginationWrapper,
-        'pagination-component': Pagination,
         'card-idea-component': CardIdea,
         'tiling-component': Tiling,
         'tiling-layout-component': TilingLayout,

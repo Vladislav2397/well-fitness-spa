@@ -16,7 +16,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import PageBreadcrumb, {
     breadcrumbListType
 } from '@/components/blanks/PageBreadcrumb.vue'
-import PaginationWrapper from '@/components/sections/PaginationWrapper.vue'
+import { PaginationWrapper } from '@/shared/ui/PaginationWrapper'
 import EquipmentTypeDetail from '@/components/sections/EquipmentTypeDetail.vue'
 
 @Component({

@@ -4,6 +4,12 @@ schema {
     query: Query
 }
 
+"An object with an ID"
+interface Node {
+    "The ID of the object."
+    id: ID!
+}
+
 type BrandType {
     id: ID!
     image: String!
@@ -12,7 +18,6 @@ type BrandType {
 
 type EquipmentCategoryType {
     count: Int
-    equipments: [EquipmentType]
     family: EquipmentFamilyType
     id: ID!
     name: String!
@@ -32,8 +37,9 @@ type EquipmentGroupType {
     name: String!
 }
 
-type EquipmentType {
+type EquipmentType implements Node {
     brand: BrandType
+    category: EquipmentCategoryType!
     description: String
     id: ID!
     inStock: EquipmentInStock!
@@ -43,12 +49,45 @@ type EquipmentType {
     rating: Int
 }
 
+type EquipmentTypeNodeConnection {
+    "Pagination data for this connection."
+    pageInfo: PageInfoExtra!
+    "Contains the nodes in this connection."
+    results: [EquipmentType]!
+    totalCount: Int
+}
+
+type PageInfoExtra {
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+}
+
 type Query {
+    allEquipments(
+        after: String,
+        before: String,
+        brand: Float,
+        category: Float,
+        first: Int,
+        last: Int,
+        "Query limit"
+        limit: Int,
+        name: String,
+        "Query offset"
+        offset: Int,
+        "Query order"
+        ordering: String,
+        promotion: Float,
+        rating: Float
+    ): EquipmentTypeNodeConnection
     brands: [BrandType]
     categories: [EquipmentCategoryType]
-    equipments: [EquipmentType]
-    equipmentsByCategoryId(id: Int): [EquipmentType]
-    equipmentsByPromotion(id: Int): [EquipmentType]
+    equipment(
+        "The ID of the object"
+        id: ID!
+    ): EquipmentType
     families: [EquipmentFamilyType]
     familiesByGroupId(id: Int): [EquipmentFamilyType]
     familyById(id: Int): EquipmentFamilyType

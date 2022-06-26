@@ -1,6 +1,6 @@
 <template lang="pug">
 
-.pagination
+.b-pagination
     ._item(
         v-for="(item, index) in pagination"
         :key="index"
@@ -100,3 +100,6 @@ export default class Pagination extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="./Pagination.critical.scss" />
+<style lang="scss" src="./Pagination.main.scss" />

@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Component, Prop, VModel, Vue } from 'vue-property-decorator'
 
-import Tab from '@/components/ui/Tab.vue'
+import {Tab} from '@/shared/ui/Tab'
 
 @Component({
     components: {
