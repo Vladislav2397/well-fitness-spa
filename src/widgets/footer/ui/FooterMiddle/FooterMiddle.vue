@@ -111,5 +111,5 @@ export default class FooterMiddle extends Vue {
 
 </script>
 
-<!--<style lang="scss" src="./FooterMiddle.critical.scss" />-->
-<!--<style lang="scss" src="./FooterMiddle.main.scss" />-->
+<style lang="scss" src="./FooterMiddle.critical.scss" />
+<style lang="scss" src="./FooterMiddle.main.scss" />

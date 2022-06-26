@@ -15,3 +15,6 @@
         )
 
 </template>
+
+<style lang="scss" src="./FooterLayout.critical.scss" />
+<style lang="scss" src="./FooterLayout.main.scss" />

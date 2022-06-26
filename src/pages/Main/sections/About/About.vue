@@ -28,3 +28,6 @@ import { SectionWrapper } from '../SectionWrapper'
 })
 export default class About extends Vue {}
 </script>
+
+<style lang="scss" src="./About.critical.scss" />
+<style lang="scss" src="./About.main.scss" />

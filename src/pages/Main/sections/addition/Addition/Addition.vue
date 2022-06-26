@@ -1,6 +1,6 @@
 <template lang="pug">
 
-section.addition
+section.b-addition
     ._container.container
         ._cards
             card-addition-component._card(
@@ -80,3 +80,6 @@ export default class Addition extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="./Addition.critical.scss" />
+<style lang="scss" src="./Addition.main.scss" />

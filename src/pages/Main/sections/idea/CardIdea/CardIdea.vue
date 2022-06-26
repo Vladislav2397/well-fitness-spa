@@ -35,3 +35,6 @@ export default class CardIdea extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="./CardIdea.critical.scss" />
+<style lang="scss" src="./CardIdea.main.scss" />

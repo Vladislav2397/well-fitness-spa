@@ -29,7 +29,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import PageBreadcrumb, { breadcrumbListType } from '@/components/blanks/PageBreadcrumb.vue'
 import Tiling from '@/components/sections/Tiling.vue'
 import TilingLayout from '@/components/layouts/TilingLayout.vue'
-import CardIdea from '@/components/blanks/cards/CardIdea.vue'
+import { CardIdea } from '@/pages/Main/sections/idea/CardIdea'
 import Pagination from '@/components/blanks/Pagination.vue'
 import PaginationWrapper from '@/components/sections/PaginationWrapper.vue'
 

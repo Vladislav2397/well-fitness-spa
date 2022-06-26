@@ -26,7 +26,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { SectionWrapper } from '../../SectionWrapper'
 
 // entity
-import CardIdea from '@/components/blanks/cards/CardIdea.vue'
+import { CardIdea } from '../CardIdea'
 
 @Component({
     components: {
@@ -59,3 +59,6 @@ export default class Idea extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="./Idea.critical.scss" />
+<style lang="scss" src="./Idea.main.scss" />

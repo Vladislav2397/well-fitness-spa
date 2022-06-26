@@ -32,3 +32,6 @@ export default class CardAddition extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="./CardAddition.critical.scss" />
+<style lang="scss" src="./CardAddition.main.scss" />
