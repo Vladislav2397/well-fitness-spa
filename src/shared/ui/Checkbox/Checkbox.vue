@@ -7,6 +7,7 @@ label.b-checkbox(
         v-model="isActive"
         :id="id"
         type="checkbox"
+        :checked="isActive"
     )
     slot
 

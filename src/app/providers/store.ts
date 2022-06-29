@@ -3,22 +3,12 @@ import Vuex from 'vuex'
 import VuexORM from "@vuex-orm/core"
 import { modalModel } from '@/entities/modal'
 import { pageBreadcrumbModel } from '@/entities/page-breadcrumb'
-import { equipmentModels } from '@/entities/equipment'
-import {brandModel} from "@/entities/brand"
 
 Vue.use(Vuex)
 
-const database = new VuexORM.Database()
-
-database.register(equipmentModels.EquipmentCategory)
-database.register(equipmentModels.EquipmentGroup)
-database.register(equipmentModels.EquipmentFamily)
-database.register(equipmentModels.Equipment)
-database.register(brandModel.Brand)
-
 export default new Vuex.Store({
     plugins: [
-        VuexORM.install(database)
+        VuexORM.install()
     ],
     modules: {
         modals: modalModel.module,

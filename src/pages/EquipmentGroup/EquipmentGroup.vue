@@ -70,13 +70,19 @@ export default class EquipmentGroup extends Vue {
 
         const { groups } = await request(env.GRAPHQL_HOST, query)
 
-        await equipmentModels.EquipmentGroup.insert({
-            data: groups
-        })
+        this.EquipmentGroup.insert(groups)
+
+    //     await equipmentModels.EquipmentGroup.insert({
+    //         data: groups
+    //     })
+    }
+
+    get EquipmentGroup() {
+        return this.$store.$repo(equipmentModels.EquipmentGroup)
     }
 
     get productList() {
-        const families = equipmentModels.EquipmentFamily
+        const families = this.EquipmentGroup
             .query()
             .with('categories')
             .get()

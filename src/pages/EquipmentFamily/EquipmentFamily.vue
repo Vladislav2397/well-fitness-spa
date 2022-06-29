@@ -6,10 +6,12 @@
         :quantity="paginationQuantity"
 
         @input="onChangePagination"
+        @clickLink="onClickLink"
     )
         c-catalog(
             :activeCategory="activeCategory"
             :activeIds="activeIds"
+            :filters="filters"
 
             @update:activeCategory="onUpdateActiveCategory"
         )
@@ -27,6 +29,10 @@ import {equipmentModels} from '@/entities/equipment'
 import {gql, request} from "graphql-request"
 import {Maybe} from "@/types/common"
 import {env} from "@/shared/config"
+import {brandModel} from "@/entities/brand"
+import {FilterGroups} from "./Catalog"
+
+// TODO: add middleware for filtering into currentRoute
 
 @Component({
     components: {
@@ -39,6 +45,42 @@ export default class EquipmentFamily extends Mixins(PaginationMixin) {
 
     activeIds: number[] = []
 
+    onClickLink() {
+        const { limit } = this.pagination
+
+        if (limit === 10) {
+            this.pagination.limit = 15
+        } else if (limit === 15) {
+            this.pagination.limit = 25
+        }
+
+        this.getEquipmentsByActiveCategory()
+    }
+
+    createFilter(filterName: string): Set<string> {
+        return new Set(this.$route.query?.[filterName]?.split(',') ?? [])
+    }
+
+    get filters() {
+        return {
+            [FilterGroups.BRAND]: this.createFilter('brand'),
+            [FilterGroups.FUNCTIONALITY]: this.createFilter('functionality'),
+            [FilterGroups.PROMOTION]: this.createFilter('promotion'),
+        }
+    }
+
+    get EquipmentFamily() {
+        return this.$store.$repo(equipmentModels.EquipmentFamily)
+    }
+
+    get Brand() {
+        return this.$store.$repo(brandModel.Brand)
+    }
+
+    get EquipmentCategory() {
+        return this.$store.$repo(equipmentModels.EquipmentCategory)
+    }
+
     async created(): Promise<void> {
         const query = gql`
             {
@@ -50,14 +92,26 @@ export default class EquipmentFamily extends Mixins(PaginationMixin) {
                         name
                     }
                 }
+                brands {
+                    id
+                    name
+                }
             }
         `
 
-        const { familyById } = await request(env.GRAPHQL_HOST, query)
+        const { familyById, brands } = await request(env.GRAPHQL_HOST, query)
 
-        await equipmentModels.EquipmentFamily.insert({
-            data: familyById
-        })
+        this.EquipmentFamily.insert(familyById)
+
+        // await equipmentModels.EquipmentFamily.insert({
+        //     data: familyById
+        // })
+
+        this.Brand.insert(brands)
+
+        // await brandModel.Brand.insert({
+        //     data: brands
+        // })
 
         this.activeCategory = familyById.categories[0]?.id ?? null
 
@@ -98,7 +152,6 @@ export default class EquipmentFamily extends Mixins(PaginationMixin) {
                         description
                         brand {
                             id
-                            name
                         }
                         category {
                             id
@@ -113,16 +166,22 @@ export default class EquipmentFamily extends Mixins(PaginationMixin) {
         this.activeIds = allEquipments.results.map((item: any) => item.id)
 
         if (this.activeCategory) {
-            await equipmentModels.EquipmentCategory.insertOrUpdate({
-                data: {
-                    id: this.activeCategory,
-                    equipments: allEquipments.results,
-                }
+            this.EquipmentCategory.insert({
+                id: this.activeCategory,
+                equipments: allEquipments.results
             })
+            // await equipmentModels.EquipmentCategory.insertOrUpdate({
+            //     data: {
+            //         id: this.activeCategory,
+            //         equipments: allEquipments.results,
+            //     }
+            // })
         }
 
+        this.EquipmentCategory.find(1)
+
         this.pagination = {
-            currentPage: 1,
+            currentPage: this.pagination.currentPage,
             limit: this.pagination.limit,
             total: allEquipments.totalCount
         }

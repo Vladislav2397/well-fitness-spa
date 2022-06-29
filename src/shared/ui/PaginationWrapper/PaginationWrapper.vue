@@ -6,7 +6,9 @@
         .__wrapper(
             v-if="quantity > 1"
         )
-            link-component.__link Показать еще
+            link-component.__link(
+                @click="clickLinkEmit"
+            ) Показать еще
             pagination-component.__pagination(
                 v-model="pageCount"
                 :quantity="quantity"
@@ -17,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, VModel, Vue} from 'vue-property-decorator'
+import {Component, Emit, Prop, VModel, Vue} from 'vue-property-decorator'
 
 import { Pagination } from '@/shared/ui/Pagination'
 
@@ -29,6 +31,8 @@ import { Pagination } from '@/shared/ui/Pagination'
 export default class PaginationWrapper extends Vue {
     @VModel() pageCount!: Pagination['currentValue']
     @Prop() readonly quantity!: Pagination['quantity']
+
+    @Emit('clickLink') clickLinkEmit() {/**/}
 }
 
 </script>

@@ -1,12 +1,12 @@
 <template lang="pug">
 
-card-product-component.b-equipment-stock-card
-    card-product-stats-component.__stats(
-        :quantity="card.quantity"
-        :hasShowRoom="card.hasShowRoom"
-        :title="card.title"
-        :rating="card.rating"
-        :price="card.price"
+c-card-product.b-equipment-stock-card
+    c-card-product-stats.__stats(
+        :quantity="content.quantity || 3"
+        :hasShowRoom="content.hasShowRoom"
+        :title="content.name"
+        :rating="content.rating"
+        :price="content.price || [ 1000, 2000 ]"
         :is-price-row="device.size.mobile"
     )
         template(
@@ -22,23 +22,38 @@ card-product-component.b-equipment-stock-card
 
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator'
+
+import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
+
 import type { IDevice } from '@/use/device'
+import { equipmentModels } from '@/entities/equipment'
+import {Model} from "@/shared/config/decorators"
+import {Repository} from "@vuex-orm/core"
 
-type Card = Pick<
-    CardProductStats,
-    | 'quantity'
-    | 'hasShowRoom'
-    | 'title'
-    | 'rating'
-    | 'price'
->
-
-@Component
+@Component({
+    components: {
+        'c-card-product': CardProduct,
+        'c-card-product-stats': CardProductStats,
+    }
+})
 export default class EquipmentStockCard extends Vue {
     @Inject('$device') device!: IDevice
 
-    @Prop() readonly card!: Card
+    @Model(equipmentModels.Equipment)
+    Equipment!: Repository<equipmentModels.Equipment>
+
+    // @Model(equipmentModels.EquipmentCategory)
+    // EquipmentCategory!: Repository<equipmentModels.EquipmentCategory>
+    //
+    // @Model(equipmentModels.EquipmentFamily)
+    // EquipmentFamily!: Repository<equipmentModels.EquipmentFamily>
+
+    @Prop() readonly id!: number | string
+
+    get content() {
+        return this.Equipment.find(this.id ?? 0)
+    }
 }
 </script>
 

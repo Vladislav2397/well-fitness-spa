@@ -22,7 +22,7 @@
         "@vue/composition-api": "^1.4.5",
         "@vue/runtime-dom": "^3.2.31",
         "@vueblocks/vue-use-vuex": "^0.2.11",
-        "@vuex-orm/core": "^0.36.4",
+        "@vuex-orm/core": "^1.0.0-draft.16",
         "chokidar": "^3.5.2",
         "chromatic": "^6.5.3",
         "core-js": "^3.6.5",

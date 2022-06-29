@@ -9,30 +9,17 @@
                 #title
             )
                 tab-list-component.__tabs.scroll-row(
-                    v-model="activeTabIndex"
+                    :value="activeTabIndex"
                     :list="tabList"
+
+                    @input="onInput"
                 )
             .__cards
-                card-product-component.__card(
-                    v-for="card in cards"
-                    :key="card.id"
+                c-equipment-stock-card.__card(
+                    v-for="id in activeIds"
+                    :key="id"
+                    :id="id"
                 )
-                    card-product-stats-component.__stats(
-                        :quantity="card.quantity"
-                        :hasShowRoom="card.hasShowRoom"
-                        :title="card.title"
-                        :rating="card.rating"
-                        :price="card.price"
-                        :is-price-row="device.size.mobile"
-                    )
-                        template(
-                            #action
-                        )
-                            button-component(
-                                v-if="!device.size.mobile"
-                                :iconLeft="true"
-                                icon="cart"
-                            ) Купить
 
 </template>
 
@@ -45,23 +32,29 @@ import TabList from '@/components/blanks/TabList.vue'
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
 import type {IDevice} from '@/use/device'
+import EquipmentStockCard
+    from "@/entities/equipment/ui/EquipmentStockCard/EquipmentStockCard.vue"
+import {gql, request} from "graphql-request"
+import {env} from "@/shared/config"
+import {equipmentModels} from "@/entities/equipment"
 
-export type ProductCardType = {
-    id: number,
-    image: {
-        src: string,
-        alt: string,
-    },
-    stickers?: Set<'new' | 'percent' | 'like'>,
-    quantity: 0 | 1 | 2 | 3,
-    hasShowRoom?: boolean,
-    title: string,
-    rating: 1 | 2 | 3 | 4 | 5,
-    price: [current: string | number, old?: string | number]
-}
+// export type ProductCardType = {
+//     id: number,
+//     image: {
+//         src: string,
+//         alt: string,
+//     },
+//     stickers?: Set<'new' | 'percent' | 'like'>,
+//     quantity: 0 | 1 | 2 | 3,
+//     hasShowRoom?: boolean,
+//     title: string,
+//     rating: 1 | 2 | 3 | 4 | 5,
+//     price: [current: string | number, old?: string | number]
+// }
 
 @Component({
     components: {
+        'c-equipment-stock-card': EquipmentStockCard,
         'card-product-stats-component': CardProductStats,
         'card-product-component': CardProduct,
         'tab-list-component': TabList,
@@ -73,78 +66,66 @@ export default class Stock extends Vue {
 
     activeTabIndex = 0
 
+    activeIds = []
+
     tabList = [
         'Акция',
         'Новинки',
         'Мы рекомендуем',
     ]
 
-    cards: ProductCardType[] = [
-        {
-            id: 1,
-            image: {
-                src: '',
-                alt: '',
-            },
-            stickers: new Set(['new', 'percent', 'like']),
-            quantity: 3,
-            hasShowRoom: true,
-            title: 'Вертикальный велотренажер СardioPower B37',
-            rating: 5,
-            price: [1_128_000, 1_324_000]
-        },
-        {
-            id: 2,
-            image: {
-                src: '',
-                alt: '',
-            },
-            stickers: new Set(['new', 'percent']),
-            quantity: 2,
-            hasShowRoom: false,
-            title: 'Вертикальный велотренажер СardioPower B37',
-            rating: 4,
-            price: [1_128_000, 1_324_000]
-        },
-        {
-            id: 3,
-            image: {
-                src: '',
-                alt: '',
-            },
-            stickers: new Set(['new']),
-            quantity: 1,
-            hasShowRoom: true,
-            title: 'Вертикальный велотренажер СardioPower B37',
-            rating: 3,
-            price: [1_128_000, 1_324_000]
-        },
-        {
-            id: 4,
-            image: {
-                src: '',
-                alt: '',
-            },
-            quantity: 0,
-            hasShowRoom: false,
-            title: 'Вертикальный велотренажер СardioPower B37',
-            rating: 2,
-            price: [1_128_000, 1_324_000]
-        },
-        {
-            id: 5,
-            image: {
-                src: '',
-                alt: '',
-            },
-            stickers: new Set(['new']),
-            quantity: 3,
-            hasShowRoom: true,
-            title: 'Вертикальный велотренажер СardioPower B37',
-            rating: 1,
-            price: [1_128_000, 1_324_000]
+    onInput(value: number): void {
+        const oldValue = this.activeTabIndex
+
+        this.activeTabIndex = value
+
+        if (value !== oldValue) {
+            this.fetchEquipments()
         }
-    ]
+    }
+
+    async fetchEquipments() {
+        const query = gql`
+            {
+                allEquipments(promotion: ${this.activeTabIndex + 1}) {
+                    results {
+                        id
+                        name
+                        label
+                        description
+                        rating
+                        promotion
+                        category {
+                            id
+                            name
+                        }
+                        brand {
+                            id
+                            name
+                        }
+                    }
+                }
+            }
+        `
+
+        try {
+            const { allEquipments } = await request(env.GRAPHQL_HOST, query)
+
+            this.$store.$repo(equipmentModels.Equipment).insert(allEquipments.results)
+
+            // await equipmentModels.Equipment.insertOrUpdate({
+            //     data: allEquipments.results
+            // })
+
+            this.activeIds = allEquipments.results.map(item => item.id)
+        } catch (error) {
+            console.log('Error on fetch promotion equipments')
+        }
+    }
+
+    async created() {
+        this.fetchEquipments()
+    }
 }
 
 </script>

@@ -33,3 +33,6 @@ export default class Rating extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="../../assets/scss/ui/rating/rating--critical.scss" />
+<style lang="scss" src="../../assets/scss/ui/rating/rating--main.scss" />

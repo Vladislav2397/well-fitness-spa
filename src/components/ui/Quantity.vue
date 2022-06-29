@@ -42,3 +42,6 @@ export default class Quantity extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="../../assets/scss/ui/quantity/quantity--critical.scss" />
+<style lang="scss" src="../../assets/scss/ui/quantity/quantity--main.scss" />

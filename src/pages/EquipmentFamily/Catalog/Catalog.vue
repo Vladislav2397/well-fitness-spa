@@ -39,7 +39,7 @@
                 :class="classContainer"
             )
                 filter-group-component.__group(
-                    v-for="({ title, filters }, index) in filterList"
+                    v-for="({ title, type, filters }, index) in filterData"
                     :key="index"
                     :title="title"
                 )
@@ -47,12 +47,14 @@
                         #default="{ classItem }"
                     )
                         checkbox-component(
-                            v-for="([name, value], index) in filters"
+                            v-for="([filterItem, value], index) in filters"
                             :key="index"
-                            v-model="value"
-                            :id="`input${index}${name}`"
+                            :value="value"
+                            :id="`input${index}${filterItem.name}`"
                             :class="classItem"
-                        ) {{ name }}
+
+                            @input="onCheck(type, filterItem.id, $event)"
+                        ) {{ filterItem.name }}
                 filter-group-component.__group(
                     title="Цена"
                 )
@@ -94,6 +96,13 @@ import { AsideLayout } from '@/shared/layouts/AsideLayout'
 import {Equipment} from "@/entities/equipment/model/index"
 
 import type { IDevice } from '@/use/device'
+import {brandModel} from "@/entities/brand"
+
+export enum FilterGroups {
+    BRAND = 'brand',
+    FUNCTIONALITY = 'functionality',
+    PROMOTION = 'promotion',
+}
 
 @Component({
     components: {
@@ -118,19 +127,69 @@ export default class EquipmentTypeDetail extends Vue {
 
     @PropSync('activeCategory') activeCategorySync!: string | number
     @Prop() readonly activeIds!: number[]
+    @Prop() readonly filters!: {
+        [K in FilterGroups]: Set<string>
+    }
+
+    onCheck(type: FilterGroups, id: number, value: boolean) {
+        const filters = Object.fromEntries(
+            Object.entries(this.filters)
+                // .filter(([, set]) => set.size)
+                .map(([key, set]) => [key, new Set([ ...set ])])
+        )
+
+        if (value) {
+            filters?.[type].add(`${id}`)
+        } else {
+            filters?.[type].delete(`${id}`)
+        }
+
+        this.$router.replace({
+            query: {
+                ...Object.fromEntries(
+                    Object
+                        .entries(filters)
+                        .filter(([, set]) => set.size)
+                        .map(([key, set]) => [ key, [ ...set ].join(',') ])
+                ),
+            }
+        })
+    }
 
     isModal = false
 
-    get cards(): EquipmentCard['equipmentCard'][] {
-        return [{
-            id: '1',
-            image: 'image',
-            name: 'name',
-            price: {
-                old: '1098',
-                current: '1000',
+    get correctFilters() {
+        return Object.fromEntries(
+            Object.entries(this.filters).map(
+                ([key,ids]) => [key, new Set(ids)]
+            )
+        )
+    }
+
+    get filterData() {
+        const brands = this.Brand.all()
+
+        return [
+            {
+                title: 'Производители',
+                theme: 'light',
+                type: FilterGroups.BRAND,
+                filters: brands.map(brand => [
+                    brand,
+                    this.filters[FilterGroups.BRAND].has(brand?.id ?? 0)
+                ])
             },
-        }]
+            {
+                title: 'Акции, наличие',
+                theme: 'light',
+                filters: [
+                    [{ name: 'Акция' }, false],
+                    [{ name: 'Новинки' }, false],
+                    [{ name: 'В наличии' }, false],
+                    [{ name: 'Наш выбор' }, false],
+                ]
+            },
+        ]
     }
 
     filterList = [
@@ -139,10 +198,10 @@ export default class EquipmentTypeDetail extends Vue {
             theme: 'light',
             filters: [
                 ['Gym80', false],
-                ['CardioPower', true],
+                ['CardioPower', false],
                 ['Original Fitness', false],
-                ['Nautilus', true],
-                ['Sole Fitness', true],
+                ['Nautilus', false],
+                ['Sole Fitness', false],
                 ['Nautilus', false],
             ]
         },
@@ -167,10 +226,20 @@ export default class EquipmentTypeDetail extends Vue {
         },
     ]
 
+    get Brand() {
+        return this.$store.$db().model('brand')
+    }
+
+    mounted() {
+        this.filterList[0].filters = brandModel.Brand.query().all().map(
+            brand => [brand.name, false]
+        )
+    }
+
     get activeEquipments() {
         return Object.values(Equipment
             .query()
-            .where((equipment) => {
+            .where((equipment: any) => {
                 return equipment.category_id === this.activeCategorySync &&
                     this.activeIds.includes(equipment.id)
             })

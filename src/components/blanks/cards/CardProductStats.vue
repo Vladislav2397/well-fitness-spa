@@ -58,7 +58,7 @@ import { ProductCardType } from '@/components/sections/Stock.vue'
     }
 })
 export default class CardProductStats extends Vue {
-    @Prop() readonly quantity!: ProductCardType['quantity']
+    @Prop() readonly quantity!: string | number
     @Prop() readonly hasShowRoom!: ProductCardType['hasShowRoom']
     @Prop() readonly info!: [key: string, value: string][]
     @Prop() readonly title!: ProductCardType['title']
@@ -72,3 +72,6 @@ export default class CardProductStats extends Vue {
 }
 
 </script>
+
+<style lang="scss" src="../../../assets/scss/blanks/cards/card-product-stats/card-product-stats--critical.scss" />
+<style lang="scss" src="../../../assets/scss/blanks/cards/card-product-stats/card-product-stats--main.scss" />

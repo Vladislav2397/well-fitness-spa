@@ -1,5 +1,6 @@
-import Catalog from './Catalog.vue'
+import Catalog, { FilterGroups } from './Catalog.vue'
 
 export {
-    Catalog
+    Catalog,
+    FilterGroups
 }
