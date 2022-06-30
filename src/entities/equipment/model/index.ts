@@ -9,3 +9,10 @@ export {
     EquipmentCategory,
     Equipment,
 }
+
+export default {
+    EquipmentGroup,
+    EquipmentFamily,
+    EquipmentCategory,
+    Equipment,
+}

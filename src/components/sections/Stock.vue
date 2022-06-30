@@ -36,7 +36,9 @@ import EquipmentStockCard
     from "@/entities/equipment/ui/EquipmentStockCard/EquipmentStockCard.vue"
 import {gql, request} from "graphql-request"
 import {env} from "@/shared/config"
-import {equipmentModels} from "@/entities/equipment"
+import {Equipment} from "@/entities/equipment"
+import {Repository} from "@vuex-orm/core"
+import {Model} from "@/shared/config/decorators"
 
 // export type ProductCardType = {
 //     id: number,
@@ -63,6 +65,8 @@ import {equipmentModels} from "@/entities/equipment"
 })
 export default class Stock extends Vue {
     @Inject('$device') device!: IDevice
+
+    @Model(Equipment) Equipment!: Repository<Equipment>
 
     activeTabIndex = 0
 
@@ -111,11 +115,7 @@ export default class Stock extends Vue {
         try {
             const { allEquipments } = await request(env.GRAPHQL_HOST, query)
 
-            this.$store.$repo(equipmentModels.Equipment).insert(allEquipments.results)
-
-            // await equipmentModels.Equipment.insertOrUpdate({
-            //     data: allEquipments.results
-            // })
+            this.Equipment.insert(allEquipments.results)
 
             this.activeIds = allEquipments.results.map(item => item.id)
         } catch (error) {

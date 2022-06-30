@@ -21,6 +21,8 @@ import CardProduct from "@/components/blanks/cards/CardProduct.vue"
 import CardProductStats from "@/components/blanks/cards/CardProductStats.vue"
 
 import {Equipment} from "@/entities/equipment"
+import {Model} from "@/shared/config/decorators"
+import {Repository} from "@vuex-orm/core"
 
 @Component({
     components: {
@@ -32,8 +34,10 @@ export default class CatalogCard extends Vue {
     @Prop() readonly id!: string | number
     @Prop() readonly to!: string
 
+    @Model(Equipment) Equipment!: Repository<Equipment>
+
     get content() {
-        return Equipment.find(this.id)
+        return this.Equipment.find(`${this.id}`)
     }
 }
 </script>

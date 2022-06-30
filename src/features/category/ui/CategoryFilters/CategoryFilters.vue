@@ -18,7 +18,9 @@ import {Component, Vue, Inject, PropSync} from 'vue-property-decorator'
 
 import RowLayout from '@/components/layouts/RowLayout.vue'
 import type { IDevice } from '@/use/device'
-import { EquipmentCategory } from '@/entities/equipment/model/index'
+import { EquipmentCategory } from '@/entities/equipment'
+import {Model} from "@/shared/config/decorators"
+import {Repository} from "@vuex-orm/core"
 
 @Component({
     components: {
@@ -28,6 +30,8 @@ import { EquipmentCategory } from '@/entities/equipment/model/index'
 export default class CategoryFilters extends Vue {
     @Inject('$device') device!: IDevice
 
+    @Model(EquipmentCategory) EquipmentCategory!: Repository<EquipmentCategory>
+
     @PropSync('active') activeSync!: string | number
 
     get activeFamily(): string {
@@ -35,17 +39,17 @@ export default class CategoryFilters extends Vue {
     }
 
     get categories()/*: { id: string, name: string }[]*/ {
-        return EquipmentCategory
+        return this.EquipmentCategory
             .query()
             .where('family_id', this.activeFamily)
             .all()
     }
 
-    isActive(id: string): boolean {
+    isActive(id: number | string): boolean {
         return `${id}` === `${this.activeSync}`
     }
 
-    onClick(id: string): void {
+    onClick(id: number | string): void {
         console.log('onClick setActiveCategory', id)
         this.activeSync = id
     }

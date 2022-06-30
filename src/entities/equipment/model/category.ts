@@ -13,14 +13,4 @@ export default class EquipmentCategory extends Model {
 
     @HasMany(() => Equipment, 'category_id')
     equipments!: Equipment[]
-
-    // static fields() {
-    //     return {
-    //         id: this.attr(null),
-    //         name: this.string(''),
-    //         count: this.attr(''),
-    //         family_id: this.attr(''),
-    //         equipments: this.hasMany(Equipment, 'category_id')
-    //     }
-    // }
 }

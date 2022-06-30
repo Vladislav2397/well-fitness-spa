@@ -17,14 +17,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
-import * as equipmentModel from '../../model/index'
-
-// type EquipmentFamily = {
-//     image: {
-//         src: string
-//         alt: string
-//     }
-// } & Pick<ProductCounterList, 'title' | 'list'>
+import {Model} from "@/shared/config/decorators"
+import {EquipmentFamily} from "@/entities/equipment"
+import {Repository} from "@vuex-orm/core"
 
 @Component({
     components: {
@@ -35,10 +30,13 @@ import * as equipmentModel from '../../model/index'
 export default class EquipmentFamilyCard extends Vue {
     @Prop() readonly id!: number | string
 
-    get content() {
-        const Model = equipmentModel.EquipmentFamily
+    @Model(EquipmentFamily) EquipmentFamily!: Repository<EquipmentFamily>
 
-        return Model.query().with('categories').find(this.id) // .query().whereId(this.id).get()
+    get content() {
+        return this.EquipmentFamily
+            .query()
+            .with('categories')
+            .find(`${this.id}`)
     }
 
     get list() {

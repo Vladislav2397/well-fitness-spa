@@ -8,8 +8,8 @@
             #default="{ classItem }"
         )
             c-equipment-family-card(
-                v-for="(id, index) in productList"
-                :key="index"
+                v-for="id in productList"
+                :key="id"
                 :class="classItem"
                 :id="id"
             )
@@ -29,10 +29,12 @@ import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
 import type { IDevice } from '@/use/device'
 import EquipmentFamilyCard
     from '@/entities/equipment/ui/EquipmentFamilyCard/EquipmentFamilyCard.vue'
-import { equipmentModels } from '@/entities/equipment'
+import { EquipmentGroup, EquipmentFamily } from '@/entities/equipment'
 
 import {gql, request} from "graphql-request"
 import {env} from "@/shared/config"
+import {Model} from "@/shared/config/decorators"
+import {Repository} from "@vuex-orm/core"
 
 @Component({
     components: {
@@ -44,13 +46,15 @@ import {env} from "@/shared/config"
         'c-idea': Idea,
     },
 })
-export default class EquipmentGroup extends Vue {
+export default class EquipmentGroupPage extends Vue {
     @Inject('$device') device!: IDevice
 
-    // @Service('EquipmentGroup') equipmentGroupService!: EquipmentGroupService
+    @Model(EquipmentGroup) EquipmentGroup!: Repository<EquipmentGroup>
+    @Model(EquipmentFamily) EquipmentFamily!: Repository<EquipmentFamily>
 
     async created(): Promise<void> {
-        const query = gql`
+        try {
+            const query = gql`
             {
                 groups {
                     id
@@ -68,24 +72,21 @@ export default class EquipmentGroup extends Vue {
             }
         `
 
-        const { groups } = await request(env.GRAPHQL_HOST, query)
+            const { groups } = await request(env.GRAPHQL_HOST, query)
 
-        this.EquipmentGroup.insert(groups)
+            console.log(groups)
 
-    //     await equipmentModels.EquipmentGroup.insert({
-    //         data: groups
-    //     })
-    }
-
-    get EquipmentGroup() {
-        return this.$store.$repo(equipmentModels.EquipmentGroup)
+            this.EquipmentGroup.save(groups)
+        } catch (error) {
+            console.log('error')
+        }
     }
 
     get productList() {
-        const families = this.EquipmentGroup
+        const families = this.EquipmentFamily
             .query()
             .with('categories')
-            .get()
+            .all()
 
         // @ts-ignore
         return Object.values(families ?? {}).map(family => +family.id)

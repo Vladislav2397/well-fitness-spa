@@ -93,10 +93,13 @@ import {
     EquipmentCard,
 } from '@/entities/equipment'
 import { AsideLayout } from '@/shared/layouts/AsideLayout'
-import {Equipment} from "@/entities/equipment/model/index"
+import {Equipment} from "@/entities/equipment"
+import {Brand} from "@/entities/brand"
 
 import type { IDevice } from '@/use/device'
 import {brandModel} from "@/entities/brand"
+import {Model} from "@/shared/config/decorators"
+import {Repository} from "@vuex-orm/core"
 
 export enum FilterGroups {
     BRAND = 'brand',
@@ -124,6 +127,9 @@ export enum FilterGroups {
 })
 export default class EquipmentTypeDetail extends Vue {
     @Inject('$device') device!: IDevice
+
+    @Model(Equipment) Equipment!: Repository<Equipment>
+    @Model(Brand) Brand!: Repository<Brand>
 
     @PropSync('activeCategory') activeCategorySync!: string | number
     @Prop() readonly activeIds!: number[]
@@ -226,24 +232,19 @@ export default class EquipmentTypeDetail extends Vue {
         },
     ]
 
-    get Brand() {
-        return this.$store.$db().model('brand')
-    }
-
     mounted() {
-        this.filterList[0].filters = brandModel.Brand.query().all().map(
+        this.filterList[0].filters = this.Brand.all().map(
             brand => [brand.name, false]
         )
     }
 
     get activeEquipments() {
-        return Object.values(Equipment
+        return Object.values(this.Equipment
             .query()
-            .where((equipment: any) => {
+            .where(equipment => {
                 return equipment.category_id === this.activeCategorySync &&
                     this.activeIds.includes(equipment.id)
             })
-            // @ts-ignore
             .all()).map(equipment => equipment.id)
     }
 

@@ -27,7 +27,7 @@ import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
 
 import type { IDevice } from '@/use/device'
-import { equipmentModels } from '@/entities/equipment'
+import {Equipment} from '@/entities/equipment/model'
 import {Model} from "@/shared/config/decorators"
 import {Repository} from "@vuex-orm/core"
 
@@ -38,18 +38,12 @@ import {Repository} from "@vuex-orm/core"
     }
 })
 export default class EquipmentStockCard extends Vue {
+    @Prop() readonly id!: number | string
+
     @Inject('$device') device!: IDevice
 
-    @Model(equipmentModels.Equipment)
-    Equipment!: Repository<equipmentModels.Equipment>
-
-    // @Model(equipmentModels.EquipmentCategory)
-    // EquipmentCategory!: Repository<equipmentModels.EquipmentCategory>
-    //
-    // @Model(equipmentModels.EquipmentFamily)
-    // EquipmentFamily!: Repository<equipmentModels.EquipmentFamily>
-
-    @Prop() readonly id!: number | string
+    @Model(Equipment)
+    Equipment!: Repository<Equipment>
 
     get content() {
         return this.Equipment.find(this.id ?? 0)

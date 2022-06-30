@@ -166,19 +166,13 @@ export default class EquipmentFamily extends Mixins(PaginationMixin) {
         this.activeIds = allEquipments.results.map((item: any) => item.id)
 
         if (this.activeCategory) {
-            this.EquipmentCategory.insert({
+            this.EquipmentCategory.save({
                 id: this.activeCategory,
                 equipments: allEquipments.results
             })
-            // await equipmentModels.EquipmentCategory.insertOrUpdate({
-            //     data: {
-            //         id: this.activeCategory,
-            //         equipments: allEquipments.results,
-            //     }
-            // })
         }
 
-        this.EquipmentCategory.find(1)
+        this.EquipmentCategory.find('1')
 
         this.pagination = {
             currentPage: this.pagination.currentPage,
