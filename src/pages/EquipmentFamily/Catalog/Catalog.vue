@@ -76,12 +76,16 @@
 <script lang="ts">
 import {Component, Inject, Prop, PropSync, Vue} from 'vue-property-decorator'
 
-import CatalogLayout from '@/components/layouts/CatalogLayout.vue'
+import { CatalogLayout } from '../CatalogLayout'
+import { FilterGroup } from '../FilterGroup'
 import Modal from '@/components/modals/Modal.vue'
 import FilterModal from '@/components/modals/FilterModal.vue'
-import FilterGroup from '@/components/blanks/FilterGroup.vue'
-import { EquipmentCatalogCard } from "@/entities/equipment"
 
+import {
+    Equipment,
+    EquipmentCard,
+    EquipmentCatalogCard,
+} from '@/entities/equipment'
 import { TilingLayout } from '@/shared/layouts/TilingLayout'
 import { Checkbox } from '@/shared/ui/Checkbox'
 import { Range } from '@/shared/blanks/Range'
@@ -89,15 +93,10 @@ import { Link } from '@/shared/ui/Link'
 import { Banner } from '@/shared/blanks/Banner'
 import { Sorting } from '@/features/equipment'
 import { CategoryFilters } from '@/features/category'
-import {
-    EquipmentCard,
-} from '@/entities/equipment'
 import { AsideLayout } from '@/shared/layouts/AsideLayout'
-import {Equipment} from "@/entities/equipment"
 import {Brand} from "@/entities/brand"
 
 import type { IDevice } from '@/use/device'
-import {brandModel} from "@/entities/brand"
 import {Model} from "@/shared/config/decorators"
 import {Repository} from "@vuex-orm/core"
 
@@ -125,7 +124,7 @@ export enum FilterGroups {
         'c-banner': Banner,
     },
 })
-export default class EquipmentTypeDetail extends Vue {
+export default class Catalog extends Vue {
     @Inject('$device') device!: IDevice
 
     @Model(Equipment) Equipment!: Repository<Equipment>
@@ -163,14 +162,6 @@ export default class EquipmentTypeDetail extends Vue {
     }
 
     isModal = false
-
-    get correctFilters() {
-        return Object.fromEntries(
-            Object.entries(this.filters).map(
-                ([key,ids]) => [key, new Set(ids)]
-            )
-        )
-    }
 
     get filterData() {
         const brands = this.Brand.all()
@@ -232,20 +223,19 @@ export default class EquipmentTypeDetail extends Vue {
         },
     ]
 
-    mounted() {
+    mounted(): void {
         this.filterList[0].filters = this.Brand.all().map(
             brand => [brand.name, false]
         )
     }
 
-    get activeEquipments() {
+    get activeEquipments(): Equipment['id'][] {
         return Object.values(this.Equipment
             .query()
             .where(equipment => {
-                return equipment.category_id === this.activeCategorySync &&
-                    this.activeIds.includes(equipment.id)
+                return this.activeIds.includes(equipment.id)
             })
-            .all()).map(equipment => equipment.id)
+            .get()).map(equipment => equipment.id)
     }
 
     get rowCount(): number {

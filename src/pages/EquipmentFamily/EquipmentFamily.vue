@@ -21,16 +21,17 @@
 <script lang="ts">
 import {Component, Mixins} from 'vue-property-decorator'
 
-import { PaginationWrapper } from '@/shared/ui/PaginationWrapper'
-import { Catalog } from './Catalog'
+import {PaginationWrapper} from '@/shared/ui/PaginationWrapper'
+import {Catalog, FilterGroups} from './Catalog'
 import PaginationMixin from "@/shared/mixins/PaginationMixin"
 
-import {equipmentModels} from '@/entities/equipment'
+import {EquipmentCategory, EquipmentFamily} from '@/entities/equipment'
 import {gql, request} from "graphql-request"
 import {Maybe} from "@/types/common"
 import {env} from "@/shared/config"
-import {brandModel} from "@/entities/brand"
-import {FilterGroups} from "./Catalog"
+import {Brand} from "@/entities/brand"
+import {Model} from "@/shared/config/decorators"
+import {Repository} from "@vuex-orm/core"
 
 // TODO: add middleware for filtering into currentRoute
 
@@ -40,7 +41,11 @@ import {FilterGroups} from "./Catalog"
         'pagination-wrapper-component': PaginationWrapper,
     }
 })
-export default class EquipmentFamily extends Mixins(PaginationMixin) {
+export default class EquipmentFamilyPage extends Mixins(PaginationMixin) {
+    @Model(EquipmentFamily) EquipmentFamily!: Repository<EquipmentFamily>
+    @Model(EquipmentCategory) EquipmentCategory!: Repository<EquipmentCategory>
+    @Model(Brand) Brand!: Repository<Brand>
+
     activeCategory: Maybe<number> = null
 
     activeIds: number[] = []
@@ -69,18 +74,6 @@ export default class EquipmentFamily extends Mixins(PaginationMixin) {
         }
     }
 
-    get EquipmentFamily() {
-        return this.$store.$repo(equipmentModels.EquipmentFamily)
-    }
-
-    get Brand() {
-        return this.$store.$repo(brandModel.Brand)
-    }
-
-    get EquipmentCategory() {
-        return this.$store.$repo(equipmentModels.EquipmentCategory)
-    }
-
     async created(): Promise<void> {
         const query = gql`
             {
@@ -101,17 +94,8 @@ export default class EquipmentFamily extends Mixins(PaginationMixin) {
 
         const { familyById, brands } = await request(env.GRAPHQL_HOST, query)
 
-        this.EquipmentFamily.insert(familyById)
-
-        // await equipmentModels.EquipmentFamily.insert({
-        //     data: familyById
-        // })
-
-        this.Brand.insert(brands)
-
-        // await brandModel.Brand.insert({
-        //     data: brands
-        // })
+        this.EquipmentFamily.save(familyById)
+        this.Brand.save(brands)
 
         this.activeCategory = familyById.categories[0]?.id ?? null
 
@@ -135,6 +119,7 @@ export default class EquipmentFamily extends Mixins(PaginationMixin) {
             {
                 allEquipments(
                     category: ${this.activeCategory},
+                    brand: [${[...this.filters[FilterGroups.BRAND]].map(id => `"${id}"`)}],
                     offset:${this.paginationOffset}
                     limit:${this.paginationLimit}
                 ) {
@@ -171,8 +156,6 @@ export default class EquipmentFamily extends Mixins(PaginationMixin) {
                 equipments: allEquipments.results
             })
         }
-
-        this.EquipmentCategory.find('1')
 
         this.pagination = {
             currentPage: this.pagination.currentPage,
