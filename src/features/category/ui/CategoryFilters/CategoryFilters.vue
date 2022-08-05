@@ -38,11 +38,11 @@ export default class CategoryFilters extends Vue {
         return this.$route.params?.family ?? '1'
     }
 
-    get categories()/*: { id: string, name: string }[]*/ {
+    get categories() /* : { id: string, name: string }[] */ {
         return this.EquipmentCategory
             .query()
             .where('family_id', this.activeFamily)
-            .all()
+            .get()
     }
 
     isActive(id: number | string): boolean {

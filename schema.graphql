@@ -57,6 +57,12 @@ type EquipmentTypeNodeConnection {
     totalCount: Int
 }
 
+type IdeaType {
+    id: ID!
+    image: String!
+    name: String!
+}
+
 type PageInfoExtra {
     "When paginating forwards, are there more items?"
     hasNextPage: Boolean!
@@ -68,7 +74,7 @@ type Query {
     allEquipments(
         after: String,
         before: String,
-        brand: Float,
+        brand: [String],
         category: Float,
         first: Int,
         last: Int,
@@ -93,6 +99,7 @@ type Query {
     familyById(id: Int): EquipmentFamilyType
     groupById(id: Int): EquipmentGroupType
     groups: [EquipmentGroupType]
+    ideas: [IdeaType]
 }
 
 "An enumeration."

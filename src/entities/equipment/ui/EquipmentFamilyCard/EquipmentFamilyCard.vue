@@ -1,7 +1,7 @@
 <template lang="pug">
 
 c-card-product.b-equipment-family-card(
-    imageSrc="equipmentFamily.image.src"
+    :imageSrc="imageUrl(content.image)"
     imageAlt="equipmentFamily.image.alt"
     :to="`${$route.params.group}/${id}`"
 )
@@ -20,6 +20,9 @@ import ProductCounterList from '@/components/blanks/ProductCounterList.vue'
 import {Model} from "@/shared/config/decorators"
 import {EquipmentFamily} from "@/entities/equipment"
 import {Repository} from "@vuex-orm/core"
+import {MEDIA_HOST} from "@/shared/config/env"
+
+const imageUrl = (image: string) => `${MEDIA_HOST}/${image}`
 
 @Component({
     components: {
@@ -31,6 +34,8 @@ export default class EquipmentFamilyCard extends Vue {
     @Prop() readonly id!: number | string
 
     @Model(EquipmentFamily) EquipmentFamily!: Repository<EquipmentFamily>
+
+    imageUrl = imageUrl
 
     get content() {
         return this.EquipmentFamily

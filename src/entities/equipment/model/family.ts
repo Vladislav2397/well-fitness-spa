@@ -8,6 +8,7 @@ export default class EquipmentFamily extends Model {
 
     @Attr(null) id!: number
     @Attr() name!: string
+    @Attr() image!: string
     @Attr() group_id!: string
 
     @HasMany(() => Category, 'family_id')

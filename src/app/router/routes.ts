@@ -6,10 +6,6 @@ import {EquipmentFamily} from '@/pages/EquipmentFamily'
 
 import IdeaPage from '@/components/pages/Idea.vue'
 
-
-import TestPage from '@/components/pages/Test.vue'
-import Test2Page from '@/pages/Test2.vue'
-
 import {RouteNames} from './helpers'
 import { PageBreadcrumbView } from '@/widgets/PageBreadcrumbView'
 import {LastVisitedView} from '@/widgets/LastVisitedView'

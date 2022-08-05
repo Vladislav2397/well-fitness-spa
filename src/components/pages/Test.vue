@@ -33,23 +33,23 @@ import Hoc from '@/shared/hoc/hoc.vue'
         'c-input': Input,
         'c-form': Form,
     },
-    setup() {
-        const formState = useSingleForm({
-            validRegex: /.{4,}/
-        })
-
-        return {
-            email: {
-                value: formState.value,
-                error: formState.error,
-                validRegex: formState.validRegex,
-                optionals: formState.optionals,
-                errorText: formState.errorText,
-                isValid: formState.isValid,
-                validate: formState.validate,
-            }
-        }
-    }
+    // setup() {
+    //     const formState = useSingleForm({
+    //         validRegex: /.{4,}/
+    //     })
+    //
+    //     return {
+    //         email: {
+    //             value: formState.value,
+    //             error: formState.error,
+    //             validRegex: formState.validRegex,
+    //             optionals: formState.optionals,
+    //             errorText: formState.errorText,
+    //             isValid: formState.isValid,
+    //             validate: formState.validate,
+    //         }
+    //     }
+    // }
 })
 export default class TestPage extends Mixins(TestServiceProvider) {
     @Getter('purchase/fields') storeFields!: Record<string, string>
@@ -80,14 +80,14 @@ export default class TestPage extends Mixins(TestServiceProvider) {
 
     fields: Record<string, FormSingleField> = {}
 
-    email!: {
-        value: string
-        error: boolean
-        optionals: Record<string, unknown>
-        isValid: boolean
-        errorText: string
-        validate: () => void
-    }
+    // email!: {
+    //     value: string
+    //     error: boolean
+    //     optionals: Record<string, unknown>
+    //     isValid: boolean
+    //     errorText: string
+    //     validate: () => void
+    // }
 
     createFields(): Record<string, FormSingleField> {
         const result: Record<string, FormSingleField> = {}

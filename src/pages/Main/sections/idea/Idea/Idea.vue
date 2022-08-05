@@ -27,6 +27,12 @@ import { SectionWrapper } from '../../SectionWrapper'
 
 // entity
 import { CardIdea } from '../CardIdea'
+import {gql, request} from "graphql-request"
+import {env} from "@/shared/config"
+import {Model} from "@/shared/config/decorators"
+import {Repository} from "@vuex-orm/core"
+import {Idea as IdeaModel} from '@/entities/idea'
+import {MEDIA_HOST} from "@/shared/config/env"
 
 @Component({
     components: {
@@ -35,26 +41,38 @@ import { CardIdea } from '../CardIdea'
     }
 })
 export default class Idea extends Vue {
-    cards = [
-        {
-            size: 'l',
-            src: 'some/image.png',
-            alt: ''
-        },
-        {
-            size: 's',
-            src: 'some/image.png',
-            alt: ''
-        },
-        {
-            size: 's',
-            src: 'some/image.png',
-            alt: ''
-        },
-    ]
+    @Model(IdeaModel) IdeaModel!: Repository<IdeaModel>
+
+    get cards() {
+        return this.IdeaModel.all().map((item, index) => ({
+            size: index === 0 ? 'l' : 's',
+            src: `${MEDIA_HOST}/${item.image}`,
+            alt: '',
+        }))
+    }
 
     onClick(): void {
         this.$router.push({ name: 'Idea'})
+    }
+
+    async created() {
+        const query = gql`
+            query {
+                ideas {
+                    id
+                    name
+                    image
+                }
+            }
+        `
+
+        try {
+            const { ideas } = await request(env.GRAPHQL_HOST, query)
+
+            this.IdeaModel.save(ideas)
+        } catch (error) {
+            //
+        }
     }
 }
 

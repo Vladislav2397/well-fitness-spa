@@ -18,6 +18,7 @@ const getEnvVar = (key: string) => {
 
 /** API entrypoint */
 export const GRAPHQL_HOST = getEnvVar("VUE_APP_GRAPHQL_HOST")
+export const MEDIA_HOST = getEnvVar("VUE_APP_MEDIA_HOST")
 
 /** Режим запуска программы */
 /** Режим разработки */
