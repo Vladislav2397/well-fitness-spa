@@ -1,0 +1,12 @@
+.two-panel-layout {
+    &__left,
+    &__right {
+        width: 48.66%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &__right {
+        margin-left: 2.66%;
+    }
+}

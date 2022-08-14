@@ -2,14 +2,14 @@
 import { CreateElement, VNode } from 'vue'
 import { Component, Emit, Prop, PropSync, Vue } from 'vue-property-decorator'
 
-export interface ButtonProps {
+export type ButtonProps = {
     tag: 'button' | 'a' | 'div' | 'router-link'
     iconSize: 's' | 'm' | 'l',
     size: 's' | 'm'
     theme: buttonThemeType,
     icon: string
-    href: string
-    errorSync: boolean
+    href?: string
+    errorSync?: boolean
     error?: boolean
     iconLeft: boolean
 }

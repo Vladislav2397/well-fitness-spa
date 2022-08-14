@@ -2,11 +2,11 @@
 import { Icon, IconProps } from '@/shared/ui/Icon'
 import {Functional} from '@/shared/config/functionalComponent'
 
-export interface LinkProps {
-    tag: 'a' | 'router-link' | 'span'
+export type LinkProps = {
+    tag: 'a' | 'router-link' | 'span' | 'button'
     iconSize: 's' | 'm' | 'l'
     theme: LinkThemeType
-    href: string
+    href?: string
     icon: string
     iconLeft: boolean
 }

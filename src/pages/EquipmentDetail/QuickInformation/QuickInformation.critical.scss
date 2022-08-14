@@ -1,0 +1,34 @@
+.quick-information {
+    $sectionWidth: 688;
+    $panelWidth: $sectionWidth / 2 - 12;
+
+    &__section {
+        & + & {
+            @include marginLevel(top, pink);
+        }
+
+        &--bordered {
+            border-bottom: 1px solid #000;
+        }
+    }
+
+    &__panel {
+        width: #{$panelWidth / $sectionWidth * 100%};
+        display: inline-block;
+        vertical-align: top;
+
+        & + & {
+            margin-left: #{(24 / $sectionWidth) * 100%};
+        }
+    }
+
+    &__characteristics {
+        @include marginLevel(top, gray);
+    }
+
+    &__button {
+        &--to-compare {
+            margin-left: toRem(30);
+        }
+    }
+}

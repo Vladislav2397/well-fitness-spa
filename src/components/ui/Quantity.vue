@@ -10,6 +10,12 @@
             :key="i"
             :class="{ 'quantity__dot--fill' : i <= count }"
         )
+    link-component.__link(
+        v-if="hasShowRoom"
+        theme="brand"
+        tag="span"
+    ) Есть в шоу руме
+
 
 </template>
 
@@ -19,6 +25,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component
 export default class Quantity extends Vue {
     @Prop() readonly count!: 0 | 1 | 2 | 3
+    @Prop() readonly hasShowRoom!: boolean
 
     get state(): { label: string, class: string } {
         switch (this.count) {
