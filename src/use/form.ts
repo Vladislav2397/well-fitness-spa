@@ -1,4 +1,4 @@
-import { ref, getCurrentInstance } from '@vue/composition-api'
+import { ref, getCurrentInstance } from 'vue'
 
 interface FormFactoryOptions {
     value: string

@@ -47,13 +47,14 @@
         "sharp": "^0.29.2",
         "swiper": "^7.2.0",
         "unplugin-vue2-script-setup": "^0.9.1",
-        "vue": "^2.6.11",
+        "vue": "2.7.8",
         "vue-awesome-swiper": "^4.1.1",
         "vue-class-component": "^7.2.3",
         "vue-inject": "^2.1.1",
         "vue-property-decorator": "^9.1.2",
         "vue-router": "^3.2.0",
         "vue-slider-component": "^3.2.15",
+        "vue-template-compiler": "2.7.8",
         "vuex": "^3.4.0",
         "vuex-class-component": "^2.3.6",
         "vuex-module-decorators": "^2.0.0",
@@ -93,7 +94,6 @@
         "vue-cli-plugin-pug": "~2.0.0",
         "vue-cli-plugin-vite": "~1.5.0",
         "vue-loader": "^15.9.8",
-        "vue-template-compiler": "^2.6.11",
         "webpack-cli": "^4.9.1"
     }
 }

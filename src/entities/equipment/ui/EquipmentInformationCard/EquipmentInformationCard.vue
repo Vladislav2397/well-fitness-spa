@@ -2,7 +2,7 @@
 
 .b-equipment-information-card
     c-quantity.__quantity(
-        count="3"
+        :count="3"
         :has-show-room="true"
     )
     c-price.__price(

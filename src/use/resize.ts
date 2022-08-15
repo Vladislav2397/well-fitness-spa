@@ -1,4 +1,4 @@
-import { onBeforeUnmount, onMounted, reactive } from '@vue/composition-api'
+import { onBeforeUnmount, onMounted, reactive } from 'vue'
 
 type width = number | null
 

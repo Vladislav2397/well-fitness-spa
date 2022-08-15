@@ -1,4 +1,4 @@
-import { onMounted, reactive } from '@vue/composition-api'
+import { onMounted, reactive } from 'vue'
 import useResize from '@/use/resize'
 
 export interface IDevice {

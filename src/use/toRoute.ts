@@ -1,4 +1,4 @@
-import { getCurrentInstance } from '@vue/composition-api'
+import { getCurrentInstance } from 'vue'
 import { Dictionary } from 'vue-router/types/router'
 import { RouteNamesConst } from '@/app/router/helpers'
 
@@ -9,7 +9,7 @@ export const toRoute = (
 ): void => {
     const instance = getCurrentInstance()
 
-    instance?.root.proxy.$router.push({
+    instance?.proxy.$root.$router.push({
         name: routeName,
         params: routeParams,
     })

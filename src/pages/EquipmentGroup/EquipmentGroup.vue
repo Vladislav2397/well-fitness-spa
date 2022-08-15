@@ -35,12 +35,6 @@ import {gql, request} from "graphql-request"
 import {env} from "@/shared/config"
 import {Model} from "@/shared/config/decorators"
 import {Repository} from "@vuex-orm/core"
-import {Product} from "@/product"
-
-const product = new Product({
-    id: 1,
-    name: 'product 1'
-})
 
 @Component({
     components: {
@@ -57,8 +51,6 @@ export default class EquipmentGroupPage extends Vue {
 
     @Model(EquipmentGroup) EquipmentGroup!: Repository<EquipmentGroup>
     @Model(EquipmentFamily) EquipmentFamily!: Repository<EquipmentFamily>
-
-    product = product.state
 
     async created(): Promise<void> {
         try {
@@ -91,11 +83,8 @@ export default class EquipmentGroupPage extends Vue {
         }
     }
 
-    onClick() {
-        product.increment()
-    }
-
-    get productList() {
+    get productList(): typeof EquipmentFamily {
+        // TODO: Make convert to ids[] from EquipmentFamily
         const families = this.EquipmentFamily
             .query()
             .with('categories')

@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, inject} from '@vue/composition-api'
+import {computed, inject} from 'vue'
 
 import {IDevice} from '@/use/device'
 

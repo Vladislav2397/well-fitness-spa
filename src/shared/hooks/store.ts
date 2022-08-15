@@ -1,7 +1,7 @@
-import { getCurrentInstance } from '@vue/composition-api'
+import { getCurrentInstance } from 'vue'
 
 export const useStore = () => {
     const instance = getCurrentInstance()
 
-    return instance?.root.proxy.$store
+    return instance?.proxy.$root.$store
 }

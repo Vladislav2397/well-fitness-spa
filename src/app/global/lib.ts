@@ -15,5 +15,5 @@ Vue.use(VueSimplePortal, {
 })
 
 // @ts-ignore
-import VueCompositionAPI from '@vue/composition-api'
-Vue.use(VueCompositionAPI)
+// import VueCompositionAPI from '@vue/composition-api'
+// Vue.use(VueCompositionAPI)
