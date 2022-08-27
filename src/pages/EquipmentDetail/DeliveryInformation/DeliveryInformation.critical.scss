@@ -1,0 +1,12 @@
+.delivery-information {
+    &__item {
+        b {
+            @include fontSize(p3);
+            font-weight: 600;
+        }
+
+        span {
+            @include fontSize(p3);
+        }
+    }
+}

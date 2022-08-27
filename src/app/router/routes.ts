@@ -30,6 +30,14 @@ export default [
                         path: ':group(gym|home)',
                         name: RouteNames.EQUIPMENT_GROUP,
                         component: EquipmentGroup,
+                        meta: {
+                            pageBreadcrumb: {
+                                name: 'Для фитнес клуба',
+                                links: [
+                                    RouteNames.EQUIPMENT_GROUP,
+                                ]
+                            }
+                        }
                     },
                     {
                         path: ':group(gym|home)/:family',

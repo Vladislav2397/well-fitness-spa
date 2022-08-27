@@ -4,9 +4,9 @@ import { Component, Emit, Prop, PropSync, Vue } from 'vue-property-decorator'
 
 export type ButtonProps = {
     tag: 'button' | 'a' | 'div' | 'router-link'
-    iconSize: 's' | 'm' | 'l',
+    iconSize: 's' | 'm' | 'l'
     size: 's' | 'm'
-    theme: buttonThemeType,
+    theme: buttonThemeType
     icon: string
     href?: string
     errorSync?: boolean
@@ -14,7 +14,8 @@ export type ButtonProps = {
     iconLeft: boolean
 }
 
-export type buttonThemeType = 'brand'
+export type buttonThemeType =
+    | 'brand'
     | 'ghost-brand'
     | 'ghost-light'
     | 'ghost'
@@ -22,17 +23,23 @@ export type buttonThemeType = 'brand'
 
 @Component
 export default class Button extends Vue implements ButtonProps {
-    @Prop({ default: 'button' }) readonly tag!: 'button' | 'a' | 'div' | 'router-link'
+    @Prop({ default: 'button' }) readonly tag!:
+        | 'button'
+        | 'a'
+        | 'div'
+        | 'router-link'
     @Prop({ default: 'm' }) readonly size!: 'm' | 's'
     @Prop({ default: 'brand' }) readonly theme!: ButtonProps['theme']
     @Prop() readonly icon!: string
-    @Prop({ default: 'm'}) readonly iconSize!: ButtonProps['iconSize']
+    @Prop({ default: 'm' }) readonly iconSize!: ButtonProps['iconSize']
     @Prop() readonly href!: string
     @Prop() readonly iconLeft!: boolean
 
     @PropSync('error') errorSync!: boolean
 
-    @Emit('click') clickEmit (): void {/**/}
+    @Emit('click') clickEmit(): void {
+        /**/
+    }
 
     get classes(): string[] {
         const classes = ['button']
@@ -55,7 +62,7 @@ export default class Button extends Vue implements ButtonProps {
         const children = []
 
         const icon = h('i', {
-            class: `icon icon--size-${this.iconSize} icon--${this.icon}`
+            class: `icon icon--size-${this.iconSize} icon--${this.icon}`,
         })
 
         if (this.icon) {
@@ -70,28 +77,31 @@ export default class Button extends Vue implements ButtonProps {
             children.push(this.$slots.default)
         }
 
-        return h('button', {
-            class: this.classes,
-            ...this.tag === 'a' && {
-                attrs: {
-                    href: this.href,
-                    target: '_blank',
-                    rel: 'noopener noreferrer'
-                }
+        return h(
+            'button',
+            {
+                class: this.classes,
+                ...(this.tag === 'a' && {
+                    attrs: {
+                        href: this.href,
+                        target: '_blank',
+                        rel: 'noopener noreferrer',
+                    },
+                }),
+                ...(this.tag === 'router-link' && {
+                    attrs: {
+                        to: this.href,
+                    },
+                }),
+                on: {
+                    click: this.clickEmit,
+                },
             },
-            ...this.tag === 'router-link' && {
-                attrs: {
-                    to: this.href
-                }
-            },
-            on: {
-                click: this.clickEmit
-            }
-        }, children)
+            children,
+        )
     }
 }
-
 </script>
 
-<style lang="scss" src="./button--critical.scss"></style>
-<style lang="scss" src="./button--main.scss"></style>
+<!--<style lang="scss" src="./button&#45;&#45;critical.scss"></style>-->
+<!--<style lang="scss" src="./button&#45;&#45;main.scss"></style>-->

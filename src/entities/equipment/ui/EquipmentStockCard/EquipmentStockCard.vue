@@ -12,7 +12,7 @@ c-card-product.b-equipment-stock-card
         template(
             #action
         )
-            button-component(
+            c-button(
                 v-if="!device.size.mobile"
                 :iconLeft="true"
                 icon="cart"
@@ -25,17 +25,19 @@ import { Component, Inject, Prop, Vue } from 'vue-property-decorator'
 
 import CardProduct from '@/components/blanks/cards/CardProduct.vue'
 import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
+import { Button } from '@/shared/ui/Button'
 
 import type { IDevice } from '@/use/device'
-import {Equipment} from '@/entities/equipment/model'
-import {Model} from "@/shared/config/decorators"
-import {Repository} from "@vuex-orm/core"
+import { Equipment } from '@/entities/equipment'
+import { Model } from '@/shared/config/decorators'
+import { Repository } from '@vuex-orm/core'
 
 @Component({
     components: {
+        'c-button': Button,
         'c-card-product': CardProduct,
         'c-card-product-stats': CardProductStats,
-    }
+    },
 })
 export default class EquipmentStockCard extends Vue {
     @Prop() readonly id!: number | string

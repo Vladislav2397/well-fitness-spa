@@ -1,7 +1,13 @@
-import { Equipment, EquipmentCategory, EquipmentFamily, EquipmentGroup } from './model'
+import {
+    Equipment,
+    EquipmentCategory,
+    EquipmentFamily,
+    EquipmentGroup,
+} from './model'
 import { EquipmentPreview } from './ui/EquipmentPreview'
 import { EquipmentStockCard } from './ui/EquipmentStockCard'
 import { EquipmentFamilyCard } from './ui/EquipmentFamilyCard'
+import { EquipmentInformationCard } from './ui/EquipmentInformationCard'
 import { EquipmentCard } from './ui/EquipmentCard'
 import { CatalogCard as EquipmentCatalogCard } from './ui/CatalogCard'
 import { Characteristics } from './ui/Characteristics'
@@ -22,6 +28,7 @@ export {
     EquipmentStockCard,
     EquipmentFamilyCard,
     EquipmentCatalogCard,
+    EquipmentInformationCard,
     Characteristics,
     equipmentModels,
     EquipmentModel,

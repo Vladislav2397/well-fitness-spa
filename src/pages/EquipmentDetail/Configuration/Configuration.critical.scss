@@ -1,0 +1,52 @@
+.configuration {
+    $b: &;
+
+    padding: toRem(30);
+    background-color: #f6f6f6;
+    border-radius: toRem(4);
+
+    &__title {
+        //
+    }
+
+    &__groups {
+        display: table;
+    }
+
+    &__group {
+        display: table-row;
+
+        & + & {
+            #{$b} {
+                &__name,
+                &__list {
+                    border-top: 1px solid #ccc;
+                }
+            }
+        }
+    }
+
+    &__name,
+    &__list {
+        display: table-cell;
+    }
+
+    &__name {
+        white-space: nowrap;
+    }
+
+    &__list {
+        width: 100%;
+        padding-left: toRem(12);
+    }
+
+    &__options {
+        margin-right: toRem(-8);
+        margin-bottom: toRem(-8);
+    }
+
+    &__option {
+        margin-right: toRem(8);
+        margin-bottom: toRem(8);
+    }
+}

@@ -12,16 +12,6 @@
         }
     }
 
-    &__panel {
-        width: #{$panelWidth / $sectionWidth * 100%};
-        display: inline-block;
-        vertical-align: top;
-
-        & + & {
-            margin-left: #{(24 / $sectionWidth) * 100%};
-        }
-    }
-
     &__characteristics {
         @include marginLevel(top, gray);
     }
@@ -29,6 +19,19 @@
     &__button {
         &--to-compare {
             margin-left: toRem(30);
+        }
+    }
+
+    @media (min-width: $tablet) {
+
+        &__panel {
+            width: #{$panelWidth / $sectionWidth * 100%};
+            display: inline-block;
+            vertical-align: top;
+
+            & + & {
+                margin-left: #{(24 / $sectionWidth) * 100%};
+            }
         }
     }
 }

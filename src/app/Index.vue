@@ -69,25 +69,27 @@
 </template>
 
 <script lang="ts">
-import {Component, Inject, Vue} from 'vue-property-decorator'
+import { Component, Inject, Vue } from 'vue-property-decorator'
+
+// TODO: Services includes on page components and provide to children
 
 import { TheHeader } from '@/widgets/header'
 // import HeaderModal from '@/components/modals/HeaderModal.vue'
-import /*EquipmentModal, */{
-    equipmentModalLinkType
+import {
+    /*EquipmentModal, */ equipmentModalLinkType,
 } from '@/components/modals/EquipmentModal.vue'
 import { TheFooter } from '@/widgets/footer'
 // import CityModal from '@/components/modals/CityModal.vue'
 import SearchContent from '@/components/sections/SearchContent.vue'
 
 import type { IDevice } from '@/use/device'
-import {Getter} from '@/shared/config'
+import { Getter } from '@/shared/config'
 // import {Action, Getter} from '@/shared/config/decorators'
 // import {GetterCountCounter} from '@/store/models/counter/getters'
 // import {ActionCountIncrement} from '@/store/models/counter/actions'
 
 type equipmentModalContentType = {
-    title: string,
+    title: string
     list: equipmentModalLinkType[]
 }
 
@@ -99,7 +101,7 @@ type equipmentModalContentType = {
         // 'equipment-modal-component': EquipmentModal,
         // 'header-modal-component': HeaderModal,
         'footer-component': TheFooter,
-        'modals-component': () => import('@/widgets/modals')
+        'modals-component': () => import('@/widgets/modals'),
     },
 })
 export default class App extends Vue {
@@ -112,7 +114,7 @@ export default class App extends Vue {
 
     currentModalName = ''
 
-    async mounted() {
+    async mounted(): Promise<void> {
         // await this.increment()
         // console.log('this.counter', this.counter)
     }
@@ -153,7 +155,7 @@ export default class App extends Vue {
                     text: 'Функциональный тренинг',
                     href: '/',
                 },
-            ]
+            ],
         },
         {
             title: 'Для фитнес клубов',
@@ -191,12 +193,10 @@ export default class App extends Vue {
                     href: '/',
                 },
             ],
-        }
+        },
     ]
 }
 </script>
 
-<style lang="scss">
-@import "@/assets/scss/critical";
-@import "@/assets/scss/main";
-</style>
+<style lang="scss" src="../assets/scss/critical.scss" />
+<style lang="scss" src="../assets/scss/main.scss" />

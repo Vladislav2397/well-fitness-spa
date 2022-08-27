@@ -1,4 +1,5 @@
 <template lang="pug">
+
 .b-tab-list
     tab-component.__item(
         v-for="(tab, index) in list"
@@ -13,21 +14,20 @@
 <script lang="ts">
 import { Component, Prop, VModel, Vue } from 'vue-property-decorator'
 
-import {Tab} from '@/shared/ui/Tab'
+import { Tab } from '@/shared/ui/Tab'
 
 @Component({
     components: {
-        'tab-component': Tab
-    }
+        'tab-component': Tab,
+    },
 })
 export default class TabList extends Vue {
     @Prop() readonly list!: string[]
 
     @VModel() activeIndex!: number
 
-    updateActiveIndex (index: number): void {
+    updateActiveIndex(index: number): void {
         this.activeIndex = index
     }
 }
-
 </script>

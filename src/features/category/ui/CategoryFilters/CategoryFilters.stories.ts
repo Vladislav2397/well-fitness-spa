@@ -5,10 +5,10 @@ export default {
     component: CategoryFilters,
 }
 
-const Template = (args: any, {argTypes}: any) => ({
+const Template = (args: any, { argTypes }: any) => ({
     props: Object.keys(argTypes),
-    components: {CategoryFilters},
-    template: `<CategoryFilters v-bind="" />`
+    components: { CategoryFilters },
+    template: `<CategoryFilters v-bind="$props" />`,
 })
 
 export const Default = Template.bind({})

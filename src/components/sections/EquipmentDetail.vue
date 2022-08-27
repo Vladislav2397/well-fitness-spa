@@ -19,7 +19,6 @@
                     :class="_class"
                 )
                     price-tag-component
-                    .configure-component
             template(
                 v-if="!device.size.desktop"
             )
@@ -41,9 +40,12 @@ import Gallery from '@/components/blanks/Gallery.vue'
 import PriceTag from '@/components/blanks/PriceTag.vue'
 
 import type { IDevice } from '@/use/device'
+import Configuration
+    from "@/pages/EquipmentDetail/Configuration/Configuration.vue"
 
 @Component({
     components: {
+        'c-configuration': Configuration,
         'price-tag-component': PriceTag,
         'gallery-component': Gallery,
         'two-columns-layout': TwoColumnsLayout,

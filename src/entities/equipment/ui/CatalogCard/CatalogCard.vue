@@ -11,32 +11,54 @@ c-card-product.b-catalog-card(
         :rating="content.rating"
         :price="[1000, 1200]"
     )
+        template(
+            #action
+        )
+            c-button(
+                theme="brand"
+                @click="addToCart"
+            ) В корзину
 
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue} from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
-import CardProduct from "@/components/blanks/cards/CardProduct.vue"
-import CardProductStats from "@/components/blanks/cards/CardProductStats.vue"
+import CardProduct from '@/components/blanks/cards/CardProduct.vue'
+import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
 
-import {Equipment} from "@/entities/equipment"
-import {Model} from "@/shared/config/decorators"
-import {Repository} from "@vuex-orm/core"
+import { Equipment } from '@/entities/equipment'
+import { Model } from '@/shared/config/decorators'
+import { Repository } from '@vuex-orm/core'
+import Button from '@/shared/ui/Button/Button.vue'
+import { Cart, CartService } from '@/entities/cart'
+import { Maybe } from '@/types/common'
 
 @Component({
     components: {
+        'c-button': Button,
         'c-card-product-stats': CardProductStats,
-        'c-card-product': CardProduct
-    }
+        'c-card-product': CardProduct,
+    },
 })
 export default class CatalogCard extends Vue {
     @Prop() readonly id!: string | number
     @Prop() readonly to!: string
 
     @Model(Equipment) Equipment!: Repository<Equipment>
+    @Model(Cart) Cart!: Repository<Cart>
 
-    get content() {
+    get CartService(): CartService {
+        return new CartService(this.$store, this.Cart)
+    }
+
+    addToCart(): void {
+        if (this.content) {
+            this.CartService.add(this.content)
+        }
+    }
+
+    get content(): Maybe<Equipment> {
         return this.Equipment.find(`${this.id}`)
     }
 }

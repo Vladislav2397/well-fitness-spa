@@ -13,18 +13,23 @@
     }
 
     &__wrapper {
-        padding-left: toRem(70);
-        padding-right: toRem(70);
+        padding-left: toRem(50);
+        padding-right: toRem(50);
         position: relative;
         display: inline-block;
         max-width: 100%;
         min-width: 10%;
+
+        @media (min-width: $tablet) {
+            padding-left: toRem(70);
+            padding-right: toRem(70);
+        }
     }
 
     &__item {
         display: inline-block;
-        width: toRem(70);
-        height: toRem(70);
+        width: toRem(50);
+        height: toRem(50);
 
         & + & {
             margin-left: toRem(8);
@@ -33,11 +38,16 @@
         &.is-active {
             border: 1px solid #f00;
         }
+
+        @media (min-width: $tablet) {
+            width: toRem(70);
+            height: toRem(70);
+        }
     }
 
     &__button {
-        width: toRem(70);
-        height: toRem(70);
+        width: toRem(50);
+        height: toRem(50);
         top: 0;
         position: absolute;
 
@@ -56,6 +66,11 @@
 
         &--right {
             right: 0;
+        }
+
+        @media (min-width: $tablet) {
+            width: toRem(70);
+            height: toRem(70);
         }
     }
 }

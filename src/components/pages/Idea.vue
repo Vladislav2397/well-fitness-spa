@@ -1,24 +1,24 @@
 <template lang="pug">
 
 .page
-    page-breadcrumb-component(
-        title="Идеи и подборки"
-        :list="breadcrumbList"
-    )
+    //page-breadcrumb-component(
+    //    title="Идеи и подборки"
+    //    :list="breadcrumbList"
+    //)
     pagination-wrapper-component
         tiling-layout-component(
             count-in-row="2"
         )
             template(
-                #default="slotProps"
+                #default="{ classItem }"
             )
                 card-idea-component(
-                    v-for="({size, src, alt}, index) in cards"
-                    :key="index"
-                    :class="slotProps.classItem"
-                    :size="size"
-                    :src="src"
-                    :alt="alt"
+                    v-for="(idea, index) in cards"
+                    :key="idea.id"
+                    :class="classItem"
+                    size="l"
+                    :src="getImageApi(idea.image)"
+                    :alt="idea.name"
                 )
 
 </template>
@@ -31,6 +31,12 @@ import Tiling from '@/components/sections/Tiling.vue'
 import TilingLayout from '@/components/layouts/TilingLayout.vue'
 import { CardIdea } from '@/pages/Main/sections/idea/CardIdea'
 import { PaginationWrapper } from '@/shared/ui/PaginationWrapper'
+import {gql, request} from "graphql-request"
+import {env} from "@/shared/config"
+import {Model} from "@/shared/config/decorators"
+import { Idea as IdeaModel } from '@/entities/idea'
+import {Collection, Repository} from "@vuex-orm/core"
+import apiHelpers from "@/shared/lib/api-helpers"
 
 @Component({
     components: {
@@ -42,6 +48,8 @@ import { PaginationWrapper } from '@/shared/ui/PaginationWrapper'
     }
 })
 export default class Idea extends Vue {
+    @Model(IdeaModel) Idea!: Repository<IdeaModel>
+
     breadcrumbList = [
         {
             text: 'Идеи и подборки',
@@ -49,32 +57,30 @@ export default class Idea extends Vue {
         }
     ] as breadcrumbListType
 
-    cards = [
-        {
-            src: '.',
-            size: 'l',
-            alt: 'image'
-        },
-        {
-            src: '.',
-            size: 'l',
-            alt: 'image'
-        },
-        {
-            src: '.',
-            size: 'l',
-            alt: 'image'
-        },
-        {
-            src: '.',
-            size: 'l',
-            alt: 'image'
-        },
-        {
-            src: '.',
-            size: 'l',
-            alt: 'image'
-        },
-    ]
+    getImageApi = apiHelpers.getImageApi
+
+    get cards(): Collection<IdeaModel> {
+        return this.Idea.all()
+    }
+
+    async created() {
+        try {
+            const query = gql`
+                {
+                    ideas {
+                        id
+                        name
+                        image
+                    }
+                }
+            `
+
+            const { ideas } = await request(env.GRAPHQL_HOST, query)
+
+            this.Idea.save(ideas)
+        } catch (error) {
+            console.log('error')
+        }
+    }
 }
 </script>

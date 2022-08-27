@@ -1,4 +1,4 @@
-import {Attr, Model} from '@vuex-orm/core'
+import { Attr, Model } from '@vuex-orm/core'
 
 export class Brand extends Model {
     static entity = 'brand'
@@ -7,6 +7,7 @@ export class Brand extends Model {
 
     @Attr(null) id!: string | number
     @Attr() name!: string
+    @Attr() image!: string
 
     // static fields() {
     //     return {

@@ -11,6 +11,16 @@ card-product-component.b-equipment-card
         :isRatingLabel="!device.size.mobile"
         :isPriceRow="device.size.tablet"
     )
+        c-button(
+            icon="cart"
+            size="m"
+            @click="addToCart"
+        ) В корзину
+        c-button(
+            icon="heart"
+            size="m"
+            @click="addToFavorite"
+        ) В избранное
 
 </template>
 
@@ -22,18 +32,43 @@ import CardProductStats from '@/components/blanks/cards/CardProductStats.vue'
 
 // import { Equipment } from '../../model'
 import type { IDevice } from '@/use/device'
+import Button from '@/shared/ui/Button/Button.vue'
+import { Model } from '@/shared/config/decorators'
+import { Equipment } from '@/entities/equipment'
+import { Item, Repository } from '@vuex-orm/core'
 
 @Component({
     components: {
+        'c-button': Button,
         'card-product-component': CardProduct,
         'card-product-stats-component': CardProductStats,
-    }
+    },
 })
 export default class EquipmentCard extends Vue {
     @Prop() readonly equipmentCard!: any
-    @Prop() readonly id!: any
+    @Prop() readonly id!: number
+
+    @Model(Equipment) Equipment!: Repository<Equipment>
 
     @Inject('$device') device!: IDevice
+
+    addToCart(): void {
+        if (this.equipment) {
+            console.log('add to cart', this.equipment)
+            // CartService.add(this.equipment)
+        }
+    }
+
+    addToFavorite(): void {
+        if (this.equipment) {
+            console.log('add to favorite', this.equipment)
+            // FavoriteService.add(this.equipment)
+        }
+    }
+
+    get equipment(): Item<Equipment> {
+        return this.Equipment.find(this.id)
+    }
 
     get price(): CardProductStats['price'] {
         return [

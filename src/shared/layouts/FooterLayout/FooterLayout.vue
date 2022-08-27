@@ -1,6 +1,8 @@
 <template lang="pug" functional>
 
-.b-footer-layout
+.b-footer-layout(
+    :class="data.staticClass"
+)
     .__top
         slot(
             name="top"

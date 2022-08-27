@@ -1,25 +1,29 @@
 <template lang="pug">
 
 .b-brand
-    ._container.container
+    .__container.container
         section-wrapper-component._wrapper(
             title="Популярные бренды"
             buttonText="Все бренды"
         )
-            ._links.scroll-row
-                link-component._link(
+            .__links.scroll-row
+                link-component.__link(
                     v-for="({text, href}, index) in links"
                     :key="index"
                     :href="href"
                     tag="router-link"
                     theme="dark"
                 ) {{ text }}
-            ._list
-                ._item(
-                    v-for="(i, index) in brandLogoCount"
-                    :key="index"
+            .__list
+                .__item(
+                    v-for="(brand, index) in brands"
+                    :key="brand.id"
                     :class="itemClasses(index)"
                 )
+                    img(
+                        :src="getImageApi(brand.image)"
+                        :alt="brand.name"
+                    )
 
 </template>
 
@@ -28,7 +32,14 @@ import {Component, Inject, Vue} from 'vue-property-decorator'
 
 import { SectionWrapper } from '../SectionWrapper'
 
+import {env} from "@/shared/config"
+import {Model} from "@/shared/config/decorators"
+import { Brand as BrandModel } from '@/entities/brand'
+import {Repository} from "@vuex-orm/core"
+import apiHelpers from "@/shared/lib/api-helpers"
+
 import type {IDevice} from '@/use/device'
+import {gql, request} from "graphql-request"
 
 @Component({
     components: {
@@ -37,6 +48,8 @@ import type {IDevice} from '@/use/device'
 })
 export default class Brand extends Vue {
     @Inject('$device') device!: IDevice
+
+    @Model(BrandModel) Brand!: Repository<BrandModel>
 
     links = [
         {
@@ -65,8 +78,14 @@ export default class Brand extends Vue {
         },
     ]
 
-    get brandLogoCount (): number {
-        return this.device.size.desktop ? 15 : 12
+    getImageApi = apiHelpers.getImageApi
+
+    // get brandLogoCount (): number {
+    //     return this.device.size.desktop ? 15 : 12
+    // }
+
+    get brands(): ReturnType<Brand['Brand']['all']> {
+        return this.Brand.all()
     }
 
     get countColumns (): number {
@@ -92,6 +111,26 @@ export default class Brand extends Vue {
         }
 
         return classes
+    }
+
+    async created() {
+        try {
+            const query = gql`
+                {
+                    brands {
+                        id
+                        name
+                        image
+                    }
+                }
+            `
+
+            const { brands } = await request(env.GRAPHQL_HOST, query)
+
+            this.Brand.save(brands)
+        } catch (error) {
+            console.log('error')
+        }
     }
 }
 
